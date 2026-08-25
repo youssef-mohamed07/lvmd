@@ -12,7 +12,7 @@ function CtaChip({ href, label }: { href: string; label: string; light?: boolean
   return (
     <Link
       href={href}
-      className="mt-8 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] bg-[#dab844] px-7 text-[13px] font-extrabold text-[#202020] shadow-[0_12px_32px_rgba(218,184,68,.28)] transition hover:-translate-y-0.5 hover:bg-[#e2c86f] hover:shadow-[0_18px_40px_rgba(218,184,68,.38)]"
+      className="mt-8 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] bg-[#ffc547] px-7 text-[13px] font-extrabold text-[#202020] shadow-[0_12px_32px_rgba(255,197,71,.28)] transition hover:-translate-y-0.5 hover:bg-[#b07e2b] hover:shadow-[0_18px_40px_rgba(255,197,71,.38)]"
     >
       {label} <ArrowRight size={15} />
     </Link>
@@ -29,15 +29,15 @@ function EditorialSplit({ eyebrow, title, quote, text, image, imageAlt }: { eyeb
           <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_40%,rgba(32,32,32,.55)_100%)] max-lg:bg-[linear-gradient(to_top,rgba(32,32,32,.88),transparent_55%)]" aria-hidden />
           <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10 lg:hidden">
             <p className="max-w-[420px] text-[15px] font-semibold leading-6 text-white/90">
-              <span className="text-[#ebd899]">— </span>{quote}
+              <span className="text-[#ffc547]">— </span>{quote}
             </p>
           </div>
         </div>
 
         <div className="relative flex flex-col justify-between px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
-          <div className="pointer-events-none absolute -right-16 top-10 h-56 w-56 rounded-full bg-[#dab844]/12 blur-[90px]" aria-hidden />
+          <div className="pointer-events-none absolute -right-16 top-10 h-56 w-56 rounded-full bg-[#ffc547]/12 blur-[90px]" aria-hidden />
           <div className="relative">
-            <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#ebd899]">
+            <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#ffc547]">
               <span className="h-px w-6 bg-current" aria-hidden />
               {eyebrow}
             </p>
@@ -47,7 +47,7 @@ function EditorialSplit({ eyebrow, title, quote, text, image, imageAlt }: { eyeb
             <p className="mt-6 max-w-[460px] text-[15px] leading-7 text-white/60">{text}</p>
             <Link
               href="/expertises"
-              className="group mt-8 inline-flex items-center gap-2 text-[13px] font-bold text-[#ebd899] transition hover:gap-3"
+              className="group mt-8 inline-flex items-center gap-2 text-[13px] font-bold text-[#ffc547] transition hover:gap-3"
             >
               Explorer les expertises <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
             </Link>
@@ -55,7 +55,7 @@ function EditorialSplit({ eyebrow, title, quote, text, image, imageAlt }: { eyeb
 
           <div className="relative mt-12 hidden border-t border-white/10 pt-8 lg:block">
             <p className="text-[12px] font-semibold leading-6 text-white/45">
-              <span className="text-[#ebd899]">— </span>{quote}
+              <span className="text-[#ffc547]">— </span>{quote}
             </p>
           </div>
         </div>
@@ -63,14 +63,14 @@ function EditorialSplit({ eyebrow, title, quote, text, image, imageAlt }: { eyeb
 
       <div className="border-t border-white/10 bg-[#202020]">
         <div className="container flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-6">
-          <p className="shrink-0 text-[11px] font-bold uppercase tracking-[0.16em] text-[#4caac9]">
+          <p className="shrink-0 text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">
             Environnements
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:justify-end">
             {sectorPlaceholders.map((sector, index) => (
               <span key={sector} className="inline-flex items-center gap-5 text-[13px] font-semibold text-white/70">
                 {index > 0 && <span className="hidden h-1 w-1 rounded-full bg-white/25 sm:inline-block" aria-hidden />}
-                <span className="transition hover:text-[#ebd899]">{sector}</span>
+                <span className="transition hover:text-[#ffc547]">{sector}</span>
               </span>
             ))}
           </div>
@@ -136,8 +136,8 @@ export function EnvironnementPage() {
         <CtaChip href="/devis" label="Demander une expertise" />
       </PageHero>
       <section className="relative overflow-hidden bg-[#f5f5f5] py-12 sm:py-16">
-        <div className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-[#4caac9]/10 blur-[120px]" aria-hidden />
-        <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#dab844]/10 blur-[100px]" aria-hidden />
+        <div className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-[#6b6b6b]/10 blur-[120px]" aria-hidden />
+        <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#ffc547]/10 blur-[100px]" aria-hidden />
         <div className="container relative">
           <SectionHead
             eyebrow="Le bon niveau d’intervention"
@@ -146,14 +146,14 @@ export function EnvironnementPage() {
           />
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(([Icon, title, text], index) => (
-              <div key={title} className="group relative overflow-hidden rounded-[22px] border border-[#202020]/8 bg-white p-6 shadow-[0_10px_40px_rgba(32,32,32,.05)] transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.12)]">
-                <span className="absolute right-5 top-4 text-[2.4rem] font-extrabold leading-none text-[#202020]/[0.05] transition group-hover:text-[#4caac9]/15" aria-hidden>0{index + 1}</span>
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#e5f3f7] text-[#4caac9] transition group-hover:bg-[#4caac9] group-hover:text-white">
+              <div key={title} className="group relative overflow-hidden rounded-[22px] border border-[#202020]/8 bg-white p-6 shadow-[0_10px_40px_rgba(32,32,32,.05)] transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.12)]">
+                <span className="absolute right-5 top-4 text-[2.4rem] font-extrabold leading-none text-[#202020]/[0.05] transition group-hover:text-[#6b6b6b]/15" aria-hidden>0{index + 1}</span>
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition group-hover:bg-[#6b6b6b] group-hover:text-white">
                   <Icon size={19} />
                 </span>
                 <h3 className="mt-5 text-[1.1rem] font-extrabold tracking-[-0.02em] text-[#202020]">{title}</h3>
                 <p className="mt-2 text-[13px] leading-6 text-[#424242]">{text}</p>
-                <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#4caac9] to-[#a8d8ea] transition duration-300 group-hover:scale-x-100" aria-hidden />
+                <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition duration-300 group-hover:scale-x-100" aria-hidden />
               </div>
             ))}
           </div>
@@ -201,7 +201,7 @@ export function ExpertisesPage() {
                   key={value}
                   type="button"
                   onClick={() => setGroup(value)}
-                  className={`shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[12px] font-extrabold transition ${group === value ? "bg-[#4caac9] text-white shadow-[0_8px_20px_rgba(76,170,201,.35)]" : "text-[#424242] hover:text-[#202020]"}`}
+                  className={`shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[12px] font-extrabold transition ${group === value ? "bg-[#6b6b6b] text-white shadow-[0_8px_20px_rgba(107,107,107,.35)]" : "text-[#424242] hover:text-[#202020]"}`}
                 >
                   {label}
                 </button>
@@ -261,7 +261,7 @@ export function RealisationsPage() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.8),transparent_65%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                  <p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#a8d8ea]">{tag}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#f1f1f1]">{tag}</p>
                   <h3 className="mt-1.5 text-[1.2rem] font-extrabold tracking-[-.03em]">{title}</h3>
                 </div>
               </article>
@@ -290,14 +290,14 @@ export function RealisationsPage() {
               <img src={imageSet.detail} alt="Le soin du détail par LVMR" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.05]" />
               <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),transparent_65%)]" />
               <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
-                <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#a8d8ea]">Le détail compte</p>
+                <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#f1f1f1]">Le détail compte</p>
                 <p className="mt-3 max-w-[360px] text-[clamp(1.6rem,2.6vw,2.3rem)] font-extrabold leading-[1.08] tracking-[-.04em]">
                   Un lieu propre se voit. Une intervention bien menée se ressent.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {["Études de cas", "Visuels autorisés", "Île-de-France"].map((chip) => (
                     <span key={chip} className="flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-2 text-[11px] font-bold text-white/75 backdrop-blur-md">
-                      <Check size={12} className="text-[#a8d8ea]" />{chip}
+                      <Check size={12} className="text-[#f1f1f1]" />{chip}
                     </span>
                   ))}
                 </div>
@@ -312,17 +312,17 @@ export function RealisationsPage() {
             ].map(([Icon, title, text], index) => (
               <article
                 key={title as string}
-                className="group relative overflow-hidden rounded-[28px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.10)] sm:p-8"
+                className="group relative overflow-hidden rounded-[28px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.10)] sm:p-8"
               >
-                <span className="absolute right-6 top-6 text-[2.6rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#4caac9]/12" aria-hidden>
+                <span className="absolute right-6 top-6 text-[2.6rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#6b6b6b]/12" aria-hidden>
                   0{index + 1}
                 </span>
-                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#e5f3f7] text-[#4caac9] transition duration-300 group-hover:bg-[#4caac9] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(76,170,201,.35)]">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(107,107,107,.35)]">
                   <Icon size={20} />
                 </span>
                 <h3 className="mt-6 text-[1.2rem] font-extrabold tracking-[-.02em] text-[#202020]">{title as string}</h3>
                 <p className="mt-2 max-w-[380px] text-[14px] leading-6 text-[#424242]">{text as string}</p>
-                <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#4caac9] to-[#a8d8ea] transition duration-300 group-hover:scale-x-100" aria-hidden />
+                <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition duration-300 group-hover:scale-x-100" aria-hidden />
               </article>
             ))}
           </div>
@@ -358,7 +358,7 @@ export function GroupePage() {
               <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.62)_52%,rgba(32,32,32,.18)_100%)]" />
               <div className="relative flex min-h-[520px] flex-col justify-between p-6 sm:min-h-[580px] sm:p-9">
                 <div className="flex items-center justify-between border-b border-white/18 pb-5">
-                  <span className="text-[10px] font-bold uppercase tracking-[.16em] text-[#a8d8ea]">LVMR Group</span>
+                  <span className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">LVMR Group</span>
                   <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/45">Saint-Germain-en-Laye</span>
                 </div>
                 <div>
@@ -367,8 +367,8 @@ export function GroupePage() {
                   <div className="mt-7 grid gap-2 sm:grid-cols-2">
                     {values.map(([Icon, title, text], index) => (
                       <div key={title} className="flex items-center gap-3 rounded-2xl border border-white/14 bg-[#202020]/45 p-3.5 backdrop-blur-md">
-                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#4caac9]/18 text-[#a8d8ea]"><Icon size={16} /></span>
-                        <div className="min-w-0"><p className="text-[12px] font-extrabold"><span className="mr-2 text-[#a8d8ea]">0{index + 1}</span>{title}</p><p className="mt-0.5 text-[10px] leading-4 text-white/50">{text}</p></div>
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#6b6b6b]/18 text-[#f1f1f1]"><Icon size={16} /></span>
+                        <div className="min-w-0"><p className="text-[12px] font-extrabold"><span className="mr-2 text-[#f1f1f1]">0{index + 1}</span>{title}</p><p className="mt-0.5 text-[10px] leading-4 text-white/50">{text}</p></div>
                       </div>
                     ))}
                   </div>
@@ -378,8 +378,8 @@ export function GroupePage() {
 
             <div className="grid gap-4">
               {[
-                ["01", "LVMR Premium", "La tenue régulière des lieux professionnels, résidentiels et hôteliers.", imageSet.premium, "/premium", "#ebd899"],
-                ["02", "LVMR Environnement", "La réponse structurée aux situations sensibles, techniques ou imprévues.", imageSet.environnement, "/environnement", "#9dd573"],
+                ["01", "LVMR Premium", "La tenue régulière des lieux professionnels, résidentiels et hôteliers.", imageSet.premium, "/premium", "#ffc547"],
+                ["02", "LVMR Environnement", "La réponse structurée aux situations sensibles, techniques ou imprévues.", imageSet.environnement, "/environnement", "#7ebcab"],
               ].map(([number, title, text, image, href, accent]) => (
                 <Link key={title} href={href} className="group relative min-h-[252px] overflow-hidden rounded-[26px] bg-[#202020] p-6 text-white sm:min-h-[282px] sm:p-8">
                   <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-1000 group-hover:scale-[1.05] group-hover:opacity-65" />
@@ -435,31 +435,31 @@ export function ContactPage() {
             <SectionHead eyebrow="LVMR Group" title={<>À votre écoute.</>} />
             <p className="mt-7 max-w-[420px] text-[15px] leading-8 text-[#424242]">Lundi au vendredi de 8 h à 20 h<br/>Samedi de 10 h à 18 h</p>
             <a href="tel:+33671849341" className="mt-6 inline-flex items-center gap-2 text-[1.25rem] font-extrabold text-[#202020]">06 71 84 93 41</a>
-            <div className="mt-5 space-y-2 text-[13px] text-[#424242]"><a className="block hover:text-[#4caac9]" href="mailto:contact@lvmr-premium.fr">contact@lvmr-premium.fr</a><a className="block hover:text-[#4caac9]" href="mailto:contact@lvmr-environnement.fr">contact@lvmr-environnement.fr</a></div>
+            <div className="mt-5 space-y-2 text-[13px] text-[#424242]"><a className="block hover:text-[#6b6b6b]" href="mailto:contact@lvmr-premium.fr">contact@lvmr-premium.fr</a><a className="block hover:text-[#6b6b6b]" href="mailto:contact@lvmr-environnement.fr">contact@lvmr-environnement.fr</a></div>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.1)] sm:col-span-2">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#e5f3f7] text-[#4caac9] transition duration-300 group-hover:bg-[#4caac9] group-hover:text-white">
+            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.1)] sm:col-span-2">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white">
                 <MapPin size={19} />
               </span>
               <h3 className="mt-5 text-[1.25rem] font-extrabold tracking-[-0.02em] text-[#202020]">30 bis rue du Vieil Abreuvoir</h3>
               <p className="mt-2 max-w-[420px] text-[13px] leading-6 text-[#424242]">78100 Saint-Germain-en-Laye · Interventions principalement à Paris et en Île-de-France.</p>
             </div>
-            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.1)]">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#e5f3f7] text-[#4caac9] transition duration-300 group-hover:bg-[#4caac9] group-hover:text-white">
+            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.1)]">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white">
                 <ClipboardList size={19} />
               </span>
               <h3 className="mt-5 text-[1.1rem] font-extrabold tracking-[-0.02em] text-[#202020]">Un devis</h3>
               <p className="mt-2 text-[13px] leading-6 text-[#424242]">Le parcours guidé précise le site, la surface, la fréquence ou l’urgence et les documents utiles.</p>
-              <Link href="/devis" className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#4caac9]">Accéder au formulaire <ArrowRight size={13} /></Link>
+              <Link href="/devis" className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#6b6b6b]">Accéder au formulaire <ArrowRight size={13} /></Link>
             </div>
-            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.1)]">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#e5f3f7] text-[#4caac9] transition duration-300 group-hover:bg-[#4caac9] group-hover:text-white">
+            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.1)]">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white">
                 <MessagesSquare size={19} />
               </span>
               <h3 className="mt-5 text-[1.1rem] font-extrabold tracking-[-0.02em] text-[#202020]">Une situation ?</h3>
               <p className="mt-2 text-[13px] leading-6 text-[#424242]">LVMR Environnement qualifie les contextes sensibles ou techniques.</p>
-              <Link href="/environnement" className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#4caac9]">Voir les interventions <ArrowRight size={13} /></Link>
+              <Link href="/environnement" className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#6b6b6b]">Voir les interventions <ArrowRight size={13} /></Link>
             </div>
           </div>
         </div>
@@ -492,7 +492,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
               <img src={service.image} alt={service.title} className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.045]" />
               <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.94)_0%,rgba(32,32,32,.2)_70%)]" />
               <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                <p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#a8d8ea]">{service.number} · {service.kicker}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">{service.number} · {service.kicker}</p>
                 <h2 className="mt-3 max-w-[480px] text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-.05em]">{service.title}</h2>
                 <p className="mt-4 max-w-[430px] text-[13px] leading-6 text-white/60">Un cadre clair, adapté aux contraintes réelles du site.</p>
               </div>
@@ -500,16 +500,16 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
 
             <div className="flex flex-col justify-between p-6 sm:p-9 lg:p-11">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#a8d8ea]">Ce que nous préparons</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">Ce que nous préparons</p>
                 <h2 className="mt-4 max-w-[560px] text-[clamp(2rem,3.7vw,3.2rem)] font-extrabold leading-[1.03] tracking-[-.05em]">Une intervention pensée pour votre site.</h2>
                 <p className="mt-5 max-w-[560px] text-[14px] leading-7 text-white/62">{service.description} La qualification permet de préciser les accès, le rythme et les conditions utiles avant l’intervention.</p>
 
                 <ol className="mt-7 m-0 list-none border-t border-white/14 p-0">
                   {service.points.map((point, index) => (
                     <li key={point} className="group flex items-center gap-4 border-b border-white/14 py-4">
-                      <span className="text-[11px] font-extrabold tabular-nums text-[#a8d8ea]">0{index + 1}</span>
+                      <span className="text-[11px] font-extrabold tabular-nums text-[#f1f1f1]">0{index + 1}</span>
                       <p className="flex-1 text-[13px] font-bold leading-6 text-white/78 sm:text-[14px]">{point}</p>
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#4caac9] opacity-30 transition group-hover:opacity-100" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#6b6b6b] opacity-30 transition group-hover:opacity-100" />
                     </li>
                   ))}
                 </ol>
@@ -517,8 +517,8 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
 
               <div className="mt-8 border-t border-white/14 pt-6">
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-                  <div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#a8d8ea]">Pour quels lieux ?</p><p className="mt-2 text-[12px] leading-5 text-white/45">Le périmètre exact se précise avec le contexte.</p></div>
-                  <Link href="/devis" className="inline-flex items-center gap-2 text-[12px] font-extrabold text-[#a8d8ea]">Parler de ce besoin <ArrowRight size={14} /></Link>
+                  <div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">Pour quels lieux ?</p><p className="mt-2 text-[12px] leading-5 text-white/45">Le périmètre exact se précise avec le contexte.</p></div>
+                  <Link href="/devis" className="inline-flex items-center gap-2 text-[12px] font-extrabold text-[#f1f1f1]">Parler de ce besoin <ArrowRight size={14} /></Link>
                 </div>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {service.idealFor.map((item) => (
@@ -554,7 +554,7 @@ export function LegalPage({ type }: { type: "mentions" | "confidentialite" | "co
           <div className="grid gap-3">
             {sections.map((heading, index) => (
               <section key={heading} className="rounded-[20px] border border-[#202020]/8 bg-white p-6 sm:p-8">
-                <span className="text-[11px] font-extrabold tracking-[.14em] text-[#4caac9]">0{index + 1}</span>
+                <span className="text-[11px] font-extrabold tracking-[.14em] text-[#6b6b6b]">0{index + 1}</span>
                 <h2 className="mt-2 text-[1.4rem] font-extrabold tracking-[-0.03em] text-[#202020]">{heading}</h2>
                 <p className="mt-3 max-w-[680px] text-[13px] leading-7 text-[#424242]">Contenu à compléter et valider avec les informations légales réelles de LVMR Group avant publication. Aucun élément contractuel ou réglementaire ne doit être considéré comme final dans cette version.</p>
               </section>
@@ -572,7 +572,7 @@ export function NotFoundPage() {
   return (
     <PageFrame>
       <PageHero eyebrow="404" title={<>Cette page <span className="hero-stroke">reste à trouver.</span></>} intro="Le lien que vous avez suivi ne mène plus ici. Revenez à l’accueil ou découvrez les expertises LVMR Group.">
-        <Link href="/" className="mt-8 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] bg-[#dab844] px-7 text-[13px] font-extrabold text-[#202020] shadow-[0_12px_32px_rgba(218,184,68,.28)] transition hover:-translate-y-0.5 hover:bg-[#e2c86f]">Retour à l’accueil <ArrowRight size={15} /></Link>
+        <Link href="/" className="mt-8 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] bg-[#ffc547] px-7 text-[13px] font-extrabold text-[#202020] shadow-[0_12px_32px_rgba(255,197,71,.28)] transition hover:-translate-y-0.5 hover:bg-[#b07e2b]">Retour à l’accueil <ArrowRight size={15} /></Link>
       </PageHero>
       <CTASection />
     </PageFrame>

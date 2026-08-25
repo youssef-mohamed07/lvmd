@@ -1,5 +1,8 @@
 node_modules/
 .next/
+dist/
+.wrangler/
+.pnpm-store/
 out/
 *.tsbuildinfo
 .env

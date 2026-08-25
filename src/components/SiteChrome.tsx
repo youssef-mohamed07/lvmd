@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { imageSet } from "@/lib/site";
+import { brandSet } from "@/lib/site";
 
 const nav = [
   ["Accueil", "/"],
@@ -18,14 +18,9 @@ const nav = [
 
 function BrandMark() {
   return (
-    <span className="flex items-center gap-2.5" aria-label="LVMR Group">
-      <span className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-[#4caac9] to-[#3689a8] shadow-[0_8px_20px_rgba(76,170,201,.28)]">
-        <img src={imageSet.monogram} alt="" width={18} height={18} className="h-[18px] w-[18px] object-contain brightness-0 invert" />
-      </span>
-      <span className="leading-none">
-        <span className="block text-[15px] font-extrabold tracking-[-0.04em] text-[#202020]">LVMR</span>
-        <span className="mt-1 block text-[9px] font-semibold tracking-[0.2em] text-[#424242]">GROUP</span>
-      </span>
+    <span className="brand-mark flex items-center gap-2.5" aria-label="LVMR Group">
+      <img src={brandSet.groupIcon} alt="" className="h-9 w-auto sm:h-10" />
+      <img src={brandSet.groupLogotype} alt="LVMR Group" className="h-3.5 w-auto sm:h-4" />
     </span>
   );
 }
@@ -89,10 +84,10 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href="tel:+33671849341" className="hidden items-center gap-1.5 px-2 text-[12px] font-bold text-[#202020] xl:inline-flex"><Phone size={14} className="text-[#4caac9]"/>06 71 84 93 41</a>
+          <a href="tel:+33671849341" className="hidden items-center gap-1.5 px-2 text-[12px] font-bold text-[#202020] xl:inline-flex"><Phone size={14} className="text-[#6b6b6b]"/>06 71 84 93 41</a>
           <Link
             href="/devis"
-            className="hidden min-h-11 items-center gap-2 rounded-full bg-[#dab844] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(218,184,68,.35)] transition hover:bg-[#e2c86f] lg:inline-flex"
+            className="hidden min-h-11 items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b] lg:inline-flex"
           >
             Demander un devis <ArrowRight size={14} />
           </Link>
@@ -117,13 +112,13 @@ export function SiteHeader() {
               className="flex items-center justify-between rounded-2xl px-4 py-3.5 text-sm font-semibold text-[#202020] hover:bg-[#f5f5f5]"
             >
               {label}
-              <ArrowRight size={15} className="text-[#4caac9]" />
+              <ArrowRight size={15} className="text-[#6b6b6b]" />
             </Link>
           ))}
           <Link
             href="/devis"
             onClick={() => setOpen(false)}
-            className="mt-2 flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-[#dab844] text-[14px] font-bold text-[#202020]"
+            className="mt-2 flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-[#ffc547] text-[14px] font-bold text-[#202020]"
           >
             Obtenir un devis <ArrowRight size={14} />
           </Link>
@@ -135,7 +130,7 @@ export function SiteHeader() {
 }
 
 export function Breadcrumbs({ current, parent, dark = false }: { current: string; parent?: { label: string; href: string }; dark?: boolean }) {
-  const link = dark ? "text-white/50 hover:text-[#a8d8ea]" : "text-[#424242] hover:text-[#4caac9]";
+  const link = dark ? "text-white/50 hover:text-[#f1f1f1]" : "text-[#424242] hover:text-[#6b6b6b]";
   return (
     <nav aria-label="Fil d’Ariane" className={`inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border px-4 py-2 text-[12px] font-semibold backdrop-blur-md ${dark ? "border-white/12 bg-white/[.06]" : "border-[#202020]/8 bg-white/70"}`}>
       <Link href="/" className={link}>Accueil</Link>
@@ -151,15 +146,15 @@ export function PageHero({ eyebrow, title, intro, image, children }: { eyebrow: 
   return (
     <section className="relative overflow-hidden bg-[#202020] pb-14 pt-28 text-white sm:pb-20 sm:pt-32 lg:pb-24">
       <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
-      <div className="pointer-events-none absolute -left-40 top-16 h-[460px] w-[460px] rounded-full bg-[#4caac9]/14 blur-[120px]" aria-hidden />
-      <div className="pointer-events-none absolute -right-24 bottom-0 h-[300px] w-[300px] rounded-full bg-[#a8d8ea]/10 blur-[110px]" aria-hidden />
+      <div className="pointer-events-none absolute -left-40 top-16 h-[460px] w-[460px] rounded-full bg-[#ffc547]/10 blur-[120px]" aria-hidden />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-[300px] w-[300px] rounded-full bg-[#f1f1f1]/10 blur-[110px]" aria-hidden />
       <div className="container relative z-10">
         <Breadcrumbs dark current={typeof title === "string" ? title : eyebrow} />
         <div className="mt-7 grid gap-6 sm:mt-9 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div>
             <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-[#a8d8ea]" aria-hidden />
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#a8d8ea]">{eyebrow}</p>
+              <span className="h-px w-8 bg-[#ffc547]" aria-hidden />
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#ffc547]">{eyebrow}</p>
             </div>
             <h1 className="mt-5 max-w-[760px] text-[clamp(2.2rem,9vw,4.4rem)] font-extrabold leading-[.98] tracking-[-0.055em] sm:mt-6">{title}</h1>
           </div>
@@ -172,7 +167,7 @@ export function PageHero({ eyebrow, title, intro, image, children }: { eyebrow: 
           <div className="relative mt-8 overflow-hidden rounded-[20px] border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,.28)] sm:mt-10 sm:rounded-[28px]">
             <img src={image} alt="" className="h-40 w-full object-cover sm:h-52 lg:h-60" />
             <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.72),transparent_62%)]" aria-hidden />
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#a8d8ea] to-transparent opacity-70" aria-hidden />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f1f1f1] to-transparent opacity-70" aria-hidden />
           </div>
         )}
       </div>
@@ -186,13 +181,13 @@ export function CTASection({ title = <>Un besoin spécifique ? Parlons-en.</>, t
       <div className="container">
         <div className="relative overflow-hidden rounded-[24px] bg-[#202020] px-6 py-9 text-white shadow-[0_24px_70px_rgba(32,32,32,.28)] sm:rounded-[28px] sm:px-10 sm:py-11 lg:px-12">
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
-          <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-[#4caac9]/16 blur-[110px]" aria-hidden />
-          <div className="pointer-events-none absolute -bottom-20 right-0 h-64 w-64 rounded-full bg-[#a8d8ea]/10 blur-[100px]" aria-hidden />
+          <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-[#ffc547]/12 blur-[110px]" aria-hidden />
+          <div className="pointer-events-none absolute -bottom-20 right-0 h-64 w-64 rounded-full bg-[#f1f1f1]/10 blur-[100px]" aria-hidden />
           <div className="relative flex flex-col justify-between gap-10 md:flex-row md:items-end">
             <div>
               <div className="flex items-center gap-3">
-                <span className="h-px w-7 bg-[#a8d8ea]" aria-hidden />
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#a8d8ea]">Contact</p>
+                <span className="h-px w-7 bg-[#ffc547]" aria-hidden />
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#ffc547]">Contact</p>
               </div>
               <h2 className="mt-5 text-[clamp(1.9rem,3.6vw,2.9rem)] font-extrabold leading-[1.04] tracking-[-0.05em]">{title}</h2>
             </div>
@@ -200,7 +195,7 @@ export function CTASection({ title = <>Un besoin spécifique ? Parlons-en.</>, t
               <p className="text-[14px] leading-7 text-white/60">{text}</p>
               <Link
                 href="/devis"
-                className="mt-6 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] bg-[#dab844] px-7 text-[13px] font-extrabold text-[#202020] shadow-[0_12px_32px_rgba(218,184,68,.28)] transition hover:-translate-y-0.5 hover:bg-[#e2c86f] hover:shadow-[0_18px_40px_rgba(218,184,68,.38)]"
+                className="mt-6 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] bg-[#ffc547] px-7 text-[13px] font-extrabold text-[#202020] shadow-[0_12px_32px_rgba(255,197,71,.28)] transition hover:-translate-y-0.5 hover:bg-[#b07e2b] hover:shadow-[0_18px_40px_rgba(255,197,71,.38)]"
               >
                 Demander un devis <ArrowRight size={15} />
               </Link>
@@ -215,23 +210,17 @@ export function CTASection({ title = <>Un besoin spécifique ? Parlons-en.</>, t
 export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden bg-[#202020] text-white">
-      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#4caac9]/20 blur-3xl" aria-hidden />
-      <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[#4caac9]/10 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#ffc547]/12 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[#ffc547]/8 blur-3xl" aria-hidden />
 
       <div className="container relative pb-24 pt-12 sm:py-14 lg:py-14">
         <div className="flex flex-col gap-8 rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
           <div className="max-w-[460px]">
-            <Link href="/" className="inline-flex items-center gap-3" aria-label="LVMR Group">
-              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#4caac9] to-[#3689a8] shadow-[0_8px_24px_rgba(76,170,201,.35)]">
-                <img src={imageSet.monogram} alt="" width={20} height={20} className="h-5 w-5 object-contain brightness-0 invert" />
-              </span>
-              <span className="leading-none">
-                <span className="block text-[17px] font-extrabold tracking-[-0.04em]">LVMR</span>
-                <span className="mt-1.5 block text-[10px] font-semibold tracking-[0.2em] text-white/45">GROUP</span>
-              </span>
+            <Link href="/" className="inline-flex items-center" aria-label="LVMR Group">
+              <img src={brandSet.groupHorizontalWhite} alt="LVMR Group" className="h-12 w-auto sm:h-14" />
             </Link>
             <h2 className="mt-6 text-[clamp(1.55rem,3vw,2.15rem)] font-extrabold leading-[1.12] tracking-[-0.04em]">
-              L’excellence en <span className="text-[#4caac9]">toutes circonstances.</span>
+              L’excellence en <span className="text-[#ffc547]">toutes circonstances.</span>
             </h2>
             <p className="mt-3 text-[14px] leading-6 text-white/55">
               Propreté professionnelle & interventions techniques · Saint-Germain-en-Laye · Île-de-France
@@ -252,7 +241,7 @@ export function SiteFooter() {
             </nav>
             <Link
               href="/devis"
-              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#dab844] px-5 text-[13px] font-bold text-[#202020] shadow-[0_10px_28px_rgba(218,184,68,.35)] transition hover:bg-[#e2c86f]"
+              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_10px_28px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b]"
             >
               Devis <ArrowRight size={15} />
             </Link>
