@@ -149,26 +149,26 @@ export function PageHero({ eyebrow, title, intro, image, logo, accent = "#f1f1f1
       <div className="pointer-events-none absolute -right-24 bottom-0 h-[300px] w-[300px] rounded-full bg-[#f1f1f1]/10 blur-[110px]" aria-hidden />
       <div className="container relative z-10">
         <Breadcrumbs dark current={typeof title === "string" ? title : eyebrow} />
-        <div className="mt-5 grid gap-6 sm:mt-6 sm:gap-8 lg:grid-cols-[1.16fr_0.84fr] lg:items-start lg:gap-10">
+        <div className="mt-5 grid gap-6 sm:mt-6 sm:gap-8 lg:grid-cols-[1.16fr_0.84fr] lg:items-center lg:gap-10">
           <div>
             {logo && <img src={logo} alt="" className="h-9 w-auto sm:h-10" />}
             <div className={`${logo ? "mt-6" : ""} flex items-center gap-3`}>
               <span className="h-px w-8" style={{ backgroundColor: accent }} aria-hidden />
               <p className="text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color: accent }}>{eyebrow}</p>
             </div>
-            <h1 className="mt-4 max-w-[720px] text-[clamp(2.1rem,7vw,3.8rem)] font-extrabold leading-[.98] tracking-[-0.055em] sm:mt-5">{title}</h1>
+            <h1 className="mt-4 max-w-[640px] text-[clamp(2rem,5.5vw,3.2rem)] font-extrabold leading-[1.06] tracking-[-0.05em] sm:mt-5">{title}</h1>
+            {intro && <p className="mt-5 max-w-[540px] text-[14px] leading-7 text-white/65">{intro}</p>}
+            {children}
           </div>
-          <div className="w-full max-w-[450px] lg:justify-self-end">
-            {image && (
+          {image && (
+            <div className="w-full max-w-[450px] lg:justify-self-end">
               <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] border border-white/12 shadow-[0_24px_64px_rgba(0,0,0,.26)] sm:rounded-[24px]">
                 <img src={image} alt="" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.5),transparent_58%)]" aria-hidden />
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f1f1f1] to-transparent opacity-70" aria-hidden />
               </div>
-            )}
-            {intro && <p className={`${image ? "mt-4" : ""} text-[14px] leading-6 text-white/65`}>{intro}</p>}
-            {children}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -189,7 +189,7 @@ export function CTASection({ title = <>Un besoin spécifique ? Parlons-en.</>, t
                 <span className="h-px w-7 bg-[#f1f1f1]" aria-hidden />
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#f1f1f1]">Contact</p>
               </div>
-              <h2 className="mt-5 text-[clamp(1.9rem,3.6vw,2.9rem)] font-extrabold leading-[1.04] tracking-[-0.05em]">{title}</h2>
+              <h2 className="mt-5 max-w-[480px] text-[clamp(1.7rem,3vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.045em]">{title}</h2>
             </div>
             <div className="max-w-[340px]">
               <p className="text-[14px] leading-7 text-white/60">{text}</p>
@@ -219,7 +219,7 @@ export function SiteFooter() {
             <Link href="/" className="inline-flex items-center gap-3" aria-label="LVMR Group">
               <img src={brandSet.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto" />
             </Link>
-            <h2 className="mt-6 text-[clamp(1.55rem,3vw,2.15rem)] font-extrabold leading-[1.12] tracking-[-0.04em]">
+            <h2 className="mt-6 text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold leading-[1.15] tracking-[-0.035em]">
               L’excellence en <span className="text-[#6b6b6b]">toutes circonstances.</span>
             </h2>
             <p className="mt-3 text-[14px] leading-6 text-white/55">

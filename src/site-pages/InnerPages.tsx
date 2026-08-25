@@ -46,7 +46,7 @@ function EditorialSplit({ eyebrow, title, quote, text, image, imageAlt }: { eyeb
               <span className="h-px w-6 bg-current" aria-hidden />
               {eyebrow}
             </p>
-            <h2 className="mt-5 max-w-[520px] text-[clamp(1.9rem,3.8vw,3.1rem)] font-extrabold leading-[1.05] tracking-[-0.045em]">
+            <h2 className="mt-5 max-w-[480px] text-[clamp(1.7rem,3.2vw,2.6rem)] font-extrabold leading-[1.1] tracking-[-0.04em]">
               {title}
             </h2>
             <p className="mt-6 max-w-[460px] text-[15px] leading-7 text-white/60">{text}</p>
@@ -189,7 +189,7 @@ export function EnvironnementPage() {
           <div className="mt-12 grid gap-8 rounded-[26px] bg-[#202020] p-6 text-white sm:p-9 lg:grid-cols-[.78fr_1.22fr] lg:items-start">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Une intervention encadrée et traçable</p>
-              <h3 className="mt-4 text-[clamp(1.7rem,3vw,2.5rem)] font-extrabold leading-[1.04] tracking-[-0.04em]">Un cadre clair avant, pendant et après l’intervention.</h3>
+              <h3 className="mt-4 max-w-[480px] text-[clamp(1.5rem,2.6vw,2.1rem)] font-extrabold leading-[1.12] tracking-[-0.035em]">Un cadre clair avant,<br />pendant et après l’intervention.</h3>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2">
               {["Diagnostic ou visite préalable selon la situation", "Protocole adapté au nuisible, au niveau d’infestation et à l’activité du site", "Consignes de préparation et de sécurité communiquées avant l’intervention", "Personnel formé et titulaire des certifications requises pour les traitements réalisés", "Compte rendu ou fiche d’intervention remis selon la prestation"].map((item) => (
@@ -210,7 +210,7 @@ export function EnvironnementPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),rgba(32,32,32,.25)_60%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
                   <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Dégraissage de hottes et systèmes d’extraction</p>
-                  <h3 className="mt-3 text-[clamp(1.6rem,2.6vw,2.2rem)] font-extrabold leading-[1.08] tracking-[-0.04em]">Restaurants, cuisines collectives, hôtels et établissements de santé.</h3>
+                  <h3 className="mt-3 text-[clamp(1.4rem,2.3vw,1.9rem)] font-extrabold leading-[1.14] tracking-[-0.035em]">Restaurants, cuisines collectives,<br />hôtels et établissements de santé.</h3>
                 </div>
               </div>
               <div className="grid gap-8 p-6 sm:p-8 lg:p-10">
@@ -325,7 +325,7 @@ export function RealisationsPage() {
           <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
               <p className="eyebrow">Sur le terrain</p>
-              <h2 className="mt-3 text-[clamp(2rem,4vw,3.7rem)] font-extrabold leading-[1] tracking-[-.05em] text-[#202020]">
+              <h2 className="mt-3 text-[clamp(1.8rem,3.4vw,3rem)] font-extrabold leading-[1.05] tracking-[-.045em] text-[#202020]">
                 Laisser parler le réel.
               </h2>
             </div>
@@ -365,7 +365,7 @@ export function RealisationsPage() {
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div>
               <p className="eyebrow">Fiche projet</p>
-              <h2 className="mt-4 max-w-[560px] text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-.05em] text-[#202020]">
+              <h2 className="mt-4 max-w-[480px] text-[clamp(1.8rem,3.4vw,2.8rem)] font-extrabold leading-[1.08] tracking-[-.045em] text-[#202020]">
                 Un format pensé pour le concret.
               </h2>
             </div>
@@ -428,7 +428,7 @@ export function RealisationsPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),rgba(32,32,32,.2)_65%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                   <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#ffc547]">Étude de cas · Publication autorisée</p>
-                  <h3 className="mt-3 max-w-[420px] text-[clamp(1.7rem,3vw,2.5rem)] font-extrabold leading-[1.06] tracking-[-0.045em]">Remise en état approfondie d’un laboratoire professionnel.</h3>
+                  <h3 className="mt-3 max-w-[420px] text-[clamp(1.55rem,2.6vw,2.15rem)] font-extrabold leading-[1.1] tracking-[-0.04em]">Remise en état approfondie d’un laboratoire professionnel.</h3>
                 </div>
               </div>
               <div className="grid gap-6 p-6 sm:p-8 lg:p-10">
@@ -470,7 +470,7 @@ export function GroupePage() {
         intro="Deux pôles complémentaires pour répondre à vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France."
         image={imageSet.hero}
       >
-        <CtaChip href="/devis" label="Demander un devis" />
+        <CtaChip href="/devis" label="Demander un devis" tone="premium" />
       </PageHero>
       <section className="bg-[#f5f5f5] py-12 sm:py-16">
         <div className="container">
@@ -489,7 +489,7 @@ export function GroupePage() {
                   <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/45">Saint-Germain-en-Laye</span>
                 </div>
                 <div>
-                  <h3 className="max-w-[560px] text-[clamp(2rem,4vw,3.5rem)] font-extrabold leading-[1.02] tracking-[-.05em]">L’équipe et les moyens réellement adaptés.</h3>
+                  <h3 className="max-w-[520px] text-[clamp(1.8rem,3.2vw,2.8rem)] font-extrabold leading-[1.08] tracking-[-.045em]">L’équipe et les moyens réellement adaptés.</h3>
                   <p className="mt-4 max-w-[520px] text-[14px] leading-7 text-white/65">Cette organisation permet de mobiliser l’équipe, les méthodes et les équipements réellement adaptés à chaque besoin.</p>
                   <div className="mt-7 grid gap-2 sm:grid-cols-2">
                     {values.map(([Icon, title, text], index) => (
@@ -511,7 +511,7 @@ export function GroupePage() {
                   <div className="relative flex h-full flex-col justify-between">
                     <div className="flex items-center justify-between"><span className="text-[11px] font-bold tracking-[.16em]" style={{ color: accent }}>{number}</span><span className="grid h-10 w-10 place-items-center rounded-full border border-white/18 bg-white/8 backdrop-blur transition group-hover:bg-white group-hover:text-[#202020]"><ArrowRight size={16} /></span></div>
                     <div>
-                      <h3 className="text-[clamp(1.55rem,2.8vw,2.35rem)] font-extrabold tracking-[-.04em]">{title}</h3>
+                      <h3 className="text-[clamp(1.4rem,2.5vw,2.05rem)] font-extrabold tracking-[-.035em]">{title}</h3>
                       <p className="mt-3 max-w-[390px] text-[13px] leading-6 text-white/60">{text}</p>
                       <span className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>{cta} <ArrowRight size={13} className="transition group-hover:translate-x-1" /></span>
                     </div>
@@ -630,7 +630,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
               <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.94)_0%,rgba(32,32,32,.2)_70%)]" />
               <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                 <p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">{service.number} · {service.kicker}</p>
-                <h2 className="mt-3 max-w-[480px] text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-.05em]">{service.title}</h2>
+                <h2 className="mt-3 max-w-[480px] text-[clamp(1.7rem,3.2vw,2.6rem)] font-extrabold leading-[1.08] tracking-[-.045em]">{service.title}</h2>
                 <p className="mt-4 max-w-[430px] text-[13px] leading-6 text-white/60">Un cadre clair, adapté aux contraintes réelles du site.</p>
               </div>
             </div>
@@ -638,7 +638,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
             <div className="flex flex-col justify-between p-6 sm:p-9 lg:p-11">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">Ce que nous préparons</p>
-                <h2 className="mt-4 max-w-[560px] text-[clamp(2rem,3.7vw,3.2rem)] font-extrabold leading-[1.03] tracking-[-.05em]">Une intervention pensée pour votre site.</h2>
+                <h2 className="mt-4 max-w-[520px] text-[clamp(1.7rem,3.2vw,2.7rem)] font-extrabold leading-[1.08] tracking-[-.045em]">Une intervention pensée pour votre site.</h2>
                 <p className="mt-5 max-w-[560px] text-[14px] leading-7 text-white/62">{service.description} La qualification permet de préciser les accès, le rythme et les conditions utiles avant l’intervention.</p>
 
                 <ol className="mt-7 m-0 list-none border-t border-white/14 p-0">

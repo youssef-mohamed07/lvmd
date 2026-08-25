@@ -29,6 +29,7 @@ import {
   Wrench,
   X,
 } from "lucide-react";
+import { PolesComparison, SectorsSection, TestimonialsSection, ZoneSection } from "@/components/Sections";
 
 /**
  * LVMR homepage — designed to beat French market leaders on clarity & conversion.
@@ -303,8 +304,8 @@ export default function Home() {
                 <span className="h-px w-8 bg-[#f1f1f1]" />
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#f1f1f1]">Groupe LVMR</p>
               </div>
-              <h1 className="hero-reveal mt-6 max-w-[760px] text-[clamp(2.7rem,12vw,4.8rem)] font-extrabold leading-[.98] tracking-[-0.055em] sm:mt-7" style={{ animationDelay: "140ms" }}>
-                L’excellence en <span className="text-[#f1f1f1]">toutes circonstances.</span>
+              <h1 className="hero-reveal mt-6 max-w-[620px] text-[clamp(2.4rem,8.5vw,4.1rem)] font-extrabold leading-[1.04] tracking-[-0.05em] sm:mt-7" style={{ animationDelay: "140ms" }}>
+                L’excellence en<br /><span className="text-[#f1f1f1]">toutes circonstances.</span>
               </h1>
               <p className="hero-reveal mt-7 max-w-[520px] text-[16px] leading-7 text-white/65" style={{ animationDelay: "230ms" }}>Deux pôles complémentaires pour vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France.</p>
               <div className="hero-reveal mt-8 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "320ms" }}>
@@ -341,7 +342,7 @@ export default function Home() {
                 <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
                   <div>
                     <p className="eyebrow">Votre besoin</p>
-                    <h2 className="mt-3 max-w-[520px] text-[clamp(1.9rem,3.3vw,3rem)] font-extrabold leading-[1.06] tracking-[-0.045em]">
+                    <h2 className="mt-3 max-w-[420px] text-[clamp(1.7rem,2.8vw,2.5rem)] font-extrabold leading-[1.12] tracking-[-0.04em]">
                       Commençons par votre espace.
                     </h2>
                   </div>
@@ -407,7 +408,7 @@ export default function Home() {
                     <span className="h-px w-7 bg-current" />
                     <span>Île-de-France</span>
                   </div>
-                  <h3 className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-none tracking-[-0.05em]">{selectedNeed?.label}</h3>
+                  <h3 className="mt-3 text-[clamp(1.7rem,3.2vw,2.6rem)] font-extrabold leading-none tracking-[-0.045em]">{selectedNeed?.label}</h3>
                   <p className="mt-4 max-w-[430px] text-[14px] leading-6 text-white/70 sm:text-[15px] sm:leading-7">{selectedNeed?.text}</p>
                   <button type="button" onClick={() => goTo("devis")} className="btn btn-light mt-7">
                     Préparer ma demande <ArrowRight size={15} />
@@ -424,7 +425,7 @@ export default function Home() {
             <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
               <div>
                 <p className="eyebrow">LVMR Group</p>
-                <h2 className="mt-4 max-w-[760px] text-[clamp(2.1rem,4vw,3.5rem)] font-extrabold leading-[1.04] tracking-[-.05em]">Une expertise globale, deux pôles spécialisés.</h2>
+                <h2 className="mt-4 max-w-[560px] text-[clamp(1.9rem,3.4vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.045em]">Une expertise globale,<br />deux pôles spécialisés.</h2>
               </div>
               <p className="max-w-[360px] text-[15px] leading-7 text-[#424242]">Chaque demande est orientée vers l’équipe, les méthodes et les équipements réellement adaptés.</p>
             </div>
@@ -440,7 +441,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-[.12em] text-white/55">Entretien régulier</p>
-                    <h3 className="mt-3 text-[clamp(2rem,3.5vw,3.1rem)] font-extrabold leading-[1.02] tracking-[-.045em]">Des espaces nets, jour après jour.</h3>
+                    <h3 className="mt-3 text-[clamp(1.7rem,2.8vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-.04em]">Des espaces nets, jour après jour.</h3>
                     <p className="mt-4 max-w-[450px] text-[14px] leading-6 text-white/68">Une présence discrète et organisée pour maintenir durablement le niveau attendu.</p>
                     <div className="mt-6 flex flex-wrap gap-2">
                       {["Bureaux", "Copropriétés", "Vitrerie", "Remise en état"].map((item) => <span key={item} className="expertise-chip">{item}</span>)}
@@ -460,7 +461,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-[.12em] text-white/55">Interventions techniques</p>
-                    <h3 className="mt-3 text-[clamp(2rem,3.5vw,3.1rem)] font-extrabold leading-[1.02] tracking-[-.045em]">Agir avec méthode, même dans l’urgence.</h3>
+                    <h3 className="mt-3 text-[clamp(1.7rem,2.8vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-.04em]">Agir avec méthode, même dans l’urgence.</h3>
                     <p className="mt-4 max-w-[450px] text-[14px] leading-6 text-white/68">Des protocoles adaptés aux situations sensibles et aux contraintes réelles du site.</p>
                     <div className="mt-6 flex flex-wrap gap-2">
                       {["Après sinistre", "Décontamination", "Désinfection", "Assainissement"].map((item) => <span key={item} className="expertise-chip">{item}</span>)}
@@ -479,7 +480,7 @@ export default function Home() {
             <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
               <div>
                 <div className="flex items-center gap-4"><p className="eyebrow">Nos interventions</p><span className="rounded-full bg-[#f1f1f1] px-3 py-1 text-[10px] font-extrabold uppercase tracking-[.1em] text-[#6b6b6b]">12 expertises</span></div>
-                <h2 className="mt-4 max-w-[620px] text-[clamp(2rem,4vw,3.6rem)] font-extrabold leading-[1.03] tracking-[-.05em]">Trouvez la réponse adaptée à votre site.</h2>
+                <h2 className="mt-4 max-w-[560px] text-[clamp(1.8rem,3.4vw,3rem)] font-extrabold leading-[1.08] tracking-[-.045em]">Trouvez la réponse adaptée à votre site.</h2>
               </div>
               <div className="inline-flex w-full self-start rounded-xl border border-[#202020]/10 bg-white p-1 sm:w-auto" role="tablist" aria-label="Catégorie de services">
                 {(["Premium", "Environnement"] as const).map((group) => (
@@ -534,7 +535,7 @@ export default function Home() {
 
                 <div className="service-preview-content absolute inset-x-0 bottom-0 p-7 text-white sm:p-10">
                   <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.14em]" style={{ color: activeBrandColor }}><span>{activeService.n}</span><span className="h-px w-7 bg-current" /><span>LVMR {serviceGroup}</span></div>
-                  <h3 className="mt-4 text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-none tracking-[-.05em]">{activeService.title}</h3>
+                  <h3 className="mt-4 text-[clamp(1.7rem,3.2vw,2.7rem)] font-extrabold leading-none tracking-[-.045em]">{activeService.title}</h3>
                   <p className="mt-5 max-w-[500px] text-[15px] leading-7 text-white/72">{activeService.text}</p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     {activeServiceFacts.map((fact) => <span key={fact} className="flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-2 text-[11px] font-bold text-white/72 backdrop-blur-md"><Check size={12} style={{ color: activeBrandColor }} />{fact}</span>)}
@@ -561,7 +562,7 @@ export default function Home() {
                   <span className="h-1.5 w-1.5 rounded-full bg-[#6b6b6b]" aria-hidden />
                   Notre méthode
                 </p>
-                <h2 className="mt-5 text-[clamp(1.95rem,3.8vw,3rem)] font-extrabold leading-[1.06] tracking-[-0.045em] text-[#202020]">
+                <h2 className="mt-5 max-w-[520px] text-[clamp(1.75rem,3.2vw,2.6rem)] font-extrabold leading-[1.1] tracking-[-0.04em] text-[#202020]">
                   Simple pour vous, rigoureuse sur le terrain.
                 </h2>
               </div>
@@ -617,7 +618,7 @@ export default function Home() {
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
                 <p className="eyebrow">Pourquoi LVMR</p>
-                <h2 className="mt-4 max-w-[560px] text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-.05em]">
+                <h2 className="mt-4 max-w-[460px] text-[clamp(1.8rem,3.4vw,2.8rem)] font-extrabold leading-[1.08] tracking-[-.045em]">
                   Le détail compte, et ça se ressent.
                 </h2>
               </div>
@@ -671,7 +672,7 @@ export default function Home() {
         {/* REALISATIONS — cinematic mosaic */}
         <section id="realisations" className="bg-[#f5f5f5] pb-20 sm:pb-28">
           <div className="container">
-            <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="eyebrow">Références & preuves</p><h2 className="mt-3 text-[clamp(2rem,4vw,3.7rem)] font-extrabold leading-[1] tracking-[-.05em]">Le réel comme meilleure preuve.</h2></div><p className="max-w-[360px] text-[14px] leading-6 text-[#424242]">Cette section sera alimentée avec des contenus authentiques dont la publication est expressément autorisée.</p></div>
+            <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="eyebrow">Références & preuves</p><h2 className="mt-3 text-[clamp(1.8rem,3.4vw,3rem)] font-extrabold leading-[1.05] tracking-[-.045em]">Le réel comme meilleure preuve.</h2></div><p className="max-w-[360px] text-[14px] leading-6 text-[#424242]">Cette section sera alimentée avec des contenus authentiques dont la publication est expressément autorisée.</p></div>
             <div className="grid auto-rows-[230px] gap-4 sm:auto-rows-[280px] md:grid-cols-12">
               {[
                 [images.detail, "Format de publication", "Contexte & besoin", "md:col-span-7 md:row-span-2"],
@@ -769,7 +770,7 @@ export default function Home() {
                 <div className="relative flex h-full min-h-[280px] flex-col justify-between gap-8 sm:min-h-[320px] lg:min-h-[340px] lg:gap-10">
                   <div>
                     <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#6b6b6b]"><span className="h-px w-5 bg-current" aria-hidden />Devis</p>
-                    <h2 className="mt-5 text-[clamp(2rem,3.4vw,3rem)] font-extrabold leading-[1.04] tracking-[-0.045em]">Parlons de votre site.</h2>
+                    <h2 className="mt-5 text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.04em]">Parlons de votre site.</h2>
                     <p className="mt-5 max-w-[350px] text-[14px] leading-7 text-white/60">Quelques informations suffisent pour préparer un cadrage clair et adapté à votre besoin.</p>
                   </div>
                   <div>
@@ -971,7 +972,7 @@ export default function Home() {
               <span className="flex items-center" aria-label="LVMR Group">
                 <img src={images.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto" />
               </span>
-              <h2 className="mt-6 text-[clamp(1.55rem,3vw,2.15rem)] font-extrabold leading-[1.12] tracking-[-0.04em]">
+              <h2 className="mt-6 text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold leading-[1.15] tracking-[-0.035em]">
                 L’excellence en <span className="text-[#6b6b6b]">toutes circonstances.</span>
               </h2>
               <p className="mt-3 text-[14px] leading-6 text-white/55">

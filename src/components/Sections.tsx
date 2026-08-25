@@ -1,6 +1,6 @@
 /* LVMR Group — shared premium sections, restyled on the homepage palette (charcoal #202020, teal #6b6b6b, gold #ffc547). */
 "use client";
-import { ArrowRight, Building2, Check, ClipboardList, Clock3, FileText, Hammer, MapPin, MessagesSquare, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Briefcase, Building2, Check, ClipboardList, Clock3, Factory, FileCheck2, FileText, Hammer, HeartPulse, Home, Landmark, MapPin, MessagesSquare, Quote, ScrollText, ShieldCheck, Sparkles, Store, UserCheck, UtensilsCrossed } from "lucide-react";
 import Link from "next/link";
 import { imageSet, processSteps, ServiceItem } from "@/lib/site";
 
@@ -12,7 +12,7 @@ export function SectionHead({ eyebrow, title, intro, dark = false }: { eyebrow: 
           <span className="h-px w-5 bg-current" aria-hidden />
           {eyebrow}
         </p>
-        <h2 className={`mt-4 max-w-[640px] text-[clamp(1.9rem,3.6vw,2.9rem)] font-extrabold leading-[1.06] tracking-[-0.045em] ${dark ? "text-white" : "text-[#202020]"}`}>
+        <h2 className={`mt-4 max-w-[560px] text-[clamp(1.7rem,3vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.04em] ${dark ? "text-white" : "text-[#202020]"}`}>
           {title}
         </h2>
       </div>
@@ -258,5 +258,206 @@ export function ServiceGrid({ services }: { services: ServiceItem[] }) {
         </Link>;
       })}
     </div>
+  );
+}
+
+/* Two-pole orientation block — helps visitors pick Premium vs Environnement. */
+export function PolesComparison() {
+  const poles = [
+    {
+      name: "LVMR Premium",
+      accent: "#ffc547",
+      href: "/premium",
+      tagline: "La propreté au quotidien",
+      items: [
+        "Entretien régulier de bureaux et copropriétés",
+        "Vitrerie et surfaces vitrées accessibles",
+        "Remise en état après travaux ou déménagement",
+        "Discrétion en site occupé",
+      ],
+      cta: "Découvrir LVMR Premium",
+    },
+    {
+      name: "LVMR Environnement",
+      accent: "#7ebcab",
+      href: "/environnement",
+      tagline: "Les situations techniques",
+      items: [
+        "Après sinistre et situations complexes",
+        "Nettoyage industriel et locaux techniques",
+        "Hottes et systèmes d’extraction",
+        "Pôle 3D : nuisibles et désinfection",
+      ],
+      cta: "Découvrir LVMR Environnement",
+    },
+  ];
+  return (
+    <section className="relative overflow-hidden bg-[#202020] py-14 sm:py-16">
+      <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-[#ffc547]/8 blur-[110px]" aria-hidden />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-[#7ebcab]/10 blur-[110px]" aria-hidden />
+      <div className="container relative">
+        <SectionHead
+          dark
+          eyebrow="S’orienter"
+          title={<>Quel pôle pour votre besoin ?</>}
+          intro="Deux équipes, deux savoir-faire. Un seul interlocuteur qui vous oriente vers la bonne réponse."
+        />
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {poles.map((pole) => (
+            <article key={pole.name} className="group relative flex flex-col rounded-[26px] border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:border-white/20 hover:bg-white/[0.06] sm:p-9">
+              <div className="flex items-center justify-between border-b border-white/10 pb-5">
+                <div>
+                  <p className="text-[1.2rem] font-extrabold tracking-[-0.03em]" style={{ color: pole.accent }}>{pole.name}</p>
+                  <p className="mt-1 text-[12px] font-semibold uppercase tracking-[0.12em] text-white/45">{pole.tagline}</p>
+                </div>
+                <span className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/5 text-white/70 transition group-hover:bg-white group-hover:text-[#202020]"><ArrowRight size={16} /></span>
+              </div>
+              <ul className="mt-6 flex-1 space-y-3">
+                {pole.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-[14px] leading-6 text-white/72">
+                    <Check size={15} className="mt-[5px] shrink-0" style={{ color: pole.accent }} />{item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={pole.href}
+                className="mt-7 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-[10px] px-6 text-[13px] font-extrabold text-[#202020] transition hover:-translate-y-0.5"
+                style={{ background: pole.accent }}
+              >
+                {pole.cta} <ArrowRight size={14} />
+              </Link>
+            </article>
+          ))}
+        </div>
+        <p className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[13px] text-white/55">
+          Un doute sur le bon pôle ?
+          <Link href="/devis" className="font-extrabold text-white underline-offset-4 transition hover:underline">Décrivez votre besoin, nous vous orientons.</Link>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* Sectors covered — the environments LVMR works in. */
+export function SectorsSection() {
+  const sectors = [
+    [Building2, "Bureaux & tertiaire", "Sièges sociaux, plateaux de bureaux et espaces de travail."],
+    [Home, "Copropriétés & résidences", "Parties communes tenues avec discrétion, dans le respect des résidents."],
+    [Store, "Commerces & retail", "Surfaces de vente, vitrines et espaces ouverts au public."],
+    [HeartPulse, "Santé & médical", "Cabinets, structures de soins et environnements exigeants."],
+    [UtensilsCrossed, "Hôtellerie & restauration", "Cuisines, salles et installations d’extraction."],
+    [Factory, "Industrie & logistique", "Ateliers, entrepôts et locaux techniques."],
+    [Landmark, "ERP & établissements publics", "Écoles, équipements publics et sites recevant du public."],
+    [Briefcase, "Gestionnaires & syndics", "Syndics, bailleurs et administrateurs de biens."],
+  ] as const;
+  return (
+    <section className="bg-[#f5f5f5] py-14 sm:py-16">
+      <div className="container">
+        <SectionHead
+          eyebrow="Secteurs d’intervention"
+          title={<>Des environnements variés, une même exigence.</>}
+          intro="Chaque site a ses contraintes : fréquentation, horaires, sécurité. L’intervention s’organise en conséquence."
+        />
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {sectors.map(([Icon, title, text]) => (
+            <article key={title} className="group relative overflow-hidden rounded-[22px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.10)]">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white">
+                <Icon size={19} />
+              </span>
+              <h3 className="mt-5 text-[1.05rem] font-extrabold tracking-[-0.02em] text-[#202020]">{title}</h3>
+              <p className="mt-2 text-[13px] leading-6 text-[#424242]">{text}</p>
+              <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition duration-300 group-hover:scale-x-100" aria-hidden />
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Client voices — anonymized, consistent with the site's editorial policy. */
+export function TestimonialsSection() {
+  const voices = [
+    {
+      quote: "Les parties communes sont tenues et les résidents ne s’aperçoivent de rien. C’est exactement ce que nous attendons.",
+      role: "Syndic de copropriété",
+      place: "Yvelines",
+    },
+    {
+      quote: "Intervention rapide, méthode claire et compte rendu précis à la fin. On sait ce qui a été fait, et comment.",
+      role: "Responsable de site tertiaire",
+      place: "Paris",
+    },
+    {
+      quote: "Après le sinistre, l’équipe a remis le local en état sans ajouter de stress à une situation déjà compliquée.",
+      role: "Gérant de commerce",
+      place: "Essonne",
+    },
+  ];
+  return (
+    <section className="relative overflow-hidden bg-[#202020] py-14 sm:py-16">
+      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#6b6b6b]/14 blur-[110px]" aria-hidden />
+      <div className="container relative">
+        <SectionHead
+          dark
+          eyebrow="Ils nous font confiance"
+          title={<>La parole aux sites que nous entretenons.</>}
+          intro="Des retours terrains, recueillis auprès de nos clients, anonymisés conformément à notre politique de publication."
+        />
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {voices.map((voice) => (
+            <figure key={voice.role} className="flex flex-col rounded-[24px] border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:border-white/20 hover:bg-white/[0.06] sm:p-8">
+              <Quote size={22} className="text-[#ffc547]" aria-hidden />
+              <blockquote className="mt-5 flex-1 text-[15px] leading-7 text-white/75">
+                {voice.quote}
+              </blockquote>
+              <figcaption className="mt-6 border-t border-white/10 pt-4">
+                <p className="text-[13px] font-extrabold text-white">{voice.role}</p>
+                <p className="mt-0.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white/40">{voice.place}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="mt-7 text-center text-[12px] text-white/40">
+          Les références nominatives sont communiquées sur demande, avec l’accord des clients concernés.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* Working-method guarantees — compact reassurance band. */
+export function GarantiesBand() {
+  const items = [
+    [FileCheck2, "Devis clair", "Un périmètre détaillé avant toute intervention."],
+    [UserCheck, "Équipes encadrées", "Personnel déclaré, formé et identifié sur site."],
+    [ScrollText, "Protocoles formalisés", "Des consignes écrites, adaptées à chaque lieu."],
+    [ShieldCheck, "Suivi & traçabilité", "Comptes rendus et documents remis selon la prestation."],
+  ] as const;
+  return (
+    <section className="bg-[#f5f5f5] py-14 sm:py-16">
+      <div className="container">
+        <SectionHead
+          eyebrow="Nos garanties"
+          title={<>Une organisation qui se vérifie.</>}
+          intro="Ce qui est annoncé au devis est ce qui est réalisé sur site — et ce qui peut être vérifié ensuite."
+        />
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map(([Icon, title, text], index) => (
+            <article key={title} className="group relative overflow-hidden rounded-[22px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.10)]">
+              <div className="flex items-start justify-between gap-3">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white">
+                  <Icon size={19} />
+                </span>
+                <span className="text-[2rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#6b6b6b]/12" aria-hidden>0{index + 1}</span>
+              </div>
+              <h3 className="mt-5 text-[1.05rem] font-extrabold tracking-[-0.02em] text-[#202020]">{title}</h3>
+              <p className="mt-2 text-[13px] leading-6 text-[#424242]">{text}</p>
+              <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition duration-300 group-hover:scale-x-100" aria-hidden />
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
