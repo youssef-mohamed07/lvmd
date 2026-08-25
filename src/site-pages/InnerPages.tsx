@@ -6,7 +6,7 @@ import Link from "next/link";
 import QuoteWizard from "@/components/QuoteWizard";
 import { ProcessRail, SectionHead, ServiceGrid, StatsBand, ZoneSection } from "@/components/Sections";
 import { CTASection, PageFrame, PageHero, usePageMeta } from "@/components/SiteChrome";
-import { allServices, brandSet, environmentServices, findService, imageSet, premiumServices, sectorPlaceholders } from "@/lib/site";
+import { allServices, brandSet, environmentServices, extractionReasons, findService, imageSet, premiumServices, sectorPlaceholders } from "@/lib/site";
 
 function CtaChip({ href, label, tone = "group" }: { href: string; label: string; tone?: "group" | "premium" | "environnement" }) {
   const toneClass = tone === "premium"
@@ -129,7 +129,7 @@ export function PremiumPage() {
       />
       <ProcessRail />
       <StatsBand dark />
-      <CTASection />
+      <CTASection title={<>Demander un devis LVMR Premium.</>} text="Confiez-nous les informations essentielles sur vos locaux, leur surface, la fréquence souhaitée et vos contraintes. Nous vous proposerons une organisation adaptée et un devis personnalisé." />
     </PageFrame>
   );
 }
@@ -192,12 +192,51 @@ export function EnvironnementPage() {
               <h3 className="mt-4 text-[clamp(1.7rem,3vw,2.5rem)] font-extrabold leading-[1.04] tracking-[-0.04em]">Un cadre clair avant, pendant et après l’intervention.</h3>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2">
-              {["Diagnostic ou visite préalable selon la situation", "Protocole adapté au contexte et au niveau de risque", "Consignes de préparation et de sécurité communiquées", "Moyens mobilisés selon les conditions du site", "Compte rendu, fiche ou certificat selon la prestation"].map((item) => (
+              {["Diagnostic ou visite préalable selon la situation", "Protocole adapté au nuisible, au niveau d’infestation et à l’activité du site", "Consignes de préparation et de sécurité communiquées avant l’intervention", "Personnel formé et titulaire des certifications requises pour les traitements réalisés", "Compte rendu ou fiche d’intervention remis selon la prestation"].map((item) => (
                 <li key={item} className="flex items-start gap-3 rounded-[16px] border border-white/12 bg-white/[.05] p-4 text-[12px] font-semibold leading-5 text-white/75">
                   <Check size={15} className="mt-0.5 shrink-0 text-[#7ebcab]" />{item}
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+      <section className="pb-12 sm:pb-16">
+        <div className="container">
+          <div className="overflow-hidden rounded-[26px] border border-[#7ebcab]/25 bg-white">
+            <div className="grid lg:grid-cols-[1fr_1.15fr]">
+              <div className="relative min-h-[260px] overflow-hidden bg-[#202020] lg:min-h-full">
+                <img src={imageSet.environnement} alt="Cuisine professionnelle entretenue par LVMR Environnement" className="absolute inset-0 h-full w-full object-cover opacity-70" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),rgba(32,32,32,.25)_60%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Dégraissage de hottes et systèmes d’extraction</p>
+                  <h3 className="mt-3 text-[clamp(1.6rem,2.6vw,2.2rem)] font-extrabold leading-[1.08] tracking-[-0.04em]">Restaurants, cuisines collectives, hôtels et établissements de santé.</h3>
+                </div>
+              </div>
+              <div className="grid gap-8 p-6 sm:p-8 lg:p-10">
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Périmètre possible de l’intervention</p>
+                  <ul className="mt-4 grid gap-2.5">
+                    {["Hotte professionnelle et surfaces accessibles", "Filtres métalliques", "Conduits d’extraction accessibles", "Moteurs, turbines et caissons d’extraction selon leur configuration et leur accessibilité", "Protection de la zone, dégraissage, nettoyage et remise en état de l’espace de travail"].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-[13px] font-semibold leading-5 text-[#424242]">
+                        <Check size={14} className="mt-0.5 shrink-0 text-[#7ebcab]" />{item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">Pourquoi entretenir son système d’extraction ?</p>
+                  <ul className="mt-4 grid gap-2.5">
+                    {extractionReasons.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-[13px] leading-5 text-[#424242]">
+                        <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-[#7ebcab]" aria-hidden />{item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/environnement/hottes-professionnelles" className="mt-5 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#7ebcab]">Préparer cette intervention <ArrowRight size={14} /></Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -210,14 +249,14 @@ export function EnvironnementPage() {
             <Link href="/devis" className="mt-5 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#7ebcab]">Demander un diagnostic 3D <ArrowRight size={14} /></Link>
           </div>
           <div className="rounded-[24px] bg-[#202020] p-6 text-white sm:p-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a2cebd]">Demande urgente</p>
-            <h3 className="mt-3 text-[1.55rem] font-extrabold tracking-[-0.035em]">Une situation technique ou sanitaire ?</h3>
-            <p className="mt-3 text-[13px] leading-6 text-white/60">Nous évaluons le niveau de priorité et nos possibilités d’intervention dans les meilleurs délais.</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a2cebd]">Gestion des demandes urgentes</p>
+            <h3 className="mt-3 text-[1.55rem] font-extrabold tracking-[-0.035em]">Une situation technique ou sanitaire urgente ?</h3>
+            <p className="mt-3 text-[13px] leading-6 text-white/60">Contactez directement notre équipe. Nous évaluons la demande, le niveau de priorité et nos possibilités d’intervention dans les meilleurs délais.</p>
             <a href="tel:+33671849341" className="mt-5 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#a2cebd]">Signaler une demande urgente <ArrowRight size={14} /></a>
           </div>
         </div>
       </section>
-      <CTASection title={<>Décrivez votre situation.</>} text="Indiquez l’adresse du site, les surfaces concernées et joignez, si possible, des photographies pour préparer une expertise adaptée." />
+      <CTASection title={<>Demander une expertise LVMR Environnement.</>} text="Décrivez la situation, l’adresse du site, les surfaces concernées et joignez, si possible, des photographies. Une visite technique pourra être proposée afin d’établir un périmètre précis et un devis adapté." />
     </PageFrame>
   );
 }
@@ -379,6 +418,37 @@ export function RealisationsPage() {
         </div>
       </section>
 
+      {/* First documented case — anonymized as required by the editorial brief */}
+      <section className="bg-[#f5f5f5] pb-16 sm:pb-24">
+        <div className="container">
+          <div className="overflow-hidden rounded-[26px] bg-[#202020] text-white shadow-[0_24px_70px_rgba(32,32,32,.22)]">
+            <div className="grid lg:grid-cols-[.9fr_1.1fr]">
+              <div className="relative min-h-[280px] overflow-hidden lg:min-h-full">
+                <img src={imageSet.detail} alt="Laboratoire professionnel remis en état" className="absolute inset-0 h-full w-full object-cover opacity-70" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),rgba(32,32,32,.2)_65%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                  <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#ffc547]">Étude de cas · Publication autorisée</p>
+                  <h3 className="mt-3 max-w-[420px] text-[clamp(1.7rem,3vw,2.5rem)] font-extrabold leading-[1.06] tracking-[-0.045em]">Remise en état approfondie d’un laboratoire professionnel.</h3>
+                </div>
+              </div>
+              <div className="grid gap-6 p-6 sm:p-8 lg:p-10">
+                {[
+                  ["Contexte", "Intervention programmée après traitement préalable, dans un environnement nécessitant un nettoyage approfondi."],
+                  ["Mission", "Nettoyage du laboratoire, des équipements accessibles, des zones de préparation et des surfaces définies au devis."],
+                  ["Organisation", "Équipe dédiée, protocole adapté, contrôle final et restitution des lieux."],
+                ].map(([title, text], index) => (
+                  <div key={title} className="grid gap-2 border-b border-white/10 pb-5 last:border-b-0 last:pb-0 sm:grid-cols-[130px_1fr] sm:gap-5">
+                    <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ffc547]"><span className="text-white/35">0{index + 1}</span>{title}</p>
+                    <p className="text-[14px] leading-7 text-white/70">{text}</p>
+                  </div>
+                ))}
+                <p className="text-[11px] leading-5 text-white/40">Conformément à nos engagements, le nom, les photos et les circonstances exactes du client ne sont publiés qu’avec son accord écrit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTASection />
     </PageFrame>
   );
@@ -386,22 +456,28 @@ export function RealisationsPage() {
 
 export function GroupePage() {
   usePageMeta({ title: "Le Groupe | LVMR Group", description: "Découvrez LVMR Group, ses engagements et ses deux pôles spécialisés en Île-de-France.", path: "/groupe", schema: { "@context": "https://schema.org", "@type": "Organization", name: "LVMR Group", areaServed: "Île-de-France", address: "30 bis rue du Vieil Abreuvoir, 78100 Saint-Germain-en-Laye" } });
-  const values = [[Layers, "Exigence", "Des protocoles adaptés et une qualité constante."], [CalendarCheck, "Réactivité", "Une prise en charge rapide selon la demande et nos disponibilités."], [ShieldCheck, "Sécurité", "Des équipes encadrées et des équipements adaptés."], [Sparkles, "Discrétion", "Des interventions qui limitent la gêne occasionnée."], [ClipboardList, "Suivi", "Un interlocuteur identifié et des documents selon la prestation."]] as const;
+  const values = [[Layers, "Exigence", "Des protocoles adaptés et un niveau de qualité constant."], [CalendarCheck, "Réactivité", "Une prise en charge rapide des demandes et des besoins urgents selon nos disponibilités."], [ShieldCheck, "Sécurité", "Des équipes encadrées, des équipements adaptés et le respect des consignes applicables au site."], [Sparkles, "Discrétion", "Des interventions organisées pour limiter la gêne occasionnée à vos collaborateurs, occupants ou clients."], [ClipboardList, "Suivi", "Un interlocuteur identifié et, selon la prestation, un compte rendu, un rapport ou un certificat d’intervention."]] as const;
+  const poles = [
+    ["01", "LVMR Premium", "Propreté professionnelle haut de gamme pour les bureaux, copropriétés, résidences, commerces et espaces recevant du public : entretien régulier, remise en état et nettoyage de surfaces vitrées.", imageSet.premium, "/premium", "#ffc547", "Découvrir LVMR Premium"],
+    ["02", "LVMR Environnement", "Interventions techniques spécialisées : remise en état après sinistre, environnements insalubres, nettoyage industriel, assainissement, dégraissage d’extraction et pôle 3D.", imageSet.environnement, "/environnement", "#7ebcab", "Découvrir LVMR Environnement"],
+  ];
   return (
     <PageFrame>
       <PageHero
         logo={brandSet.groupHorizontalWhite}
-        eyebrow="Le Groupe"
+        eyebrow="Groupe LVMR"
         title={<>L’excellence en <span className="hero-stroke">toutes circonstances.</span></>}
-        intro="LVMR Group réunit deux sociétés complémentaires pour l’entretien, la remise en état et la sécurisation des environnements professionnels en Île-de-France."
+        intro="Deux pôles complémentaires pour répondre à vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France."
         image={imageSet.hero}
-      />
+      >
+        <CtaChip href="/devis" label="Demander un devis" />
+      </PageHero>
       <section className="bg-[#f5f5f5] py-12 sm:py-16">
         <div className="container">
           <SectionHead
-            eyebrow="Notre positionnement"
-            title={<>Une expertise globale, deux pôles spécialisés.</>}
-            intro="LVMR Premium prend en charge la propreté professionnelle haut de gamme. LVMR Environnement intervient sur les opérations techniques, sensibles ou complexes."
+            eyebrow="Une expertise globale, deux pôles spécialisés"
+            title={<>Le bon interlocuteur, dès le premier échange.</>}
+            intro="LVMR Group accompagne les entreprises, les copropriétés, les commerces, les établissements recevant du public et les gestionnaires de sites dans l’entretien, la remise en état et la sécurisation de leurs environnements."
           />
           <div className="mt-8 grid gap-4 lg:grid-cols-[1.08fr_.92fr]">
             <article className="group relative min-h-[520px] overflow-hidden rounded-[26px] bg-[#202020] text-white sm:min-h-[580px]">
@@ -409,12 +485,12 @@ export function GroupePage() {
               <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.62)_52%,rgba(32,32,32,.18)_100%)]" />
               <div className="relative flex min-h-[520px] flex-col justify-between p-6 sm:min-h-[580px] sm:p-9">
                 <div className="flex items-center justify-between border-b border-white/18 pb-5">
-                  <span className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">LVMR Group</span>
+                  <span className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">Nos engagements</span>
                   <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/45">Saint-Germain-en-Laye</span>
                 </div>
                 <div>
                   <h3 className="max-w-[560px] text-[clamp(2rem,4vw,3.5rem)] font-extrabold leading-[1.02] tracking-[-.05em]">L’équipe et les moyens réellement adaptés.</h3>
-                  <p className="mt-4 max-w-[520px] text-[14px] leading-7 text-white/65">Nous analysons le besoin, définissons un périmètre précis, organisons l’intervention puis assurons le contrôle et le suivi prévus.</p>
+                  <p className="mt-4 max-w-[520px] text-[14px] leading-7 text-white/65">Cette organisation permet de mobiliser l’équipe, les méthodes et les équipements réellement adaptés à chaque besoin.</p>
                   <div className="mt-7 grid gap-2 sm:grid-cols-2">
                     {values.map(([Icon, title, text], index) => (
                       <div key={title} className="flex items-center gap-3 rounded-2xl border border-white/14 bg-[#202020]/45 p-3.5 backdrop-blur-md">
@@ -428,16 +504,17 @@ export function GroupePage() {
             </article>
 
             <div className="grid gap-4">
-              {[
-                ["01", "LVMR Premium", "La tenue régulière des lieux professionnels, résidentiels et hôteliers.", imageSet.premium, "/premium", "#ffc547"],
-                ["02", "LVMR Environnement", "La réponse structurée aux situations sensibles, techniques ou imprévues.", imageSet.environnement, "/environnement", "#7ebcab"],
-              ].map(([number, title, text, image, href, accent]) => (
+              {poles.map(([number, title, text, image, href, accent, cta]) => (
                 <Link key={title} href={href} className="group relative min-h-[252px] overflow-hidden rounded-[26px] bg-[#202020] p-6 text-white sm:min-h-[282px] sm:p-8">
                   <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-1000 group-hover:scale-[1.05] group-hover:opacity-65" />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(32,32,32,.96),rgba(32,32,32,.42))]" />
                   <div className="relative flex h-full flex-col justify-between">
                     <div className="flex items-center justify-between"><span className="text-[11px] font-bold tracking-[.16em]" style={{ color: accent }}>{number}</span><span className="grid h-10 w-10 place-items-center rounded-full border border-white/18 bg-white/8 backdrop-blur transition group-hover:bg-white group-hover:text-[#202020]"><ArrowRight size={16} /></span></div>
-                    <div><h3 className="text-[clamp(1.55rem,2.8vw,2.35rem)] font-extrabold tracking-[-.04em]">{title}</h3><p className="mt-3 max-w-[390px] text-[13px] leading-6 text-white/60">{text}</p></div>
+                    <div>
+                      <h3 className="text-[clamp(1.55rem,2.8vw,2.35rem)] font-extrabold tracking-[-.04em]">{title}</h3>
+                      <p className="mt-3 max-w-[390px] text-[13px] leading-6 text-white/60">{text}</p>
+                      <span className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>{cta} <ArrowRight size={13} className="transition group-hover:translate-x-1" /></span>
+                    </div>
                   </div>
                 </Link>
               ))}
@@ -445,7 +522,12 @@ export function GroupePage() {
           </div>
         </div>
       </section>
-      <CTASection title={<>Construire une relation claire.</>} />
+      <ProcessRail />
+      <ZoneSection />
+      <CTASection
+        title={<>Parler de votre projet.</>}
+        text="Vous recherchez un partenaire pour l’entretien de vos locaux, une remise en état ou une intervention technique spécialisée ? Notre équipe étudie votre demande et vous oriente vers le pôle adapté."
+      />
     </PageFrame>
   );
 }
@@ -596,25 +678,57 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
   );
 }
 
+const TO_VALIDATE = "Contenu à compléter et valider avec les informations légales réelles de LVMR Group avant publication. Aucun élément contractuel ou réglementaire ne doit être considéré comme final dans cette version.";
+
+const legalContent: Record<"mentions" | "confidentialite" | "cookies", [string, string][]> = {
+  mentions: [
+    ["Éditeur du site", "Le présent site est édité par LVMR Group — 30 bis rue du Vieil Abreuvoir, 78100 Saint-Germain-en-Laye. Téléphone : 06 71 84 93 41. E-mail : contact@lvmr-premium.fr / contact@lvmr-environnement.fr. Forme juridique, capital social et numéro d’immatriculation : à compléter après validation des informations officielles."],
+    ["Responsable de publication", "Le responsable de la publication est le représentant de LVMR Group. Identité exacte à valider avant mise en production."],
+    ["Hébergement", "Le site est hébergé par un prestataire dont les coordonnées (nom, adresse, site internet) seront indiquées ici après confirmation de l’hébergeur de production."],
+    ["Propriété intellectuelle", "L’ensemble des contenus du site (textes, visuels, logos, marques LVMR Group, LVMR Premium et LVMR Environnement) est protégé. Toute reproduction ou représentation, totale ou partielle, sans autorisation écrite préalable est interdite. Les photographies de chantiers sont publiées avec l’autorisation de leurs ayants droit."],
+    ["Responsabilité", "Les informations publiées sont fournies à titre indicatif et peuvent être mises à jour. LVMR Group ne saurait être tenu responsable de l’usage qui en est fait. Les demandes d’intervention font l’objet d’une étude préalable et d’un devis."],
+    ["Contact", "Pour toute question relative au site : LVMR Group, 30 bis rue du Vieil Abreuvoir, 78100 Saint-Germain-en-Laye — 06 71 84 93 41."],
+  ],
+  confidentialite: [
+    ["Responsable de traitement", "LVMR Group, 30 bis rue du Vieil Abreuvoir, 78100 Saint-Germain-en-Laye, traite les données collectées sur ce site pour répondre aux demandes de devis, de visite technique et de contact. Téléphone : 06 71 84 93 41."],
+    ["Données collectées", "Les formulaires du site collectent uniquement les informations nécessaires au traitement de votre demande : société ou organisme, nom et prénom, téléphone, adresse e-mail, adresse du site concerné, type de prestation, surface, fréquence ou degré d’urgence, message et, le cas échéant, photographies ou documents transmis."],
+    ["Finalités et base légale", "Les données sont utilisées pour étudier votre demande, vous recontacter et établir une proposition adaptée. Le traitement repose sur votre consentement, recueilli via la case prévue à cet effet avant chaque envoi."],
+    ["Durées de conservation", "Les données sont conservées le temps nécessaire au traitement de la demande et à la relation commerciale qui peut en découler, puis archivées ou supprimées conformément aux délais légaux applicables. Durées précises à valider avant mise en production."],
+    ["Vos droits", "Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de vos données. Pour l’exercer, contactez-nous aux coordonnées ci-dessus. Vous pouvez également adresser une réclamation à la CNIL (www.cnil.fr)."],
+    ["Destinataires et sécurité", "Les données sont destinées aux équipes de LVMR Group et, le cas échéant, aux prestataires techniques contribuant au fonctionnement du site. Elles ne sont ni vendues ni louées. Des mesures raisonnables sont mises en œuvre pour protéger leur confidentialité."],
+  ],
+  cookies: [
+    ["Cookies utilisés", "Le site utilise uniquement des cookies techniques strictement nécessaires à son fonctionnement (préférences d’affichage, enregistrement local du parcours de devis sur votre appareil). Aucun cookie publicitaire ou de suivi tiers n’est déposé à ce stade. Liste détaillée à valider avant mise en production."],
+    ["Finalités", "Les traceurs éventuels serviraient exclusivement à mesurer l’audience de manière anonymisée et à améliorer l’expérience du site, après recueil de votre consentement."],
+    ["Consentement", "Lorsqu’un traceur soumis au consentement sera mis en place, un bandeau vous permettra d’accepter ou de refuser avant tout dépôt. Votre choix pourra être modifié à tout moment depuis cette page."],
+    ["Gestion dans le navigateur", "Vous pouvez configurer votre navigateur pour accepter ou refuser les cookies, ou les supprimer à tout moment. La désactivation des cookies techniques peut dégrader certaines fonctionnalités du site."],
+    ["Durée de validité", "La durée de vie des traceurs soumis au consentement n’excède pas les recommandations en vigueur (13 mois maximum pour le consentement). Durées précises à documenter lors de l’ajout de traceurs."],
+    ["Contact", "Pour toute question relative aux cookies : LVMR Group, 30 bis rue du Vieil Abreuvoir, 78100 Saint-Germain-en-Laye — 06 71 84 93 41."],
+  ],
+};
+
 export function LegalPage({ type }: { type: "mentions" | "confidentialite" | "cookies" }) {
   const titles = { mentions: "Mentions légales", confidentialite: "Politique de confidentialité", cookies: "Gestion des cookies" };
   const currentTitle = titles[type];
-  const sections = type === "cookies" ? ["Cookies utilisés", "Finalités", "Consentement", "Gestion dans le navigateur", "Durée de validité", "Contact"] : ["Éditeur du site", "Responsable de publication", "Hébergement", "Données collectées", "Durées de conservation", "Vos droits"];
-  usePageMeta({ title: `${currentTitle} — LVMR Group`, description: `${currentTitle} de LVMR Group — contenu à valider avant mise en production.`, path: `/${type === "mentions" ? "mentions-legales" : type}` });
+  const sections = legalContent[type];
+  usePageMeta({ title: `${currentTitle} — LVMR Group`, description: `${currentTitle} de LVMR Group.`, path: `/${type === "mentions" ? "mentions-legales" : type}` });
   return (
     <PageFrame>
       <PageHero logo={brandSet.groupHorizontalWhite} eyebrow="Informations" title={<>{currentTitle.split(" ").slice(0, -1).join(" ")} {" "}<span className="hero-stroke">{currentTitle.split(" ").slice(-1)}</span></>} intro="Cette page est structurée pour recevoir les informations officielles validées par LVMR Group et son conseil juridique." />
       <section className="py-12 sm:py-16">
         <div className="container max-w-[900px]">
           <div className="grid gap-3">
-            {sections.map((heading, index) => (
+            {sections.map(([heading, content], index) => (
               <section key={heading} className="rounded-[20px] border border-[#202020]/8 bg-white p-6 sm:p-8">
                 <span className="text-[11px] font-extrabold tracking-[.14em] text-[#6b6b6b]">0{index + 1}</span>
                 <h2 className="mt-2 text-[1.4rem] font-extrabold tracking-[-0.03em] text-[#202020]">{heading}</h2>
-                <p className="mt-3 max-w-[680px] text-[13px] leading-7 text-[#424242]">Contenu à compléter et valider avec les informations légales réelles de LVMR Group avant publication. Aucun élément contractuel ou réglementaire ne doit être considéré comme final dans cette version.</p>
+                <p className="mt-3 max-w-[680px] text-[13px] leading-7 text-[#424242]">{content}</p>
               </section>
             ))}
           </div>
+          <p className="mt-6 rounded-[16px] border border-[#202020]/8 bg-white/60 p-5 text-[12px] leading-6 text-[#6b6b6b]">
+            Note : {TO_VALIDATE}
+          </p>
         </div>
       </section>
       <CTASection />

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, MouseEvent as ReactMouseEvent, useEffect, useState } from "react";
+import { FormEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
@@ -14,6 +14,7 @@ import {
   Clock3,
   DoorOpen,
   Hammer,
+  Loader2,
   MapPin,
   Menu,
   Minus,
@@ -24,6 +25,7 @@ import {
   Sparkles,
   Star,
   Sun,
+  Upload,
   Wrench,
   X,
 } from "lucide-react";
@@ -101,6 +103,9 @@ const faqs = [
   { q: "Quels documents sont remis ?", a: "Selon la prestation, un compte rendu, un rapport photographique, une fiche ou un certificat d’intervention peut être prévu." },
 ];
 
+const homeFieldClass =
+  "min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12";
+
 function BrandMark() {
   return (
     <span className="flex items-center" aria-label="LVMR Group">
@@ -116,6 +121,11 @@ export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [need, setNeed] = useState("bureaux");
   const [formSent, setFormSent] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [formConsent, setFormConsent] = useState(false);
+  const [formFiles, setFormFiles] = useState<string[]>([]);
+  const formHoneypotRef = useRef<HTMLInputElement>(null);
   const [serviceGroup, setServiceGroup] = useState<"Premium" | "Environnement">("Premium");
   const [activeServiceIndex, setActiveServiceIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
@@ -147,12 +157,50 @@ export default function Home() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFormSent(true);
-    toast.success("Votre demande a bien été préparée.", {
-      description: "Un membre de l’équipe LVMR reviendra vers vous.",
-    });
+    const fields = new FormData(event.currentTarget);
+    const value = (key: string) => String(fields.get(key) ?? "").trim();
+    const payload = {
+      place: value("profile"),
+      exactService: value("need"),
+      name: value("name"),
+      phone: value("phone"),
+      email: value("email"),
+      location: value("address"),
+      rhythm: value("rhythm"),
+      message: value("message"),
+      files: formFiles,
+      consent: formConsent,
+      website: formHoneypotRef.current?.value || "",
+      source: "Formulaire court — page d’accueil",
+    };
+    if (!payload.name || !payload.phone || !payload.email || !formConsent) {
+      setFormError("Renseignez votre nom, votre téléphone, votre e-mail et acceptez la politique de confidentialité.");
+      return;
+    }
+    setFormError("");
+    setFormLoading(true);
+    try {
+      const response = await fetch("/api/devis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+      if (!response.ok || !result?.ok) {
+        setFormError(result?.error ?? "L’envoi a échoué. Réessayez ou appelez le 06 71 84 93 41.");
+        return;
+      }
+      setFormSent(true);
+      toast.success("Votre demande a bien été envoyée.", {
+        description: "Un membre de l’équipe LVMR reviendra vers vous.",
+      });
+    } catch {
+      setFormError("Impossible de contacter le serveur. Réessayez ou appelez le 06 71 84 93 41.");
+    } finally {
+      setFormLoading(false);
+    }
   };
 
   const selectedNeed = needOptions.find((item) => item.id === need);
@@ -408,7 +456,7 @@ export default function Home() {
                 <div className="expertise-division-content absolute inset-0 flex flex-col justify-between p-7 sm:p-9">
                   <div className="flex items-center justify-between border-b border-white/18 pb-5">
                     <img src={images.environnementHorizontal} alt="LVMR Environnement" className="h-9 w-auto sm:h-11" />
-                    <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/50">06 services</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/50">08 services</span>
                   </div>
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-[.12em] text-white/55">Interventions techniques</p>
@@ -588,7 +636,7 @@ export default function Home() {
                     Un lieu propre se voit. Une intervention bien menée se ressent.
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2">
-                    {["10 expertises", "Deux pôles", "Île-de-France"].map((chip) => (
+                    {["12 expertises", "Deux pôles", "Île-de-France"].map((chip) => (
                       <span key={chip} className="flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-2 text-[11px] font-bold text-white/75 backdrop-blur-md">
                         <Check size={12} className="text-[#f1f1f1]" />{chip}
                       </span>
@@ -746,7 +794,7 @@ export default function Home() {
                       Merci. Votre demande est prête.
                     </h3>
                     <p className="mt-3 max-w-[380px] text-[15px] leading-7 text-[#424242]">
-                      Branchez ensuite votre canal d’envoi (email / CRM) pour la mise en production.
+                      Votre demande a été transmise à notre équipe. Nous revenons vers vous rapidement pour préciser le périmètre et préparer votre devis.
                     </p>
                     <button
                       type="button"
@@ -758,63 +806,151 @@ export default function Home() {
                   </div>
                 ) : (
                   <div className="grid gap-4">
-                    <label className="block">
-                      <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Vous êtes</span>
-                      <div className="relative">
-                        <select
+                    <input ref={formHoneypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <label className="block">
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Vous êtes</span>
+                        <div className="relative">
+                          <select
+                            name="profile"
+                            defaultValue=""
+                            className={`${homeFieldClass} appearance-none pr-10`}
+                          >
+                            <option value="" disabled>Choisir une catégorie</option>
+                            <option>Une entreprise</option>
+                            <option>Une copropriété / syndic</option>
+                            <option>Un établissement</option>
+                            <option>Autre professionnel</option>
+                          </select>
+                          <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#424242]" size={16} />
+                        </div>
+                      </label>
+
+                      <label className="block">
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Votre besoin *</span>
+                        <input
                           required
-                          defaultValue=""
-                          className="min-h-[50px] w-full appearance-none rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 pr-10 text-[15px] text-[#202020] outline-none transition focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12"
-                        >
-                          <option value="" disabled>Choisir une catégorie</option>
-                          <option>Une entreprise</option>
-                          <option>Une copropriété / syndic</option>
-                          <option>Un établissement</option>
-                          <option>Autre professionnel</option>
-                        </select>
-                        <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#424242]" size={16} />
-                      </div>
+                          name="need"
+                          defaultValue={selectedNeed ? `${selectedNeed.label} — ${selectedNeed.hint}` : ""}
+                          placeholder="Ex. nettoyage bureaux, 3 passages / semaine"
+                          className={homeFieldClass}
+                        />
+                      </label>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <label className="block">
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Nom et prénom *</span>
+                        <input
+                          required
+                          name="name"
+                          placeholder="Nom et prénom"
+                          className={homeFieldClass}
+                        />
+                      </label>
+                      <label className="block">
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Téléphone *</span>
+                        <input
+                          required
+                          type="tel"
+                          name="phone"
+                          placeholder="06 00 00 00 00"
+                          className={homeFieldClass}
+                        />
+                      </label>
+                    </div>
+
+                    <label className="block">
+                      <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Adresse e-mail *</span>
+                      <input
+                        required
+                        type="email"
+                        name="email"
+                        placeholder="nom@entreprise.fr"
+                        className={homeFieldClass}
+                      />
                     </label>
 
                     <label className="block">
-                      <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Votre besoin</span>
+                      <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Adresse du site à traiter</span>
                       <input
-                        required
-                        name="need"
-                        defaultValue={selectedNeed ? `${selectedNeed.label} — ${selectedNeed.hint}` : ""}
-                        placeholder="Ex. nettoyage bureaux, 3 passages / semaine"
-                        className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12"
+                        name="address"
+                        placeholder="Ex. 30 rue…, 78100 Saint-Germain-en-Laye"
+                        className={homeFieldClass}
                       />
                     </label>
 
                     <div className="grid gap-4 sm:grid-cols-2">
                       <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Nom</span>
-                        <input
-                          required
-                          name="name"
-                          placeholder="Nom et prénom"
-                          className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12"
-                        />
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Fréquence ou urgence</span>
+                        <div className="relative">
+                          <select name="rhythm" defaultValue="" className={`${homeFieldClass} appearance-none pr-10`}>
+                            <option value="" disabled>Sélectionner</option>
+                            <option>Ponctuel</option>
+                            <option>Hebdomadaire</option>
+                            <option>Plusieurs fois par semaine</option>
+                            <option>Quotidien</option>
+                            <option>Urgent</option>
+                          </select>
+                          <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#424242]" size={16} />
+                        </div>
                       </label>
                       <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Email</span>
-                        <input
-                          required
-                          type="email"
-                          name="email"
-                          placeholder="nom@entreprise.fr"
-                          className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12"
-                        />
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Photographies</span>
+                        <span className={`${homeFieldClass} relative flex min-h-[50px] cursor-pointer items-center gap-2.5 text-[13px] text-[#424242]`}>
+                          <Upload size={15} className="shrink-0 text-[#6b6b6b]" />
+                          <span className="truncate">{formFiles.length > 0 ? formFiles.join(", ") : "Ajouter des photos (optionnel)"}</span>
+                          <input
+                            type="file"
+                            multiple
+                            accept="image/*,.pdf"
+                            className="absolute inset-0 cursor-pointer opacity-0"
+                            onChange={(event) => setFormFiles(Array.from(event.target.files ?? []).map((file) => file.name))}
+                          />
+                        </span>
                       </label>
                     </div>
+
+                    <label className="block">
+                      <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Message</span>
+                      <textarea
+                        name="message"
+                        rows={2}
+                        placeholder="Décrivez le besoin, les contraintes du site ou le degré d’urgence."
+                        className={`${homeFieldClass} min-h-0 resize-none py-3`}
+                      />
+                    </label>
+
+                    <label className="flex cursor-pointer items-start gap-3">
+                      <input
+                        type="checkbox"
+                        checked={formConsent}
+                        onChange={(event) => setFormConsent(event.target.checked)}
+                        className="mt-1 h-4 w-4 accent-[#6b6b6b]"
+                      />
+                      <span className="text-[12px] leading-5 text-[#424242]">
+                        J’accepte que LVMR Group utilise ces informations pour répondre à ma demande. Consultez notre <Link href="/confidentialite" className="font-bold underline">politique de confidentialité</Link>. *
+                      </span>
+                    </label>
+
+                    {formError && (
+                      <p role="alert" className="text-[12px] font-semibold text-[#c0392b]">{formError}</p>
+                    )}
 
                     <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
                       <p className="text-[12px] leading-5 text-[#424242]">
                         Saint-Germain-en-Laye · Île-de-France
                       </p>
-                      <button type="submit" className="btn btn-primary min-h-[50px] rounded-2xl px-6">
-                        Envoyer ma demande <ArrowRight size={15} />
+                      <button type="submit" disabled={formLoading} className="btn btn-primary min-h-[50px] rounded-2xl px-6 disabled:opacity-60">
+                        {formLoading ? (
+                          <>
+                            <Loader2 size={15} className="animate-spin" /> Envoi…
+                          </>
+                        ) : (
+                          <>
+                            Envoyer ma demande <ArrowRight size={15} />
+                          </>
+                        )}
                       </button>
                     </div>
                   </div>
@@ -866,7 +1002,12 @@ export default function Home() {
 
           <div className="mt-6 flex flex-col justify-between gap-3 px-1 text-[12px] text-white/35 sm:flex-row sm:items-center">
             <span>© {new Date().getFullYear()} LVMR Group</span>
-            <span className="tracking-[0.08em]">PROPRETÉ · ENVIRONNEMENT · IDF</span>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link href="/mentions-legales" className="hover:text-white/70">Mentions légales</Link>
+              <Link href="/confidentialite" className="hover:text-white/70">Confidentialité</Link>
+              <Link href="/cookies" className="hover:text-white/70">Cookies</Link>
+              <span className="hidden tracking-[0.08em] sm:inline">PROPRETÉ · ENVIRONNEMENT · IDF</span>
+            </div>
           </div>
         </div>
       </footer>

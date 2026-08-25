@@ -1,7 +1,7 @@
 /* LVMR quote flow — wide light stage with left means + option icons. */
 "use client";
 
-import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -220,6 +220,7 @@ export default function QuoteWizard() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     try {
@@ -279,11 +280,27 @@ export default function QuoteWizard() {
       return;
     }
     setLoading(true);
-    await new Promise((resolve) => window.setTimeout(resolve, 700));
-    setLoading(false);
-    setSent(true);
-    window.localStorage.removeItem(storageKey);
-    toast.success("Votre demande est prête à être transmise.");
+    setError("");
+    try {
+      const response = await fetch("/api/devis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, source: "Formulaire devis — parcours guidé", website: honeypotRef.current?.value || "" }),
+      });
+      const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+      if (!response.ok || !result?.ok) {
+        setError(result?.error ?? "L’envoi a échoué. Réessayez ou appelez le 06 71 84 93 41.");
+        setLoading(false);
+        return;
+      }
+      setLoading(false);
+      setSent(true);
+      window.localStorage.removeItem(storageKey);
+      toast.success("Votre demande a bien été envoyée.");
+    } catch {
+      setLoading(false);
+      setError("Impossible de contacter le serveur. Réessayez ou appelez le 06 71 84 93 41.");
+    }
   };
 
   const rhythms: { value: string; Icon: LucideIcon }[] =
@@ -316,7 +333,7 @@ export default function QuoteWizard() {
             Merci. C’est prêt.
           </h2>
           <p className="mt-3 max-w-[420px] text-[14px] leading-7 text-[#424242]">
-            Votre demande est préparée. Le branchement email / CRM pourra être activé en production.
+            Votre demande a été transmise à notre équipe. Nous revenons vers vous rapidement pour préciser le périmètre et préparer votre devis.
           </p>
           <button
             type="button"
@@ -375,6 +392,7 @@ export default function QuoteWizard() {
       </aside>
 
       <form onSubmit={submit} noValidate className="flex min-w-0 flex-col p-5 sm:p-6 lg:p-7">
+        <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
             <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">
