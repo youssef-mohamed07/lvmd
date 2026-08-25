@@ -29,9 +29,11 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { toast } from "sonner";
+import { environmentServices, premiumServices } from "@/lib/site";
 
 type QuoteData = {
   service: string;
+  exactService: string;
   place: string;
   surface: string;
   rhythm: string;
@@ -47,6 +49,7 @@ type QuoteData = {
 
 const initialData: QuoteData = {
   service: "",
+  exactService: "",
   place: "",
   surface: "",
   rhythm: "",
@@ -236,12 +239,12 @@ export default function QuoteWizard() {
 
   const isLast = step === steps.length - 1;
   const canContinue = useMemo(() => {
-    if (step === 0) return Boolean(data.service);
+    if (step === 0) return Boolean(data.service && (data.service === "Je ne sais pas encore" || data.exactService));
     if (step === 1) return Boolean(data.place);
     if (step === 2) return Boolean(data.surface);
     if (step === 3) return Boolean(data.rhythm);
     if (step === 4) return Boolean(data.location.trim());
-    if (step === 6) return Boolean(data.name.trim() && data.email.trim() && data.consent);
+    if (step === 6) return Boolean(data.name.trim() && data.phone.trim() && data.email.trim() && data.consent);
     return true;
   }, [data, step]);
 
@@ -249,7 +252,7 @@ export default function QuoteWizard() {
     if (!canContinue) {
       setError(
         step === 6
-          ? "Renseignez votre nom, votre email et votre consentement."
+          ? "Renseignez votre nom, votre téléphone, votre email et votre consentement."
           : "Sélectionnez une réponse pour continuer.",
       );
       return;
@@ -295,6 +298,12 @@ export default function QuoteWizard() {
           { value: "Plusieurs fois par semaine", Icon: CalendarDays },
           { value: "Quotidien", Icon: CalendarDays },
         ];
+
+  const detailedServices = data.service === "LVMR Premium"
+    ? premiumServices
+    : data.service === "LVMR Environnement"
+      ? environmentServices
+      : [];
 
   if (sent) {
     return (
@@ -397,18 +406,37 @@ export default function QuoteWizard() {
 
         <div className="mt-5 flex-1">
           {step === 0 && (
-            <div className="grid gap-2.5">
-              {serviceOptions.map((item) => (
-                <Choice
-                  key={item.value}
-                  value={item.value}
-                  hint={item.hint}
-                  tone={item.tone}
-                  Icon={item.Icon}
-                  selected={data.service === item.value}
-                  onClick={() => update("service", item.value)}
-                />
-              ))}
+            <div>
+              <div className="grid gap-2.5">
+                {serviceOptions.map((item) => (
+                  <Choice
+                    key={item.value}
+                    value={item.value}
+                    hint={item.hint}
+                    tone={item.tone}
+                    Icon={item.Icon}
+                    selected={data.service === item.value}
+                    onClick={() => {
+                      update("service", item.value);
+                      update("exactService", "");
+                    }}
+                  />
+                ))}
+              </div>
+              {detailedServices.length > 0 && (
+                <label className="mt-4 block">
+                  <span className="text-[12px] font-semibold text-[#424242]">Prestation recherchée *</span>
+                  <select
+                    value={data.exactService}
+                    onChange={(event) => update("exactService", event.target.value)}
+                    required
+                    className={fieldClass}
+                  >
+                    <option value="">Choisir une prestation</option>
+                    {detailedServices.map((item) => <option key={item.slug} value={item.title}>{item.title}</option>)}
+                  </select>
+                </label>
+              )}
             </div>
           )}
 
@@ -457,14 +485,14 @@ export default function QuoteWizard() {
           {step === 4 && (
             <label className="block">
               <span className="mb-2 flex items-center gap-2 text-[12px] font-semibold text-[#424242]">
-                <MapPin size={14} className="text-[#6b6b6b]" /> Ville ou code postal
+                <MapPin size={14} className="text-[#6b6b6b]" /> Adresse complète du site
               </span>
               <input
                 autoFocus
                 required
                 value={data.location}
                 onChange={(event) => update("location", event.target.value)}
-                placeholder="Ex. 78100 Saint-Germain-en-Laye"
+                placeholder="Ex. 30 rue…, 78100 Saint-Germain-en-Laye"
                 className={fieldClass}
               />
               <p className="mt-3 text-[12px] text-[#9f9f9f]">Intervention en Île-de-France. Zone confirmée avec vous.</p>
@@ -525,8 +553,9 @@ export default function QuoteWizard() {
                 />
               </label>
               <label>
-                <span className="text-[12px] font-semibold text-[#424242]">Téléphone</span>
+                <span className="text-[12px] font-semibold text-[#424242]">Téléphone *</span>
                 <input
+                  required
                   type="tel"
                   value={data.phone}
                   onChange={(event) => update("phone", event.target.value)}

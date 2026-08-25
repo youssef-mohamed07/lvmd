@@ -18,6 +18,7 @@ import {
   Menu,
   Minus,
   Plus,
+  Phone,
   ShieldAlert,
   ShieldCheck,
   Sparkles,
@@ -194,10 +195,9 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <span className="hidden whitespace-nowrap items-center gap-1.5 rounded-full bg-[#f1f1f1] px-3 py-1.5 text-[11px] font-semibold text-[#6b6b6b] xl:inline-flex">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#6b6b6b]" aria-hidden />
-              Île-de-France
-            </span>
+            <a href="tel:+33671849341" className="hidden whitespace-nowrap items-center gap-1.5 px-2 text-[12px] font-bold text-[#202020] xl:inline-flex">
+              <Phone size={14} className="text-[#6b6b6b]" />06 71 84 93 41
+            </a>
             <Link
               href="/devis"
               className="hidden min-h-11 whitespace-nowrap items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b] lg:inline-flex"
@@ -236,6 +236,9 @@ export default function Home() {
             >
               Obtenir un devis <ArrowRight size={14} />
             </Link>
+            <a href="tel:+33671849341" className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-2xl border border-[#202020]/10 text-[13px] font-bold text-[#202020]">
+              <Phone size={14} />06 71 84 93 41
+            </a>
           </div>
         )}
       </header>

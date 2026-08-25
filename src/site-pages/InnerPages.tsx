@@ -107,6 +107,16 @@ export function PremiumPage() {
             intro="Chaque site fait l’objet d’un périmètre défini, de consignes précises et d’un suivi qui assure la régularité de la prestation."
           />
           <ServiceGrid services={premiumServices} />
+          <div className="mt-10 border-t border-[#202020]/10 pt-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#ffc547]">Pourquoi choisir LVMR Premium ?</p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              {["Discrétion et respect des lieux occupés", "Personnel encadré et consignes formalisées", "Organisation adaptée à vos horaires", "Suivi et interlocuteur identifié", "Méthodes adaptées aux surfaces et usages"].map((item) => (
+                <div key={item} className="flex items-start gap-3 rounded-[18px] border border-[#202020]/8 bg-white p-4 text-[12px] font-bold leading-5 text-[#202020]">
+                  <Check size={15} className="mt-0.5 shrink-0 text-[#b07e2b]" />{item}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
       <EditorialSplit
@@ -176,9 +186,38 @@ export function EnvironnementPage() {
             intro="Remise en état, environnements insalubres, nettoyage industriel, vitrerie technique, extraction professionnelle et pôle 3D."
           />
           <ServiceGrid services={environmentServices} />
+          <div className="mt-12 grid gap-8 rounded-[26px] bg-[#202020] p-6 text-white sm:p-9 lg:grid-cols-[.78fr_1.22fr] lg:items-start">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Une intervention encadrée et traçable</p>
+              <h3 className="mt-4 text-[clamp(1.7rem,3vw,2.5rem)] font-extrabold leading-[1.04] tracking-[-0.04em]">Un cadre clair avant, pendant et après l’intervention.</h3>
+            </div>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {["Diagnostic ou visite préalable selon la situation", "Protocole adapté au contexte et au niveau de risque", "Consignes de préparation et de sécurité communiquées", "Moyens mobilisés selon les conditions du site", "Compte rendu, fiche ou certificat selon la prestation"].map((item) => (
+                <li key={item} className="flex items-start gap-3 rounded-[16px] border border-white/12 bg-white/[.05] p-4 text-[12px] font-semibold leading-5 text-white/75">
+                  <Check size={15} className="mt-0.5 shrink-0 text-[#7ebcab]" />{item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
-      <CTASection title={<>Une situation urgente ?</>} text="Contactez directement notre équipe. Nous évaluons la demande, le niveau de priorité et nos possibilités d’intervention dans les meilleurs délais." />
+      <section className="bg-[#f5f5f5] pb-10 sm:pb-14">
+        <div className="container grid gap-4 md:grid-cols-2">
+          <div className="rounded-[24px] border border-[#7ebcab]/30 bg-white p-6 sm:p-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Pôle 3D</p>
+            <h3 className="mt-3 text-[1.55rem] font-extrabold tracking-[-0.035em] text-[#202020]">Dératisation, désinsectisation, désinfection.</h3>
+            <p className="mt-3 text-[13px] leading-6 text-[#424242]">Décrivez la situation et les zones concernées pour préparer un diagnostic adapté.</p>
+            <Link href="/devis" className="mt-5 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#7ebcab]">Demander un diagnostic 3D <ArrowRight size={14} /></Link>
+          </div>
+          <div className="rounded-[24px] bg-[#202020] p-6 text-white sm:p-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a2cebd]">Demande urgente</p>
+            <h3 className="mt-3 text-[1.55rem] font-extrabold tracking-[-0.035em]">Une situation technique ou sanitaire ?</h3>
+            <p className="mt-3 text-[13px] leading-6 text-white/60">Nous évaluons le niveau de priorité et nos possibilités d’intervention dans les meilleurs délais.</p>
+            <a href="tel:+33671849341" className="mt-5 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#a2cebd]">Signaler une demande urgente <ArrowRight size={14} /></a>
+          </div>
+        </div>
+      </section>
+      <CTASection title={<>Décrivez votre situation.</>} text="Indiquez l’adresse du site, les surfaces concernées et joignez, si possible, des photographies pour préparer une expertise adaptée." />
     </PageFrame>
   );
 }
@@ -347,7 +386,7 @@ export function RealisationsPage() {
 
 export function GroupePage() {
   usePageMeta({ title: "Le Groupe | LVMR Group", description: "Découvrez LVMR Group, ses engagements et ses deux pôles spécialisés en Île-de-France.", path: "/groupe", schema: { "@context": "https://schema.org", "@type": "Organization", name: "LVMR Group", areaServed: "Île-de-France", address: "30 bis rue du Vieil Abreuvoir, 78100 Saint-Germain-en-Laye" } });
-  const values = [[Layers, "Exigence", "Des protocoles adaptés et une qualité constante."], [ShieldCheck, "Sécurité", "Des équipes encadrées et des équipements adaptés."], [Sparkles, "Discrétion", "Des interventions qui limitent la gêne occasionnée."], [CalendarCheck, "Suivi", "Un interlocuteur identifié et des documents selon la prestation."]] as const;
+  const values = [[Layers, "Exigence", "Des protocoles adaptés et une qualité constante."], [CalendarCheck, "Réactivité", "Une prise en charge rapide selon la demande et nos disponibilités."], [ShieldCheck, "Sécurité", "Des équipes encadrées et des équipements adaptés."], [Sparkles, "Discrétion", "Des interventions qui limitent la gêne occasionnée."], [ClipboardList, "Suivi", "Un interlocuteur identifié et des documents selon la prestation."]] as const;
   return (
     <PageFrame>
       <PageHero
