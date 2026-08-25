@@ -17,7 +17,7 @@ function CtaChip({ href, label, tone = "group" }: { href: string; label: string;
   return (
     <Link
       href={href}
-      className={`mt-8 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] px-7 text-[13px] font-extrabold text-[#202020] transition hover:-translate-y-0.5 ${toneClass}`}
+      className={`mt-5 inline-flex min-h-[48px] items-center gap-2 rounded-[10px] px-6 text-[13px] font-extrabold text-[#202020] transition hover:-translate-y-0.5 ${toneClass}`}
     >
       {label} <ArrowRight size={15} />
     </Link>

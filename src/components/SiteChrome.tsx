@@ -143,30 +143,30 @@ export function Breadcrumbs({ current, parent, dark = false }: { current: string
 /* Cinematic dark hero — same stage as the homepage: charcoal, grid, teal glow, gold-ready CTAs. */
 export function PageHero({ eyebrow, title, intro, image, logo, accent = "#f1f1f1", children }: { eyebrow: string; title: ReactNode; intro?: string; image?: string; logo?: string; accent?: string; dark?: boolean; children?: ReactNode }) {
   return (
-    <section className="relative overflow-hidden bg-[#202020] pb-14 pt-28 text-white sm:pb-20 sm:pt-32 lg:pb-24" style={{ "--page-accent": accent } as React.CSSProperties}>
+    <section className="relative overflow-hidden bg-[#202020] pb-10 pt-24 text-white sm:pb-12 sm:pt-28 lg:pb-14" style={{ "--page-accent": accent } as React.CSSProperties}>
       <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
       <div className="pointer-events-none absolute -left-40 top-16 h-[460px] w-[460px] rounded-full bg-[#6b6b6b]/14 blur-[120px]" aria-hidden />
       <div className="pointer-events-none absolute -right-24 bottom-0 h-[300px] w-[300px] rounded-full bg-[#f1f1f1]/10 blur-[110px]" aria-hidden />
       <div className="container relative z-10">
         <Breadcrumbs dark current={typeof title === "string" ? title : eyebrow} />
-        {logo && <img src={logo} alt="" className="mt-8 h-10 w-auto sm:h-12" />}
-        <div className="mt-7 grid gap-8 sm:mt-9 sm:gap-10 lg:grid-cols-[1.16fr_0.84fr] lg:items-start lg:gap-14">
+        <div className="mt-5 grid gap-6 sm:mt-6 sm:gap-8 lg:grid-cols-[1.16fr_0.84fr] lg:items-start lg:gap-10">
           <div>
-            <div className="flex items-center gap-3">
+            {logo && <img src={logo} alt="" className="h-9 w-auto sm:h-10" />}
+            <div className={`${logo ? "mt-6" : ""} flex items-center gap-3`}>
               <span className="h-px w-8" style={{ backgroundColor: accent }} aria-hidden />
               <p className="text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color: accent }}>{eyebrow}</p>
             </div>
-            <h1 className="mt-5 max-w-[760px] text-[clamp(2.2rem,9vw,4.4rem)] font-extrabold leading-[.98] tracking-[-0.055em] sm:mt-6">{title}</h1>
+            <h1 className="mt-4 max-w-[720px] text-[clamp(2.1rem,7vw,3.8rem)] font-extrabold leading-[.98] tracking-[-0.055em] sm:mt-5">{title}</h1>
           </div>
-          <div className="w-full max-w-[480px] lg:justify-self-end">
+          <div className="w-full max-w-[450px] lg:justify-self-end">
             {image && (
-              <div className="relative aspect-[16/11] overflow-hidden rounded-[20px] border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,.28)] sm:rounded-[28px]">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] border border-white/12 shadow-[0_24px_64px_rgba(0,0,0,.26)] sm:rounded-[24px]">
                 <img src={image} alt="" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.5),transparent_58%)]" aria-hidden />
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f1f1f1] to-transparent opacity-70" aria-hidden />
               </div>
             )}
-            {intro && <p className={`${image ? "mt-6" : ""} text-[15px] leading-7 text-white/65`}>{intro}</p>}
+            {intro && <p className={`${image ? "mt-4" : ""} text-[14px] leading-6 text-white/65`}>{intro}</p>}
             {children}
           </div>
         </div>
