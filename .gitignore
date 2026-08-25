@@ -14,3 +14,6 @@ npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# exceeds GitHub 100MB limit
+public/branding/presentation/lvmr-presentation.pdf
