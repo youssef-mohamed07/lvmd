@@ -105,17 +105,17 @@ const surfaceOptions: { value: string; Icon: LucideIcon }[] = [
 function toneClasses(tone: "gold" | "env" | "cyan", selected: boolean) {
   if (tone === "gold") {
     return selected
-      ? "border-[#ffc547] bg-[#ffc547] text-[#202020] shadow-[0_14px_36px_rgba(255,197,71,.28)]"
-      : "border-[#202020]/10 bg-white text-[#202020] hover:border-[#ffc547]/60 hover:bg-[#ffc547]/20";
+      ? "border-[#dab844] bg-[#dab844] text-[#202020] shadow-[0_14px_36px_rgba(218,184,68,.28)]"
+      : "border-[#202020]/10 bg-white text-[#202020] hover:border-[#dab844]/60 hover:bg-[#ebd899]/20";
   }
   if (tone === "env") {
     return selected
-      ? "border-[#7ebcab] bg-[#7ebcab] text-[#202020] shadow-[0_14px_36px_rgba(126,188,171,.25)]"
-      : "border-[#202020]/10 bg-white text-[#202020] hover:border-[#7ebcab]/60 hover:bg-[#7ebcab]/12";
+      ? "border-[#9dd573] bg-[#9dd573] text-[#202020] shadow-[0_14px_36px_rgba(157,213,115,.25)]"
+      : "border-[#202020]/10 bg-white text-[#202020] hover:border-[#9dd573]/60 hover:bg-[#9dd573]/12";
   }
   return selected
-    ? "border-[#6b6b6b] bg-[#6b6b6b] text-white shadow-[0_14px_36px_rgba(107,107,107,.28)]"
-    : "border-[#202020]/10 bg-white text-[#202020] hover:border-[#6b6b6b]/50 hover:bg-[#f1f1f1]";
+    ? "border-[#4caac9] bg-[#4caac9] text-white shadow-[0_14px_36px_rgba(76,170,201,.28)]"
+    : "border-[#202020]/10 bg-white text-[#202020] hover:border-[#4caac9]/50 hover:bg-[#e5f3f7]";
 }
 
 function Choice({
@@ -146,7 +146,7 @@ function Choice({
             ? tone === "cyan"
               ? "bg-white/20 text-white"
               : "bg-[#202020]/12 text-current"
-            : "bg-[#f5f5f5] text-[#6b6b6b] group-hover:bg-[#f1f1f1]"
+            : "bg-[#f5f5f5] text-[#4caac9] group-hover:bg-[#e5f3f7]"
         }`}
       >
         <Icon size={18} strokeWidth={1.9} />
@@ -192,13 +192,13 @@ function Tile({
       onClick={onClick}
       className={`grid min-h-[64px] grid-cols-[40px_1fr] items-center gap-3 rounded-[16px] border px-3.5 text-left transition ${
         selected
-          ? "border-[#ffc547] bg-[#ffc547] text-[#202020] shadow-[0_8px_20px_rgba(255,197,71,.22)]"
-          : "border-[#202020]/10 bg-white text-[#202020] hover:border-[#6b6b6b]/40 hover:bg-[#f1f1f1]/50"
+          ? "border-[#dab844] bg-[#dab844] text-[#202020] shadow-[0_8px_20px_rgba(218,184,68,.22)]"
+          : "border-[#202020]/10 bg-white text-[#202020] hover:border-[#4caac9]/40 hover:bg-[#e5f3f7]/50"
       }`}
     >
       <span
         className={`grid h-10 w-10 place-items-center rounded-[12px] ${
-          selected ? "bg-[#202020]/12" : "bg-[#f5f5f5] text-[#6b6b6b]"
+          selected ? "bg-[#202020]/12" : "bg-[#f5f5f5] text-[#4caac9]"
         }`}
       >
         <Icon size={17} strokeWidth={1.9} />
@@ -209,7 +209,7 @@ function Tile({
 }
 
 const fieldClass =
-  "mt-2 w-full rounded-2xl border border-[#202020]/10 bg-[#f7f7f7] px-4 py-3.5 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12";
+  "mt-2 w-full rounded-2xl border border-[#202020]/10 bg-[#f7f7f7] px-4 py-3.5 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#4caac9] focus:bg-white focus:ring-4 focus:ring-[#4caac9]/12";
 
 export default function QuoteWizard() {
   const [step, setStep] = useState(0);
@@ -300,7 +300,7 @@ export default function QuoteWizard() {
     return (
       <div className="overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white shadow-[0_16px_50px_rgba(32,32,32,.05)]">
         <div className="flex min-h-[320px] flex-col items-center justify-center px-6 py-12 text-center">
-          <div className="grid h-14 w-14 place-items-center rounded-full bg-[#ffc547] text-[#202020] shadow-[0_14px_36px_rgba(255,197,71,.3)]">
+          <div className="grid h-14 w-14 place-items-center rounded-full bg-[#dab844] text-[#202020] shadow-[0_14px_36px_rgba(218,184,68,.3)]">
             <Check size={24} strokeWidth={2.4} />
           </div>
           <h2 className="mt-6 text-[clamp(1.7rem,3.5vw,2.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#202020]">
@@ -316,7 +316,7 @@ export default function QuoteWizard() {
               setStep(0);
               setData(initialData);
             }}
-            className="mt-7 inline-flex items-center gap-2 text-[13px] font-bold text-[#6b6b6b] transition hover:gap-3"
+            className="mt-7 inline-flex items-center gap-2 text-[13px] font-bold text-[#4caac9] transition hover:gap-3"
           >
             Nouvelle demande <ArrowRight size={14} />
           </button>
@@ -329,7 +329,7 @@ export default function QuoteWizard() {
     <div className="overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white shadow-[0_16px_50px_rgba(32,32,32,.05)] lg:grid lg:grid-cols-[minmax(240px,280px)_minmax(0,1fr)]">
       {/* Left means — same card, shared top edge */}
       <aside className="border-b border-[#202020]/8 p-5 sm:p-6 lg:border-b-0 lg:border-r lg:p-7">
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">Votre parcours</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#4caac9]">Votre parcours</p>
         <h2 className="mt-2 text-[1.35rem] font-extrabold leading-[1.15] tracking-[-0.035em] text-[#202020] sm:text-[1.45rem]">
           7 étapes. Une demande claire.
         </h2>
@@ -344,13 +344,13 @@ export default function QuoteWizard() {
                 key={title}
                 className={`grid grid-cols-[40px_1fr] items-center gap-3 rounded-[14px] border px-3 py-3 transition ${
                   active
-                    ? "border-[#6b6b6b]/25 bg-[#f1f1f1]"
+                    ? "border-[#4caac9]/25 bg-[#e5f3f7]"
                     : "border-transparent bg-[#f7f7f7]"
                 }`}
               >
                 <span
                   className={`grid h-10 w-10 place-items-center rounded-[12px] ${
-                    active ? "bg-[#6b6b6b] text-white" : "bg-white text-[#6b6b6b]"
+                    active ? "bg-[#4caac9] text-white" : "bg-white text-[#4caac9]"
                   }`}
                 >
                   <Icon size={17} strokeWidth={1.9} />
@@ -368,7 +368,7 @@ export default function QuoteWizard() {
       <form onSubmit={submit} noValidate className="flex min-w-0 flex-col p-5 sm:p-6 lg:p-7">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#4caac9]">
               Étape 0{step + 1} · 07
             </p>
             <h3 className="mt-2 text-[1.35rem] font-extrabold leading-[1.15] tracking-[-0.035em] text-[#202020] sm:text-[1.45rem]">
@@ -385,9 +385,9 @@ export default function QuoteWizard() {
                 onClick={() => index < step && setStep(index)}
                 className={`h-1.5 rounded-full transition-all ${
                   index === step
-                    ? "w-7 bg-[#ffc547]"
+                    ? "w-7 bg-[#dab844]"
                     : index < step
-                      ? "w-3.5 bg-[#6b6b6b]"
+                      ? "w-3.5 bg-[#4caac9]"
                       : "w-2 bg-[#202020]/10"
                 }`}
               />
@@ -457,7 +457,7 @@ export default function QuoteWizard() {
           {step === 4 && (
             <label className="block">
               <span className="mb-2 flex items-center gap-2 text-[12px] font-semibold text-[#424242]">
-                <MapPin size={14} className="text-[#6b6b6b]" /> Ville ou code postal
+                <MapPin size={14} className="text-[#4caac9]" /> Ville ou code postal
               </span>
               <input
                 autoFocus
@@ -473,8 +473,8 @@ export default function QuoteWizard() {
 
           {step === 5 && (
             <div>
-              <label className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-[16px] border border-dashed border-[#202020]/15 bg-[#f7f7f7] px-6 text-center transition hover:border-[#6b6b6b]/45 hover:bg-[#f1f1f1]/60">
-                <span className="grid h-11 w-11 place-items-center rounded-[12px] bg-[#f1f1f1] text-[#6b6b6b]">
+              <label className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-[16px] border border-dashed border-[#202020]/15 bg-[#f7f7f7] px-6 text-center transition hover:border-[#4caac9]/45 hover:bg-[#e5f3f7]/60">
+                <span className="grid h-11 w-11 place-items-center rounded-[12px] bg-[#e5f3f7] text-[#4caac9]">
                   <Upload size={18} />
                 </span>
                 <span className="mt-3 text-[14px] font-bold text-[#202020]">Ajouter des fichiers</span>
@@ -486,7 +486,7 @@ export default function QuoteWizard() {
                   {data.files.map((file) => (
                     <span
                       key={file}
-                      className="inline-flex items-center gap-2 rounded-full border border-[#202020]/8 bg-[#f1f1f1] px-3.5 py-2 text-[12px] font-semibold text-[#6b6b6b]"
+                      className="inline-flex items-center gap-2 rounded-full border border-[#202020]/8 bg-[#e5f3f7] px-3.5 py-2 text-[12px] font-semibold text-[#4caac9]"
                     >
                       {file}
                       <button
@@ -560,7 +560,7 @@ export default function QuoteWizard() {
                   type="checkbox"
                   checked={data.consent}
                   onChange={(event) => update("consent", event.target.checked)}
-                  className="mt-1 h-4 w-4 accent-[#ffc547]"
+                  className="mt-1 h-4 w-4 accent-[#dab844]"
                 />
                 <span className="text-[12px] leading-5 text-[#424242]">
                   J’accepte que LVMR Group utilise ces informations pour répondre à ma demande. Consultez notre <a href="/confidentialite" className="font-bold underline">politique de confidentialité</a>. *
@@ -593,7 +593,7 @@ export default function QuoteWizard() {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-extrabold text-[#202020] shadow-[0_10px_24px_rgba(255,197,71,.28)] transition hover:bg-[#b07e2b] disabled:opacity-60"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#dab844] px-5 text-[13px] font-extrabold text-[#202020] shadow-[0_10px_24px_rgba(218,184,68,.28)] transition hover:bg-[#e2c86f] disabled:opacity-60"
             >
               {loading ? (
                 <>
@@ -609,7 +609,7 @@ export default function QuoteWizard() {
             <button
               type="button"
               onClick={next}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-extrabold text-[#202020] shadow-[0_10px_24px_rgba(255,197,71,.28)] transition hover:bg-[#b07e2b]"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#dab844] px-5 text-[13px] font-extrabold text-[#202020] shadow-[0_10px_24px_rgba(218,184,68,.28)] transition hover:bg-[#e2c86f]"
             >
               Continuer <ArrowRight size={15} />
             </button>

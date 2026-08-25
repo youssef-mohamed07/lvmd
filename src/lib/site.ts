@@ -17,21 +17,7 @@ export const imageSet = {
   premium: "/manus-storage/lvmr-premium.jpg",
   environnement: "/manus-storage/lvmr-environnement.jpg",
   detail: "/manus-storage/lvmr-detail.jpg",
-  monogram: "/branding/group/png/group-icon.png",
-};
-
-/* Official brand assets downloaded from the LVMR branding kit (public/branding). */
-export const brandSet = {
-  groupHorizontal: "/branding/group/png/group-horizontal.png",
-  groupHorizontalWhite: "/branding/group/png/group-horizontal-white.png",
-  groupIcon: "/branding/group/png/group-icon.png",
-  groupIconWhite: "/branding/group/png/group-icon-white.png",
-  groupLogotype: "/branding/group/png/group-logotype.png",
-  groupLogotypeWhite: "/branding/group/png/group-logotype-white.png",
-  premiumHorizontal: "/branding/premium/png/premium-horizontal.png",
-  premiumHorizontalWhite: "/branding/premium/png/premium-horizontal-white.png",
-  environnementHorizontal: "/branding/environnement/png/environnement-horizontal.png",
-  environnementHorizontalWhite: "/branding/environnement/png/environnement-horizontal-white.png",
+  monogram: "/manus-storage/lvmr-monogram.png",
 };
 
 const service = (item: Omit<ServiceItem, "number">, number: number): ServiceItem => ({ ...item, number: String(number).padStart(2, "0") });
