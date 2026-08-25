@@ -150,7 +150,7 @@ export function PageHero({ eyebrow, title, intro, image, logo, accent = "#f1f1f1
       <div className="container relative z-10">
         <Breadcrumbs dark current={typeof title === "string" ? title : eyebrow} />
         {logo && <img src={logo} alt="" className="mt-8 h-10 w-auto sm:h-12" />}
-        <div className="mt-7 grid gap-6 sm:mt-9 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+        <div className="mt-7 grid gap-8 sm:mt-9 sm:gap-10 lg:grid-cols-[1.16fr_0.84fr] lg:items-start lg:gap-14">
           <div>
             <div className="flex items-center gap-3">
               <span className="h-px w-8" style={{ backgroundColor: accent }} aria-hidden />
@@ -158,18 +158,18 @@ export function PageHero({ eyebrow, title, intro, image, logo, accent = "#f1f1f1
             </div>
             <h1 className="mt-5 max-w-[760px] text-[clamp(2.2rem,9vw,4.4rem)] font-extrabold leading-[.98] tracking-[-0.055em] sm:mt-6">{title}</h1>
           </div>
-          <div className="max-w-[430px] lg:pb-1">
-            {intro && <p className="text-[15px] leading-7 text-white/65">{intro}</p>}
+          <div className="w-full max-w-[480px] lg:justify-self-end">
+            {image && (
+              <div className="relative aspect-[16/11] overflow-hidden rounded-[20px] border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,.28)] sm:rounded-[28px]">
+                <img src={image} alt="" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.5),transparent_58%)]" aria-hidden />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f1f1f1] to-transparent opacity-70" aria-hidden />
+              </div>
+            )}
+            {intro && <p className={`${image ? "mt-6" : ""} text-[15px] leading-7 text-white/65`}>{intro}</p>}
             {children}
           </div>
         </div>
-        {image && (
-          <div className="relative mt-8 overflow-hidden rounded-[20px] border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,.28)] sm:mt-10 sm:rounded-[28px]">
-            <img src={image} alt="" className="h-40 w-full object-cover sm:h-52 lg:h-60" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.72),transparent_62%)]" aria-hidden />
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f1f1f1] to-transparent opacity-70" aria-hidden />
-          </div>
-        )}
       </div>
     </section>
   );
