@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://lvmr-group.fr"),
   title: { default: "LVMR Group | Propreté et interventions techniques en Île-de-France", template: "%s — LVMR Group" },
   description: "LVMR Group accompagne les professionnels en propreté haut de gamme, remise en état et interventions techniques spécialisées en Île-de-France.",
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "any" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     title: "LVMR Group | L’excellence en toutes circonstances",
     description: "Propreté professionnelle haut de gamme et interventions techniques spécialisées en Île-de-France.",
