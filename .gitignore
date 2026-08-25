@@ -2,6 +2,7 @@ node_modules/
 .next/
 dist/
 .wrangler/
+.vinext/
 .pnpm-store/
 out/
 *.tsbuildinfo

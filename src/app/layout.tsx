@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
 import GlobalCursor from "@/components/GlobalCursor";
 import "./globals.css";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lvmr-group.fr"),
@@ -30,8 +22,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={outfit.variable}>
-      <body className={outfit.className}>
+    <html lang="fr">
+      <body>
         {children}
         <GlobalCursor />
       </body>

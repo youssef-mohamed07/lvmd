@@ -1,4 +1,4 @@
-/* LVMR Group — shared premium sections, restyled on the homepage palette (charcoal #202020, teal #4caac9, gold #dab844). */
+/* LVMR Group — shared premium sections, restyled on the homepage palette (charcoal #202020, teal #6b6b6b, gold #ffc547). */
 "use client";
 import { ArrowRight, Building2, Check, ClipboardList, Clock3, FileText, Hammer, MapPin, MessagesSquare, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
@@ -8,7 +8,7 @@ export function SectionHead({ eyebrow, title, intro, dark = false }: { eyebrow: 
   return (
     <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
       <div>
-        <p className={`inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em] ${dark ? "text-[#a8d8ea]" : "text-[#4caac9]"}`}>
+        <p className={`inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em] ${dark ? "text-[#f1f1f1]" : "text-[#6b6b6b]"}`}>
           <span className="h-px w-5 bg-current" aria-hidden />
           {eyebrow}
         </p>
@@ -34,7 +34,7 @@ export function EngageBar() {
       <div className="grid gap-px overflow-hidden rounded-[20px] border border-white/12 bg-white/12 shadow-[0_24px_70px_rgba(0,0,0,.4)] backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4">
         {items.map(([Icon, title, text]) => (
           <div key={title} className="group flex items-center gap-4 bg-[#202020]/92 px-6 py-5 transition hover:bg-[#2b2b2b]/92">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#4caac9]/12 text-[#a8d8ea] ring-1 ring-inset ring-[#4caac9]/30 transition group-hover:bg-[#4caac9]/20">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#6b6b6b]/12 text-[#f1f1f1] ring-1 ring-inset ring-[#6b6b6b]/30 transition group-hover:bg-[#6b6b6b]/20">
               <Icon size={19} />
             </span>
             <div>
@@ -53,7 +53,7 @@ export function StatsBand({ dark = false }: { dark?: boolean }) {
   const stats = [
     ["12", "expertises"],
     ["2", "pôles"],
-    ["IDF", "zone principale"],
+    ["4", "étapes"],
     ["IDF", "intervention"],
   ];
   return (
@@ -73,7 +73,7 @@ export function StatsBand({ dark = false }: { dark?: boolean }) {
                       : ""
               }`}
             >
-              <p className={`text-[clamp(1.7rem,3vw,2.4rem)] font-extrabold leading-none tracking-[-0.04em] ${dark ? "text-[#ebd899]" : "text-[#4caac9]"}`}>
+              <p className={`text-[clamp(1.7rem,3vw,2.4rem)] font-extrabold leading-none tracking-[-0.04em] ${dark ? "text-[#ffc547]" : "text-[#6b6b6b]"}`}>
                 {value}
               </p>
               <p className={`mt-2 text-[11px] font-bold uppercase tracking-[0.14em] ${dark ? "text-white/45" : "text-[#424242]"}`}>
@@ -97,7 +97,7 @@ export function ProcessRail({ dark = false }: { dark?: boolean }) {
           style={{ borderColor: dark ? "rgba(255,255,255,.1)" : "rgba(32,32,32,.1)" }}
         >
           <div>
-            <p className={`text-[11px] font-bold uppercase tracking-[0.16em] ${dark ? "text-[#ebd899]" : "text-[#4caac9]"}`}>
+            <p className={`text-[11px] font-bold uppercase tracking-[0.16em] ${dark ? "text-[#ffc547]" : "text-[#6b6b6b]"}`}>
               Notre méthode
             </p>
             <h2 className={`mt-3 max-w-[520px] text-[clamp(1.7rem,3.2vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.04em] ${dark ? "text-white" : "text-[#202020]"}`}>
@@ -117,7 +117,7 @@ export function ProcessRail({ dark = false }: { dark?: boolean }) {
                 key={n}
                 className="grid grid-cols-[48px_minmax(0,1fr)_40px] items-center gap-3 py-5 sm:grid-cols-[56px_160px_minmax(0,1fr)_40px] sm:gap-5 sm:py-5"
               >
-                <span className={`text-[13px] font-bold tabular-nums ${dark ? "text-[#ebd899]" : "text-[#4caac9]"}`}>
+                <span className={`text-[13px] font-bold tabular-nums ${dark ? "text-[#ffc547]" : "text-[#6b6b6b]"}`}>
                   {n}
                 </span>
                 <h3 className={`text-[1.02rem] font-extrabold tracking-[-0.02em] ${dark ? "text-white" : "text-[#202020]"}`}>
@@ -128,7 +128,7 @@ export function ProcessRail({ dark = false }: { dark?: boolean }) {
                 </p>
                 <span
                   className={`col-start-3 row-start-1 grid h-10 w-10 place-items-center rounded-[12px] sm:col-start-4 ${
-                    dark ? "bg-white/8 text-[#ebd899]" : "bg-[#e5f3f7] text-[#4caac9]"
+                    dark ? "bg-white/8 text-[#ffc547]" : "bg-[#f1f1f1] text-[#6b6b6b]"
                   }`}
                 >
                   <Icon size={17} strokeWidth={1.9} />
@@ -164,14 +164,14 @@ export function ValueBento() {
             <img src={imageSet.detail} alt="Le soin du détail par LVMR" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.05]" />
             <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),transparent_65%)]" />
             <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
-              <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#a8d8ea]">Le détail compte</p>
+              <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#f1f1f1]">Le détail compte</p>
               <p className="mt-3 max-w-[360px] text-[clamp(1.6rem,2.6vw,2.3rem)] font-extrabold leading-[1.08] tracking-[-.04em]">
                 Un lieu propre se voit. Une intervention bien menée se ressent.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {["12 expertises", "Deux pôles", "Île-de-France"].map((chip) => (
                   <span key={chip} className="flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-2 text-[11px] font-bold text-white/75 backdrop-blur-md">
-                    <Check size={12} className="text-[#a8d8ea]" />{chip}
+                    <Check size={12} className="text-[#f1f1f1]" />{chip}
                   </span>
                 ))}
               </div>
@@ -182,17 +182,17 @@ export function ValueBento() {
             return (
               <article
                 key={title}
-                className="group relative overflow-hidden rounded-[28px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.10)] sm:p-8"
+                className="group relative overflow-hidden rounded-[28px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.10)] sm:p-8"
               >
-                <span className="absolute right-6 top-6 text-[2.6rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#4caac9]/12" aria-hidden>
+                <span className="absolute right-6 top-6 text-[2.6rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#6b6b6b]/12" aria-hidden>
                   0{index + 1}
                 </span>
-                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#e5f3f7] text-[#4caac9] transition duration-300 group-hover:bg-[#4caac9] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(76,170,201,.35)]">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(107,107,107,.35)]">
                   <Icon size={20} />
                 </span>
                 <h3 className="mt-6 text-[1.2rem] font-extrabold tracking-[-.02em] text-[#202020]">{title}</h3>
                 <p className="mt-2 max-w-[380px] text-[14px] leading-6 text-[#424242]">{text}</p>
-                <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#4caac9] to-[#a8d8ea] transition duration-300 group-hover:scale-x-100" aria-hidden />
+                <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition duration-300 group-hover:scale-x-100" aria-hidden />
               </article>
             );
           })}
@@ -217,7 +217,7 @@ export function ZoneSection() {
         </div>
         <div className="flex flex-wrap gap-2.5">
           {zones.map((zone) => (
-            <span key={zone} className="rounded-full border border-[#202020]/10 bg-white px-4 py-2.5 text-[12px] font-bold text-[#424242] transition hover:border-[#4caac9]/40 hover:text-[#4caac9]">
+            <span key={zone} className="rounded-full border border-[#202020]/10 bg-white px-4 py-2.5 text-[12px] font-bold text-[#424242] transition hover:border-[#6b6b6b]/40 hover:text-[#6b6b6b]">
               {zone}
             </span>
           ))}
@@ -231,16 +231,19 @@ export function ZoneSection() {
 export function ServiceGrid({ services }: { services: ServiceItem[] }) {
   return (
     <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {services.map((service) => (
-        <Link
+      {services.map((service) => {
+        const isPremium = service.group === "premium";
+        const accent = isPremium ? "#ffc547" : "#7ebcab";
+        return <Link
           key={service.slug}
           href={`/${service.group}/${service.slug}`}
-          className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.12)]"
+          className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(32,32,32,.12)]"
+          style={{ "--service-accent": accent } as React.CSSProperties}
         >
           <div className="relative h-44 overflow-hidden bg-[#202020]">
             <img src={service.image} alt={service.title} className="h-full w-full object-cover opacity-85 transition duration-700 group-hover:scale-[1.05]" />
             <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.75),transparent_60%)]" />
-            <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-[#202020]/55 px-3 py-1 text-[10px] font-bold uppercase tracking-[.12em] text-[#a8d8ea] backdrop-blur-md">
+            <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-[#202020]/65 px-3 py-1 text-[10px] font-bold uppercase tracking-[.12em] backdrop-blur-md" style={{ color: accent }}>
               {service.kicker}
             </span>
             <span className="absolute bottom-3 right-4 text-[2rem] font-extrabold leading-none text-white/25" aria-hidden>{service.number}</span>
@@ -248,12 +251,12 @@ export function ServiceGrid({ services }: { services: ServiceItem[] }) {
           <div className="p-5 sm:p-6">
             <h3 className="text-[1.15rem] font-extrabold tracking-[-0.02em] text-[#202020]">{service.title}</h3>
             <p className="mt-2 text-[13px] leading-6 text-[#424242]">{service.description}</p>
-            <span className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#4caac9]">
+            <span className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>
               Découvrir <ArrowRight size={14} className="transition group-hover:translate-x-1" />
             </span>
           </div>
-        </Link>
-      ))}
+        </Link>;
+      })}
     </div>
   );
 }

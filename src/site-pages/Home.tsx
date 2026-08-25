@@ -39,7 +39,10 @@ const images = {
   premium: "/manus-storage/lvmr-premium.jpg",
   environnement: "/manus-storage/lvmr-environnement.jpg",
   detail: "/manus-storage/lvmr-detail.jpg",
-  monogram: "/manus-storage/lvmr-monogram.png",
+  groupHorizontal: "/branding/group/png/group-horizontal.png",
+  groupHorizontalWhite: "/branding/group/png/group-horizontal-white.png",
+  premiumHorizontalWhite: "/branding/premium/png/premium-horizontal-white.png",
+  environnementHorizontal: "/branding/environnement/png/environnement-horizontal.png",
 };
 
 const navItems = [
@@ -99,14 +102,8 @@ const faqs = [
 
 function BrandMark() {
   return (
-    <span className="flex items-center gap-2.5" aria-label="LVMR Group">
-      <span className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-[#4caac9] to-[#3689a8] shadow-[0_8px_20px_rgba(76,170,201,.28)]">
-        <img src={images.monogram} alt="" width={18} height={18} className="h-[18px] w-[18px] object-contain brightness-0 invert" />
-      </span>
-      <span className="leading-none">
-        <span className="block text-[15px] font-extrabold tracking-[-0.04em] text-[#202020]">LVMR</span>
-        <span className="mt-1 block text-[9px] font-semibold tracking-[0.2em] text-[#424242]">GROUP</span>
-      </span>
+    <span className="flex items-center" aria-label="LVMR Group">
+      <img src={images.groupHorizontal} alt="LVMR Group — L’excellence en toutes circonstances" className="h-8 w-auto sm:h-9" />
     </span>
   );
 }
@@ -164,6 +161,7 @@ export default function Home() {
   const activeServiceFacts = serviceGroup === "Premium"
     ? ["Fréquence adaptée", "Horaires coordonnés", "Contrôle terrain"]
     : ["Intervention ciblée", "Protocole adapté", "Coordination du site"];
+  const activeBrandColor = serviceGroup === "Premium" ? "#ffc547" : "#7ebcab";
 
   const showPreviousService = () => setActiveServiceIndex((index) => (index - 1 + visibleServices.length) % visibleServices.length);
   const showNextService = () => setActiveServiceIndex((index) => (index + 1) % visibleServices.length);
@@ -196,13 +194,13 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <span className="hidden items-center gap-1.5 rounded-full bg-[#e5f3f7] px-3 py-1.5 text-[11px] font-semibold text-[#4caac9] xl:inline-flex">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#4caac9]" aria-hidden />
+            <span className="hidden items-center gap-1.5 rounded-full bg-[#f1f1f1] px-3 py-1.5 text-[11px] font-semibold text-[#6b6b6b] xl:inline-flex">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#6b6b6b]" aria-hidden />
               Île-de-France
             </span>
             <Link
               href="/devis"
-              className="hidden min-h-11 items-center gap-2 rounded-full bg-[#dab844] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(218,184,68,.35)] transition hover:bg-[#e2c86f] lg:inline-flex"
+              className="hidden min-h-11 items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b] lg:inline-flex"
             >
               Devis <ArrowRight size={14} />
             </Link>
@@ -228,13 +226,13 @@ export default function Home() {
                 className="flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-sm font-semibold text-[#202020] hover:bg-[#f5f5f5]"
               >
                 {label}
-                <ArrowRight size={15} className="text-[#4caac9]" />
+                <ArrowRight size={15} className="text-[#6b6b6b]" />
               </Link>
             ))}
             <Link
               href="/devis"
               onClick={() => setMobileOpen(false)}
-              className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#dab844] text-[14px] font-bold text-[#202020]"
+              className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#ffc547] text-[14px] font-bold text-[#202020]"
             >
               Obtenir un devis <ArrowRight size={14} />
             </Link>
@@ -245,16 +243,17 @@ export default function Home() {
       <main>
         {/* HERO — clear corporate statement with an independent visual */}
         <section id="accueil" className="hero-stage relative overflow-hidden bg-[#202020] text-white">
-          <div className="pointer-events-none absolute -left-40 top-20 h-[520px] w-[520px] rounded-full bg-[#4caac9]/14 blur-[120px]" aria-hidden />
+          <div className="pointer-events-none absolute -left-40 top-20 h-[520px] w-[520px] rounded-full bg-[#6b6b6b]/14 blur-[120px]" aria-hidden />
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
           <div className="container relative z-10 grid gap-9 pb-10 pt-28 sm:gap-12 sm:pb-14 sm:pt-32 lg:min-h-[790px] lg:grid-cols-[.92fr_1.08fr] lg:items-center lg:gap-16 lg:pb-16 lg:pt-36">
             <div className="max-w-[660px]">
+              <img src={images.groupHorizontalWhite} alt="LVMR Group" className="hero-reveal mb-7 h-11 w-auto sm:h-14" style={{ animationDelay: "20ms" }} />
               <div className="hero-reveal flex items-center gap-3" style={{ animationDelay: "60ms" }}>
-                <span className="h-px w-8 bg-[#a8d8ea]" />
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#a8d8ea]">Groupe LVMR</p>
+                <span className="h-px w-8 bg-[#f1f1f1]" />
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#f1f1f1]">Groupe LVMR</p>
               </div>
               <h1 className="hero-reveal mt-6 max-w-[760px] text-[clamp(2.7rem,12vw,4.8rem)] font-extrabold leading-[.98] tracking-[-0.055em] sm:mt-7" style={{ animationDelay: "140ms" }}>
-                L’excellence en <span className="text-[#67b9ff]">toutes circonstances.</span>
+                L’excellence en <span className="text-[#f1f1f1]">toutes circonstances.</span>
               </h1>
               <p className="hero-reveal mt-7 max-w-[520px] text-[16px] leading-7 text-white/65" style={{ animationDelay: "230ms" }}>Deux pôles complémentaires pour vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France.</p>
               <div className="hero-reveal mt-8 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "320ms" }}>
@@ -262,18 +261,18 @@ export default function Home() {
                 <button type="button" onClick={() => goTo("services")} className="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-[10px] border border-white/20 px-6 text-[13px] font-extrabold text-white/80 transition hover:border-white/45 hover:bg-white/8 hover:text-white">Découvrir nos services <ArrowRight size={16} /></button>
               </div>
               <div className="hero-reveal mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-white/12 pt-5 text-[9px] font-bold uppercase tracking-[.11em] text-white/40 sm:mt-10 sm:gap-x-6 sm:text-[10px] sm:tracking-[.13em]" style={{ animationDelay: "410ms" }}>
-                <span>LVMR Premium</span><span className="h-1 w-1 rounded-full bg-[#a8d8ea]" /><span>LVMR Environnement</span><span className="h-1 w-1 rounded-full bg-[#a8d8ea]" /><span>Île-de-France</span>
+                <span>LVMR Premium</span><span className="h-1 w-1 rounded-full bg-[#f1f1f1]" /><span>LVMR Environnement</span><span className="h-1 w-1 rounded-full bg-[#f1f1f1]" /><span>Île-de-France</span>
               </div>
             </div>
 
             <div className="hero-reveal lg:justify-self-end" style={{ animationDelay: "260ms" }}>
-              <div className="hero-visual relative mx-auto aspect-[4/3] max-h-[380px] w-full max-w-[540px] overflow-hidden rounded-[22px] border border-white/12 bg-[#0d2942] sm:aspect-[16/11] sm:max-h-[480px] sm:rounded-[28px] lg:aspect-[4/5] lg:max-h-[610px]">
+              <div className="hero-visual relative mx-auto aspect-[4/3] max-h-[380px] w-full max-w-[540px] overflow-hidden rounded-[22px] border border-white/12 bg-[#3d3d3d] sm:aspect-[16/11] sm:max-h-[480px] sm:rounded-[28px] lg:aspect-[4/5] lg:max-h-[610px]">
                 <img src={images.hero} alt="Espace professionnel entretenu par LVMR Group" className="hero-image h-full w-full object-cover opacity-90" />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.88)_0%,transparent_55%)]" />
-                <div className="hero-scan pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#a8d8ea] to-transparent opacity-70" aria-hidden />
+                <div className="hero-scan pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f1f1f1] to-transparent opacity-70" aria-hidden />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                   <div className="flex items-end justify-between gap-6 border-t border-white/20 pt-5">
-                    <div><p className="text-[9px] font-bold uppercase tracking-[.14em] text-[#a8d8ea] sm:text-[10px]">LVMR Group</p><p className="mt-2 max-w-[290px] text-[1rem] font-extrabold leading-tight tracking-[-.03em] sm:text-[1.2rem]">Un interlocuteur pour l’entretien courant et les situations techniques.</p></div>
+                    <div><p className="text-[9px] font-bold uppercase tracking-[.14em] text-[#f1f1f1] sm:text-[10px]">LVMR Group</p><p className="mt-2 max-w-[290px] text-[1rem] font-extrabold leading-tight tracking-[-.03em] sm:text-[1.2rem]">Un interlocuteur pour l’entretien courant et les situations techniques.</p></div>
                     <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-[#202020] sm:h-11 sm:w-11"><ShieldCheck size={18} /></span>
                   </div>
                 </div>
@@ -310,25 +309,25 @@ export default function Home() {
                         aria-pressed={isActive}
                         className={`group relative overflow-hidden rounded-2xl border p-4 text-left transition duration-200 ${
                           isActive
-                            ? "border-[#4caac9] bg-white shadow-[0_14px_36px_rgba(76,170,201,.14)]"
-                            : "border-[#202020]/8 bg-[#f4f8fa] hover:-translate-y-0.5 hover:border-[#4caac9]/35 hover:bg-white"
+                            ? "border-[#6b6b6b] bg-white shadow-[0_14px_36px_rgba(107,107,107,.14)]"
+                            : "border-[#202020]/8 bg-[#f4f8fa] hover:-translate-y-0.5 hover:border-[#6b6b6b]/35 hover:bg-white"
                         }`}
                       >
                         <span
                           aria-hidden
-                          className={`absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#4caac9] to-[#a8d8ea] transition-opacity duration-200 ${isActive ? "opacity-100" : "opacity-0"}`}
+                          className={`absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition-opacity duration-200 ${isActive ? "opacity-100" : "opacity-0"}`}
                         />
                         <span className="flex items-center justify-between">
                           <span
                             className={`grid h-9 w-9 place-items-center rounded-xl transition ${
                               isActive
-                                ? "bg-[#4caac9] text-white shadow-[0_8px_20px_rgba(76,170,201,.35)]"
-                                : "border border-[#202020]/6 bg-white text-[#4caac9] group-hover:border-[#4caac9]/30"
+                                ? "bg-[#6b6b6b] text-white shadow-[0_8px_20px_rgba(107,107,107,.35)]"
+                                : "border border-[#202020]/6 bg-white text-[#6b6b6b] group-hover:border-[#6b6b6b]/30"
                             }`}
                           >
                             <TileIcon size={16} />
                           </span>
-                          <span className={`text-[10px] font-extrabold tabular-nums ${isActive ? "text-[#4caac9]" : "text-[#202020]/30"}`}>0{index + 1}</span>
+                          <span className={`text-[10px] font-extrabold tabular-nums ${isActive ? "text-[#6b6b6b]" : "text-[#202020]/30"}`}>0{index + 1}</span>
                         </span>
                         <span className="mt-3.5 block text-[14px] font-extrabold tracking-[-0.02em] text-[#202020]">{option.label}</span>
                         <span className="mt-0.5 block text-[11px] leading-4 text-[#424242]">{option.hint}</span>
@@ -338,7 +337,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-6 flex items-center gap-2.5 text-[12px] font-semibold text-[#424242]">
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#e5f3f7] text-[#4caac9]"><Sparkles size={12} /></span>
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#f1f1f1] text-[#6b6b6b]"><Sparkles size={12} /></span>
                   Le devis s’adapte automatiquement à votre sélection.
                 </div>
               </div>
@@ -352,7 +351,7 @@ export default function Home() {
                   0{selectedIndex + 1} / 0{needOptions.length}
                 </div>
                 <div key={`${need}-content`} className="service-preview-content absolute inset-x-0 bottom-0 p-7 sm:p-10">
-                  <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#a8d8ea]">
+                  <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#f1f1f1]">
                     <span>{selectedNeed?.hint}</span>
                     <span className="h-px w-7 bg-current" />
                     <span>Île-de-France</span>
@@ -385,7 +384,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.55)_45%,rgba(32,32,32,.08)_100%)]" />
                 <div className="expertise-division-content absolute inset-0 flex flex-col justify-between p-7 sm:p-9">
                   <div className="flex items-center justify-between border-b border-white/18 pb-5">
-                    <span className="text-[11px] font-extrabold uppercase tracking-[.14em] text-[#ebd899]">01 · LVMR Premium</span>
+                    <img src={images.premiumHorizontalWhite} alt="LVMR Premium" className="h-9 w-auto sm:h-11" />
                     <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/50">04 services</span>
                   </div>
                   <div>
@@ -405,7 +404,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.55)_45%,rgba(32,32,32,.08)_100%)]" />
                 <div className="expertise-division-content absolute inset-0 flex flex-col justify-between p-7 sm:p-9">
                   <div className="flex items-center justify-between border-b border-white/18 pb-5">
-                    <span className="text-[11px] font-extrabold uppercase tracking-[.14em] text-[#9dd573]">02 · LVMR Environnement</span>
+                    <img src={images.environnementHorizontal} alt="LVMR Environnement" className="h-9 w-auto sm:h-11" />
                     <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/50">06 services</span>
                   </div>
                   <div>
@@ -415,7 +414,7 @@ export default function Home() {
                     <div className="mt-6 flex flex-wrap gap-2">
                       {["Après sinistre", "Décontamination", "Désinfection", "Assainissement"].map((item) => <span key={item} className="expertise-chip">{item}</span>)}
                     </div>
-                    <button type="button" onClick={() => { setServiceGroup("Environnement"); setActiveServiceIndex(0); goTo("expertises"); }} className="mt-7 inline-flex items-center gap-3 text-[13px] font-extrabold">Voir les services <span className="grid h-9 w-9 place-items-center rounded-full bg-[#9dd573] text-[#202020]"><ArrowRight size={15} /></span></button>
+                    <button type="button" onClick={() => { setServiceGroup("Environnement"); setActiveServiceIndex(0); goTo("expertises"); }} className="mt-7 inline-flex items-center gap-3 text-[13px] font-extrabold">Voir les services <span className="grid h-9 w-9 place-items-center rounded-full bg-[#7ebcab] text-[#202020]"><ArrowRight size={15} /></span></button>
                   </div>
                 </div>
               </article>
@@ -428,7 +427,7 @@ export default function Home() {
           <div className="container">
             <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
               <div>
-                <div className="flex items-center gap-4"><p className="eyebrow">Nos interventions</p><span className="rounded-full bg-[#e5f3f7] px-3 py-1 text-[10px] font-extrabold uppercase tracking-[.1em] text-[#4caac9]">12 expertises</span></div>
+                <div className="flex items-center gap-4"><p className="eyebrow">Nos interventions</p><span className="rounded-full bg-[#f1f1f1] px-3 py-1 text-[10px] font-extrabold uppercase tracking-[.1em] text-[#6b6b6b]">12 expertises</span></div>
                 <h2 className="mt-4 max-w-[620px] text-[clamp(2rem,4vw,3.6rem)] font-extrabold leading-[1.03] tracking-[-.05em]">Trouvez la réponse adaptée à votre site.</h2>
               </div>
               <div className="inline-flex w-full self-start rounded-xl border border-[#202020]/10 bg-white p-1 sm:w-auto" role="tablist" aria-label="Catégorie de services">
@@ -459,10 +458,10 @@ export default function Home() {
                     className={`service-row group relative flex min-h-[92px] gap-4 overflow-hidden border-b border-[#202020]/10 px-5 py-6 text-left last:border-b-0 sm:px-7 ${activeServiceIndex === index ? "is-active bg-[#202020] text-white" : "hover:bg-[#f5f5f5]"}`}
                     aria-pressed={activeServiceIndex === index}
                   >
-                    {activeServiceIndex === index && <span className="service-row-progress absolute inset-y-0 left-0 w-[3px] bg-[#39a9e8]" />}
-                    <span className={`mt-1 text-[11px] font-bold ${activeServiceIndex === index ? "text-[#a8d8ea]" : "text-[#4caac9]"}`}>{service.n}</span>
+                    {activeServiceIndex === index && <span className="service-row-progress absolute inset-y-0 left-0 w-[3px]" style={{ backgroundColor: activeBrandColor }} />}
+                    <span className="mt-1 text-[11px] font-bold" style={{ color: activeServiceIndex === index ? activeBrandColor : "#6b6b6b" }}>{service.n}</span>
                     <span className="min-w-0 flex-1"><span className="block text-[1.05rem] font-extrabold tracking-[-.025em]">{service.title}</span><span className="service-row-copy"><span className="block overflow-hidden"><span className="mt-2 block max-w-[280px] text-[12px] leading-5 text-white/55">{service.text}</span></span></span></span>
-                    <ArrowRight size={17} className={`mt-1 shrink-0 transition duration-300 ${activeServiceIndex === index ? "translate-x-0 text-[#a8d8ea]" : "-translate-x-1 text-[#424242]/50 group-hover:translate-x-0"}`} />
+                    <ArrowRight size={17} className={`mt-1 shrink-0 transition duration-300 ${activeServiceIndex === index ? "translate-x-0" : "-translate-x-1 text-[#424242]/50 group-hover:translate-x-0"}`} style={activeServiceIndex === index ? { color: activeBrandColor } : undefined} />
                   </button>
                 ))}
               </div>
@@ -483,11 +482,11 @@ export default function Home() {
                 </div>
 
                 <div className="service-preview-content absolute inset-x-0 bottom-0 p-7 text-white sm:p-10">
-                  <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.14em] text-[#a8d8ea]"><span>{activeService.n}</span><span className="h-px w-7 bg-current" /><span>LVMR {serviceGroup}</span></div>
+                  <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.14em]" style={{ color: activeBrandColor }}><span>{activeService.n}</span><span className="h-px w-7 bg-current" /><span>LVMR {serviceGroup}</span></div>
                   <h3 className="mt-4 text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-none tracking-[-.05em]">{activeService.title}</h3>
                   <p className="mt-5 max-w-[500px] text-[15px] leading-7 text-white/72">{activeService.text}</p>
                   <div className="mt-6 flex flex-wrap gap-2">
-                    {activeServiceFacts.map((fact) => <span key={fact} className="flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-2 text-[11px] font-bold text-white/72 backdrop-blur-md"><Check size={12} className="text-[#a8d8ea]" />{fact}</span>)}
+                    {activeServiceFacts.map((fact) => <span key={fact} className="flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-2 text-[11px] font-bold text-white/72 backdrop-blur-md"><Check size={12} style={{ color: activeBrandColor }} />{fact}</span>)}
                   </div>
                   <div className="mt-7 flex flex-col justify-between gap-5 border-t border-white/16 pt-5 sm:mt-8 sm:flex-row sm:items-center sm:gap-6 sm:pt-6">
                     <p className="text-[11px] font-semibold uppercase tracking-[.1em] text-white/42">Étude du besoin · proposition adaptée</p>
@@ -501,14 +500,14 @@ export default function Home() {
 
         {/* METHOD — cool glass process rail */}
         <section id="methode" className="relative overflow-hidden bg-[#f5f5f5] py-16 sm:py-20">
-          <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-[#4caac9]/12 blur-3xl" aria-hidden />
-          <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#a8d8ea]/20 blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-[#6b6b6b]/12 blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#f1f1f1]/20 blur-3xl" aria-hidden />
 
           <div className="container relative">
             <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
               <div className="max-w-[520px]">
-                <p className="inline-flex items-center gap-2 rounded-full border border-[#4caac9]/15 bg-white/70 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#4caac9] shadow-[0_1px_0_rgba(32,32,32,.04)] backdrop-blur">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#4caac9]" aria-hidden />
+                <p className="inline-flex items-center gap-2 rounded-full border border-[#6b6b6b]/15 bg-white/70 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#6b6b6b] shadow-[0_1px_0_rgba(32,32,32,.04)] backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#6b6b6b]" aria-hidden />
                   Notre méthode
                 </p>
                 <h2 className="mt-5 text-[clamp(1.95rem,3.8vw,3rem)] font-extrabold leading-[1.06] tracking-[-0.045em] text-[#202020]">
@@ -522,27 +521,27 @@ export default function Home() {
 
             <ol className="relative mt-12 m-0 grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
               <div
-                className="pointer-events-none absolute left-[12%] right-[12%] top-[42px] hidden h-px bg-gradient-to-r from-transparent via-[#4caac9]/35 to-transparent lg:block"
+                className="pointer-events-none absolute left-[12%] right-[12%] top-[42px] hidden h-px bg-gradient-to-r from-transparent via-[#6b6b6b]/35 to-transparent lg:block"
                 aria-hidden
               />
               {steps.map(([n, title, text], index) => (
                 <li
                   key={n}
-                  className="group relative overflow-hidden rounded-[26px] border border-white/80 bg-white/65 p-5 shadow-[0_10px_40px_rgba(32,32,32,.05)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/25 hover:bg-white/90 hover:shadow-[0_18px_50px_rgba(76,170,201,.12)] sm:p-6"
+                  className="group relative overflow-hidden rounded-[26px] border border-white/80 bg-white/65 p-5 shadow-[0_10px_40px_rgba(32,32,32,.05)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/25 hover:bg-white/90 hover:shadow-[0_18px_50px_rgba(107,107,107,.12)] sm:p-6"
                   style={{ transitionDelay: `${index * 40}ms` }}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-[#4caac9] to-[#3689a8] text-[12px] font-bold text-white shadow-[0_8px_20px_rgba(76,170,201,.3)]">
+                    <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-[#6b6b6b] to-[#4a4a4a] text-[12px] font-bold text-white shadow-[0_8px_20px_rgba(107,107,107,.3)]">
                       {n}
                     </span>
-                    <span className="text-[3.4rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#4caac9]/15">
+                    <span className="text-[3.4rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#6b6b6b]/15">
                       {n}
                     </span>
                   </div>
                   <h3 className="mt-6 text-[1.2rem] font-extrabold tracking-[-0.03em] text-[#202020]">{title}</h3>
                   <p className="mt-2 text-[13px] leading-6 text-[#424242] sm:text-[14px]">{text}</p>
                   <span
-                    className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#4caac9] to-[#a8d8ea] transition duration-300 group-hover:scale-x-100"
+                    className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition duration-300 group-hover:scale-x-100"
                     aria-hidden
                   />
                 </li>
@@ -553,7 +552,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => goTo("devis")}
-                className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-[#202020] px-6 text-[13px] font-bold text-white shadow-[0_12px_30px_rgba(32,32,32,.2)] transition hover:bg-[#4caac9]"
+                className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-[#202020] px-6 text-[13px] font-bold text-white shadow-[0_12px_30px_rgba(32,32,32,.2)] transition hover:bg-[#6b6b6b]"
               >
                 Passer au devis <ArrowRight size={15} />
               </button>
@@ -581,14 +580,14 @@ export default function Home() {
                 <img src={images.detail} alt="Le soin du détail par LVMR" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.05]" />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),transparent_65%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
-                  <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#a8d8ea]">Le détail compte</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#f1f1f1]">Le détail compte</p>
                   <p className="mt-3 max-w-[360px] text-[clamp(1.6rem,2.6vw,2.3rem)] font-extrabold leading-[1.08] tracking-[-.04em]">
                     Un lieu propre se voit. Une intervention bien menée se ressent.
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     {["10 expertises", "Deux pôles", "Île-de-France"].map((chip) => (
                       <span key={chip} className="flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-2 text-[11px] font-bold text-white/75 backdrop-blur-md">
-                        <Check size={12} className="text-[#a8d8ea]" />{chip}
+                        <Check size={12} className="text-[#f1f1f1]" />{chip}
                       </span>
                     ))}
                   </div>
@@ -600,17 +599,17 @@ export default function Home() {
                 return (
                   <article
                     key={title}
-                    className="group relative overflow-hidden rounded-[28px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.10)] sm:p-8"
+                    className="group relative overflow-hidden rounded-[28px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.10)] sm:p-8"
                   >
-                    <span className="absolute right-6 top-6 text-[2.6rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#4caac9]/12" aria-hidden>
+                    <span className="absolute right-6 top-6 text-[2.6rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#6b6b6b]/12" aria-hidden>
                       0{index + 1}
                     </span>
-                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#e5f3f7] text-[#4caac9] transition duration-300 group-hover:bg-[#4caac9] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(76,170,201,.35)]">
+                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(107,107,107,.35)]">
                       <Icon size={20} />
                     </span>
                     <h3 className="mt-6 text-[1.2rem] font-extrabold tracking-[-.02em]">{title}</h3>
                     <p className="mt-2 max-w-[380px] text-[14px] leading-6 text-[#424242]">{text}</p>
-                    <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#4caac9] to-[#a8d8ea] transition duration-300 group-hover:scale-x-100" aria-hidden />
+                    <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition duration-300 group-hover:scale-x-100" aria-hidden />
                   </article>
                 );
               })}
@@ -628,7 +627,7 @@ export default function Home() {
                 [images.environnement, "Contenu autorisé", "Solution mise en œuvre", "md:col-span-5"],
                 [images.hero, "Preuve terrain", "Résultat documenté", "md:col-span-5"],
               ].map(([src, tag, title, span]) => (
-                <article key={title} className={`group relative overflow-hidden rounded-[24px] bg-[#202020] ${span}`}><img src={src} alt={tag} className="h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.04]" /><div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.8),transparent_65%)]" /><div className="absolute inset-x-0 bottom-0 p-6 text-white"><p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#a8d8ea]">{tag}</p><h3 className="mt-1.5 text-[1.2rem] font-extrabold tracking-[-.03em]">{title}</h3></div></article>
+                <article key={title} className={`group relative overflow-hidden rounded-[24px] bg-[#202020] ${span}`}><img src={src} alt={tag} className="h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.04]" /><div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.8),transparent_65%)]" /><div className="absolute inset-x-0 bottom-0 p-6 text-white"><p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#f1f1f1]">{tag}</p><h3 className="mt-1.5 text-[1.2rem] font-extrabold tracking-[-.03em]">{title}</h3></div></article>
               ))}
             </div>
           </div>
@@ -639,7 +638,7 @@ export default function Home() {
           <div className="container">
             <div className="flex flex-col justify-between gap-6 border-b border-[#202020]/10 pb-8 sm:flex-row sm:items-end">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#4caac9]">Questions</p>
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">Questions</p>
                 <h2 className="mt-3 text-[clamp(1.9rem,3.8vw,3.1rem)] font-extrabold leading-[1.05] tracking-[-0.045em] text-[#202020]">
                   Avant le devis.
                 </h2>
@@ -647,7 +646,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => goTo("devis")}
-                className="inline-flex items-center gap-2 text-[13px] font-bold text-[#4caac9] transition hover:gap-3"
+                className="inline-flex items-center gap-2 text-[13px] font-bold text-[#6b6b6b] transition hover:gap-3"
               >
                 Passer au devis <ArrowRight size={15} />
               </button>
@@ -666,7 +665,7 @@ export default function Home() {
                     >
                       <span
                         className={`w-8 shrink-0 text-[12px] font-bold tabular-nums transition ${
-                          active ? "text-[#4caac9]" : "text-[#202020]/30 group-hover:text-[#202020]/55"
+                          active ? "text-[#6b6b6b]" : "text-[#202020]/30 group-hover:text-[#202020]/55"
                         }`}
                       >
                         0{index + 1}
@@ -680,7 +679,7 @@ export default function Home() {
                       </span>
                       <span
                         className={`hidden h-2 w-2 shrink-0 rounded-full transition sm:block ${
-                          active ? "bg-[#4caac9] scale-100" : "scale-0 bg-[#4caac9]/40"
+                          active ? "bg-[#6b6b6b] scale-100" : "scale-0 bg-[#6b6b6b]/40"
                         }`}
                       />
                     </button>
@@ -689,7 +688,7 @@ export default function Home() {
               </div>
 
               <div className="relative flex min-h-[220px] flex-col justify-center py-8 lg:min-h-[260px] lg:pl-12 lg:py-10">
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#4caac9]">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">
                   0{(openFaq < 0 ? 0 : openFaq) + 1} · Réponse
                 </p>
                 <p
@@ -700,7 +699,7 @@ export default function Home() {
                 </p>
                 <div className="mt-10 h-px w-full max-w-[280px] overflow-hidden bg-[#202020]/10">
                   <div
-                    className="h-full bg-[#4caac9] transition-all duration-500"
+                    className="h-full bg-[#6b6b6b] transition-all duration-500"
                     style={{ width: `${((Math.max(0, openFaq) + 1) / faqs.length) * 100}%` }}
                   />
                 </div>
@@ -718,14 +717,14 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(32,32,32,.96),rgba(32,32,32,.78))]" />
                 <div className="relative flex h-full min-h-[280px] flex-col justify-between gap-8 sm:min-h-[320px] lg:min-h-[340px] lg:gap-10">
                   <div>
-                    <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#4caac9]"><span className="h-px w-5 bg-current" aria-hidden />Devis</p>
+                    <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#6b6b6b]"><span className="h-px w-5 bg-current" aria-hidden />Devis</p>
                     <h2 className="mt-5 text-[clamp(2rem,3.4vw,3rem)] font-extrabold leading-[1.04] tracking-[-0.045em]">Parlons de votre site.</h2>
                     <p className="mt-5 max-w-[350px] text-[14px] leading-7 text-white/60">Quelques informations suffisent pour préparer un cadrage clair et adapté à votre besoin.</p>
                   </div>
                   <div>
-                    {selectedNeed && <p className="inline-flex rounded-full border border-[#4caac9]/30 bg-[#4caac9]/15 px-3.5 py-2 text-[12px] font-bold text-[#a8d8ea]">Besoin · {selectedNeed.label}</p>}
+                    {selectedNeed && <p className="inline-flex rounded-full border border-[#6b6b6b]/30 bg-[#6b6b6b]/15 px-3.5 py-2 text-[12px] font-bold text-[#f1f1f1]">Besoin · {selectedNeed.label}</p>}
                     <ul className="mt-6 space-y-3 border-t border-white/14 pt-5 text-[12px] font-semibold text-white/60">
-                      {["Demande rapide", "Cadrage adapté au site", "Intervention en Île-de-France"].map((item) => <li key={item} className="flex items-center gap-2.5"><Check size={14} className="text-[#4caac9]" />{item}</li>)}
+                      {["Demande rapide", "Cadrage adapté au site", "Intervention en Île-de-France"].map((item) => <li key={item} className="flex items-center gap-2.5"><Check size={14} className="text-[#6b6b6b]" />{item}</li>)}
                     </ul>
                   </div>
                 </div>
@@ -737,7 +736,7 @@ export default function Home() {
               >
                 {formSent ? (
                   <div className="flex min-h-[260px] flex-col items-center justify-center text-center">
-                    <div className="grid h-12 w-12 place-items-center rounded-full bg-[#e5f3f7] text-[#4caac9]">
+                    <div className="grid h-12 w-12 place-items-center rounded-full bg-[#f1f1f1] text-[#6b6b6b]">
                       <Check size={20} />
                     </div>
                     <h3 className="mt-5 text-[1.45rem] font-extrabold tracking-[-0.03em] text-[#202020]">
@@ -748,7 +747,7 @@ export default function Home() {
                     </p>
                     <button
                       type="button"
-                      className="mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-[#4caac9]"
+                      className="mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-[#6b6b6b]"
                       onClick={() => setFormSent(false)}
                     >
                       Nouvelle demande <ArrowRight size={14} />
@@ -762,7 +761,7 @@ export default function Home() {
                         <select
                           required
                           defaultValue=""
-                          className="min-h-[50px] w-full appearance-none rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 pr-10 text-[15px] text-[#202020] outline-none transition focus:border-[#4caac9] focus:bg-white focus:ring-4 focus:ring-[#4caac9]/12"
+                          className="min-h-[50px] w-full appearance-none rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 pr-10 text-[15px] text-[#202020] outline-none transition focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12"
                         >
                           <option value="" disabled>Choisir une catégorie</option>
                           <option>Une entreprise</option>
@@ -781,7 +780,7 @@ export default function Home() {
                         name="need"
                         defaultValue={selectedNeed ? `${selectedNeed.label} — ${selectedNeed.hint}` : ""}
                         placeholder="Ex. nettoyage bureaux, 3 passages / semaine"
-                        className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#4caac9] focus:bg-white focus:ring-4 focus:ring-[#4caac9]/12"
+                        className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12"
                       />
                     </label>
 
@@ -792,7 +791,7 @@ export default function Home() {
                           required
                           name="name"
                           placeholder="Nom et prénom"
-                          className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#4caac9] focus:bg-white focus:ring-4 focus:ring-[#4caac9]/12"
+                          className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12"
                         />
                       </label>
                       <label className="block">
@@ -802,7 +801,7 @@ export default function Home() {
                           type="email"
                           name="email"
                           placeholder="nom@entreprise.fr"
-                          className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#4caac9] focus:bg-white focus:ring-4 focus:ring-[#4caac9]/12"
+                          className="min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12"
                         />
                       </label>
                     </div>
@@ -824,23 +823,17 @@ export default function Home() {
       </main>
 
       <footer className="relative overflow-hidden bg-[#202020] text-white">
-        <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#4caac9]/20 blur-3xl" aria-hidden />
-        <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[#4caac9]/10 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#6b6b6b]/20 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[#6b6b6b]/10 blur-3xl" aria-hidden />
 
         <div className="container relative pb-24 pt-12 sm:py-14 lg:py-14">
           <div className="flex flex-col gap-8 rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div className="max-w-[460px]">
-              <span className="flex items-center gap-3" aria-label="LVMR Group">
-                <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#4caac9] to-[#3689a8] shadow-[0_8px_24px_rgba(76,170,201,.35)]">
-                  <img src={images.monogram} alt="" width={20} height={20} className="h-5 w-5 object-contain brightness-0 invert" />
-                </span>
-                <span className="leading-none">
-                  <span className="block text-[17px] font-extrabold tracking-[-0.04em]">LVMR</span>
-                  <span className="mt-1.5 block text-[10px] font-semibold tracking-[0.2em] text-white/45">GROUP</span>
-                </span>
+              <span className="flex items-center" aria-label="LVMR Group">
+                <img src={images.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto" />
               </span>
               <h2 className="mt-6 text-[clamp(1.55rem,3vw,2.15rem)] font-extrabold leading-[1.12] tracking-[-0.04em]">
-                L’excellence en <span className="text-[#4caac9]">toutes circonstances.</span>
+                L’excellence en <span className="text-[#6b6b6b]">toutes circonstances.</span>
               </h2>
               <p className="mt-3 text-[14px] leading-6 text-white/55">
                 Propreté professionnelle & interventions techniques · Saint-Germain-en-Laye · Île-de-France
@@ -861,7 +854,7 @@ export default function Home() {
               </nav>
               <Link
                 href="/devis"
-                className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#dab844] px-5 text-[13px] font-bold text-[#202020] shadow-[0_10px_28px_rgba(218,184,68,.35)] transition hover:bg-[#e2c86f]"
+                className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_10px_28px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b]"
               >
                 Devis <ArrowRight size={15} />
               </Link>

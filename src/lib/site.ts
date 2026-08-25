@@ -17,7 +17,19 @@ export const imageSet = {
   premium: "/manus-storage/lvmr-premium.jpg",
   environnement: "/manus-storage/lvmr-environnement.jpg",
   detail: "/manus-storage/lvmr-detail.jpg",
-  monogram: "/manus-storage/lvmr-monogram.png",
+  monogram: "/branding/group/png/group-icon.png",
+};
+
+export const brandSet = {
+  groupHorizontal: "/branding/group/png/group-horizontal.png",
+  groupHorizontalWhite: "/branding/group/png/group-horizontal-white.png",
+  groupIcon: "/branding/group/png/group-icon.png",
+  groupIconWhite: "/branding/group/png/group-icon-white.png",
+  premiumHorizontal: "/branding/premium/png/premium-horizontal.png",
+  premiumHorizontalWhite: "/branding/premium/png/premium-horizontal-white.png",
+  premiumIcon: "/branding/premium/png/premium-icon.png",
+  environnementHorizontal: "/branding/environnement/png/environnement-horizontal.png",
+  environnementIcon: "/branding/environnement/png/environnement-icon.png",
 };
 
 const service = (item: Omit<ServiceItem, "number">, number: number): ServiceItem => ({ ...item, number: String(number).padStart(2, "0") });
