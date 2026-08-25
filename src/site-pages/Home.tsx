@@ -107,6 +107,12 @@ const faqs = [
 const homeFieldClass =
   "min-h-[50px] w-full rounded-2xl border border-[#d8e0e6] bg-[#f7f9fb] px-4 text-[15px] text-[#202020] outline-none transition placeholder:text-[#9f9f9f] focus:border-[#6b6b6b] focus:bg-white focus:ring-4 focus:ring-[#6b6b6b]/12";
 
+const devisSteps = [
+  { label: "Besoin", title: "Votre besoin", hint: "Qui vous êtes et ce dont vous avez besoin." },
+  { label: "Contact", title: "Vos coordonnées", hint: "Pour vous recontacter rapidement." },
+  { label: "Site", title: "Le site & le rythme", hint: "Adresse, fréquence et précisions utiles." },
+] as const;
+
 function BrandMark() {
   return (
     <span className="flex items-center" aria-label="LVMR Group">
@@ -121,9 +127,18 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [need, setNeed] = useState("bureaux");
+  const [formStep, setFormStep] = useState(0);
   const [formSent, setFormSent] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState("");
+  const [formProfile, setFormProfile] = useState("");
+  const [formNeed, setFormNeed] = useState("Bureaux — Entretien régulier");
+  const [formName, setFormName] = useState("");
+  const [formPhone, setFormPhone] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [formAddress, setFormAddress] = useState("");
+  const [formRhythm, setFormRhythm] = useState("");
+  const [formMessage, setFormMessage] = useState("");
   const [formConsent, setFormConsent] = useState(false);
   const [formFiles, setFormFiles] = useState<string[]>([]);
   const formHoneypotRef = useRef<HTMLInputElement>(null);
@@ -143,13 +158,23 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>("main > section:not(#accueil)");
-    sections.forEach((section) => section.classList.add("reveal-ready"));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("main > section:not(#accueil)"));
+    if (reducedMotion) return;
+
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
-      { threshold: 0.12, rootMargin: "0px 0px -8%" },
+      { threshold: 0.08, rootMargin: "0px 0px -6%" },
     );
-    sections.forEach((section) => observer.observe(section));
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 0.94 && rect.bottom > 40;
+      section.classList.add("reveal-ready");
+      if (inView) section.classList.add("is-visible");
+      observer.observe(section);
+    });
+
     return () => observer.disconnect();
   }, []);
 
@@ -158,28 +183,72 @@ export default function Home() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const option = needOptions.find((item) => item.id === need);
+    if (option) setFormNeed(`${option.label} — ${option.hint}`);
+  }, [need]);
+
+  const canAdvanceDevis = () => {
+    if (formStep === 0) return Boolean(formNeed.trim());
+    if (formStep === 1) return Boolean(formName.trim() && formPhone.trim() && formEmail.trim());
+    return Boolean(formConsent);
+  };
+
+  const goDevisNext = () => {
+    if (!canAdvanceDevis()) {
+      setFormError(
+        formStep === 0
+          ? "Indiquez votre besoin pour continuer."
+          : formStep === 1
+            ? "Renseignez votre nom, téléphone et e-mail."
+            : "Acceptez la politique de confidentialité pour envoyer.",
+      );
+      return;
+    }
+    setFormError("");
+    setFormStep((current) => Math.min(current + 1, devisSteps.length - 1));
+  };
+
+  const goDevisBack = () => {
+    setFormError("");
+    setFormStep((current) => Math.max(current - 1, 0));
+  };
+
+  const resetDevisForm = () => {
+    setFormSent(false);
+    setFormStep(0);
+    setFormError("");
+    setFormConsent(false);
+    setFormFiles([]);
+    setFormMessage("");
+    setFormAddress("");
+    setFormRhythm("");
+  };
+
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const fields = new FormData(event.currentTarget);
-    const value = (key: string) => String(fields.get(key) ?? "").trim();
+    if (formStep < devisSteps.length - 1) {
+      goDevisNext();
+      return;
+    }
+    if (!canAdvanceDevis()) {
+      setFormError("Renseignez les champs obligatoires et acceptez la politique de confidentialité.");
+      return;
+    }
     const payload = {
-      place: value("profile"),
-      exactService: value("need"),
-      name: value("name"),
-      phone: value("phone"),
-      email: value("email"),
-      location: value("address"),
-      rhythm: value("rhythm"),
-      message: value("message"),
+      place: formProfile,
+      exactService: formNeed.trim(),
+      name: formName.trim(),
+      phone: formPhone.trim(),
+      email: formEmail.trim(),
+      location: formAddress.trim(),
+      rhythm: formRhythm,
+      message: formMessage.trim(),
       files: formFiles,
       consent: formConsent,
       website: formHoneypotRef.current?.value || "",
       source: "Formulaire court — page d’accueil",
     };
-    if (!payload.name || !payload.phone || !payload.email || !formConsent) {
-      setFormError("Renseignez votre nom, votre téléphone, votre e-mail et acceptez la politique de confidentialité.");
-      return;
-    }
     setFormError("");
     setFormLoading(true);
     try {
@@ -772,24 +841,55 @@ export default function Home() {
           </div>
         </section>
 
-        {/* DEVIS — compact split conversion block */}
+        {/* DEVIS — calm 3-step quote flow */}
         <section id="devis" className="bg-[#f5f5f5] py-12 sm:py-16">
           <div className="container">
             <div className="grid overflow-hidden rounded-[26px] bg-white shadow-[0_18px_60px_rgba(32,32,32,.09)] lg:grid-cols-[.82fr_1.18fr]">
               <div className="relative overflow-hidden bg-[#202020] p-7 text-white sm:p-9 lg:p-11">
                 <img src={images.detail} alt="" className="absolute inset-0 h-full w-full object-cover opacity-[.18]" />
                 <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(32,32,32,.96),rgba(32,32,32,.78))]" />
-                <div className="relative flex h-full min-h-[280px] flex-col justify-between gap-8 sm:min-h-[320px] lg:min-h-[340px] lg:gap-10">
+                <div className="relative flex h-full min-h-[280px] flex-col justify-between gap-8 sm:min-h-[320px] lg:min-h-[360px] lg:gap-10">
                   <div>
                     <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#6b6b6b]"><span className="h-px w-5 bg-current" aria-hidden />Devis</p>
                     <h2 className="mt-5 text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.04em]">Parlons de votre site.</h2>
-                    <p className="mt-5 max-w-[350px] text-[14px] leading-7 text-white/60">Quelques informations suffisent pour préparer un cadrage clair et adapté à votre besoin.</p>
+                    <p className="mt-5 max-w-[350px] text-[14px] leading-7 text-white/60">Trois étapes courtes pour cadrer votre besoin — sans formulaire interminable.</p>
                   </div>
                   <div>
-                    {selectedNeed && <p className="inline-flex rounded-full border border-[#6b6b6b]/30 bg-[#6b6b6b]/15 px-3.5 py-2 text-[12px] font-bold text-[#f1f1f1]">Besoin · {selectedNeed.label}</p>}
-                    <ul className="mt-6 space-y-3 border-t border-white/14 pt-5 text-[12px] font-semibold text-white/60">
-                      {["Demande rapide", "Cadrage adapté au site", "Intervention en Île-de-France"].map((item) => <li key={item} className="flex items-center gap-2.5"><Check size={14} className="text-[#6b6b6b]" />{item}</li>)}
-                    </ul>
+                    {selectedNeed && (
+                      <p className="inline-flex rounded-full border border-[#6b6b6b]/30 bg-[#6b6b6b]/15 px-3.5 py-2 text-[12px] font-bold text-[#f1f1f1]">
+                        Besoin · {selectedNeed.label}
+                      </p>
+                    )}
+                    <ol className="mt-6 space-y-0 border-t border-white/14 pt-2">
+                      {devisSteps.map((step, index) => {
+                        const done = !formSent && index < formStep;
+                        const active = !formSent && index === formStep;
+                        return (
+                          <li
+                            key={step.label}
+                            className={`flex items-center gap-3 border-b border-white/10 py-3.5 transition ${
+                              active ? "opacity-100" : done ? "opacity-70" : "opacity-35"
+                            }`}
+                          >
+                            <span
+                              className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-[11px] font-bold tabular-nums ${
+                                done
+                                  ? "bg-[#ffc547] text-[#202020]"
+                                  : active
+                                    ? "bg-white text-[#202020]"
+                                    : "bg-white/10 text-white/70"
+                              }`}
+                            >
+                              {done ? <Check size={13} strokeWidth={2.5} /> : `0${index + 1}`}
+                            </span>
+                            <div className="min-w-0">
+                              <p className="text-[13px] font-extrabold tracking-[-0.02em]">{step.label}</p>
+                              <p className="mt-0.5 text-[11px] leading-4 text-white/50">{step.hint}</p>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ol>
                   </div>
                 </div>
               </div>
@@ -799,7 +899,7 @@ export default function Home() {
                 onSubmit={onSubmit}
               >
                 {formSent ? (
-                  <div className="flex min-h-[260px] flex-col items-center justify-center text-center">
+                  <div className="flex min-h-[280px] flex-col items-center justify-center text-center">
                     <div className="grid h-12 w-12 place-items-center rounded-full bg-[#f1f1f1] text-[#6b6b6b]">
                       <Check size={20} />
                     </div>
@@ -812,161 +912,245 @@ export default function Home() {
                     <button
                       type="button"
                       className="mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-[#6b6b6b]"
-                      onClick={() => setFormSent(false)}
+                      onClick={resetDevisForm}
                     >
                       Nouvelle demande <ArrowRight size={14} />
                     </button>
                   </div>
                 ) : (
-                  <div className="grid gap-4">
-                    <input ref={formHoneypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Vous êtes</span>
-                        <div className="relative">
-                          <select
-                            name="profile"
-                            defaultValue=""
-                            className={`${homeFieldClass} appearance-none pr-10`}
-                          >
-                            <option value="" disabled>Choisir une catégorie</option>
-                            <option>Une entreprise</option>
-                            <option>Une copropriété / syndic</option>
-                            <option>Un établissement</option>
-                            <option>Autre professionnel</option>
-                          </select>
-                          <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#424242]" size={16} />
-                        </div>
-                      </label>
-
-                      <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Votre besoin *</span>
-                        <input
-                          required
-                          name="need"
-                          defaultValue={selectedNeed ? `${selectedNeed.label} — ${selectedNeed.hint}` : ""}
-                          placeholder="Ex. nettoyage bureaux, 3 passages / semaine"
-                          className={homeFieldClass}
-                        />
-                      </label>
-                    </div>
-
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Nom et prénom *</span>
-                        <input
-                          required
-                          name="name"
-                          placeholder="Nom et prénom"
-                          className={homeFieldClass}
-                        />
-                      </label>
-                      <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Téléphone *</span>
-                        <input
-                          required
-                          type="tel"
-                          name="phone"
-                          placeholder="06 00 00 00 00"
-                          className={homeFieldClass}
-                        />
-                      </label>
-                    </div>
-
-                    <label className="block">
-                      <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Adresse e-mail *</span>
-                      <input
-                        required
-                        type="email"
-                        name="email"
-                        placeholder="nom@entreprise.fr"
-                        className={homeFieldClass}
-                      />
-                    </label>
-
-                    <label className="block">
-                      <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Adresse du site à traiter</span>
-                      <input
-                        name="address"
-                        placeholder="Ex. 30 rue…, 78100 Saint-Germain-en-Laye"
-                        className={homeFieldClass}
-                      />
-                    </label>
-
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Fréquence ou urgence</span>
-                        <div className="relative">
-                          <select name="rhythm" defaultValue="" className={`${homeFieldClass} appearance-none pr-10`}>
-                            <option value="" disabled>Sélectionner</option>
-                            <option>Ponctuel</option>
-                            <option>Hebdomadaire</option>
-                            <option>Plusieurs fois par semaine</option>
-                            <option>Quotidien</option>
-                            <option>Urgent</option>
-                          </select>
-                          <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#424242]" size={16} />
-                        </div>
-                      </label>
-                      <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Photographies</span>
-                        <span className={`${homeFieldClass} relative flex min-h-[50px] cursor-pointer items-center gap-2.5 text-[13px] text-[#424242]`}>
-                          <Upload size={15} className="shrink-0 text-[#6b6b6b]" />
-                          <span className="truncate">{formFiles.length > 0 ? formFiles.join(", ") : "Ajouter des photos (optionnel)"}</span>
-                          <input
-                            type="file"
-                            multiple
-                            accept="image/*,.pdf"
-                            className="absolute inset-0 cursor-pointer opacity-0"
-                            onChange={(event) => setFormFiles(Array.from(event.target.files ?? []).map((file) => file.name))}
+                  <>
+                    <div className="mb-6 flex items-center justify-between gap-4">
+                      <div>
+                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#6b6b6b]">
+                          Étape {formStep + 1} / {devisSteps.length}
+                        </p>
+                        <h3 className="mt-1.5 text-[clamp(1.25rem,2.2vw,1.55rem)] font-extrabold tracking-[-0.03em] text-[#202020]">
+                          {devisSteps[formStep].title}
+                        </h3>
+                      </div>
+                      <div className="flex gap-1.5" aria-hidden>
+                        {devisSteps.map((step, index) => (
+                          <span
+                            key={step.label}
+                            className={`h-1.5 w-6 rounded-full transition-all duration-300 sm:w-8 ${
+                              index <= formStep ? "bg-[#ffc547]" : "bg-[#202020]/10"
+                            }`}
                           />
-                        </span>
-                      </label>
+                        ))}
+                      </div>
                     </div>
 
-                    <label className="block">
-                      <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Message</span>
-                      <textarea
-                        name="message"
-                        rows={2}
-                        placeholder="Décrivez le besoin, les contraintes du site ou le degré d’urgence."
-                        className={`${homeFieldClass} min-h-0 resize-none py-3`}
-                      />
-                    </label>
+                    <input ref={formHoneypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
-                    <label className="flex cursor-pointer items-start gap-3">
-                      <input
-                        type="checkbox"
-                        checked={formConsent}
-                        onChange={(event) => setFormConsent(event.target.checked)}
-                        className="mt-1 h-4 w-4 accent-[#6b6b6b]"
-                      />
-                      <span className="text-[12px] leading-5 text-[#424242]">
-                        J’accepte que LVMR Group utilise ces informations pour répondre à ma demande. Consultez notre <Link href="/confidentialite" className="font-bold underline">politique de confidentialité</Link>. *
-                      </span>
-                    </label>
+                    <div key={formStep} className="voice-fade grid gap-4">
+                      {formStep === 0 && (
+                        <>
+                          <label className="block">
+                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Vous êtes</span>
+                            <div className="relative">
+                              <select
+                                value={formProfile}
+                                onChange={(event) => setFormProfile(event.target.value)}
+                                className={`${homeFieldClass} appearance-none pr-10`}
+                              >
+                                <option value="">Choisir une catégorie</option>
+                                <option>Une entreprise</option>
+                                <option>Une copropriété / syndic</option>
+                                <option>Un établissement</option>
+                                <option>Autre professionnel</option>
+                              </select>
+                              <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#424242]" size={16} />
+                            </div>
+                          </label>
+
+                          <label className="block">
+                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Votre besoin *</span>
+                            <input
+                              required
+                              value={formNeed}
+                              onChange={(event) => setFormNeed(event.target.value)}
+                              placeholder="Ex. nettoyage bureaux, 3 passages / semaine"
+                              className={homeFieldClass}
+                            />
+                          </label>
+
+                          <div className="flex flex-wrap gap-2 pt-1">
+                            {needOptions.slice(0, 4).map((option) => (
+                              <button
+                                key={option.id}
+                                type="button"
+                                onClick={() => {
+                                  setNeed(option.id);
+                                  setFormNeed(`${option.label} — ${option.hint}`);
+                                }}
+                                className={`rounded-full border px-3.5 py-2 text-[12px] font-bold transition ${
+                                  need === option.id
+                                    ? "border-[#202020] bg-[#202020] text-white"
+                                    : "border-[#202020]/12 bg-[#f7f9fb] text-[#424242] hover:border-[#202020]/25"
+                                }`}
+                              >
+                                {option.label}
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
+
+                      {formStep === 1 && (
+                        <>
+                          <label className="block">
+                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Nom et prénom *</span>
+                            <input
+                              required
+                              autoComplete="name"
+                              value={formName}
+                              onChange={(event) => setFormName(event.target.value)}
+                              placeholder="Nom et prénom"
+                              className={homeFieldClass}
+                            />
+                          </label>
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            <label className="block">
+                              <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Téléphone *</span>
+                              <input
+                                required
+                                type="tel"
+                                autoComplete="tel"
+                                value={formPhone}
+                                onChange={(event) => setFormPhone(event.target.value)}
+                                placeholder="06 00 00 00 00"
+                                className={homeFieldClass}
+                              />
+                            </label>
+                            <label className="block">
+                              <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Adresse e-mail *</span>
+                              <input
+                                required
+                                type="email"
+                                autoComplete="email"
+                                value={formEmail}
+                                onChange={(event) => setFormEmail(event.target.value)}
+                                placeholder="nom@entreprise.fr"
+                                className={homeFieldClass}
+                              />
+                            </label>
+                          </div>
+                        </>
+                      )}
+
+                      {formStep === 2 && (
+                        <>
+                          <label className="block">
+                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Adresse du site à traiter</span>
+                            <input
+                              value={formAddress}
+                              onChange={(event) => setFormAddress(event.target.value)}
+                              placeholder="Ex. 30 rue…, 78100 Saint-Germain-en-Laye"
+                              className={homeFieldClass}
+                            />
+                          </label>
+
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            <label className="block">
+                              <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Fréquence ou urgence</span>
+                              <div className="relative">
+                                <select
+                                  value={formRhythm}
+                                  onChange={(event) => setFormRhythm(event.target.value)}
+                                  className={`${homeFieldClass} appearance-none pr-10`}
+                                >
+                                  <option value="">Sélectionner</option>
+                                  <option>Ponctuel</option>
+                                  <option>Hebdomadaire</option>
+                                  <option>Plusieurs fois par semaine</option>
+                                  <option>Quotidien</option>
+                                  <option>Urgent</option>
+                                </select>
+                                <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#424242]" size={16} />
+                              </div>
+                            </label>
+                            <label className="block">
+                              <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Photographies</span>
+                              <span className={`${homeFieldClass} relative flex min-h-[50px] cursor-pointer items-center gap-2.5 text-[13px] text-[#424242]`}>
+                                <Upload size={15} className="shrink-0 text-[#6b6b6b]" />
+                                <span className="truncate">{formFiles.length > 0 ? formFiles.join(", ") : "Ajouter des photos (optionnel)"}</span>
+                                <input
+                                  type="file"
+                                  multiple
+                                  accept="image/*,.pdf"
+                                  className="absolute inset-0 cursor-pointer opacity-0"
+                                  onChange={(event) => setFormFiles(Array.from(event.target.files ?? []).map((file) => file.name))}
+                                />
+                              </span>
+                            </label>
+                          </div>
+
+                          <label className="block">
+                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Message</span>
+                            <textarea
+                              value={formMessage}
+                              onChange={(event) => setFormMessage(event.target.value)}
+                              rows={3}
+                              placeholder="Décrivez le besoin, les contraintes du site ou le degré d’urgence."
+                              className={`${homeFieldClass} min-h-0 resize-none py-3`}
+                            />
+                          </label>
+
+                          <label className="flex cursor-pointer items-start gap-3">
+                            <input
+                              type="checkbox"
+                              checked={formConsent}
+                              onChange={(event) => setFormConsent(event.target.checked)}
+                              className="mt-1 h-4 w-4 accent-[#6b6b6b]"
+                            />
+                            <span className="text-[12px] leading-5 text-[#424242]">
+                              J’accepte que LVMR Group utilise ces informations pour répondre à ma demande. Consultez notre <Link href="/confidentialite" className="font-bold underline">politique de confidentialité</Link>. *
+                            </span>
+                          </label>
+                        </>
+                      )}
+                    </div>
 
                     {formError && (
-                      <p role="alert" className="text-[12px] font-semibold text-[#c0392b]">{formError}</p>
+                      <p role="alert" className="mt-4 text-[12px] font-semibold text-[#c0392b]">{formError}</p>
                     )}
 
-                    <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
-                      <p className="text-[12px] leading-5 text-[#424242]">
-                        Saint-Germain-en-Laye · Île-de-France
-                      </p>
-                      <button type="submit" disabled={formLoading} className="btn btn-primary min-h-[50px] rounded-2xl px-6 disabled:opacity-60">
-                        {formLoading ? (
-                          <>
-                            <Loader2 size={15} className="animate-spin" /> Envoi…
-                          </>
-                        ) : (
-                          <>
-                            Envoyer ma demande <ArrowRight size={15} />
-                          </>
-                        )}
-                      </button>
+                    <div className="mt-7 flex items-center justify-between gap-3 border-t border-[#202020]/08 pt-5">
+                      {formStep > 0 ? (
+                        <button
+                          type="button"
+                          onClick={goDevisBack}
+                          className="inline-flex items-center gap-2 text-[13px] font-bold text-[#6b6b6b] transition hover:text-[#202020]"
+                        >
+                          <ChevronLeft size={16} /> Retour
+                        </button>
+                      ) : (
+                        <p className="text-[12px] leading-5 text-[#9f9f9f]">Saint-Germain-en-Laye · Île-de-France</p>
+                      )}
+
+                      {formStep < devisSteps.length - 1 ? (
+                        <button
+                          type="button"
+                          onClick={goDevisNext}
+                          className="btn btn-primary min-h-[48px] rounded-2xl px-5"
+                        >
+                          Continuer <ArrowRight size={15} />
+                        </button>
+                      ) : (
+                        <button type="submit" disabled={formLoading} className="btn btn-primary min-h-[48px] rounded-2xl px-5 disabled:opacity-60">
+                          {formLoading ? (
+                            <>
+                              <Loader2 size={15} className="animate-spin" /> Envoi…
+                            </>
+                          ) : (
+                            <>
+                              Envoyer ma demande <ArrowRight size={15} />
+                            </>
+                          )}
+                        </button>
+                      )}
                     </div>
-                  </div>
+                  </>
                 )}
               </form>
             </div>

@@ -202,26 +202,69 @@ export function ValueBento() {
   );
 }
 
-/* IDF coverage chips. */
+/* IDF coverage — editorial department index, not pill clutter. */
 export function ZoneSection() {
-  const zones = ["75 · Paris", "77 · Seine-et-Marne", "78 · Yvelines", "91 · Essonne", "92 · Hauts-de-Seine", "93 · Seine-Saint-Denis", "94 · Val-de-Marne", "95 · Val-d’Oise"];
+  const zones = [
+    { code: "75", name: "Paris" },
+    { code: "77", name: "Seine-et-Marne" },
+    { code: "78", name: "Yvelines", base: true },
+    { code: "91", name: "Essonne" },
+    { code: "92", name: "Hauts-de-Seine" },
+    { code: "93", name: "Seine-Saint-Denis" },
+    { code: "94", name: "Val-de-Marne" },
+    { code: "95", name: "Val-d’Oise" },
+  ];
   return (
-    <section className="bg-[#f5f5f5] py-12 sm:py-16">
-      <div className="container grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
-        <div>
-          <SectionHead
-            eyebrow="Zone d’intervention"
-            title={<>Ancrés localement, mobiles en Île-de-France.</>}
-            intro="Saint-Germain-en-Laye est notre point d’ancrage. La zone exacte d’intervention est confirmée avec vous lors du premier échange."
-          />
+    <section className="bg-[#f5f5f5] py-14 sm:py-16">
+      <div className="container">
+        <div className="flex flex-col justify-between gap-6 border-b border-[#202020]/10 pb-8 sm:flex-row sm:items-end sm:gap-10">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">Zone d’intervention</p>
+            <h2 className="mt-3 max-w-[520px] text-[clamp(1.7rem,3.2vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-[#202020]">
+              Ancrés localement,<br />mobiles en Île-de-France.
+            </h2>
+          </div>
+          <div className="max-w-[300px]">
+            <p className="inline-flex items-center gap-2 text-[13px] font-extrabold text-[#202020]">
+              <MapPin size={15} className="text-[#6b6b6b]" strokeWidth={2} />
+              Saint-Germain-en-Laye
+            </p>
+            <p className="mt-2 text-[13px] leading-6 text-[#424242]">
+              Point d’ancrage. La zone exacte est confirmée avec vous lors du premier échange.
+            </p>
+          </div>
         </div>
-        <div className="flex flex-wrap gap-2.5">
-          {zones.map((zone) => (
-            <span key={zone} className="rounded-full border border-[#202020]/10 bg-white px-4 py-2.5 text-[12px] font-bold text-[#424242] transition hover:border-[#6b6b6b]/40 hover:text-[#6b6b6b]">
-              {zone}
-            </span>
-          ))}
-        </div>
+
+        <ul className="m-0 grid list-none grid-cols-2 border-t border-[#202020]/10 p-0 sm:grid-cols-4">
+          {zones.map((zone, index) => {
+            const col2 = index % 2 === 1;
+            const col4 = index % 4 !== 0;
+            const row2Mobile = index >= 2;
+            const row2Desktop = index >= 4;
+            return (
+              <li
+                key={zone.code}
+                className={`px-4 py-5 sm:px-5 sm:py-6 ${col2 ? "border-l border-[#202020]/10" : ""} ${
+                  row2Mobile ? "border-t border-[#202020]/10 sm:border-t-0" : ""
+                } ${row2Desktop ? "sm:border-t sm:border-[#202020]/10" : ""} ${
+                  col4 ? "sm:border-l sm:border-[#202020]/10" : "sm:border-l-0"
+                }`}
+              >
+                <p className={`text-[12px] font-bold tabular-nums tracking-[0.04em] ${zone.base ? "text-[#6b6b6b]" : "text-[#202020]/35"}`}>
+                  {zone.code}
+                </p>
+                <p className="mt-2 text-[14px] font-extrabold tracking-[-0.02em] text-[#202020] sm:text-[15px]">
+                  {zone.name}
+                </p>
+                {zone.base && (
+                  <p className="mt-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#6b6b6b]">
+                    Siège
+                  </p>
+                )}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

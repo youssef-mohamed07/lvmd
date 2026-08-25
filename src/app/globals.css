@@ -384,6 +384,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   opacity: 1;
   transform: translateY(0);
 }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready > .container,
+  .reveal-ready > div {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 .expertise-feature::before {
   content: "";
