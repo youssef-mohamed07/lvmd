@@ -41,6 +41,7 @@ type QuoteData = {
   company: string;
   phone: string;
   email: string;
+  message: string;
   consent: boolean;
 };
 
@@ -55,6 +56,7 @@ const initialData: QuoteData = {
   company: "",
   phone: "",
   email: "",
+  message: "",
   consent: false,
 };
 
@@ -543,6 +545,16 @@ export default function QuoteWizard() {
                   className={fieldClass}
                 />
               </label>
+              <label className="sm:col-span-2">
+                <span className="text-[12px] font-semibold text-[#424242]">Message</span>
+                <textarea
+                  value={data.message}
+                  onChange={(event) => update("message", event.target.value)}
+                  placeholder="Décrivez le besoin, les contraintes du site ou le degré d’urgence."
+                  rows={4}
+                  className={fieldClass}
+                />
+              </label>
               <label className="flex cursor-pointer items-start gap-3 sm:col-span-2">
                 <input
                   type="checkbox"
@@ -551,7 +563,7 @@ export default function QuoteWizard() {
                   className="mt-1 h-4 w-4 accent-[#dab844]"
                 />
                 <span className="text-[12px] leading-5 text-[#424242]">
-                  J’accepte que LVMR Group utilise ces informations pour répondre à ma demande. *
+                  J’accepte que LVMR Group utilise ces informations pour répondre à ma demande. Consultez notre <a href="/confidentialite" className="font-bold underline">politique de confidentialité</a>. *
                 </span>
               </label>
             </div>

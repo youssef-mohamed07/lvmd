@@ -2,19 +2,18 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
-import { ArrowRight, ChevronRight, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { imageSet } from "@/lib/site";
-import { ClientStories, FaqSection } from "@/components/Sections";
 
 const nav = [
   ["Accueil", "/"],
-  ["Premium", "/premium"],
-  ["Environnement", "/environnement"],
-  ["Expertises", "/expertises"],
-  ["Réalisations", "/realisations"],
   ["Le Groupe", "/groupe"],
+  ["LVMR Premium", "/premium"],
+  ["LVMR Environnement", "/environnement"],
+  ["Nos réalisations", "/realisations"],
+  ["Contact", "/contact"],
 ];
 
 function BrandMark() {
@@ -90,15 +89,12 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <span className="hidden items-center gap-1.5 rounded-full bg-[#e5f3f7] px-3 py-1.5 text-[11px] font-semibold text-[#4caac9] xl:inline-flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#4caac9]" aria-hidden />
-            Île-de-France
-          </span>
+          <a href="tel:+33671849341" className="hidden items-center gap-1.5 px-2 text-[12px] font-bold text-[#202020] xl:inline-flex"><Phone size={14} className="text-[#4caac9]"/>06 71 84 93 41</a>
           <Link
             href="/devis"
             className="hidden min-h-11 items-center gap-2 rounded-full bg-[#dab844] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(218,184,68,.35)] transition hover:bg-[#e2c86f] lg:inline-flex"
           >
-            Devis <ArrowRight size={14} />
+            Demander un devis <ArrowRight size={14} />
           </Link>
           <button
             type="button"
@@ -131,6 +127,7 @@ export function SiteHeader() {
           >
             Obtenir un devis <ArrowRight size={14} />
           </Link>
+          <a href="tel:+33671849341" className="mt-2 flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-[#202020]/10 text-[13px] font-bold text-[#202020]"><Phone size={14}/>06 71 84 93 41</a>
         </div>
       )}
     </header>
@@ -234,16 +231,16 @@ export function SiteFooter() {
               </span>
             </Link>
             <h2 className="mt-6 text-[clamp(1.55rem,3vw,2.15rem)] font-extrabold leading-[1.12] tracking-[-0.04em]">
-              Un site net. <span className="text-[#4caac9]">Une équipe réactive.</span>
+              L’excellence en <span className="text-[#4caac9]">toutes circonstances.</span>
             </h2>
             <p className="mt-3 text-[14px] leading-6 text-white/55">
-              Propreté & interventions environnementales · Saint-Germain-en-Laye · Île-de-France
+              Propreté professionnelle & interventions techniques · Saint-Germain-en-Laye · Île-de-France
             </p>
           </div>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <nav className="flex flex-wrap gap-2" aria-label="Footer">
-              {nav.slice(1).map(([label, href]) => (
+            {nav.map(([label, href]) => (
                 <Link
                   key={href}
                   href={href}
@@ -264,9 +261,10 @@ export function SiteFooter() {
 
         <div className="mt-6 flex flex-col justify-between gap-3 px-1 text-[12px] text-white/35 sm:flex-row sm:items-center">
           <span>© {new Date().getFullYear()} LVMR Group</span>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <Link href="/mentions-legales" className="hover:text-white/70">Mentions légales</Link>
             <Link href="/confidentialite" className="hover:text-white/70">Confidentialité</Link>
+            <Link href="/cookies" className="hover:text-white/70">Cookies</Link>
           </div>
         </div>
       </div>
@@ -279,8 +277,6 @@ export function PageFrame({ children }: { children: ReactNode; darkHeader?: bool
     <div className="min-h-screen overflow-x-hidden bg-[#f5f5f5] text-[#202020]">
       <SiteHeader />
       <main>{children}</main>
-      <ClientStories />
-      <FaqSection />
       <SiteFooter />
       <Link href="/devis" className="mobile-quote-cta fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 z-40 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#202020] text-[14px] font-bold text-white shadow-lg lg:hidden">
         Demander un devis <ArrowRight size={14} />

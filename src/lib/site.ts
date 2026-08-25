@@ -1,5 +1,3 @@
-/* LVMR Atelier Parisien content model: French editorial copy, reusable services, and transparent placeholders only where the brief asks for future real data. */
-
 export type ServiceItem = {
   slug: string;
   group: "premium" | "environnement";
@@ -22,152 +20,32 @@ export const imageSet = {
   monogram: "/manus-storage/lvmr-monogram.png",
 };
 
+const service = (item: Omit<ServiceItem, "number">, number: number): ServiceItem => ({ ...item, number: String(number).padStart(2, "0") });
+
 export const premiumServices: ServiceItem[] = [
-  {
-    slug: "nettoyage-bureaux",
-    group: "premium",
-    number: "01",
-    title: "Nettoyage de bureaux",
-    shortTitle: "Bureaux",
-    kicker: "LVMR Premium",
-    description: "Des espaces professionnels nets, réguliers et prêts à accueillir chaque journée de travail.",
-    image: imageSet.premium,
-    intro: "Un bureau propre accompagne la concentration, l’accueil et l’image de votre entreprise. LVMR Premium construit un entretien cohérent avec vos usages, vos rythmes et la présence de vos équipes.",
-    points: ["Entretien des espaces de travail et circulations", "Organisation adaptée aux horaires et aux usages", "Points de contrôle à définir selon vos attentes"],
-    idealFor: ["Sièges sociaux", "Espaces de coworking", "Cabinets et agences", "Locaux professionnels"],
-  },
-  {
-    slug: "coproprietes",
-    group: "premium",
-    number: "02",
-    title: "Nettoyage de copropriétés",
-    shortTitle: "Copropriétés",
-    kicker: "LVMR Premium",
-    description: "Un entretien précis des parties communes, pensé pour respecter les usages et les rythmes du lieu.",
-    image: imageSet.detail,
-    intro: "Les parties communes donnent le ton dès l’entrée. Notre approche privilégie la régularité, la lisibilité des passages et le soin des détails qui font la qualité perçue d’un immeuble.",
-    points: ["Halls, escaliers, paliers et circulations", "Organisation des passages à définir avec la copropriété", "Attention portée aux matériaux et aux zones de contact"],
-    idealFor: ["Immeubles résidentiels", "Résidences gérées", "Syndics de copropriété", "Ensembles mixtes"],
-  },
-  {
-    slug: "vitrerie",
-    group: "premium",
-    number: "03",
-    title: "Vitrerie",
-    shortTitle: "Vitrerie",
-    kicker: "LVMR Premium",
-    description: "La lumière retrouvée par un travail soigneux des surfaces vitrées et des détails difficiles d’accès.",
-    image: imageSet.hero,
-    intro: "Une surface vitrée se juge à la lumière qu’elle laisse entrer. LVMR Premium intervient avec le matériel et l’organisation adaptés à la configuration des lieux.",
-    points: ["Vitrages intérieurs et extérieurs selon accès", "Baies, cloisons vitrées et surfaces remarquables", "Cadrage de l’intervention selon la fréquence souhaitée"],
-    idealFor: ["Bureaux", "Hôtels", "Commerces", "Résidences contemporaines"],
-  },
-  {
-    slug: "remise-en-etat",
-    group: "premium",
-    number: "04",
-    title: "Remise en état",
-    shortTitle: "Remise en état",
-    kicker: "LVMR Premium",
-    description: "Une intervention structurée pour retrouver un espace propre, lisible et immédiatement exploitable.",
-    image: imageSet.detail,
-    intro: "Après un chantier, un déménagement ou une période de travaux, la remise en état donne au lieu sa lecture finale. Chaque intervention est pensée à partir de l’état réel des surfaces et des priorités du site.",
-    points: ["Lecture des surfaces et des zones prioritaires", "Nettoyage des traces liées aux travaux et à l’occupation", "Préparation du lieu avant réouverture ou réception"],
-    idealFor: ["Livraisons d’espaces", "Après travaux", "Déménagements", "Réouvertures"],
-  },
+  service({ slug: "nettoyage-bureaux", group: "premium", title: "Entretien de bureaux et espaces professionnels", shortTitle: "Bureaux", kicker: "LVMR Premium", image: imageSet.premium, description: "Entretien régulier des bureaux, accueils, salles de réunion, circulations, espaces de pause et sanitaires.", intro: "Nous organisons chaque prestation selon vos horaires, la fréquentation des lieux et les exigences d’image de votre entreprise.", points: ["Dépoussiérage et entretien des surfaces accessibles", "Aspiration et lavage des sols selon leur nature", "Entretien des sanitaires, points de contact et espaces communs"], idealFor: ["Bureaux", "Commerces", "ERP", "Espaces professionnels"] }, 1),
+  service({ slug: "coproprietes", group: "premium", title: "Copropriétés et résidences", shortTitle: "Copropriétés", kicker: "LVMR Premium", image: imageSet.detail, description: "Entretien des halls, cages d’escalier, paliers, ascenseurs, vitrages accessibles et locaux communs.", intro: "La fréquence et le cahier des charges sont définis selon la configuration, les usages et la fréquentation de la résidence.", points: ["Halls, paliers et circulations", "Ascenseurs et locaux communs", "Fréquence adaptée au site"], idealFor: ["Copropriétés", "Résidences", "Syndics", "Bailleurs"] }, 2),
+  service({ slug: "remise-en-etat", group: "premium", title: "Remises en état", shortTitle: "Remise en état", kicker: "LVMR Premium", image: imageSet.detail, description: "Interventions ponctuelles après travaux, déménagement, changement d’occupant, événement ou période d’inoccupation.", intro: "Une visite préalable peut être organisée pour évaluer les surfaces, le niveau d’encrassement et les moyens nécessaires.", points: ["Évaluation préalable selon le contexte", "Protocole adapté aux surfaces", "Restitution des lieux prêts à l’usage"], idealFor: ["Après travaux", "Déménagements", "Livraisons", "Réouvertures"] }, 3),
+  service({ slug: "vitrerie", group: "premium", title: "Vitrerie", shortTitle: "Vitrerie", kicker: "LVMR Premium", image: imageSet.hero, description: "Nettoyage des vitres, vitrines, cloisons vitrées, baies et surfaces accessibles.", intro: "Pour les accès techniques, en hauteur ou nécessitant des moyens spécifiques, le dossier peut être pris en charge avec LVMR Environnement.", points: ["Vitres et vitrines", "Cloisons et baies vitrées", "Coordination avec le pôle technique si nécessaire"], idealFor: ["Bureaux", "Commerces", "Résidences", "ERP"] }, 4),
 ];
 
 export const environmentServices: ServiceItem[] = [
-  {
-    slug: "apres-sinistre",
-    group: "environnement",
-    number: "01",
-    title: "Nettoyage après sinistre",
-    shortTitle: "Après sinistre",
-    kicker: "LVMR Environnement",
-    description: "Une approche méthodique pour les situations qui demandent sang-froid, organisation et discrétion.",
-    image: imageSet.environnement,
-    intro: "Après un sinistre, les premières décisions comptent. LVMR Environnement vous aide à clarifier la situation, à qualifier les zones concernées et à organiser une intervention proportionnée.",
-    points: ["Évaluation initiale du contexte et des surfaces", "Définition des priorités d’intervention", "Coordination discrète avec les interlocuteurs du site"],
-    idealFor: ["Dégâts des eaux", "Incidents dans les locaux", "Propriétés occupées", "Gestionnaires de patrimoine"],
-  },
-  {
-    slug: "decontamination",
-    group: "environnement",
-    number: "02",
-    title: "Décontamination",
-    shortTitle: "Décontamination",
-    kicker: "LVMR Environnement",
-    description: "Des protocoles d’intervention adaptés à la nature du site, de la situation et des surfaces concernées.",
-    image: imageSet.environnement,
-    intro: "Une situation de contamination nécessite une lecture précise du contexte et des mesures adaptées. Nous construisons une intervention claire, progressive et documentée selon les éléments disponibles.",
-    points: ["Qualification des zones et des contraintes d’accès", "Choix d’une méthode adaptée au contexte", "Restitution claire des étapes réalisées"],
-    idealFor: ["Locaux professionnels", "Sites techniques", "Logements", "Situations spécifiques"],
-  },
-  {
-    slug: "desinfection",
-    group: "environnement",
-    number: "03",
-    title: "Désinfection",
-    shortTitle: "Désinfection",
-    kicker: "LVMR Environnement",
-    description: "Une intervention ciblée pour rétablir des conditions d’usage plus sereines dans les espaces concernés.",
-    image: imageSet.detail,
-    intro: "La désinfection s’inscrit dans un contexte précis : reprise d’activité, incident, zone sensible ou besoin ponctuel. LVMR Environnement adapte son intervention à la réalité du site.",
-    points: ["Définition des zones à traiter", "Organisation de l’intervention selon l’occupation", "Conseils de remise en usage du lieu"],
-    idealFor: ["Bureaux", "Commerces", "Établissements recevant du public", "Résidences"],
-  },
-  {
-    slug: "logements-insalubres",
-    group: "environnement",
-    number: "04",
-    title: "Logements insalubres",
-    shortTitle: "Logements insalubres",
-    kicker: "LVMR Environnement",
-    description: "Une prise en charge discrète et structurée de situations humaines et matérielles particulièrement sensibles.",
-    image: imageSet.environnement,
-    intro: "Ces interventions demandent autant de méthode que de tact. Notre rôle est de rendre la situation lisible, de sécuriser les étapes et de permettre au lieu de retrouver un usage possible.",
-    points: ["Échange préalable sur la situation et les contraintes", "Tri des priorités et séquençage de l’intervention", "Traitement des surfaces et évacuation à organiser selon le contexte"],
-    idealFor: ["Bailleurs", "Gestionnaires", "Familles accompagnées", "Professionnels de l’immobilier"],
-  },
-  {
-    slug: "assainissement",
-    group: "environnement",
-    number: "05",
-    title: "Assainissement",
-    shortTitle: "Assainissement",
-    kicker: "LVMR Environnement",
-    description: "Une prise en charge technique pour rétablir des conditions saines et maîtrisées.",
-    image: imageSet.detail,
-    intro: "L’assainissement s’aborde avec une vision d’ensemble : comprendre le contexte, traiter les zones prioritaires et laisser un espace plus clair à exploiter.",
-    points: ["Lecture de la situation sur site", "Intervention sur les zones définies ensemble", "Conseils de suivi à préciser selon le besoin"],
-    idealFor: ["Locaux vacants", "Caves et annexes", "Sites professionnels", "Logements"],
-  },
-  {
-    slug: "hottes-professionnelles",
-    group: "environnement",
-    number: "06",
-    title: "Hottes professionnelles",
-    shortTitle: "Hottes professionnelles",
-    kicker: "LVMR Environnement",
-    description: "Le dégraissage des installations professionnelles avec une attention portée à chaque zone critique.",
-    image: imageSet.environnement,
-    intro: "Les installations de cuisine professionnelle nécessitent un entretien méthodique. Nous intervenons sur les zones et équipements définis lors de la qualification du besoin.",
-    points: ["Repérage des installations concernées", "Dégraissage des zones accessibles", "Planification selon l’activité du site"],
-    idealFor: ["Restaurants", "Hôtels", "Cuisines collectives", "Laboratoires alimentaires"],
-  },
+  service({ slug: "apres-sinistre", group: "environnement", title: "Remise en état après sinistre", shortTitle: "Après sinistre", kicker: "LVMR Environnement", image: imageSet.environnement, description: "Remise en état après dégât des eaux, incendie, suies, vandalisme ou dégradation importante.", intro: "Nous évaluons le périmètre et adaptons l’intervention aux supports, au niveau de contamination et aux consignes du donneur d’ordre.", points: ["Évaluation des zones concernées", "Protocole adapté aux supports", "Compte rendu selon la prestation"], idealFor: ["Dégâts des eaux", "Incendies", "Vandalisme", "Sites dégradés"] }, 1),
+  service({ slug: "logements-insalubres", group: "environnement", title: "Logements insalubres et situations complexes", shortTitle: "Logements insalubres", kicker: "LVMR Environnement", image: imageSet.environnement, description: "Prise en charge respectueuse et confidentielle des logements encombrés, insalubres ou de type syndrome de Diogène.", intro: "Le protocole peut comprendre, selon le devis, tri, débarras, nettoyage, désinfection, neutralisation des odeurs et remise en propreté.", points: ["Approche confidentielle et respectueuse", "Séquençage adapté à l’état réel des lieux", "Tri, débarras et assainissement selon le devis"], idealFor: ["Logements", "Bailleurs", "Gestionnaires", "Familles"] }, 2),
+  service({ slug: "nettoyage-industriel", group: "environnement", title: "Nettoyage industriel et technique", shortTitle: "Nettoyage industriel", kicker: "LVMR Environnement", image: imageSet.detail, description: "Opérations ponctuelles ou programmées dans les ateliers, entrepôts, zones de production et locaux techniques.", intro: "Nous préparons l’intervention selon les risques, les accès et les surfaces fortement encrassées à traiter.", points: ["Ateliers, entrepôts et zones de production", "Structures, bardages et plafonds accessibles", "Équipements et surfaces fortement encrassées"], idealFor: ["Industrie", "Logistique", "Locaux techniques", "Bâtiments professionnels"] }, 3),
+  service({ slug: "vitrerie-technique", group: "environnement", title: "Vitrerie technique et accès spécifiques", shortTitle: "Vitrerie technique", kicker: "LVMR Environnement", image: imageSet.hero, description: "Étude des moyens adaptés aux surfaces vitrées importantes ou difficiles d’accès.", intro: "Nettoyage à l’eau pure, perches, équipements d’accès ou nacelle lorsque les conditions du site et les habilitations le permettent.", points: ["Analyse des accès", "Moyens techniques appropriés", "Intervention selon les conditions et habilitations requises"], idealFor: ["Façades vitrées", "Grandes baies", "Accès difficiles", "Sites professionnels"] }, 4),
+  service({ slug: "hottes-professionnelles", group: "environnement", title: "Dégraissage de hottes et systèmes d’extraction", shortTitle: "Hottes et extraction", kicker: "LVMR Environnement", image: imageSet.environnement, description: "Entretien des installations d’extraction de graisses dans les cuisines professionnelles.", intro: "Le périmètre est défini selon la configuration et l’accessibilité des hottes, filtres, conduits, moteurs, turbines et caissons.", points: ["Protection de la zone et dégraissage", "Filtres et conduits accessibles", "Traçabilité de l’intervention selon la prestation"], idealFor: ["Restaurants", "Hôtels", "Cuisines collectives", "Établissements de santé"] }, 5),
+  service({ slug: "deratisation", group: "environnement", title: "Dératisation", shortTitle: "Dératisation", kicker: "Pôle 3D", image: imageSet.environnement, description: "Prévention, identification et traitement des rongeurs avec recommandations préventives et suivi selon le besoin.", intro: "Après analyse, nous définissons un plan adapté à la configuration des lieux et au niveau d’infestation.", points: ["Repérage des zones de passage", "Dispositifs adaptés à la situation", "Recommandations et suivi selon le besoin"], idealFor: ["Professionnels", "Restaurants", "Copropriétés", "Logements"] }, 6),
+  service({ slug: "desinsectisation", group: "environnement", title: "Désinsectisation", shortTitle: "Désinsectisation", kicker: "Pôle 3D", image: imageSet.detail, description: "Traitement notamment des blattes, cafards, fourmis, puces, punaises de lit et autres insectes nuisibles.", intro: "La méthode est choisie selon l’espèce identifiée, l’activité du site et les précautions nécessaires.", points: ["Identification de la situation", "Méthode adaptée à l’espèce", "Consignes de préparation et de sécurité"], idealFor: ["Commerces", "Restaurants", "Copropriétés", "Logements"] }, 7),
+  service({ slug: "desinfection", group: "environnement", title: "Désinfection", shortTitle: "Désinfection", kicker: "Pôle 3D", image: imageSet.detail, description: "Assainissement des surfaces et zones concernées après situation sanitaire, contamination, sinistre ou remise en état.", intro: "Le protocole et les produits sont adaptés à l’environnement traité et aux contraintes du site.", points: ["Définition des zones concernées", "Protocole adapté à l’environnement", "Fiche ou certificat selon la prestation"], idealFor: ["Professionnels", "ERP", "Copropriétés", "Environnements sensibles"] }, 8),
 ];
 
 export const allServices = [...premiumServices, ...environmentServices];
-
 export const processSteps = [
-  ["01", "Échange", "Comprendre votre besoin."],
-  ["02", "Évaluation", "Définir l’intervention adaptée."],
-  ["03", "Proposition", "Recevoir une offre claire."],
-  ["04", "Intervention", "Déployer les équipes nécessaires."],
-  ["05", "Suivi", "Maintenir le niveau d’exigence."],
+  ["01", "Analyse du besoin", "Échange initial et visite du site lorsque nécessaire."],
+  ["02", "Proposition détaillée", "Un devis clair précisant prestations, moyens et conditions."],
+  ["03", "Intervention", "Des équipes et un protocole adaptés aux contraintes du lieu."],
+  ["04", "Contrôle et suivi", "Vérification et transmission des documents prévus."],
 ];
-
-export const sectorPlaceholders = ["Bureaux", "Copropriétés", "Hôtellerie", "Résidences", "Commerce", "Sites techniques"];
-
-export const findService = (slug: string) => allServices.find((service) => service.slug === slug);
+export const sectorPlaceholders = ["Entreprises", "Copropriétés", "Commerces", "ERP", "Gestionnaires de sites"];
+export const findService = (slug: string) => allServices.find((item) => item.slug === slug);

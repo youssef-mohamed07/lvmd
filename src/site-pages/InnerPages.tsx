@@ -81,32 +81,32 @@ function EditorialSplit({ eyebrow, title, quote, text, image, imageAlt }: { eyeb
 }
 
 export function PremiumPage() {
-  usePageMeta({ title: "LVMR Premium — Nettoyage professionnel en Île-de-France", description: "LVMR Premium accompagne les bureaux, copropriétés, résidences et établissements exigeants.", path: "/premium", schema: { "@context": "https://schema.org", "@type": "Service", name: "LVMR Premium", areaServed: "Île-de-France" } });
+  usePageMeta({ title: "Entreprise de nettoyage professionnel haut de gamme | LVMR Premium", description: "Entretien de bureaux, copropriétés, remises en état et vitrerie en Île-de-France. Découvrez les prestations de LVMR Premium.", path: "/premium", schema: { "@context": "https://schema.org", "@type": "Service", name: "LVMR Premium", areaServed: "Île-de-France" } });
   return (
     <PageFrame>
       <PageHero
-        eyebrow="01 — LVMR Premium"
-        title={<>La propreté, <span className="hero-stroke">élevée.</span></>}
-        intro="Des services de nettoyage professionnel et d’entretien pensés pour les lieux qui veulent rester justes, nets et accueillants."
+        eyebrow="Propreté professionnelle haut de gamme"
+        title={<>La propreté au rang <span className="hero-stroke">du luxe.</span></>}
+        intro="Des prestations soignées, discrètes et adaptées aux bureaux, copropriétés, résidences et environnements professionnels exigeants."
         image={imageSet.premium}
       >
-        <CtaChip href="/devis" label="Parler de votre besoin" />
+        <CtaChip href="/devis" label="Demander une étude personnalisée" />
       </PageHero>
       <section className="bg-[#f5f5f5] py-12 sm:py-16">
         <div className="container">
           <SectionHead
-            eyebrow="Les services Premium"
-            title={<>Une réponse claire à chaque usage.</>}
-            intro="Chaque prestation peut être ajustée à la configuration et au rythme de votre environnement."
+            eyebrow="Une propreté qui valorise vos espaces"
+            title={<>Davantage qu’un simple entretien courant.</>}
+            intro="Chaque site fait l’objet d’un périmètre défini, de consignes précises et d’un suivi qui assure la régularité de la prestation."
           />
           <ServiceGrid services={premiumServices} />
         </div>
       </section>
       <EditorialSplit
         eyebrow="Un environnement bien tenu"
-        title={<>Le soin des espaces, au quotidien.</>}
-        quote="La qualité se mesure dans ce que l’on ne remarque plus."
-        text="LVMR Premium s’adresse aux entreprises, copropriétés et établissements qui attendent davantage qu’une simple présence : une organisation lisible, une exécution soignée et un résultat qui s’intègre au lieu. Nous commençons par comprendre vos espaces, leurs contraintes et leur rythme d’utilisation."
+        title={<>Une organisation adaptée à vos contraintes.</>}
+        quote="Discrétion, personnel encadré, consignes formalisées et interlocuteur identifié."
+        text="Nos prestations sont organisées en fonction de vos horaires, de la fréquentation des lieux, de vos contraintes et de l’image que vous souhaitez offrir à vos collaborateurs, visiteurs, clients ou résidents."
         image={imageSet.detail}
         imageAlt="Détail de matériaux dans un espace professionnel"
       />
@@ -118,7 +118,7 @@ export function PremiumPage() {
 }
 
 export function EnvironnementPage() {
-  usePageMeta({ title: "LVMR Environnement — Interventions spécialisées", description: "LVMR Environnement accompagne les situations techniques, sensibles ou après sinistre en Île-de-France.", path: "/environnement", schema: { "@context": "https://schema.org", "@type": "Service", name: "LVMR Environnement", areaServed: "Île-de-France" } });
+  usePageMeta({ title: "Nettoyage technique, nuisibles et hottes | LVMR Environnement", description: "Sinistres, logements insalubres, nettoyage industriel, hottes, dératisation, désinsectisation et désinfection en Île-de-France.", path: "/environnement", schema: { "@context": "https://schema.org", "@type": "Service", name: "LVMR Environnement", areaServed: "Île-de-France" } });
   const steps = [
     [MessagesSquare, "Qualifier", "Comprendre le contexte et les zones concernées."],
     [ClipboardList, "Structurer", "Définir les étapes et les conditions d’accès."],
@@ -128,12 +128,12 @@ export function EnvironnementPage() {
   return (
     <PageFrame>
       <PageHero
-        eyebrow="02 — LVMR Environnement"
-        title={<>Quand la situation <span className="hero-stroke">exige davantage.</span></>}
-        intro="Des interventions spécialisées pour les situations techniques, sensibles ou imprévues. Une méthode structurée, une présence discrète, un cadre clair."
+        eyebrow="Assainir, sécuriser, préserver"
+        title={<>Des situations complexes, <span className="hero-stroke">une réponse maîtrisée.</span></>}
+        intro="Interventions techniques, remises en état, environnements sensibles, nettoyage industriel, dégraissage professionnel et solutions 3D en Île-de-France."
         image={imageSet.environnement}
       >
-        <CtaChip href="/devis" label="Qualifier une intervention" />
+        <CtaChip href="/devis" label="Demander une expertise" />
       </PageHero>
       <section className="relative overflow-hidden bg-[#f5f5f5] py-12 sm:py-16">
         <div className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-[#4caac9]/10 blur-[120px]" aria-hidden />
@@ -141,8 +141,8 @@ export function EnvironnementPage() {
         <div className="container relative">
           <SectionHead
             eyebrow="Le bon niveau d’intervention"
-            title={<>Rendre une situation plus lisible.</>}
-            intro="Un sinistre, une contamination ou un logement difficile à traiter demandent une approche différente : définir les priorités, les contraintes et les étapes utiles avant d’intervenir."
+            title={<>Des interventions techniques spécialisées.</>}
+            intro="Chaque intervention est préparée selon l’état des lieux, les risques identifiés, les contraintes d’accès et le résultat attendu. Une visite technique peut être organisée avant devis."
           />
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(([Icon, title, text], index) => (
@@ -163,13 +163,13 @@ export function EnvironnementPage() {
         <div className="container">
           <SectionHead
             eyebrow="Les interventions spécialisées"
-            title={<>Maîtriser l’imprévu.</>}
-            intro="Une première qualification permet de choisir le bon niveau de réponse, structuré pour évoluer avec les besoins réels du site."
+            title={<>Des moyens adaptés à chaque famille d’intervention.</>}
+            intro="Remise en état, environnements insalubres, nettoyage industriel, vitrerie technique, extraction professionnelle et pôle 3D."
           />
           <ServiceGrid services={environmentServices} />
         </div>
       </section>
-      <CTASection title={<>Une situation à clarifier ?</>} text="Décrivez le contexte, même en quelques mots. Le parcours de demande vous aidera à préciser les éléments utiles." />
+      <CTASection title={<>Une situation urgente ?</>} text="Contactez directement notre équipe. Nous évaluons la demande, le niveau de priorité et nos possibilités d’intervention dans les meilleurs délais." />
     </PageFrame>
   );
 }
@@ -219,14 +219,14 @@ export function ExpertisesPage() {
 }
 
 export function RealisationsPage() {
-  usePageMeta({ title: "Réalisations LVMR Group — Portfolio d’interventions", description: "Un espace éditorial pour présenter les réalisations réelles de LVMR Group.", path: "/realisations" });
+  usePageMeta({ title: "Nos réalisations | LVMR Group", description: "Découvrez progressivement des réalisations LVMR Group documentées avec des contenus authentiques et autorisés.", path: "/realisations" });
 
   return (
     <PageFrame>
       <PageHero
-        eyebrow="Portfolio"
-        title={<>Des espaces <span className="hero-stroke">prêts à vivre.</span></>}
-        intro="Chaque lieu impose son rythme. Notre travail consiste à le respecter tout en élevant son niveau de tenue."
+        eyebrow="Références et preuves"
+        title={<>Le réel comme <span className="hero-stroke">meilleure preuve.</span></>}
+        intro="Cette section sera alimentée progressivement avec des photographies, cas clients, témoignages et références authentiques dont la publication est expressément autorisée."
         image={imageSet.hero}
       />
 
@@ -241,17 +241,17 @@ export function RealisationsPage() {
               </h2>
             </div>
             <p className="max-w-[320px] text-[14px] leading-6 text-[#424242]">
-              Projets, images et contextes authentiques — sans inventer de résultats.
+              Aucun nom, logo, témoignage ou contexte client n’est publié sans accord écrit.
             </p>
           </div>
 
           <div className="grid auto-rows-[230px] gap-4 sm:auto-rows-[280px] md:grid-cols-12">
             {[
-              [imageSet.detail, "Remise en état", "Espace professionnel · Paris", "md:col-span-7 md:row-span-2"],
-              [imageSet.environnement, "Intervention spécialisée", "Site technique · Yvelines", "md:col-span-5"],
-              [imageSet.hero, "Entretien premium", "Bureaux & accueil · IDF", "md:col-span-5"],
-              [imageSet.premium, "Parties communes", "Copropriété · Île-de-France", "md:col-span-7"],
-              [imageSet.environnement, "Après sinistre", "Reprise de site · IDF", "md:col-span-5"],
+              [imageSet.detail, "Format de publication", "Contexte & besoin", "md:col-span-7 md:row-span-2"],
+              [imageSet.environnement, "Format de publication", "Solution mise en œuvre", "md:col-span-5"],
+              [imageSet.hero, "Format de publication", "Organisation de l’intervention", "md:col-span-5"],
+              [imageSet.premium, "Format de publication", "Résultat documenté", "md:col-span-7"],
+              [imageSet.environnement, "Contenu autorisé", "Photographies avant / après", "md:col-span-5"],
             ].map(([src, tag, title, span]) => (
               <article key={title} className={`group relative overflow-hidden rounded-[24px] bg-[#202020] ${span}`}>
                 <img
@@ -335,22 +335,22 @@ export function RealisationsPage() {
 }
 
 export function GroupePage() {
-  usePageMeta({ title: "Le Groupe — LVMR Group", description: "Découvrez le positionnement, les expertises et la manière de travailler de LVMR Group.", path: "/groupe", schema: { "@context": "https://schema.org", "@type": "Organization", name: "LVMR Group", areaServed: "Île-de-France" } });
-  const values = [[Layers, "Exigence", "Tenir la promesse du détail."], [ShieldCheck, "Précision", "Travailler à partir du réel."], [Sparkles, "Discrétion", "Respecter les lieux et leurs usages."], [CalendarCheck, "Maîtrise", "Rester clair dans chaque étape."]] as const;
+  usePageMeta({ title: "Le Groupe | LVMR Group", description: "Découvrez LVMR Group, ses engagements et ses deux pôles spécialisés en Île-de-France.", path: "/groupe", schema: { "@context": "https://schema.org", "@type": "Organization", name: "LVMR Group", areaServed: "Île-de-France", address: "30 bis rue du Vieil Abreuvoir, 78100 Saint-Germain-en-Laye" } });
+  const values = [[Layers, "Exigence", "Des protocoles adaptés et une qualité constante."], [ShieldCheck, "Sécurité", "Des équipes encadrées et des équipements adaptés."], [Sparkles, "Discrétion", "Des interventions qui limitent la gêne occasionnée."], [CalendarCheck, "Suivi", "Un interlocuteur identifié et des documents selon la prestation."]] as const;
   return (
     <PageFrame>
       <PageHero
         eyebrow="Le Groupe"
-        title={<>Une présence <span className="hero-stroke">qui compte.</span></>}
-        intro="LVMR Group réunit une approche premium de la propreté et une expertise dédiée aux situations environnementales spécialisées."
+        title={<>L’excellence en <span className="hero-stroke">toutes circonstances.</span></>}
+        intro="LVMR Group réunit deux sociétés complémentaires pour l’entretien, la remise en état et la sécurisation des environnements professionnels en Île-de-France."
         image={imageSet.hero}
       />
       <section className="bg-[#f5f5f5] py-12 sm:py-16">
         <div className="container">
           <SectionHead
             eyebrow="Notre positionnement"
-            title={<>Faire simple pour vous. Être précis sur le terrain.</>}
-            intro="Deux expertises complémentaires, une même organisation et un interlocuteur qui comprend réellement le site."
+            title={<>Une expertise globale, deux pôles spécialisés.</>}
+            intro="LVMR Premium prend en charge la propreté professionnelle haut de gamme. LVMR Environnement intervient sur les opérations techniques, sensibles ou complexes."
           />
           <div className="mt-8 grid gap-4 lg:grid-cols-[1.08fr_.92fr]">
             <article className="group relative min-h-[520px] overflow-hidden rounded-[26px] bg-[#202020] text-white sm:min-h-[580px]">
@@ -362,8 +362,8 @@ export function GroupePage() {
                   <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/45">Saint-Germain-en-Laye</span>
                 </div>
                 <div>
-                  <h3 className="max-w-[560px] text-[clamp(2rem,4vw,3.5rem)] font-extrabold leading-[1.02] tracking-[-.05em]">Une exigence qui reste simple à vivre.</h3>
-                  <p className="mt-4 max-w-[520px] text-[14px] leading-7 text-white/65">Nous adaptons l’organisation au lieu, à ses usages et à son rythme—sans surpromesse ni complexité inutile.</p>
+                  <h3 className="max-w-[560px] text-[clamp(2rem,4vw,3.5rem)] font-extrabold leading-[1.02] tracking-[-.05em]">L’équipe et les moyens réellement adaptés.</h3>
+                  <p className="mt-4 max-w-[520px] text-[14px] leading-7 text-white/65">Nous analysons le besoin, définissons un périmètre précis, organisons l’intervention puis assurons le contrôle et le suivi prévus.</p>
                   <div className="mt-7 grid gap-2 sm:grid-cols-2">
                     {values.map(([Icon, title, text], index) => (
                       <div key={title} className="flex items-center gap-3 rounded-2xl border border-white/14 bg-[#202020]/45 p-3.5 backdrop-blur-md">
@@ -400,7 +400,7 @@ export function GroupePage() {
 }
 
 export function DevisPage() {
-  usePageMeta({ title: "Demander un devis — LVMR Group", description: "Préparez votre demande de devis LVMR Group en quelques étapes simples.", path: "/devis" });
+  usePageMeta({ title: "Devis nettoyage professionnel en Île-de-France | LVMR Group", description: "Contactez LVMR Group pour un devis, une visite technique ou une intervention de propreté professionnelle en Île-de-France.", path: "/devis" });
   return (
     <PageFrame>
       <PageHero
@@ -419,13 +419,13 @@ export function DevisPage() {
 }
 
 export function ContactPage() {
-  usePageMeta({ title: "Contact — LVMR Group", description: "Contacter LVMR Group au sujet d’un besoin de propreté ou d’intervention environnementale.", path: "/contact" });
+  usePageMeta({ title: "Devis nettoyage professionnel en Île-de-France | LVMR Group", description: "Contactez LVMR Group pour un devis, une visite technique ou une intervention de propreté professionnelle en Île-de-France.", path: "/contact" });
   return (
     <PageFrame>
       <PageHero
         eyebrow="Contact"
-        title={<>Créer le bon <span className="hero-stroke">premier échange.</span></>}
-        intro="Vous avez déjà les éléments essentiels ? Le formulaire de devis est le moyen le plus précis de qualifier votre besoin. Pour toute autre question, cette page est le point de contact."
+        title={<>Parlons de votre <span className="hero-stroke">besoin.</span></>}
+        intro="Vous souhaitez obtenir un devis, organiser une visite technique ou échanger sur une intervention ? Notre équipe vous orientera vers LVMR Premium ou LVMR Environnement."
       >
         <CtaChip href="/devis" label="Demander un devis" />
       </PageHero>
@@ -433,22 +433,24 @@ export function ContactPage() {
         <div className="container grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
           <div>
             <SectionHead eyebrow="LVMR Group" title={<>À votre écoute.</>} />
-            <p className="mt-7 max-w-[420px] text-[15px] leading-8 text-[#424242]">Décrivez votre contexte dans le parcours de demande. Les coordonnées d’email et de téléphone seront affichées dès validation des informations officielles.</p>
+            <p className="mt-7 max-w-[420px] text-[15px] leading-8 text-[#424242]">Lundi au vendredi de 8 h à 20 h<br/>Samedi de 10 h à 18 h</p>
+            <a href="tel:+33671849341" className="mt-6 inline-flex items-center gap-2 text-[1.25rem] font-extrabold text-[#202020]">06 71 84 93 41</a>
+            <div className="mt-5 space-y-2 text-[13px] text-[#424242]"><a className="block hover:text-[#4caac9]" href="mailto:contact@lvmr-premium.fr">contact@lvmr-premium.fr</a><a className="block hover:text-[#4caac9]" href="mailto:contact@lvmr-environnement.fr">contact@lvmr-environnement.fr</a></div>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.1)] sm:col-span-2">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#e5f3f7] text-[#4caac9] transition duration-300 group-hover:bg-[#4caac9] group-hover:text-white">
                 <MapPin size={19} />
               </span>
-              <h3 className="mt-5 text-[1.25rem] font-extrabold tracking-[-0.02em] text-[#202020]">Saint-Germain-en-Laye</h3>
-              <p className="mt-2 max-w-[420px] text-[13px] leading-6 text-[#424242]">LVMR Group intervient en Île-de-France. La zone précise et les modalités de contact seront confirmées par l’équipe.</p>
+              <h3 className="mt-5 text-[1.25rem] font-extrabold tracking-[-0.02em] text-[#202020]">30 bis rue du Vieil Abreuvoir</h3>
+              <p className="mt-2 max-w-[420px] text-[13px] leading-6 text-[#424242]">78100 Saint-Germain-en-Laye · Interventions principalement à Paris et en Île-de-France.</p>
             </div>
             <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.1)]">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#e5f3f7] text-[#4caac9] transition duration-300 group-hover:bg-[#4caac9] group-hover:text-white">
                 <ClipboardList size={19} />
               </span>
               <h3 className="mt-5 text-[1.1rem] font-extrabold tracking-[-0.02em] text-[#202020]">Un devis</h3>
-              <p className="mt-2 text-[13px] leading-6 text-[#424242]">Le parcours guidé qualifie votre besoin en 7 étapes.</p>
+              <p className="mt-2 text-[13px] leading-6 text-[#424242]">Le parcours guidé précise le site, la surface, la fréquence ou l’urgence et les documents utiles.</p>
               <Link href="/devis" className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#4caac9]">Accéder au formulaire <ArrowRight size={13} /></Link>
             </div>
             <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4caac9]/30 hover:shadow-[0_18px_50px_rgba(76,170,201,.1)]">

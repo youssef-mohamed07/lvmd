@@ -52,9 +52,9 @@ export function EngageBar() {
 /* Compact credibility strip — tight, aligned, no huge gaps. */
 export function StatsBand({ dark = false }: { dark?: boolean }) {
   const stats = [
-    ["10", "expertises"],
+    ["12", "expertises"],
     ["2", "pôles"],
-    ["24–48h", "cadrage"],
+    ["IDF", "zone principale"],
     ["IDF", "intervention"],
   ];
   return (
@@ -170,7 +170,7 @@ export function ValueBento() {
                 Un lieu propre se voit. Une intervention bien menée se ressent.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {["10 expertises", "Réponse 24–48h", "Île-de-France"].map((chip) => (
+                {["12 expertises", "Deux pôles", "Île-de-France"].map((chip) => (
                   <span key={chip} className="flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-2 text-[11px] font-bold text-white/75 backdrop-blur-md">
                     <Check size={12} className="text-[#a8d8ea]" />{chip}
                   </span>
@@ -205,27 +205,27 @@ export function ValueBento() {
 
 const clientStories = [
   {
-    quote: "Nos bureaux sont prêts avant l’arrivée des équipes. Discret, régulier, sans relance.",
-    name: "Camille R.",
-    role: "Office Manager",
-    place: "Paris 8e",
-    tag: "Bureaux",
+    quote: "Les témoignages authentiques seront publiés ici après autorisation écrite.",
+    name: "Référence à venir",
+    role: "Contenu autorisé uniquement",
+    place: "Île-de-France",
+    tag: "Preuve client",
     image: imageSet.premium,
   },
   {
-    quote: "Les parties communes ont retrouvé une vraie tenue. Les résidents l’ont remarqué immédiatement.",
-    name: "Marc D.",
-    role: "Syndic",
-    place: "Yvelines",
-    tag: "Copropriété",
+    quote: "Chaque cas client précisera le contexte, le besoin, la solution mise en œuvre et le résultat.",
+    name: "Cas client à venir",
+    role: "Publication après accord",
+    place: "Île-de-France",
+    tag: "Étude de cas",
     image: imageSet.detail,
   },
   {
-    quote: "Après sinistre, le site a été repris avec sang-froid. Plus vite, et plus proprement, que prévu.",
-    name: "Léa M.",
-    role: "Responsable site",
-    place: "Hauts-de-Seine",
-    tag: "Environnement",
+    quote: "Les photos avant et après seront présentées sans personne identifiable ni donnée confidentielle.",
+    name: "Réalisation à venir",
+    role: "Visuels validés uniquement",
+    place: "Île-de-France",
+    tag: "Avant / après",
     image: imageSet.environnement,
   },
 ];
@@ -297,7 +297,7 @@ export function ClientStories() {
 
 /* FAQ accordion — answers without fabricated promises. */
 const faqs = [
-  ["Sous quel délai pouvez-vous intervenir ?", "Après votre demande, nous revenons vers vous avec un cadrage clair sous 24 à 48 h. Le délai d’intervention dépend ensuite du type de site et de la prestation."],
+  ["Sous quel délai pouvez-vous intervenir ?", "Nous évaluons la demande, son niveau de priorité et nos possibilités d’intervention. Le délai dépend du type de site, de la prestation et de nos disponibilités."],
   ["Intervenez-vous en dehors de Saint-Germain-en-Laye ?", "Oui, LVMR Group intervient en Île-de-France. La zone exacte et les modalités d’intervention sont confirmées lors de l’échange initial."],
   ["Comment est définie la fréquence d’entretien ?", "Elle est proposée à partir de vos usages, de la superficie et du niveau de tenue attendu, puis ajustée selon le ressenti du site et vos attentes."],
   ["Le matériel et les produits sont-ils fournis ?", "L’organisation du matériel et des produits est précisée dans la proposition, selon le type de lieu et les contraintes du site."],
