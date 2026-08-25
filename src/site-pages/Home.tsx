@@ -185,7 +185,7 @@ export default function Home() {
             <BrandMark />
           </Link>
 
-          <nav className="hidden items-center gap-0.5 rounded-full bg-[#202020]/[0.04] p-1 lg:flex" aria-label="Navigation">
+          <nav className="hidden shrink-0 items-center gap-0.5 rounded-full bg-[#202020]/[0.04] p-1 lg:flex" aria-label="Navigation">
             {navItems.map(([label, href]) => (
               <Link key={href} href={href} className="nav-link" data-active={location === href}>
                 {label}
@@ -194,13 +194,13 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <span className="hidden items-center gap-1.5 rounded-full bg-[#f1f1f1] px-3 py-1.5 text-[11px] font-semibold text-[#6b6b6b] xl:inline-flex">
+            <span className="hidden whitespace-nowrap items-center gap-1.5 rounded-full bg-[#f1f1f1] px-3 py-1.5 text-[11px] font-semibold text-[#6b6b6b] xl:inline-flex">
               <span className="h-1.5 w-1.5 rounded-full bg-[#6b6b6b]" aria-hidden />
               Île-de-France
             </span>
             <Link
               href="/devis"
-              className="hidden min-h-11 items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b] lg:inline-flex"
+              className="hidden min-h-11 whitespace-nowrap items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b] lg:inline-flex"
             >
               Devis <ArrowRight size={14} />
             </Link>

@@ -149,7 +149,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    max-width: 1120px;
+    max-width: 1280px;
     margin-inline: auto;
     min-height: 64px;
     padding: 8px 8px 8px 14px;
@@ -172,6 +172,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   }
   .nav-link {
     display: inline-flex;
+    flex-shrink: 0;
     align-items: center;
     min-height: 36px;
     padding: 0 12px;
@@ -179,6 +180,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     color: #6b6b6b;
     font-size: 13px;
     font-weight: 600;
+    white-space: nowrap;
     transition: color 160ms var(--ease-out), background 160ms var(--ease-out);
   }
   .nav-link:hover,

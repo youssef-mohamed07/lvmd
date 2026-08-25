@@ -77,16 +77,16 @@ export function SiteHeader() {
     <header className="site-header" data-scrolled={scrolled || open}>
       <div className="site-header-bar">
         <Link href="/" aria-label="Accueil"><BrandMark /></Link>
-        <nav className="hidden items-center gap-0.5 rounded-full bg-[#202020]/[0.04] p-1 lg:flex" aria-label="Navigation">
+        <nav className="hidden shrink-0 items-center gap-0.5 rounded-full bg-[#202020]/[0.04] p-1 lg:flex" aria-label="Navigation">
           {nav.map(([label, href]) => (
             <Link key={href} href={href} className="nav-link" data-active={location === href}>{label}</Link>
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href="tel:+33671849341" className="hidden items-center gap-1.5 px-2 text-[12px] font-bold text-[#202020] xl:inline-flex"><Phone size={14} className="text-[#6b6b6b]" />06 71 84 93 41</a>
+          <a href="tel:+33671849341" className="hidden whitespace-nowrap items-center gap-1.5 px-2 text-[12px] font-bold text-[#202020] xl:inline-flex"><Phone size={14} className="text-[#6b6b6b]" />06 71 84 93 41</a>
           <Link
             href="/devis"
-            className="hidden min-h-11 items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b] lg:inline-flex"
+            className="hidden min-h-11 whitespace-nowrap items-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_8px_22px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b] lg:inline-flex"
           >
             Demander un devis <ArrowRight size={14} />
           </Link>
