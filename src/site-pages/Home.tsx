@@ -550,6 +550,9 @@ export default function Home() {
           </div>
         </section>
 
+        {/* POLES — which division fits the need */}
+        <PolesComparison />
+
         {/* METHOD — cool glass process rail */}
         <section id="methode" className="relative overflow-hidden bg-[#f5f5f5] py-16 sm:py-20">
           <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-[#6b6b6b]/12 blur-3xl" aria-hidden />
@@ -669,6 +672,9 @@ export default function Home() {
           </div>
         </section>
 
+        {/* SECTORS — environments LVMR works in */}
+        <SectorsSection />
+
         {/* REALISATIONS — cinematic mosaic */}
         <section id="realisations" className="bg-[#f5f5f5] pb-20 sm:pb-28">
           <div className="container">
@@ -684,6 +690,12 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* VOICES — anonymized client feedback */}
+        <TestimonialsSection />
+
+        {/* ZONE — Île-de-France coverage */}
+        <ZoneSection />
 
         {/* FAQ — editorial index, not accordion */}
         <section id="faq" className="bg-[#f5f5f5] py-16 sm:py-20">

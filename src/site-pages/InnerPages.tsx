@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ArrowRight, Building2, CalendarCheck, Check, ClipboardList, Hammer, Layers, MapPin, MessagesSquare, Recycle, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import QuoteWizard from "@/components/QuoteWizard";
-import { ProcessRail, SectionHead, ServiceGrid, StatsBand, ZoneSection } from "@/components/Sections";
+import { GarantiesBand, ProcessRail, SectionHead, SectorsSection, ServiceGrid, StatsBand, TestimonialsSection, ZoneSection } from "@/components/Sections";
 import { CTASection, PageFrame, PageHero, usePageMeta } from "@/components/SiteChrome";
 import { allServices, brandSet, environmentServices, extractionReasons, findService, imageSet, premiumServices, sectorPlaceholders } from "@/lib/site";
 
@@ -127,8 +127,10 @@ export function PremiumPage() {
         image={imageSet.detail}
         imageAlt="Détail de matériaux dans un espace professionnel"
       />
+      <GarantiesBand />
       <ProcessRail />
       <StatsBand dark />
+      <ZoneSection />
       <CTASection title={<>Demander un devis LVMR Premium.</>} text="Confiez-nous les informations essentielles sur vos locaux, leur surface, la fréquence souhaitée et vos contraintes. Nous vous proposerons une organisation adaptée et un devis personnalisé." />
     </PageFrame>
   );
@@ -256,6 +258,7 @@ export function EnvironnementPage() {
           </div>
         </div>
       </section>
+      <ZoneSection />
       <CTASection title={<>Demander une expertise LVMR Environnement.</>} text="Décrivez la situation, l’adresse du site, les surfaces concernées et joignez, si possible, des photographies. Une visite technique pourra être proposée afin d’établir un périmètre précis et un devis adapté." />
     </PageFrame>
   );
@@ -522,8 +525,10 @@ export function GroupePage() {
           </div>
         </div>
       </section>
+      <SectorsSection />
       <ProcessRail />
       <ZoneSection />
+      <TestimonialsSection />
       <CTASection
         title={<>Parler de votre projet.</>}
         text="Vous recherchez un partenaire pour l’entretien de vos locaux, une remise en état ou une intervention technique spécialisée ? Notre équipe étudie votre demande et vous oriente vers le pôle adapté."
