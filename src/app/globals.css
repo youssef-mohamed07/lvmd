@@ -70,7 +70,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 html[data-custom-cursor="true"],
 html[data-custom-cursor="true"] body,
 html[data-custom-cursor="true"] a,
@@ -397,19 +397,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .reveal-ready > .container,
 .reveal-ready > div {
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  transform: translateY(18px);
+  transition: transform 550ms var(--ease-out);
 }
 .reveal-ready.is-visible > .container,
 .reveal-ready.is-visible > div {
-  opacity: 1;
   transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal-ready > .container,
   .reveal-ready > div {
-    opacity: 1;
     transform: none;
     transition: none;
   }

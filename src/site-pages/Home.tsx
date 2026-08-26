@@ -30,6 +30,7 @@ import {
   X,
 } from "lucide-react";
 import { PolesComparison, SectorsSection, TestimonialsSection, ZoneSection } from "@/components/Sections";
+import { allServices, brandSet, imageSet as images } from "@/lib/site";
 
 /**
  * LVMR homepage — designed to beat French market leaders on clarity & conversion.
@@ -38,30 +39,6 @@ import { PolesComparison, SectorsSection, TestimonialsSection, ZoneSection } fro
  * calm craft, local Île-de-France authority.
  */
 
-const images = {
-  hero: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
-  premium: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
-  premiumOffice: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-01.webp",
-  premiumTeam: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-team-cleaning-01.webp",
-  premiumTeamAlt: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-team-cleaning-02.webp",
-  premiumEquipment: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-equipment-floor-cleaning-01.webp",
-  premiumGlass: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-glass-cleaning-01.webp",
-  premiumGlassAlt: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-glass-cleaning-02.webp",
-  environnement: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-ppe-01.webp",
-  groupTechnical: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-ppe-01.webp",
-  groupEquipment: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-disinfection-02.webp",
-  groupReporting: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-reporting-documentation-01.webp",
-  groupChecklist: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-reporting-checklist-02.webp",
-  environmentBefore: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-before-room.webp",
-  environmentAfter: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-after-room.webp",
-  environmentIntervention: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-intervention.webp",
-  environmentDetail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-detail.webp",
-  detail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-detail-gloved-cleaning-01.webp",
-  groupHorizontal: "/branding/group/png/group-horizontal.png",
-  groupHorizontalWhite: "/branding/group/png/group-horizontal-white.png",
-  premiumHorizontalWhite: "/branding/premium/png/premium-horizontal-white.png",
-  environnementHorizontal: "/branding/environnement/png/environnement-horizontal.png",
-};
 
 const navItems = [
   ["Accueil", "/"],
@@ -73,28 +50,21 @@ const navItems = [
 ];
 
 const needOptions = [
-  { id: "bureaux", label: "Bureaux", hint: "Entretien régulier", icon: Building2, image: images.premium, text: "Espaces de travail nets, réguliers, prêts dès le matin. Fréquence et horaires coordonnés avec votre activité." },
-  { id: "copro", label: "Copropriété", hint: "Parties communes", icon: DoorOpen, image: images.premiumTeamAlt, text: "Halls, cages d’escalier et parties communes tenus avec discrétion, dans le respect des résidents." },
+  { id: "bureaux", label: "Bureaux", hint: "Entretien régulier", icon: Building2, image: images.premiumOffice, text: "Espaces de travail nets, réguliers, prêts dès le matin. Fréquence et horaires coordonnés avec votre activité." },
+  { id: "copro", label: "Copropriété", hint: "Parties communes", icon: DoorOpen, image: images.premiumTeam, text: "Halls, cages d’escalier et parties communes tenus avec discrétion, dans le respect des résidents." },
   { id: "vitrerie", label: "Vitrerie", hint: "Surfaces vitrées", icon: Sun, image: images.premiumGlass, text: "Lumière retrouvée sur baies, cloisons vitrées et accès difficiles, sans perturber le lieu." },
   { id: "remise", label: "Remise en état", hint: "Après travaux", icon: Hammer, image: images.premiumEquipment, text: "Après chantier, déménagement ou période intensive : un lieu rendu prêt à l’usage." },
   { id: "sinistre", label: "Après sinistre", hint: "Intervention urgente", icon: ShieldAlert, image: images.environmentIntervention, text: "Méthode, sang-froid et organisation pour reprendre le contrôle rapidement." },
-  { id: "technique", label: "Technique & 3D", hint: "Hottes / nuisibles", icon: Wrench, image: images.environnement, text: "Nettoyage technique, dégraissage professionnel, dératisation, désinsectisation et désinfection." },
+  { id: "technique", label: "Technique & 3D", hint: "Hottes / nuisibles", icon: Wrench, image: images.groupEquipment, text: "Nettoyage technique, dégraissage professionnel, dératisation, désinsectisation et désinfection." },
 ];
 
-const services = [
-  { n: "01", title: "Bureaux", group: "Premium", text: "Entretien régulier des bureaux et espaces professionnels.", image: images.premiumOffice },
-  { n: "02", title: "Copropriétés", group: "Premium", text: "Halls, paliers, ascenseurs et parties communes.", image: images.premiumTeamAlt },
-  { n: "03", title: "Remise en état", group: "Premium", text: "Après travaux, déménagement ou période d’inoccupation.", image: images.premiumEquipment },
-  { n: "04", title: "Vitrerie", group: "Premium", text: "Vitres, vitrines, cloisons vitrées et baies accessibles.", image: images.premiumGlass },
-  { n: "05", title: "Après sinistre", group: "Environnement", text: "Remise en état après dégâts, suies ou dégradations.", image: images.environmentIntervention },
-  { n: "06", title: "Logements insalubres", group: "Environnement", text: "Prise en charge respectueuse des situations complexes.", image: images.environmentBefore },
-  { n: "07", title: "Nettoyage industriel", group: "Environnement", text: "Ateliers, entrepôts, zones de production et locaux techniques.", image: images.groupTechnical },
-  { n: "08", title: "Vitrerie technique", group: "Environnement", text: "Surfaces importantes ou difficiles d’accès.", image: images.premiumGlassAlt },
-  { n: "09", title: "Hottes & extraction", group: "Environnement", text: "Dégraissage des installations de cuisine professionnelle.", image: images.environmentDetail },
-  { n: "10", title: "Dératisation", group: "Environnement", text: "Prévention, identification et traitement des rongeurs.", image: images.groupReporting },
-  { n: "11", title: "Désinsectisation", group: "Environnement", text: "Traitement adapté à l’espèce et à l’activité du site.", image: images.groupChecklist },
-  { n: "12", title: "Désinfection", group: "Environnement", text: "Assainissement des surfaces et zones concernées.", image: images.groupEquipment },
-];
+const services = allServices.map((service) => ({
+  n: service.number,
+  title: service.shortTitle,
+  group: service.group === "premium" ? "Premium" : "Environnement",
+  text: service.description,
+  image: service.image,
+}));
 
 const steps = [
   ["01", "Analyse du besoin", "Échange initial et visite du site lorsque nécessaire."],
@@ -130,15 +100,44 @@ const devisSteps = [
 function BrandMark() {
   return (
     <span className="flex items-center" aria-label="LVMR Group">
-      <img src={images.groupHorizontal} alt="LVMR Group — L’excellence en toutes circonstances" className="h-8 w-auto sm:h-9" />
+      <img src={brandSet.groupHorizontal} alt="LVMR Group — L’excellence en toutes circonstances" className="h-8 w-auto sm:h-9" />
     </span>
   );
+}
+
+function ScrollProgressBar() {
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const bar = barRef.current;
+    if (!bar) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const distance = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = distance > 0 ? window.scrollY / distance : 0;
+      bar.style.transform = `scaleX(${progress})`;
+    };
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  return <div ref={barRef} className="scroll-progress" style={{ transform: "scaleX(0)" }} />;
 }
 
 export default function Home() {
   const location = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [need, setNeed] = useState("bureaux");
   const [formStep, setFormStep] = useState(0);
@@ -161,13 +160,15 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState(0);
 
   useEffect(() => {
+    let scrolledRef = window.scrollY > 8;
+    setScrolled(scrolledRef);
     const onScroll = () => {
-      setScrolled(window.scrollY > 8);
-      const distance = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(distance > 0 ? (window.scrollY / distance) * 100 : 0);
+      const next = window.scrollY > 8;
+      if (next === scrolledRef) return;
+      scrolledRef = next;
+      setScrolled(next);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -178,7 +179,7 @@ export default function Home() {
 
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
-      { threshold: 0.08, rootMargin: "0px 0px -6%" },
+      { threshold: 0.05, rootMargin: "0px 0px -4%" },
     );
 
     sections.forEach((section) => {
@@ -310,7 +311,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#f5f5f5] text-[#202020]">
-      <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress / 100})` }} />
+      <ScrollProgressBar />
       {/* FLOATING HEADER — clearer than Onet/GSF mega-nav */}
       <header className="site-header" data-scrolled={scrolled || mobileOpen}>
         <div className="site-header-bar">
@@ -383,7 +384,7 @@ export default function Home() {
           <div className="container relative z-10 grid gap-9 pb-10 pt-28 sm:gap-12 sm:pb-14 sm:pt-32 lg:min-h-[790px] lg:grid-cols-[.92fr_1.08fr] lg:items-center lg:gap-16 lg:pb-16 lg:pt-36">
             <div className="max-w-[660px]">
               <Link href="/" aria-label="Retour à l’accueil" className="hero-reveal mb-7 inline-flex" style={{ animationDelay: "20ms" }}>
-                <img src={images.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto sm:h-14" />
+                <img src={brandSet.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto sm:h-14" />
               </Link>
               <div className="hero-reveal flex items-center gap-3" style={{ animationDelay: "60ms" }}>
                 <span className="h-px w-8 bg-[#f1f1f1]" />
@@ -420,7 +421,7 @@ export default function Home() {
         </section>
 
         {/* NEED SELECTOR — visual configurator with live preview */}
-        <section id="besoin" className="relative z-20 bg-[#f5f5f5] pb-20 pt-12 sm:pb-24 sm:pt-16">
+        <section id="besoin" className="relative z-20 bg-[#f5f5f5] pb-14 pt-12 sm:pb-20 sm:pt-16">
           <div className="container">
             <div className="grid overflow-hidden rounded-[28px] bg-white shadow-[0_24px_80px_rgba(11,31,26,.10)] lg:grid-cols-[1.02fr_.98fr]">
               <div className="p-6 sm:p-10 lg:p-12">
@@ -505,7 +506,7 @@ export default function Home() {
         </section>
 
         {/* DUAL EXPERTISE — compact immersive divisions */}
-        <section id="services" className="overflow-hidden bg-[#f5f5f5] py-14 sm:py-20 lg:py-24">
+        <section id="services" className="overflow-hidden bg-[#f5f5f5] py-14 sm:py-20">
           <div className="container">
             <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
               <div>
@@ -521,7 +522,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.55)_45%,rgba(32,32,32,.08)_100%)]" />
                 <div className="expertise-division-content absolute inset-0 flex flex-col justify-between p-7 sm:p-9">
                   <div className="flex items-center justify-between border-b border-white/18 pb-5">
-                    <img src={images.premiumHorizontalWhite} alt="LVMR Premium" className="h-9 w-auto sm:h-11" />
+                    <img src={brandSet.premiumHorizontalWhite} alt="LVMR Premium" className="h-9 w-auto sm:h-11" />
                     <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/50">04 services</span>
                   </div>
                   <div>
@@ -541,7 +542,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.55)_45%,rgba(32,32,32,.08)_100%)]" />
                 <div className="expertise-division-content absolute inset-0 flex flex-col justify-between p-7 sm:p-9">
                   <div className="flex items-center justify-between border-b border-white/18 pb-5">
-                    <img src={images.environnementHorizontal} alt="LVMR Environnement" className="h-9 w-auto sm:h-11" />
+                    <img src={brandSet.environnementHorizontal} alt="LVMR Environnement" className="h-9 w-auto sm:h-11" />
                     <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/50">08 services</span>
                   </div>
                   <div>
@@ -560,7 +561,7 @@ export default function Home() {
         </section>
 
         {/* EXPERTISES — guided service explorer */}
-        <section id="expertises" className="bg-[#f5f5f5] py-16 sm:py-20">
+        <section id="expertises" className="bg-[#f5f5f5] py-14 sm:py-20">
           <div className="container">
             <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
               <div>
@@ -639,7 +640,7 @@ export default function Home() {
         <PolesComparison />
 
         {/* METHOD — cool glass process rail */}
-        <section id="methode" className="relative overflow-hidden bg-[#f5f5f5] py-16 sm:py-20">
+        <section id="methode" className="relative overflow-hidden bg-[#f5f5f5] py-14 sm:py-20">
           <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-[#6b6b6b]/12 blur-3xl" aria-hidden />
           <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#f1f1f1]/20 blur-3xl" aria-hidden />
 
@@ -701,7 +702,7 @@ export default function Home() {
         </section>
 
         {/* PROOF — bento grid: photo anchor + value cards */}
-        <section className="bg-[#f5f5f5] py-16 sm:py-24">
+        <section className="bg-[#f5f5f5] py-14 sm:py-20">
           <div className="container">
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
@@ -761,7 +762,7 @@ export default function Home() {
         <SectorsSection />
 
         {/* REALISATIONS — cinematic mosaic */}
-        <section id="realisations" className="bg-[#f5f5f5] pb-20 sm:pb-28">
+        <section id="realisations" className="bg-[#f5f5f5] py-14 sm:py-20">
           <div className="container">
             <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="eyebrow">Références & preuves</p><h2 className="mt-3 text-[clamp(1.8rem,3.4vw,3rem)] font-extrabold leading-[1.05] tracking-[-.045em]">Le réel comme meilleure preuve.</h2></div><p className="max-w-[360px] text-[14px] leading-6 text-[#424242]">Cette section sera alimentée avec des contenus authentiques dont la publication est expressément autorisée.</p></div>
             <div className="grid auto-rows-[230px] gap-4 sm:auto-rows-[280px] md:grid-cols-12">
@@ -783,7 +784,7 @@ export default function Home() {
         <ZoneSection />
 
         {/* FAQ — editorial index, not accordion */}
-        <section id="faq" className="bg-[#f5f5f5] py-16 sm:py-20">
+        <section id="faq" className="bg-[#f5f5f5] py-14 sm:py-20">
           <div className="container">
             <div className="flex flex-col justify-between gap-6 border-b border-[#202020]/10 pb-8 sm:flex-row sm:items-end">
               <div>
@@ -858,7 +859,7 @@ export default function Home() {
         </section>
 
         {/* DEVIS — calm 3-step quote flow */}
-        <section id="devis" className="bg-[#f5f5f5] py-12 sm:py-16">
+        <section id="devis" className="bg-[#f5f5f5] py-14 sm:py-20">
           <div className="container">
             <div className="grid overflow-hidden rounded-[26px] bg-white shadow-[0_18px_60px_rgba(32,32,32,.09)] lg:grid-cols-[.82fr_1.18fr]">
               <div className="relative overflow-hidden bg-[#202020] p-7 text-white sm:p-9 lg:p-11">
@@ -1182,7 +1183,7 @@ export default function Home() {
           <div className="flex flex-col gap-8 rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div className="max-w-[460px]">
               <Link href="/" className="inline-flex items-center" aria-label="Retour à l’accueil">
-                <img src={images.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto" />
+                <img src={brandSet.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto" />
               </Link>
               <h2 className="mt-6 text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold leading-[1.15] tracking-[-0.035em]">
                 L’excellence en <span className="text-[#6b6b6b]">toutes circonstances.</span>

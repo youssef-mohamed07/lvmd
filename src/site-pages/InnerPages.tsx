@@ -1,12 +1,13 @@
 /* LVMR Group inner pages — composed from the shared premium section library, with page-specific sections on top. */
 "use client";
 import { useState } from "react";
-import { ArrowRight, Building2, CalendarCheck, Check, ClipboardList, Hammer, Layers, MapPin, MessagesSquare, Recycle, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, CalendarCheck, Check, ClipboardList, Clock3, Hammer, Layers, Mail, MapPin, MessagesSquare, Phone, Recycle, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
-import QuoteWizard from "@/components/QuoteWizard";
-import { GarantiesBand, ProcessRail, SectionHead, SectorsSection, ServiceGrid, StatsBand, TestimonialsSection, ZoneSection } from "@/components/Sections";
-import { CTASection, PageFrame, PageHero, usePageMeta } from "@/components/SiteChrome";
-import { allServices, brandSet, environmentServices, extractionReasons, findService, imageSet, premiumServices, sectorPlaceholders } from "@/lib/site";
+import { PageConversionSections } from "@/components/PageConversionSections";
+import { GarantiesBand, ProcessRail, RelatedServices, SectionHead, SectorsSection, ServiceGrid, StatsBand, TestimonialsSection, ZoneSection } from "@/components/Sections";
+import { PageFrame, PageHero, usePageMeta } from "@/components/SiteChrome";
+import { allServices, brandSet, environmentServices, extractionReasons, findService, imageSet, premiumServices } from "@/lib/site";
+import { getServiceConversionContent, pageConversionContent } from "@/lib/pageConversion";
 
 function CtaChip({ href, label, tone = "group" }: { href: string; label: string; tone?: "group" | "premium" | "environnement" }) {
   const toneClass = tone === "premium"
@@ -24,60 +25,32 @@ function CtaChip({ href, label, tone = "group" }: { href: string; label: string;
   );
 }
 
-/* Editorial band — full-bleed photo + copy, sectors as text rail (no pill strip). */
+/* Compact editorial band — contained card, not full-bleed. */
 function EditorialSplit({ eyebrow, title, quote, text, image, imageAlt }: { eyebrow: string; title: React.ReactNode; quote: string; text: string; image: string; imageAlt: string }) {
   return (
-    <section className="relative overflow-hidden bg-[#202020] text-white">
-      <div className="grid lg:grid-cols-2">
-        <div className="relative min-h-[420px] sm:min-h-[520px] lg:min-h-[640px]">
-          <img src={image} alt={imageAlt} className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_40%,rgba(32,32,32,.55)_100%)] max-lg:bg-[linear-gradient(to_top,rgba(32,32,32,.88),transparent_55%)]" aria-hidden />
-          <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10 lg:hidden">
-            <p className="max-w-[420px] text-[15px] font-semibold leading-6 text-white/90">
-              <span className="text-[#ffc547]">— </span>{quote}
-            </p>
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
+      <div className="container">
+        <div className="overflow-hidden rounded-[22px] border border-[#202020]/8 bg-white shadow-[0_12px_40px_rgba(32,32,32,.06)] lg:grid lg:grid-cols-[minmax(0,1.02fr)_minmax(0,.98fr)]">
+          <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[260px]">
+            <img src={image} alt={imageAlt} className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.35),transparent_55%)] lg:bg-[linear-gradient(to_right,transparent_55%,rgba(32,32,32,.08)_100%)]" aria-hidden />
           </div>
-        </div>
 
-        <div className="relative flex flex-col justify-between px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
-          <div className="pointer-events-none absolute -right-16 top-10 h-56 w-56 rounded-full bg-[#ffc547]/12 blur-[90px]" aria-hidden />
-          <div className="relative">
-            <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#ffc547]">
-              <span className="h-px w-6 bg-current" aria-hidden />
-              {eyebrow}
-            </p>
-            <h2 className="mt-5 max-w-[480px] text-[clamp(1.7rem,3.2vw,2.6rem)] font-extrabold leading-[1.1] tracking-[-0.04em]">
+          <div className="flex flex-col justify-center p-6 sm:p-8">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#b07e2b]">{eyebrow}</p>
+            <h2 className="mt-3 max-w-[420px] text-[clamp(1.35rem,2.4vw,1.85rem)] font-extrabold leading-[1.12] tracking-[-0.035em] text-[#202020]">
               {title}
             </h2>
-            <p className="mt-6 max-w-[460px] text-[15px] leading-7 text-white/60">{text}</p>
+            <p className="mt-3 max-w-[440px] text-[13px] leading-6 text-[#424242]">{text}</p>
+            <p className="mt-4 max-w-[440px] border-l-2 border-[#ffc547]/60 pl-3 text-[12px] leading-5 text-[#424242]/90">
+              {quote}
+            </p>
             <Link
               href="/expertises"
-              className="group mt-8 inline-flex items-center gap-2 text-[13px] font-bold text-[#ffc547] transition hover:gap-3"
+              className="group mt-5 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#202020] transition hover:gap-2.5"
             >
-              Explorer les expertises <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
+              Explorer les expertises <ArrowRight size={14} className="text-[#b07e2b] transition group-hover:translate-x-0.5" />
             </Link>
-          </div>
-
-          <div className="relative mt-12 hidden border-t border-white/10 pt-8 lg:block">
-            <p className="text-[12px] font-semibold leading-6 text-white/45">
-              <span className="text-[#ffc547]">— </span>{quote}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10 bg-[#202020]">
-        <div className="container flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-6">
-          <p className="shrink-0 text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">
-            Environnements
-          </p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:justify-end">
-            {sectorPlaceholders.map((sector, index) => (
-              <span key={sector} className="inline-flex items-center gap-5 text-[13px] font-semibold text-white/70">
-                {index > 0 && <span className="hidden h-1 w-1 rounded-full bg-white/25 sm:inline-block" aria-hidden />}
-                <span className="transition hover:text-[#ffc547]">{sector}</span>
-              </span>
-            ))}
           </div>
         </div>
       </div>
@@ -99,7 +72,7 @@ export function PremiumPage() {
       >
         <CtaChip href="/devis" label="Demander une étude personnalisée" tone="premium" />
       </PageHero>
-      <section className="bg-[#f5f5f5] py-12 sm:py-16">
+      <section className="bg-[#f5f5f5] py-14 sm:py-20">
         <div className="container">
           <SectionHead
             eyebrow="Une propreté qui valorise vos espaces"
@@ -107,16 +80,14 @@ export function PremiumPage() {
             intro="Chaque site fait l’objet d’un périmètre défini, de consignes précises et d’un suivi qui assure la régularité de la prestation."
           />
           <ServiceGrid services={premiumServices} />
-          <div className="mt-10 border-t border-[#202020]/10 pt-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#ffc547]">Pourquoi choisir LVMR Premium ?</p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {["Discrétion et respect des lieux occupés", "Personnel encadré et consignes formalisées", "Organisation adaptée à vos horaires", "Suivi et interlocuteur identifié", "Méthodes adaptées aux surfaces et usages"].map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-[18px] border border-[#202020]/8 bg-white p-4 text-[12px] font-bold leading-5 text-[#202020]">
-                  <Check size={15} className="mt-0.5 shrink-0 text-[#b07e2b]" />{item}
-                </div>
-              ))}
-            </div>
-          </div>
+          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 border-t border-[#202020]/10 pt-5">
+            {["Discrétion en site occupé", "Personnel encadré", "Horaires adaptés", "Interlocuteur identifié", "Méthodes par surface"].map((item) => (
+              <li key={item} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.08em] text-[#424242]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#ffc547]" aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
       <EditorialSplit
@@ -129,9 +100,8 @@ export function PremiumPage() {
       />
       <GarantiesBand />
       <ProcessRail />
-      <StatsBand dark />
       <ZoneSection />
-      <CTASection title={<>Demander un devis LVMR Premium.</>} text="Confiez-nous les informations essentielles sur vos locaux, leur surface, la fréquence souhaitée et vos contraintes. Nous vous proposerons une organisation adaptée et un devis personnalisé." />
+      <PageConversionSections content={pageConversionContent.premium} />
     </PageFrame>
   );
 }
@@ -156,7 +126,7 @@ export function EnvironnementPage() {
       >
         <CtaChip href="/devis" label="Demander une expertise" tone="environnement" />
       </PageHero>
-      <section className="relative overflow-hidden bg-[#f5f5f5] py-12 sm:py-16">
+      <section className="relative overflow-hidden bg-[#f5f5f5] py-14 sm:py-20">
         <div className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-[#7ebcab]/10 blur-[120px]" aria-hidden />
         <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#a2cebd]/10 blur-[100px]" aria-hidden />
         <div className="container relative">
@@ -180,86 +150,106 @@ export function EnvironnementPage() {
           </div>
         </div>
       </section>
-      <section className="py-12 sm:py-16">
+      <section className="pt-14 pb-8 sm:pt-20 sm:pb-10">
         <div className="container">
           <SectionHead
             eyebrow="Les interventions spécialisées"
-            title={<>Des moyens adaptés à chaque famille d’intervention.</>}
-            intro="Remise en état, environnements insalubres, nettoyage industriel, vitrerie technique, extraction professionnelle et pôle 3D."
+            title={<>Des moyens adaptés à chaque intervention.</>}
+            intro="Remise en état, nettoyage industriel, extraction et pôle 3D en Île-de-France."
           />
           <ServiceGrid services={environmentServices} />
-          <div className="mt-12 grid gap-8 rounded-[26px] bg-[#202020] p-6 text-white sm:p-9 lg:grid-cols-[.78fr_1.22fr] lg:items-start">
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Une intervention encadrée et traçable</p>
-              <h3 className="mt-4 max-w-[480px] text-[clamp(1.5rem,2.6vw,2.1rem)] font-extrabold leading-[1.12] tracking-[-0.035em]">Un cadre clair avant,<br />pendant et après l’intervention.</h3>
-            </div>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {["Diagnostic ou visite préalable selon la situation", "Protocole adapté au nuisible, au niveau d’infestation et à l’activité du site", "Consignes de préparation et de sécurité communiquées avant l’intervention", "Personnel formé et titulaire des certifications requises pour les traitements réalisés", "Compte rendu ou fiche d’intervention remis selon la prestation"].map((item) => (
-                <li key={item} className="flex items-start gap-3 rounded-[16px] border border-white/12 bg-white/[.05] p-4 text-[12px] font-semibold leading-5 text-white/75">
-                  <Check size={15} className="mt-0.5 shrink-0 text-[#7ebcab]" />{item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-[#202020]/10 pt-5">
+            {["Diagnostic préalable", "Protocole adapté", "Consignes de sécurité", "Personnel certifié", "Compte rendu remis"].map((item) => (
+              <li key={item} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.07em] text-[#424242]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#7ebcab]" aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
-      <section className="pb-12 sm:pb-16">
+      <section className="pb-8 sm:pb-10">
         <div className="container">
-          <div className="overflow-hidden rounded-[26px] border border-[#7ebcab]/25 bg-white">
-            <div className="grid lg:grid-cols-[1fr_1.15fr]">
-              <div className="relative min-h-[260px] overflow-hidden bg-[#202020] lg:min-h-full">
-                <img src={imageSet.environmentIntervention} alt="Intervention de remise en état menée par LVMR Environnement" className="absolute inset-0 h-full w-full object-cover opacity-70" />
-                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),rgba(32,32,32,.25)_60%)]" />
-                <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Dégraissage de hottes et systèmes d’extraction</p>
-                  <h3 className="mt-3 text-[clamp(1.4rem,2.3vw,1.9rem)] font-extrabold leading-[1.14] tracking-[-0.035em]">Restaurants, cuisines collectives,<br />hôtels et établissements de santé.</h3>
-                </div>
+          <div className="rounded-[20px] border border-[#202020]/8 bg-white p-5 sm:p-6">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#7ebcab]">Hottes & extraction</p>
+                <h3 className="mt-2 text-[1.15rem] font-extrabold tracking-[-0.02em] text-[#202020]">Dégraissage de hottes professionnelles</h3>
+                <p className="mt-1.5 text-[12px] leading-5 text-[#424242]">Restaurants, cuisines collectives, hôtels et établissements de santé.</p>
               </div>
-              <div className="grid gap-8 p-6 sm:p-8 lg:p-10">
-                <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Périmètre possible de l’intervention</p>
-                  <ul className="mt-4 grid gap-2.5">
-                    {["Hotte professionnelle et surfaces accessibles", "Filtres métalliques", "Conduits d’extraction accessibles", "Moteurs, turbines et caissons d’extraction selon leur configuration et leur accessibilité", "Protection de la zone, dégraissage, nettoyage et remise en état de l’espace de travail"].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-[13px] font-semibold leading-5 text-[#424242]">
-                        <Check size={14} className="mt-0.5 shrink-0 text-[#7ebcab]" />{item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">Pourquoi entretenir son système d’extraction ?</p>
-                  <ul className="mt-4 grid gap-2.5">
-                    {extractionReasons.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-[13px] leading-5 text-[#424242]">
-                        <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-[#7ebcab]" aria-hidden />{item}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="/environnement/hottes-professionnelles" className="mt-5 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#7ebcab]">Préparer cette intervention <ArrowRight size={14} /></Link>
-                </div>
-              </div>
+              <Link href="/environnement/hottes-professionnelles" className="inline-flex shrink-0 items-center gap-1.5 text-[11px] font-extrabold text-[#7ebcab]">
+                Voir la prestation <ArrowRight size={13} />
+              </Link>
+            </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <ul className="space-y-2">
+                {["Hotte et surfaces accessibles", "Filtres métalliques", "Conduits accessibles", "Moteurs et caissons selon accessibilité"].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-[12px] leading-5 text-[#424242]">
+                    <Check size={13} className="mt-0.5 shrink-0 text-[#7ebcab]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <ul className="space-y-2">
+                {extractionReasons.slice(0, 4).map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-[12px] leading-5 text-[#424242]">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#7ebcab]" aria-hidden />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
-      <section className="bg-[#f5f5f5] pb-10 sm:pb-14">
-        <div className="container grid gap-4 md:grid-cols-2">
-          <div className="rounded-[24px] border border-[#7ebcab]/30 bg-white p-6 sm:p-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Pôle 3D</p>
-            <h3 className="mt-3 text-[1.55rem] font-extrabold tracking-[-0.035em] text-[#202020]">Dératisation, désinsectisation, désinfection.</h3>
-            <p className="mt-3 text-[13px] leading-6 text-[#424242]">Décrivez la situation et les zones concernées pour préparer un diagnostic adapté.</p>
-            <Link href="/devis" className="mt-5 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#7ebcab]">Demander un diagnostic 3D <ArrowRight size={14} /></Link>
-          </div>
-          <div className="rounded-[24px] bg-[#202020] p-6 text-white sm:p-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a2cebd]">Gestion des demandes urgentes</p>
-            <h3 className="mt-3 text-[1.55rem] font-extrabold tracking-[-0.035em]">Une situation technique ou sanitaire urgente ?</h3>
-            <p className="mt-3 text-[13px] leading-6 text-white/60">Contactez directement notre équipe. Nous évaluons la demande, le niveau de priorité et nos possibilités d’intervention dans les meilleurs délais.</p>
-            <a href="tel:+33671849341" className="mt-5 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#a2cebd]">Signaler une demande urgente <ArrowRight size={14} /></a>
-          </div>
+      <section className="bg-[#f5f5f5] pb-14 sm:pb-20">
+        <div className="container grid gap-3 md:grid-cols-2">
+          <Link
+            href="/devis"
+            className="group relative flex min-h-[320px] overflow-hidden rounded-[24px] bg-[#202020] text-white shadow-[0_14px_40px_rgba(32,32,32,.12)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_rgba(32,32,32,.2)] sm:min-h-[360px]"
+          >
+            <img src={imageSet.groupEquipment} alt="" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-[1.04]" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.97)_0%,rgba(32,32,32,.68)_44%,rgba(32,32,32,.1)_100%)]" aria-hidden />
+            <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8">
+              <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#7ebcab]">Pôle 3D</p>
+              <div>
+                <h3 className="max-w-[340px] text-[clamp(1.35rem,2.2vw,1.75rem)] font-extrabold leading-[1.12] tracking-[-0.035em]">Dératisation, désinsectisation, désinfection.</h3>
+                <p className="mt-2.5 max-w-[360px] text-[13px] leading-6 text-white/65">Décrivez la situation et les zones concernées pour préparer un diagnostic adapté.</p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {["Dératisation", "Désinsectisation", "Désinfection"].map((item) => (
+                    <span key={item} className="rounded-full border border-white/14 bg-white/[0.06] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.08em] text-white/55">{item}</span>
+                  ))}
+                </div>
+                <span className="mt-5 inline-flex items-center gap-3 text-[13px] font-extrabold">
+                  Demander un diagnostic 3D
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#7ebcab] text-[#202020] transition group-hover:translate-x-0.5"><ArrowRight size={15} /></span>
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          <a
+            href="tel:+33671849341"
+            className="group relative flex min-h-[320px] overflow-hidden rounded-[24px] bg-[#202020] text-white shadow-[0_14px_40px_rgba(32,32,32,.12)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_rgba(32,32,32,.2)] sm:min-h-[360px]"
+          >
+            <img src={imageSet.environmentIntervention} alt="" className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-700 group-hover:scale-[1.04]" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.97)_0%,rgba(32,32,32,.68)_44%,rgba(32,32,32,.1)_100%)]" aria-hidden />
+            <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8">
+              <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#ffc547]">Gestion des demandes urgentes</p>
+              <div>
+                <h3 className="max-w-[340px] text-[clamp(1.35rem,2.2vw,1.75rem)] font-extrabold leading-[1.12] tracking-[-0.035em]">Une situation technique ou sanitaire urgente ?</h3>
+                <p className="mt-2.5 max-w-[360px] text-[13px] leading-6 text-white/65">Contactez directement notre équipe. Nous évaluons la demande, le niveau de priorité et nos possibilités d’intervention dans les meilleurs délais.</p>
+                <span className="mt-5 inline-flex items-center gap-3 text-[13px] font-extrabold">
+                  Signaler une demande urgente
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#ffc547] text-[#202020] transition group-hover:translate-x-0.5"><Phone size={15} /></span>
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
       </section>
       <ZoneSection />
-      <CTASection title={<>Demander une expertise LVMR Environnement.</>} text="Décrivez la situation, l’adresse du site, les surfaces concernées et joignez, si possible, des photographies. Une visite technique pourra être proposée afin d’établir un périmètre précis et un devis adapté." />
+      <PageConversionSections content={pageConversionContent.environnement} />
     </PageFrame>
   );
 }
@@ -276,9 +266,9 @@ export function ExpertisesPage() {
         eyebrow="Le savoir-faire"
         title={<>La précision, <span className="hero-stroke">en pratique.</span></>}
         intro="Deux pôles, un même niveau d’attention. Parcourez les services LVMR et trouvez le point d’entrée qui correspond à votre situation."
-        image={imageSet.detail}
+        image={imageSet.groupMethodology}
       />
-      <section className="py-12 sm:py-16">
+      <section className="py-14 sm:py-20">
         <div className="container">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <SectionHead
@@ -304,7 +294,7 @@ export function ExpertisesPage() {
       </section>
       <StatsBand />
       <ProcessRail dark />
-      <CTASection />
+      <PageConversionSections content={pageConversionContent.expertises} />
     </PageFrame>
   );
 }
@@ -323,7 +313,7 @@ export function RealisationsPage() {
       />
 
       {/* Same cinematic mosaic language as homepage */}
-      <section className="bg-[#f5f5f5] py-16 sm:py-20">
+      <section className="bg-[#f5f5f5] py-14 sm:py-20">
         <div className="container">
           <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
@@ -343,7 +333,7 @@ export function RealisationsPage() {
               [imageSet.environmentIntervention, "Pendant", "Remise en état en cours", "md:col-span-5"],
               [imageSet.environmentDetail, "Contrôle", "Nettoyage des zones sensibles", "md:col-span-5"],
               [imageSet.environmentAfter, "Après intervention", "Espace restitué", "md:col-span-7"],
-              [imageSet.groupReporting, "Traçabilité", "Intervention documentée", "md:col-span-5"],
+              [imageSet.groupChecklist, "Traçabilité", "Intervention documentée", "md:col-span-5"],
             ].map(([src, tag, title, span]) => (
               <article key={title} className={`group relative overflow-hidden rounded-[24px] bg-[#202020] ${span}`}>
                 <img
@@ -363,7 +353,7 @@ export function RealisationsPage() {
       </section>
 
       {/* Same proof bento language as homepage */}
-      <section className="bg-[#f5f5f5] py-16 sm:py-24">
+      <section className="bg-[#f5f5f5] pt-14 pb-8 sm:pt-20 sm:pb-10">
         <div className="container">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div>
@@ -422,7 +412,7 @@ export function RealisationsPage() {
       </section>
 
       {/* First documented case — anonymized as required by the editorial brief */}
-      <section className="bg-[#f5f5f5] pb-16 sm:pb-24">
+      <section className="bg-[#f5f5f5] pb-14 sm:pb-20">
         <div className="container">
           <div className="overflow-hidden rounded-[26px] bg-[#202020] text-white shadow-[0_24px_70px_rgba(32,32,32,.22)]">
             <div className="grid lg:grid-cols-[.9fr_1.1fr]">
@@ -452,7 +442,7 @@ export function RealisationsPage() {
         </div>
       </section>
 
-      <CTASection />
+      <PageConversionSections content={pageConversionContent.realisations} />
     </PageFrame>
   );
 }
@@ -471,11 +461,11 @@ export function GroupePage() {
         eyebrow="Groupe LVMR"
         title={<>L’excellence en <span className="hero-stroke">toutes circonstances.</span></>}
         intro="Deux pôles complémentaires pour répondre à vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France."
-        image={imageSet.hero}
+        image={imageSet.groupMethodology}
       >
         <CtaChip href="/devis" label="Demander un devis" tone="premium" />
       </PageHero>
-      <section className="bg-[#f5f5f5] py-12 sm:py-16">
+      <section className="bg-[#f5f5f5] py-14 sm:py-20">
         <div className="container">
           <SectionHead
             eyebrow="Une expertise globale, deux pôles spécialisés"
@@ -543,10 +533,7 @@ export function GroupePage() {
       <ProcessRail />
       <ZoneSection />
       <TestimonialsSection />
-      <CTASection
-        title={<>Parler de votre projet.</>}
-        text="Vous recherchez un partenaire pour l’entretien de vos locaux, une remise en état ou une intervention technique spécialisée ? Notre équipe étudie votre demande et vous oriente vers le pôle adapté."
-      />
+      <PageConversionSections content={pageConversionContent.groupe} />
     </PageFrame>
   );
 }
@@ -560,13 +547,9 @@ export function DevisPage() {
         eyebrow="Demander un devis"
         title={<>Parlons de votre <span className="hero-stroke">besoin.</span></>}
         intro="Quelques informations nous aideront à comprendre votre environnement et à préparer un échange utile."
-        image={imageSet.detail}
+        image={imageSet.premiumOffice}
       />
-      <section className="relative overflow-hidden bg-[#f5f5f5] py-10 sm:py-14">
-        <div className="container relative">
-          <QuoteWizard />
-        </div>
-      </section>
+      <PageConversionSections content={pageConversionContent.devis} />
     </PageFrame>
   );
 }
@@ -583,43 +566,128 @@ export function ContactPage() {
       >
         <CtaChip href="/devis" label="Demander un devis" />
       </PageHero>
-      <section className="bg-[#f5f5f5] py-12 sm:py-16">
-        <div className="container grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
-          <div>
-            <SectionHead eyebrow="LVMR Group" title={<>À votre écoute.</>} />
-            <p className="mt-7 max-w-[420px] text-[15px] leading-8 text-[#424242]">Lundi au vendredi de 8 h à 20 h<br/>Samedi de 10 h à 18 h</p>
-            <a href="tel:+33671849341" className="mt-6 inline-flex items-center gap-2 text-[1.25rem] font-extrabold text-[#202020]">06 71 84 93 41</a>
-            <div className="mt-5 space-y-2 text-[13px] text-[#424242]"><a className="block hover:text-[#6b6b6b]" href="mailto:contact@lvmr-premium.fr">contact@lvmr-premium.fr</a><a className="block hover:text-[#6b6b6b]" href="mailto:contact@lvmr-environnement.fr">contact@lvmr-environnement.fr</a></div>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.1)] sm:col-span-2">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white">
-                <MapPin size={19} />
-              </span>
-              <h3 className="mt-5 text-[1.25rem] font-extrabold tracking-[-0.02em] text-[#202020]">30 bis rue du Vieil Abreuvoir</h3>
-              <p className="mt-2 max-w-[420px] text-[13px] leading-6 text-[#424242]">78100 Saint-Germain-en-Laye · Interventions principalement à Paris et en Île-de-France.</p>
+      <section className="bg-[#f5f5f5] py-14 sm:py-20">
+        <div className="container">
+          <div className="overflow-hidden rounded-[28px] border border-[#202020]/8 bg-white shadow-[0_24px_70px_rgba(32,32,32,.10)] lg:grid lg:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)]">
+            <div className="relative flex flex-col justify-between bg-[#202020] p-7 text-white sm:p-9 lg:p-10">
+              <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-[#ffc547]/10 blur-[90px]" aria-hidden />
+              <div className="pointer-events-none absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-[#7ebcab]/8 blur-[80px]" aria-hidden />
+
+              <div className="relative">
+                <p className="inline-flex items-center gap-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#ffc547]">
+                  <span className="h-px w-5 bg-current" aria-hidden />
+                  LVMR Group
+                </p>
+                <h2 className="mt-4 text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.04em]">À votre écoute.</h2>
+                <p className="mt-4 max-w-[340px] text-[13px] leading-6 text-white/55">
+                  Une équipe unique pour orienter votre demande vers LVMR Premium ou LVMR Environnement.
+                </p>
+              </div>
+
+              <div className="relative mt-10 space-y-5 border-t border-white/10 pt-8">
+                <div className="flex items-start gap-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/12 bg-white/[.06] text-[#ffc547]">
+                    <Clock3 size={17} />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[.12em] text-white/40">Horaires</p>
+                    <p className="mt-1 text-[13px] font-semibold leading-6 text-white/80">
+                      Lundi au vendredi · 8 h – 20 h
+                      <br />
+                      Samedi · 10 h – 18 h
+                    </p>
+                  </div>
+                </div>
+
+                <a href="tel:+33671849341" className="group flex items-start gap-4 transition hover:opacity-90">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/12 bg-white/[.06] text-[#ffc547] transition group-hover:bg-[#ffc547] group-hover:text-[#202020]">
+                    <Phone size={17} />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[.12em] text-white/40">Téléphone</p>
+                    <p className="mt-1 text-[1.15rem] font-extrabold tracking-[-0.02em] text-white transition group-hover:text-[#ffc547]">06 71 84 93 41</p>
+                  </div>
+                </a>
+
+                <div className="flex items-start gap-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/12 bg-white/[.06] text-[#7ebcab]">
+                    <Mail size={17} />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[.12em] text-white/40">E-mail</p>
+                    <a href="mailto:contact@lvmr-premium.fr" className="mt-1 block text-[13px] font-semibold text-white/75 transition hover:text-[#ffc547]">contact@lvmr-premium.fr</a>
+                    <a href="mailto:contact@lvmr-environnement.fr" className="mt-1 block text-[13px] font-semibold text-white/75 transition hover:text-[#7ebcab]">contact@lvmr-environnement.fr</a>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.1)]">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white">
-                <ClipboardList size={19} />
-              </span>
-              <h3 className="mt-5 text-[1.1rem] font-extrabold tracking-[-0.02em] text-[#202020]">Un devis</h3>
-              <p className="mt-2 text-[13px] leading-6 text-[#424242]">Le parcours guidé précise le site, la surface, la fréquence ou l’urgence et les documents utiles.</p>
-              <Link href="/devis" className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#6b6b6b]">Accéder au formulaire <ArrowRight size={13} /></Link>
-            </div>
-            <div className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/30 hover:shadow-[0_18px_50px_rgba(107,107,107,.1)]">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition duration-300 group-hover:bg-[#6b6b6b] group-hover:text-white">
-                <MessagesSquare size={19} />
-              </span>
-              <h3 className="mt-5 text-[1.1rem] font-extrabold tracking-[-0.02em] text-[#202020]">Une situation ?</h3>
-              <p className="mt-2 text-[13px] leading-6 text-[#424242]">LVMR Environnement qualifie les contextes sensibles ou techniques.</p>
-              <Link href="/environnement" className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#6b6b6b]">Voir les interventions <ArrowRight size={13} /></Link>
+
+            <div className="flex flex-col gap-4 p-5 sm:p-7 lg:p-8">
+              <div className="relative overflow-hidden rounded-[22px] border border-[#202020]/8 bg-[#f5f5f5] p-5 sm:p-6">
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#ffc547] to-[#7ebcab]" aria-hidden />
+                <div className="flex items-start gap-4 pl-3">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#202020] text-[#ffc547]">
+                    <MapPin size={18} />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#6b6b6b]">Siège</p>
+                    <h3 className="mt-1 text-[1.15rem] font-extrabold tracking-[-0.02em] text-[#202020]">30 bis rue du Vieil Abreuvoir</h3>
+                    <p className="mt-2 max-w-[420px] text-[13px] leading-6 text-[#424242]">
+                      78100 Saint-Germain-en-Laye · Interventions principalement à Paris et en Île-de-France.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid flex-1 gap-4 sm:grid-cols-2">
+                <Link
+                  href="/devis"
+                  className="group flex flex-col justify-between rounded-[22px] border border-[#202020]/8 bg-white p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[#ffc547]/35 hover:shadow-[0_16px_40px_rgba(255,197,71,.12)] sm:p-6"
+                >
+                  <div>
+                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#ffc547]/15 text-[#b07e2b] transition group-hover:bg-[#ffc547] group-hover:text-[#202020]">
+                      <ClipboardList size={18} />
+                    </span>
+                    <h3 className="mt-5 text-[1.05rem] font-extrabold tracking-[-0.02em] text-[#202020]">Un devis</h3>
+                    <p className="mt-2 text-[13px] leading-6 text-[#424242]">
+                      Le parcours guidé précise le site, la surface, la fréquence ou l’urgence et les documents utiles.
+                    </p>
+                  </div>
+                  <span className="mt-5 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#202020]">
+                    Accéder au formulaire
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-[#202020] text-[#ffc547] transition group-hover:translate-x-0.5">
+                      <ArrowRight size={14} />
+                    </span>
+                  </span>
+                </Link>
+
+                <Link
+                  href="/environnement"
+                  className="group flex flex-col justify-between rounded-[22px] border border-[#202020]/8 bg-white p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[#7ebcab]/35 hover:shadow-[0_16px_40px_rgba(126,188,171,.12)] sm:p-6"
+                >
+                  <div>
+                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#7ebcab]/15 text-[#7ebcab] transition group-hover:bg-[#7ebcab] group-hover:text-[#202020]">
+                      <MessagesSquare size={18} />
+                    </span>
+                    <h3 className="mt-5 text-[1.05rem] font-extrabold tracking-[-0.02em] text-[#202020]">Une situation ?</h3>
+                    <p className="mt-2 text-[13px] leading-6 text-[#424242]">
+                      LVMR Environnement qualifie les contextes sensibles ou techniques.
+                    </p>
+                  </div>
+                  <span className="mt-5 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#202020]">
+                    Voir les interventions
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-[#202020] text-[#7ebcab] transition group-hover:translate-x-0.5">
+                      <ArrowRight size={14} />
+                    </span>
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
       <ZoneSection />
-      <CTASection />
+      <PageConversionSections content={pageConversionContent.contact} />
     </PageFrame>
   );
 }
@@ -641,7 +709,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
       >
         <CtaChip href="/devis" label="Parler de ce besoin" tone={service.group === "premium" ? "premium" : "environnement"} />
       </PageHero>
-      <section className="bg-[#f5f5f5] py-10 sm:py-12">
+      <section className="bg-[#f5f5f5] py-14 sm:py-20">
         <div className="container">
           <div className="grid overflow-hidden rounded-[26px] bg-[#202020] text-white shadow-[0_28px_80px_rgba(32,32,32,.18)] lg:grid-cols-[.88fr_1.12fr]">
             <div className="group relative min-h-[380px] overflow-hidden sm:min-h-[480px] lg:min-h-[620px]">
@@ -686,13 +754,17 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
-      <section className="bg-[#f5f5f5] pb-6 pt-10 sm:pb-8 sm:pt-12">
+      <section className="bg-[#f5f5f5] py-14 sm:py-20">
         <div className="container">
-          <SectionHead eyebrow="Dans la même expertise" title={<>À explorer également.</>} />
-          <ServiceGrid services={related} />
+          <SectionHead
+            eyebrow="Dans la même expertise"
+            title={<>À explorer également.</>}
+            intro="D’autres interventions du même pôle, complémentaires à votre besoin actuel."
+          />
+          <RelatedServices services={related} />
         </div>
       </section>
-      <CTASection title={<>Parler de ce besoin.</>} />
+      <PageConversionSections content={getServiceConversionContent(service)} />
     </PageFrame>
   );
 }
@@ -734,7 +806,7 @@ export function LegalPage({ type }: { type: "mentions" | "confidentialite" | "co
   return (
     <PageFrame>
       <PageHero logo={brandSet.groupHorizontalWhite} eyebrow="Informations" title={<>{currentTitle.split(" ").slice(0, -1).join(" ")} {" "}<span className="hero-stroke">{currentTitle.split(" ").slice(-1)}</span></>} intro="Cette page est structurée pour recevoir les informations officielles validées par LVMR Group et son conseil juridique." />
-      <section className="py-12 sm:py-16">
+      <section className="py-14 sm:py-20">
         <div className="container max-w-[900px]">
           <div className="grid gap-3">
             {sections.map(([heading, content], index) => (
@@ -750,7 +822,7 @@ export function LegalPage({ type }: { type: "mentions" | "confidentialite" | "co
           </p>
         </div>
       </section>
-      <CTASection />
+      <PageConversionSections content={pageConversionContent.contact} />
     </PageFrame>
   );
 }
@@ -762,7 +834,7 @@ export function NotFoundPage() {
       <PageHero eyebrow="404" title={<>Cette page <span className="hero-stroke">reste à trouver.</span></>} intro="Le lien que vous avez suivi ne mène plus ici. Revenez à l’accueil ou découvrez les expertises LVMR Group.">
         <Link href="/" className="mt-8 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] bg-[#ffc547] px-7 text-[13px] font-extrabold text-[#202020] shadow-[0_12px_32px_rgba(255,197,71,.28)] transition hover:-translate-y-0.5 hover:bg-[#b07e2b]">Retour à l’accueil <ArrowRight size={15} /></Link>
       </PageHero>
-      <CTASection />
+      <PageConversionSections content={pageConversionContent.contact} />
     </PageFrame>
   );
 }

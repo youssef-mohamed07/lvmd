@@ -25,6 +25,8 @@ function BrandMark() {
 }
 
 export function usePageMeta({ title, description, path, schema }: { title: string; description: string; path: string; schema?: Record<string, unknown> }) {
+  const schemaKey = schema ? JSON.stringify(schema) : "";
+
   useEffect(() => {
     document.title = title;
     const setMeta = (attribute: string, key: string, content: string) => {
@@ -50,15 +52,15 @@ export function usePageMeta({ title, description, path, schema }: { title: strin
     }
     canonical.href = `${window.location.origin}${path}`;
     document.getElementById("lvmr-page-schema")?.remove();
-    if (schema) {
+    if (schemaKey) {
       const script = document.createElement("script");
       script.id = "lvmr-page-schema";
       script.type = "application/ld+json";
-      script.textContent = JSON.stringify(schema);
+      script.textContent = schemaKey;
       document.head.appendChild(script);
     }
     return () => document.getElementById("lvmr-page-schema")?.remove();
-  }, [title, description, path, schema]);
+  }, [title, description, path, schemaKey]);
 }
 
 export function SiteHeader() {
@@ -67,9 +69,14 @@ export function SiteHeader() {
   const location = usePathname();
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 8);
+    let scrolledRef = window.scrollY > 8;
+    const handler = () => {
+      const next = window.scrollY > 8;
+      if (next === scrolledRef) return;
+      scrolledRef = next;
+      setScrolled(next);
+    };
     window.addEventListener("scroll", handler, { passive: true });
-    handler();
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
@@ -181,7 +188,7 @@ export function PageHero({ eyebrow, title, intro, image, logo, accent = "#f1f1f1
 
 export function CTASection({ title = <>Un besoin spécifique ? Parlons-en.</>, text = "Chaque espace et chaque contrainte sont différents." }: { dark?: boolean; title?: ReactNode; text?: string }) {
   return (
-    <section className="bg-[#f5f5f5] py-8 sm:py-10">
+    <section className="bg-[#f5f5f5] py-10 sm:py-14">
       <div className="container">
         <div className="grid min-h-[300px] overflow-hidden rounded-[26px] border border-[#202020]/8 bg-white shadow-[0_24px_70px_rgba(32,32,32,.16)] sm:rounded-[30px] md:grid-cols-[1.12fr_.88fr]">
           <div className="relative flex flex-col justify-between overflow-hidden bg-[#202020] p-7 text-white sm:p-10 lg:p-12">

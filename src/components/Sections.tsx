@@ -1,6 +1,7 @@
 /* LVMR Group — shared premium sections, restyled on the homepage palette (charcoal #202020, teal #6b6b6b, gold #ffc547). */
 "use client";
-import { ArrowRight, Briefcase, Building2, Check, ClipboardList, Clock3, Factory, FileCheck2, FileText, Hammer, HeartPulse, Home, Landmark, MapPin, MessagesSquare, Quote, ScrollText, ShieldCheck, Sparkles, Store, UserCheck, UtensilsCrossed } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Briefcase, Building2, Check, ClipboardList, Clock3, Factory, FileCheck2, FileText, Hammer, HeartPulse, Home, Landmark, MapPin, MessagesSquare, ScrollText, ShieldCheck, Sparkles, Star, Store, UserCheck, UtensilsCrossed } from "lucide-react";
 import Link from "next/link";
 import { imageSet, processSteps, ServiceItem } from "@/lib/site";
 
@@ -48,7 +49,7 @@ export function EngageBar() {
   );
 }
 
-/* Compact credibility strip — tight, aligned, no huge gaps. */
+/* Credibility strip — full-width, no boxed container. */
 export function StatsBand({ dark = false }: { dark?: boolean }) {
   const stats = [
     ["12", "expertises"],
@@ -87,10 +88,11 @@ export function StatsBand({ dark = false }: { dark?: boolean }) {
   );
 }
 
-/* Connected process stage — a visual journey from brief to handoff. */
+/* Connected process stage — visual journey from brief to handoff. */
 export function ProcessRail({ dark = false }: { dark?: boolean }) {
   const icons = [MessagesSquare, FileText, Hammer, Check] as const;
   const accents = ["#ffc547", "#f1f1f1", "#7ebcab", "#ffc547"] as const;
+
   return (
     <section className={`relative overflow-hidden py-14 sm:py-20 ${dark ? "bg-[#202020]" : "bg-[#f5f5f5]"}`}>
       <div className="container">
@@ -112,29 +114,29 @@ export function ProcessRail({ dark = false }: { dark?: boolean }) {
         <div className={`relative mt-10 overflow-hidden rounded-[30px] border ${dark ? "border-white/10 bg-white/[.035]" : "border-[#202020]/8 bg-[#202020] shadow-[0_28px_80px_rgba(32,32,32,.18)]"}`}>
           <div className="pointer-events-none absolute inset-x-[8%] top-[72px] hidden h-px bg-gradient-to-r from-[#ffc547]/40 via-white/18 to-[#7ebcab]/40 lg:block" aria-hidden />
           <ol className="m-0 grid list-none p-0 sm:grid-cols-2 lg:grid-cols-4">
-          {processSteps.map(([n, title, text], index) => {
-            const Icon = icons[index] ?? Check;
-            const accent = accents[index] ?? "#ffc547";
-            return (
-              <li
-                key={n}
-                className="group relative flex min-h-[330px] flex-col overflow-hidden border-b border-white/10 p-6 text-white transition duration-300 last:border-b-0 hover:bg-white/[.055] sm:p-7 sm:[&:nth-child(3)]:border-b-0 sm:[&:nth-child(4)]:border-b-0 sm:[&:nth-child(odd)]:border-r lg:min-h-[390px] lg:border-b-0 lg:border-r lg:last:border-r-0"
-              >
-                <span className="pointer-events-none absolute -right-3 -top-6 text-[8rem] font-extrabold leading-none tracking-[-.08em] text-white/[.035] transition group-hover:text-white/[.065]" aria-hidden>{n}</span>
-                <div className="relative flex items-center justify-between">
-                  <span className="grid h-12 w-12 place-items-center rounded-full border border-white/14 bg-white/[.07] backdrop-blur" style={{ color: accent }}>
-                    <Icon size={19} strokeWidth={1.9} />
-                  </span>
-                  <span className="text-[11px] font-bold tracking-[.16em]" style={{ color: accent }}>{n} / 04</span>
-                </div>
-                <div className="relative mt-auto pt-16 lg:pt-20">
-                  <span className="mb-5 block h-[3px] w-9 origin-left rounded-full transition-all duration-300 group-hover:w-16" style={{ backgroundColor: accent }} aria-hidden />
-                  <h3 className="max-w-[220px] text-[1.3rem] font-extrabold leading-[1.12] tracking-[-.03em] text-white">{title}</h3>
-                  <p className="mt-3 max-w-[245px] text-[12px] leading-6 text-white/52">{text}</p>
-                </div>
-              </li>
-            );
-          })}
+            {processSteps.map(([n, title, text], index) => {
+              const Icon = icons[index] ?? Check;
+              const accent = accents[index] ?? "#ffc547";
+              return (
+                <li
+                  key={n}
+                  className="group relative flex min-h-[330px] flex-col overflow-hidden border-b border-white/10 p-6 text-white transition duration-300 last:border-b-0 hover:bg-white/[.055] sm:p-7 sm:[&:nth-child(3)]:border-b-0 sm:[&:nth-child(4)]:border-b-0 sm:[&:nth-child(odd)]:border-r lg:min-h-[390px] lg:border-b-0 lg:border-r lg:last:border-r-0"
+                >
+                  <span className="pointer-events-none absolute -right-3 -top-6 text-[8rem] font-extrabold leading-none tracking-[-.08em] text-white/[.035] transition group-hover:text-white/[.065]" aria-hidden>{n}</span>
+                  <div className="relative flex items-center justify-between">
+                    <span className="grid h-12 w-12 place-items-center rounded-full border border-white/14 bg-white/[.07] backdrop-blur" style={{ color: accent }}>
+                      <Icon size={19} strokeWidth={1.9} />
+                    </span>
+                    <span className="text-[11px] font-bold tracking-[.16em]" style={{ color: accent }}>{n} / 04</span>
+                  </div>
+                  <div className="relative mt-auto pt-16 lg:pt-20">
+                    <span className="mb-5 block h-[3px] w-9 origin-left rounded-full transition-all duration-300 group-hover:w-16" style={{ backgroundColor: accent }} aria-hidden />
+                    <h3 className="max-w-[220px] text-[1.3rem] font-extrabold leading-[1.12] tracking-[-.03em] text-white">{title}</h3>
+                    <p className="mt-3 max-w-[245px] text-[12px] leading-6 text-white/52">{text}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ol>
           <div className="flex flex-col justify-between gap-3 border-t border-white/10 bg-white/[.035] px-6 py-4 text-[10px] font-bold uppercase tracking-[.12em] text-white/38 sm:flex-row sm:items-center sm:px-7">
             <span>Un interlocuteur du premier échange au contrôle final</span>
@@ -156,7 +158,7 @@ const proofs = [
 
 export function ValueBento() {
   return (
-    <section className="bg-[#f5f5f5] py-12 sm:py-16">
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
       <div className="container">
         <SectionHead
           eyebrow="Pourquoi LVMR"
@@ -206,7 +208,7 @@ export function ValueBento() {
   );
 }
 
-/* IDF coverage — editorial department index, not pill clutter. */
+/* IDF coverage — dark coverage card: anchor point, department tiles, confirmation strip. */
 export function ZoneSection() {
   const zones = [
     { code: "75", name: "Paris" },
@@ -218,92 +220,161 @@ export function ZoneSection() {
     { code: "94", name: "Val-de-Marne" },
     { code: "95", name: "Val-d’Oise" },
   ];
+
   return (
-    <section className="bg-[#f5f5f5] py-14 sm:py-16">
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
       <div className="container">
-        <div className="flex flex-col justify-between gap-6 border-b border-[#202020]/10 pb-8 sm:flex-row sm:items-end sm:gap-10">
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">Zone d’intervention</p>
-            <h2 className="mt-3 max-w-[520px] text-[clamp(1.7rem,3.2vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-[#202020]">
-              Ancrés localement,<br />mobiles en Île-de-France.
-            </h2>
+        <SectionHead
+          eyebrow="Zone d’intervention"
+          title={<>Ancrés localement, mobiles en Île-de-France.</>}
+          intro="Saint-Germain-en-Laye est notre point d’ancrage. Les huit départements franciliens constituent notre terrain d’intervention naturel."
+        />
+
+        <div className="relative mt-10 overflow-hidden rounded-[26px] border border-white/10 bg-[#202020] shadow-[0_28px_80px_rgba(32,32,32,.18)]">
+          <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
+          <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-[#ffc547]/8 blur-[100px]" aria-hidden />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-[#7ebcab]/10 blur-[100px]" aria-hidden />
+
+          <div className="relative flex flex-col justify-between gap-4 px-6 py-5 sm:flex-row sm:items-center sm:px-7">
+            <span className="inline-flex items-center gap-2 self-start rounded-full border border-[#ffc547]/30 bg-[#ffc547]/10 px-4 py-2 text-[12px] font-extrabold text-[#ffc547] backdrop-blur-md">
+              <MapPin size={13} strokeWidth={2.2} />
+              Saint-Germain-en-Laye · point d’ancrage
+            </span>
+            <p className="text-[10px] font-bold uppercase tracking-[.14em] text-white/40">08 départements couverts</p>
           </div>
-          <div className="max-w-[300px]">
-            <p className="inline-flex items-center gap-2 text-[13px] font-extrabold text-[#202020]">
-              <MapPin size={15} className="text-[#6b6b6b]" strokeWidth={2} />
-              Saint-Germain-en-Laye
-            </p>
-            <p className="mt-2 text-[13px] leading-6 text-[#424242]">
-              Point d’ancrage. La zone exacte est confirmée avec vous lors du premier échange.
-            </p>
+
+          <div className="relative grid grid-cols-2 gap-px border-t border-white/10 bg-white/10 sm:grid-cols-4">
+            {zones.map((zone) => (
+              <div
+                key={zone.code}
+                className={`group relative overflow-hidden p-5 transition duration-300 sm:p-6 ${zone.base ? "bg-[#ffc547]/[0.07]" : "bg-[#202020] hover:bg-[#2b2b2b]"}`}
+              >
+                <span
+                  className={`text-[1.7rem] font-extrabold leading-none tabular-nums tracking-[-0.04em] ${
+                    zone.base ? "text-[#ffc547]" : "text-white/22 transition duration-300 group-hover:text-white/45"
+                  }`}
+                  aria-hidden
+                >
+                  {zone.code}
+                </span>
+                <p className="mt-3 text-[13px] font-extrabold text-white">{zone.name}</p>
+                {zone.base ? (
+                  <span className="mt-2.5 inline-flex rounded-full bg-[#ffc547] px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[.12em] text-[#202020]">
+                    Siège du groupe
+                  </span>
+                ) : (
+                  <p className="mt-2.5 text-[10px] font-bold uppercase tracking-[.11em] text-white/32">Intervention</p>
+                )}
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 transition duration-300 group-hover:scale-x-100 ${zone.base ? "bg-[#ffc547]" : "bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1]"}`}
+                  aria-hidden
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="relative flex flex-col justify-between gap-3 border-t border-white/10 bg-white/[.035] px-6 py-4 text-[10px] font-bold uppercase tracking-[.12em] text-white/38 sm:flex-row sm:items-center sm:px-7">
+            <span>Le périmètre exact est confirmé avec vous lors du premier échange</span>
+            <Link href="/devis" className="inline-flex items-center gap-2 text-[#ffc547] transition hover:text-white">
+              Confirmer votre zone <ArrowRight size={13} />
+            </Link>
           </div>
         </div>
-
-        <ul className="m-0 grid list-none grid-cols-2 border-t border-[#202020]/10 p-0 sm:grid-cols-4">
-          {zones.map((zone, index) => {
-            const col2 = index % 2 === 1;
-            const col4 = index % 4 !== 0;
-            const row2Mobile = index >= 2;
-            const row2Desktop = index >= 4;
-            return (
-              <li
-                key={zone.code}
-                className={`px-4 py-5 sm:px-5 sm:py-6 ${col2 ? "border-l border-[#202020]/10" : ""} ${
-                  row2Mobile ? "border-t border-[#202020]/10 sm:border-t-0" : ""
-                } ${row2Desktop ? "sm:border-t sm:border-[#202020]/10" : ""} ${
-                  col4 ? "sm:border-l sm:border-[#202020]/10" : "sm:border-l-0"
-                }`}
-              >
-                <p className={`text-[12px] font-bold tabular-nums tracking-[0.04em] ${zone.base ? "text-[#6b6b6b]" : "text-[#202020]/35"}`}>
-                  {zone.code}
-                </p>
-                <p className="mt-2 text-[14px] font-extrabold tracking-[-0.02em] text-[#202020] sm:text-[15px]">
-                  {zone.name}
-                </p>
-                {zone.base && (
-                  <p className="mt-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#6b6b6b]">
-                    Siège
-                  </p>
-                )}
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </section>
   );
 }
 
-/* Service card grid — the inner-pages equivalent of the homepage explorer. */
+/* Related services — curated picks on service detail pages. */
+export function RelatedServices({ services }: { services: ServiceItem[] }) {
+  if (services.length === 0) return null;
+
+  return (
+    <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service, index) => {
+        const accent = service.group === "premium" ? "#ffc547" : "#7ebcab";
+
+        return (
+          <Link
+            key={service.slug}
+            href={`/${service.group}/${service.slug}`}
+            className="group flex flex-col overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white shadow-[0_12px_40px_rgba(32,32,32,.07)] transition duration-300 hover:-translate-y-1 hover:border-[#202020]/14 hover:shadow-[0_22px_55px_rgba(32,32,32,.14)]"
+          >
+            <div className="relative aspect-[16/10] overflow-hidden bg-[#202020]">
+              <img
+                src={service.image}
+                alt={service.title}
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.45),transparent_55%)]" aria-hidden />
+              <span
+                className="absolute left-4 top-4 rounded-full border border-white/20 bg-[#202020]/75 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[.12em] backdrop-blur-md"
+                style={{ color: accent }}
+              >
+                {service.kicker}
+              </span>
+            </div>
+
+            <div className="flex flex-1 flex-col p-5 sm:p-6">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-[1.08rem] font-extrabold leading-[1.2] tracking-[-0.025em] text-[#202020] sm:text-[1.12rem]">
+                  {service.shortTitle ?? service.title}
+                </h3>
+                <span className="text-[1.35rem] font-extrabold leading-none text-[#202020]/10 transition group-hover:text-[#202020]/16" aria-hidden>
+                  0{index + 1}
+                </span>
+              </div>
+              <p className="mt-2.5 line-clamp-3 flex-1 text-[13px] leading-6 text-[#424242]">{service.description}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>
+                Découvrir
+                <span className="grid h-8 w-8 place-items-center rounded-full border border-current/20 transition group-hover:translate-x-0.5">
+                  <ArrowRight size={14} />
+                </span>
+              </span>
+            </div>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
+/* Service card grid — immersive inner-page cards. */
 export function ServiceGrid({ services }: { services: ServiceItem[] }) {
   const isFourCardGrid = services.length === 4;
+
   return (
     <div className={`mt-10 grid gap-4 sm:grid-cols-2 ${isFourCardGrid ? "lg:grid-cols-2" : "lg:grid-cols-3 xl:grid-cols-4"}`}>
       {services.map((service) => {
-        const isPremium = service.group === "premium";
-        const accent = isPremium ? "#ffc547" : "#7ebcab";
-        return <Link
-          key={service.slug}
-          href={`/${service.group}/${service.slug}`}
-          className={`group relative flex min-h-[430px] overflow-hidden rounded-[24px] border border-white/10 bg-[#202020] text-white shadow-[0_14px_40px_rgba(32,32,32,.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_65px_rgba(32,32,32,.24)] ${isFourCardGrid ? "sm:min-h-[500px] lg:min-h-[540px]" : "sm:min-h-[470px] xl:min-h-[500px]"}`}
-          style={{ "--service-accent": accent } as React.CSSProperties}
-        >
-          <img src={service.image} alt={service.title} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-1000 group-hover:scale-[1.045]" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,20,20,.98)_0%,rgba(24,24,24,.78)_38%,rgba(24,24,24,.12)_76%)]" />
-          <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-5 sm:p-6">
-            <span className="rounded-full border border-white/20 bg-[#202020]/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.12em] backdrop-blur-md" style={{ color: accent }}>
-              {service.kicker}
-            </span>
-            <span className="text-[2rem] font-extrabold leading-none text-white/35" aria-hidden>{service.number}</span>
-          </div>
-          <div className="relative z-10 mt-auto p-6 sm:p-7">
-            <h3 className="max-w-[340px] text-[1.35rem] font-extrabold leading-[1.15] tracking-[-0.025em] text-white">{service.title}</h3>
-            <p className="mt-3 max-w-[360px] text-[13px] leading-6 text-white/68">{service.description}</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>
-              Découvrir <ArrowRight size={14} className="transition group-hover:translate-x-1" />
-            </span>
-          </div>
-        </Link>;
+        const accent = service.group === "premium" ? "#ffc547" : "#7ebcab";
+
+        return (
+          <Link
+            key={service.slug}
+            href={`/${service.group}/${service.slug}`}
+            className={`group relative flex overflow-hidden rounded-[24px] border border-white/10 bg-[#202020] text-white shadow-[0_14px_40px_rgba(32,32,32,.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_65px_rgba(32,32,32,.24)] ${
+              isFourCardGrid ? "min-h-[380px] sm:min-h-[460px] lg:min-h-[500px]" : "min-h-[320px] sm:min-h-[380px] xl:min-h-[420px]"
+            }`}
+          >
+            <img src={service.image} alt={service.title} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-1000 group-hover:scale-[1.045]" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,20,20,.98)_0%,rgba(24,24,24,.78)_38%,rgba(24,24,24,.12)_76%)]" />
+            <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-5 sm:p-6">
+              <span className="rounded-full border border-white/20 bg-[#202020]/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.12em] backdrop-blur-md" style={{ color: accent }}>
+                {service.kicker}
+              </span>
+              <span className={`font-extrabold leading-none text-white/35 ${isFourCardGrid ? "text-[2rem]" : "text-[1.5rem]"}`} aria-hidden>{service.number}</span>
+            </div>
+            <div className="relative z-10 mt-auto p-6 sm:p-7">
+              <h3 className={`max-w-[340px] font-extrabold leading-[1.15] tracking-[-0.025em] text-white ${isFourCardGrid ? "text-[1.35rem]" : "text-[1.05rem]"}`}>
+                {isFourCardGrid ? service.title : (service.shortTitle ?? service.title)}
+              </h3>
+              <p className={`mt-3 max-w-[360px] leading-6 text-white/68 ${isFourCardGrid ? "text-[13px]" : "line-clamp-2 text-[12px]"}`}>{service.description}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>
+                Découvrir <ArrowRight size={14} className="transition group-hover:translate-x-1" />
+              </span>
+            </div>
+          </Link>
+        );
       })}
     </div>
   );
@@ -340,7 +411,7 @@ export function PolesComparison() {
     },
   ];
   return (
-    <section className="relative overflow-hidden bg-[#202020] py-14 sm:py-16">
+    <section className="relative overflow-hidden bg-[#202020] py-14 sm:py-20">
       <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-[#ffc547]/8 blur-[110px]" aria-hidden />
       <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-[#7ebcab]/10 blur-[110px]" aria-hidden />
       <div className="container relative">
@@ -399,7 +470,7 @@ export function SectorsSection() {
     [Briefcase, "Gestionnaires & syndics", "Syndics, bailleurs et administrateurs de biens."],
   ] as const;
   return (
-    <section className="bg-[#f5f5f5] py-14 sm:py-16">
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
       <div className="container">
         <SectionHead
           eyebrow="Secteurs d’intervention"
@@ -423,50 +494,110 @@ export function SectorsSection() {
   );
 }
 
-/* Client voices — anonymized, consistent with the site's editorial policy. */
+/* Client voices — editorial spotlight with selectable testimonials. */
 export function TestimonialsSection() {
   const voices = [
     {
       quote: "Les parties communes sont tenues et les résidents ne s’aperçoivent de rien. C’est exactement ce que nous attendons.",
       role: "Syndic de copropriété",
       place: "Yvelines",
+      accent: "#ffc547",
     },
     {
       quote: "Intervention rapide, méthode claire et compte rendu précis à la fin. On sait ce qui a été fait, et comment.",
       role: "Responsable de site tertiaire",
       place: "Paris",
+      accent: "#f1f1f1",
     },
     {
       quote: "Après le sinistre, l’équipe a remis le local en état sans ajouter de stress à une situation déjà compliquée.",
       role: "Gérant de commerce",
       place: "Essonne",
+      accent: "#7ebcab",
     },
-  ];
+  ] as const;
+  const [active, setActive] = useState(0);
+  const voice = voices[active];
+
   return (
-    <section className="relative overflow-hidden bg-[#202020] py-14 sm:py-16">
-      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#6b6b6b]/14 blur-[110px]" aria-hidden />
+    <section className="relative overflow-hidden bg-[#202020] py-14 sm:py-20">
+      <div className="pointer-events-none absolute -left-28 top-0 h-56 w-56 rounded-full bg-[#ffc547]/8 blur-[100px]" aria-hidden />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-56 w-56 rounded-full bg-[#7ebcab]/10 blur-[100px]" aria-hidden />
+
       <div className="container relative">
         <SectionHead
           dark
           eyebrow="Ils nous font confiance"
           title={<>La parole aux sites que nous entretenons.</>}
-          intro="Des retours terrains, recueillis auprès de nos clients, anonymisés conformément à notre politique de publication."
+          intro="Retours terrains anonymisés, conformément à notre politique de publication."
         />
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {voices.map((voice) => (
-            <figure key={voice.role} className="flex flex-col rounded-[24px] border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:border-white/20 hover:bg-white/[0.06] sm:p-8">
-              <Quote size={22} className="text-[#ffc547]" aria-hidden />
-              <blockquote className="mt-5 flex-1 text-[15px] leading-7 text-white/75">
+
+        <div className="mt-7 grid gap-3 lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-4">
+          <article className="relative overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.035]">
+            <span className="pointer-events-none absolute -right-1 -top-6 display-font text-[5.5rem] leading-none tracking-[-0.06em] text-white/[0.04] sm:text-[6.5rem]" aria-hidden>
+              “
+            </span>
+
+            <div key={active} className="voice-fade relative flex flex-col p-5 sm:p-6">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span className="inline-flex items-center gap-0.5" aria-hidden>
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star key={index} size={10} className="fill-[#ffc547] text-[#ffc547]" />
+                  ))}
+                </span>
+                <span className="text-[9px] font-bold uppercase tracking-[.14em] text-white/35">Retour terrain · 0{active + 1}/03</span>
+              </div>
+
+              <blockquote className="display-font mt-4 text-[clamp(1.15rem,2.2vw,1.55rem)] leading-[1.22] tracking-[-0.025em] text-white">
                 {voice.quote}
               </blockquote>
-              <figcaption className="mt-6 border-t border-white/10 pt-4">
-                <p className="text-[13px] font-extrabold text-white">{voice.role}</p>
-                <p className="mt-0.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white/40">{voice.place}</p>
+
+              <figcaption className="mt-5 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
+                <div>
+                  <p className="text-[13px] font-extrabold text-white">{voice.role}</p>
+                  <p className="mt-1 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[.11em]" style={{ color: voice.accent }}>
+                    <MapPin size={11} strokeWidth={2.2} />
+                    {voice.place}
+                  </p>
+                </div>
               </figcaption>
-            </figure>
-          ))}
+            </div>
+          </article>
+
+          <div className="flex flex-row gap-2 lg:flex-col">
+            {voices.map((item, index) => {
+              const isActive = active === index;
+              return (
+                <button
+                  key={item.role}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => setActive(index)}
+                  className={`group relative flex-1 overflow-hidden rounded-[16px] border px-3 py-3 text-left transition duration-300 sm:px-4 lg:flex-none ${
+                    isActive
+                      ? "border-[#ffc547]/35 bg-white/[0.08]"
+                      : "border-white/10 bg-white/[0.02] hover:border-white/18 hover:bg-white/[0.05]"
+                  }`}
+                >
+                  <span
+                    className={`absolute inset-y-0 left-0 w-[2px] origin-top transition duration-300 ${
+                      isActive ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"
+                    }`}
+                    style={{ backgroundColor: item.accent }}
+                    aria-hidden
+                  />
+                  <p className={`pl-1 text-[9px] font-bold uppercase tracking-[.12em] ${isActive ? "text-[#ffc547]" : "text-white/30"}`}>
+                    0{index + 1}
+                  </p>
+                  <p className="mt-1 pl-1 text-[12px] font-extrabold leading-snug text-white">{item.role}</p>
+                  <p className="mt-0.5 pl-1 text-[10px] font-bold uppercase tracking-[.1em] text-white/35">{item.place}</p>
+                </button>
+              );
+            })}
+          </div>
         </div>
-        <p className="mt-7 text-center text-[12px] text-white/40">
+
+        <p className="mt-5 text-center text-[11px] leading-5 text-white/34">
           Les références nominatives sont communiquées sur demande, avec l’accord des clients concernés.
         </p>
       </div>
@@ -483,7 +614,7 @@ export function GarantiesBand() {
     [ShieldCheck, "Suivi & traçabilité", "Comptes rendus et documents remis selon la prestation."],
   ] as const;
   return (
-    <section className="bg-[#f5f5f5] py-14 sm:py-16">
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
       <div className="container">
         <SectionHead
           eyebrow="Nos garanties"
