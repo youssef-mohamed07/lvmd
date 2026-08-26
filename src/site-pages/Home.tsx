@@ -39,10 +39,24 @@ import { PolesComparison, SectorsSection, TestimonialsSection, ZoneSection } fro
  */
 
 const images = {
-  hero: "/manus-storage/lvmr-hero.jpg",
-  premium: "/manus-storage/lvmr-premium.jpg",
-  environnement: "/manus-storage/lvmr-environnement.jpg",
-  detail: "/manus-storage/lvmr-detail.jpg",
+  hero: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
+  premium: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
+  premiumOffice: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-01.webp",
+  premiumTeam: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-team-cleaning-01.webp",
+  premiumTeamAlt: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-team-cleaning-02.webp",
+  premiumEquipment: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-equipment-floor-cleaning-01.webp",
+  premiumGlass: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-glass-cleaning-01.webp",
+  premiumGlassAlt: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-glass-cleaning-02.webp",
+  environnement: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-ppe-01.webp",
+  groupTechnical: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-ppe-01.webp",
+  groupEquipment: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-disinfection-02.webp",
+  groupReporting: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-reporting-documentation-01.webp",
+  groupChecklist: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-reporting-checklist-02.webp",
+  environmentBefore: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-before-room.webp",
+  environmentAfter: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-after-room.webp",
+  environmentIntervention: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-intervention.webp",
+  environmentDetail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-detail.webp",
+  detail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-detail-gloved-cleaning-01.webp",
   groupHorizontal: "/branding/group/png/group-horizontal.png",
   groupHorizontalWhite: "/branding/group/png/group-horizontal-white.png",
   premiumHorizontalWhite: "/branding/premium/png/premium-horizontal-white.png",
@@ -60,26 +74,26 @@ const navItems = [
 
 const needOptions = [
   { id: "bureaux", label: "Bureaux", hint: "Entretien régulier", icon: Building2, image: images.premium, text: "Espaces de travail nets, réguliers, prêts dès le matin. Fréquence et horaires coordonnés avec votre activité." },
-  { id: "copro", label: "Copropriété", hint: "Parties communes", icon: DoorOpen, image: images.detail, text: "Halls, cages d’escalier et parties communes tenus avec discrétion, dans le respect des résidents." },
-  { id: "vitrerie", label: "Vitrerie", hint: "Surfaces vitrées", icon: Sun, image: images.hero, text: "Lumière retrouvée sur baies, cloisons vitrées et accès difficiles, sans perturber le lieu." },
-  { id: "remise", label: "Remise en état", hint: "Après travaux", icon: Hammer, image: images.detail, text: "Après chantier, déménagement ou période intensive : un lieu rendu prêt à l’usage." },
-  { id: "sinistre", label: "Après sinistre", hint: "Intervention urgente", icon: ShieldAlert, image: images.environnement, text: "Méthode, sang-froid et organisation pour reprendre le contrôle rapidement." },
+  { id: "copro", label: "Copropriété", hint: "Parties communes", icon: DoorOpen, image: images.premiumTeamAlt, text: "Halls, cages d’escalier et parties communes tenus avec discrétion, dans le respect des résidents." },
+  { id: "vitrerie", label: "Vitrerie", hint: "Surfaces vitrées", icon: Sun, image: images.premiumGlass, text: "Lumière retrouvée sur baies, cloisons vitrées et accès difficiles, sans perturber le lieu." },
+  { id: "remise", label: "Remise en état", hint: "Après travaux", icon: Hammer, image: images.premiumEquipment, text: "Après chantier, déménagement ou période intensive : un lieu rendu prêt à l’usage." },
+  { id: "sinistre", label: "Après sinistre", hint: "Intervention urgente", icon: ShieldAlert, image: images.environmentIntervention, text: "Méthode, sang-froid et organisation pour reprendre le contrôle rapidement." },
   { id: "technique", label: "Technique & 3D", hint: "Hottes / nuisibles", icon: Wrench, image: images.environnement, text: "Nettoyage technique, dégraissage professionnel, dératisation, désinsectisation et désinfection." },
 ];
 
 const services = [
-  { n: "01", title: "Bureaux", group: "Premium", text: "Entretien régulier des bureaux et espaces professionnels.", image: images.premium },
-  { n: "02", title: "Copropriétés", group: "Premium", text: "Halls, paliers, ascenseurs et parties communes.", image: images.detail },
-  { n: "03", title: "Remise en état", group: "Premium", text: "Après travaux, déménagement ou période d’inoccupation.", image: images.detail },
-  { n: "04", title: "Vitrerie", group: "Premium", text: "Vitres, vitrines, cloisons vitrées et baies accessibles.", image: images.hero },
-  { n: "05", title: "Après sinistre", group: "Environnement", text: "Remise en état après dégâts, suies ou dégradations.", image: images.environnement },
-  { n: "06", title: "Logements insalubres", group: "Environnement", text: "Prise en charge respectueuse des situations complexes.", image: images.environnement },
-  { n: "07", title: "Nettoyage industriel", group: "Environnement", text: "Ateliers, entrepôts, zones de production et locaux techniques.", image: images.detail },
-  { n: "08", title: "Vitrerie technique", group: "Environnement", text: "Surfaces importantes ou difficiles d’accès.", image: images.hero },
-  { n: "09", title: "Hottes & extraction", group: "Environnement", text: "Dégraissage des installations de cuisine professionnelle.", image: images.environnement },
-  { n: "10", title: "Dératisation", group: "Environnement", text: "Prévention, identification et traitement des rongeurs.", image: images.environnement },
-  { n: "11", title: "Désinsectisation", group: "Environnement", text: "Traitement adapté à l’espèce et à l’activité du site.", image: images.detail },
-  { n: "12", title: "Désinfection", group: "Environnement", text: "Assainissement des surfaces et zones concernées.", image: images.detail },
+  { n: "01", title: "Bureaux", group: "Premium", text: "Entretien régulier des bureaux et espaces professionnels.", image: images.premiumOffice },
+  { n: "02", title: "Copropriétés", group: "Premium", text: "Halls, paliers, ascenseurs et parties communes.", image: images.premiumTeamAlt },
+  { n: "03", title: "Remise en état", group: "Premium", text: "Après travaux, déménagement ou période d’inoccupation.", image: images.premiumEquipment },
+  { n: "04", title: "Vitrerie", group: "Premium", text: "Vitres, vitrines, cloisons vitrées et baies accessibles.", image: images.premiumGlass },
+  { n: "05", title: "Après sinistre", group: "Environnement", text: "Remise en état après dégâts, suies ou dégradations.", image: images.environmentIntervention },
+  { n: "06", title: "Logements insalubres", group: "Environnement", text: "Prise en charge respectueuse des situations complexes.", image: images.environmentBefore },
+  { n: "07", title: "Nettoyage industriel", group: "Environnement", text: "Ateliers, entrepôts, zones de production et locaux techniques.", image: images.groupTechnical },
+  { n: "08", title: "Vitrerie technique", group: "Environnement", text: "Surfaces importantes ou difficiles d’accès.", image: images.premiumGlassAlt },
+  { n: "09", title: "Hottes & extraction", group: "Environnement", text: "Dégraissage des installations de cuisine professionnelle.", image: images.environmentDetail },
+  { n: "10", title: "Dératisation", group: "Environnement", text: "Prévention, identification et traitement des rongeurs.", image: images.groupReporting },
+  { n: "11", title: "Désinsectisation", group: "Environnement", text: "Traitement adapté à l’espèce et à l’activité du site.", image: images.groupChecklist },
+  { n: "12", title: "Désinfection", group: "Environnement", text: "Assainissement des surfaces et zones concernées.", image: images.groupEquipment },
 ];
 
 const steps = [
@@ -368,7 +382,9 @@ export default function Home() {
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
           <div className="container relative z-10 grid gap-9 pb-10 pt-28 sm:gap-12 sm:pb-14 sm:pt-32 lg:min-h-[790px] lg:grid-cols-[.92fr_1.08fr] lg:items-center lg:gap-16 lg:pb-16 lg:pt-36">
             <div className="max-w-[660px]">
-              <img src={images.groupHorizontalWhite} alt="LVMR Group" className="hero-reveal mb-7 h-11 w-auto sm:h-14" style={{ animationDelay: "20ms" }} />
+              <Link href="/" aria-label="Retour à l’accueil" className="hero-reveal mb-7 inline-flex" style={{ animationDelay: "20ms" }}>
+                <img src={images.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto sm:h-14" />
+              </Link>
               <div className="hero-reveal flex items-center gap-3" style={{ animationDelay: "60ms" }}>
                 <span className="h-px w-8 bg-[#f1f1f1]" />
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#f1f1f1]">Groupe LVMR</p>
@@ -501,7 +517,7 @@ export default function Home() {
 
             <div className="expertise-duo mt-8 flex flex-col gap-3 sm:mt-10 lg:min-h-[620px] lg:flex-row">
               <article className="expertise-division group relative min-h-[460px] overflow-hidden rounded-[24px] bg-[#202020] text-white sm:min-h-[520px] lg:min-h-[560px]">
-                <img src={images.premium} alt="Équipe LVMR Premium" className="absolute inset-0 h-full w-full object-cover" />
+                <img src={images.premiumTeam} alt="Équipe de nettoyage coordonnée" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.55)_45%,rgba(32,32,32,.08)_100%)]" />
                 <div className="expertise-division-content absolute inset-0 flex flex-col justify-between p-7 sm:p-9">
                   <div className="flex items-center justify-between border-b border-white/18 pb-5">
@@ -750,9 +766,9 @@ export default function Home() {
             <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="eyebrow">Références & preuves</p><h2 className="mt-3 text-[clamp(1.8rem,3.4vw,3rem)] font-extrabold leading-[1.05] tracking-[-.045em]">Le réel comme meilleure preuve.</h2></div><p className="max-w-[360px] text-[14px] leading-6 text-[#424242]">Cette section sera alimentée avec des contenus authentiques dont la publication est expressément autorisée.</p></div>
             <div className="grid auto-rows-[230px] gap-4 sm:auto-rows-[280px] md:grid-cols-12">
               {[
-                [images.detail, "Format de publication", "Contexte & besoin", "md:col-span-7 md:row-span-2"],
-                [images.environnement, "Contenu autorisé", "Solution mise en œuvre", "md:col-span-5"],
-                [images.hero, "Preuve terrain", "Résultat documenté", "md:col-span-5"],
+                [images.environmentBefore, "Avant intervention", "Contexte & besoin", "md:col-span-7 md:row-span-2"],
+                [images.environmentIntervention, "Pendant l’intervention", "Solution mise en œuvre", "md:col-span-5"],
+                [images.environmentAfter, "Après intervention", "Résultat documenté", "md:col-span-5"],
               ].map(([src, tag, title, span]) => (
                 <article key={title} className={`group relative overflow-hidden rounded-[24px] bg-[#202020] ${span}`}><img src={src} alt={tag} className="h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.04]" /><div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.8),transparent_65%)]" /><div className="absolute inset-x-0 bottom-0 p-6 text-white"><p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#f1f1f1]">{tag}</p><h3 className="mt-1.5 text-[1.2rem] font-extrabold tracking-[-.03em]">{title}</h3></div></article>
               ))}
@@ -1165,9 +1181,9 @@ export default function Home() {
         <div className="container relative pb-24 pt-12 sm:py-14 lg:py-14">
           <div className="flex flex-col gap-8 rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div className="max-w-[460px]">
-              <span className="flex items-center" aria-label="LVMR Group">
+              <Link href="/" className="inline-flex items-center" aria-label="Retour à l’accueil">
                 <img src={images.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto" />
-              </span>
+              </Link>
               <h2 className="mt-6 text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold leading-[1.15] tracking-[-0.035em]">
                 L’excellence en <span className="text-[#6b6b6b]">toutes circonstances.</span>
               </h2>

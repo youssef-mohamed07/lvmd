@@ -124,8 +124,8 @@ export function PremiumPage() {
         title={<>Une organisation adaptée à vos contraintes.</>}
         quote="Discrétion, personnel encadré, consignes formalisées et interlocuteur identifié."
         text="Nos prestations sont organisées selon vos horaires, la fréquentation des lieux, vos contraintes et l’image que vous souhaitez offrir à vos collaborateurs, visiteurs, clients ou résidents."
-        image={imageSet.detail}
-        imageAlt="Détail de matériaux dans un espace professionnel"
+        image={imageSet.premiumTeam}
+        imageAlt="Équipe de nettoyage coordonnée dans un espace contemporain"
       />
       <GarantiesBand />
       <ProcessRail />
@@ -152,7 +152,7 @@ export function EnvironnementPage() {
         eyebrow="Assainir, sécuriser, préserver"
         title={<>Des situations complexes, <span className="hero-stroke">une réponse maîtrisée.</span></>}
         intro="Interventions techniques, remises en état, environnements sensibles, nettoyage industriel, dégraissage professionnel et solutions 3D en Île-de-France."
-        image={imageSet.environnement}
+        image={imageSet.environmentHero}
       >
         <CtaChip href="/devis" label="Demander une expertise" tone="environnement" />
       </PageHero>
@@ -208,7 +208,7 @@ export function EnvironnementPage() {
           <div className="overflow-hidden rounded-[26px] border border-[#7ebcab]/25 bg-white">
             <div className="grid lg:grid-cols-[1fr_1.15fr]">
               <div className="relative min-h-[260px] overflow-hidden bg-[#202020] lg:min-h-full">
-                <img src={imageSet.environnement} alt="Cuisine professionnelle entretenue par LVMR Environnement" className="absolute inset-0 h-full w-full object-cover opacity-70" />
+                <img src={imageSet.environmentIntervention} alt="Intervention de remise en état menée par LVMR Environnement" className="absolute inset-0 h-full w-full object-cover opacity-70" />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),rgba(32,32,32,.25)_60%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
                   <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">Dégraissage de hottes et systèmes d’extraction</p>
@@ -318,8 +318,8 @@ export function RealisationsPage() {
         logo={brandSet.groupHorizontalWhite}
         eyebrow="Références et preuves"
         title={<>Le réel comme <span className="hero-stroke">meilleure preuve.</span></>}
-        intro="Cette section sera alimentée progressivement avec des photographies, cas clients, témoignages et références authentiques dont la publication est autorisée."
-        image={imageSet.hero}
+        intro="Découvrez des photographies terrain authentiques qui documentent le contexte, l’intervention et le résultat obtenu."
+        image={imageSet.environmentAfter}
       />
 
       {/* Same cinematic mosaic language as homepage */}
@@ -339,11 +339,11 @@ export function RealisationsPage() {
 
           <div className="grid auto-rows-[230px] gap-4 sm:auto-rows-[280px] md:grid-cols-12">
             {[
-              [imageSet.detail, "Format de publication", "Contexte & besoin", "md:col-span-7 md:row-span-2"],
-              [imageSet.environnement, "Format de publication", "Solution mise en œuvre", "md:col-span-5"],
-              [imageSet.hero, "Format de publication", "Organisation de l’intervention", "md:col-span-5"],
-              [imageSet.premium, "Format de publication", "Résultat documenté", "md:col-span-7"],
-              [imageSet.environnement, "Contenu autorisé", "Photographies avant / après", "md:col-span-5"],
+              [imageSet.environmentBefore, "Avant intervention", "État initial du logement", "md:col-span-7 md:row-span-2"],
+              [imageSet.environmentIntervention, "Pendant", "Remise en état en cours", "md:col-span-5"],
+              [imageSet.environmentDetail, "Contrôle", "Nettoyage des zones sensibles", "md:col-span-5"],
+              [imageSet.environmentAfter, "Après intervention", "Espace restitué", "md:col-span-7"],
+              [imageSet.groupReporting, "Traçabilité", "Intervention documentée", "md:col-span-5"],
             ].map(([src, tag, title, span]) => (
               <article key={title} className={`group relative overflow-hidden rounded-[24px] bg-[#202020] ${span}`}>
                 <img
@@ -379,7 +379,7 @@ export function RealisationsPage() {
 
           <div className="mt-10 grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
             <article className="group relative min-h-[360px] overflow-hidden rounded-[24px] bg-[#202020] text-white sm:min-h-[420px] sm:rounded-[28px] lg:row-span-2">
-              <img src={imageSet.detail} alt="Le soin du détail par LVMR" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.05]" />
+              <img src={imageSet.environmentAfter} alt="Espace remis en état après intervention" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.05]" />
               <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),transparent_65%)]" />
               <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
                 <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#f1f1f1]">Le détail compte</p>
@@ -427,17 +427,17 @@ export function RealisationsPage() {
           <div className="overflow-hidden rounded-[26px] bg-[#202020] text-white shadow-[0_24px_70px_rgba(32,32,32,.22)]">
             <div className="grid lg:grid-cols-[.9fr_1.1fr]">
               <div className="relative min-h-[280px] overflow-hidden lg:min-h-full">
-                <img src={imageSet.detail} alt="Laboratoire professionnel remis en état" className="absolute inset-0 h-full w-full object-cover opacity-70" />
+                <img src={imageSet.environmentIntervention} alt="Remise en état d’un logement en cours" className="absolute inset-0 h-full w-full object-cover opacity-70" />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.92),rgba(32,32,32,.2)_65%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                   <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#ffc547]">Étude de cas · Publication autorisée</p>
-                  <h3 className="mt-3 max-w-[420px] text-[clamp(1.55rem,2.6vw,2.15rem)] font-extrabold leading-[1.1] tracking-[-0.04em]">Remise en état approfondie d’un laboratoire professionnel.</h3>
+                  <h3 className="mt-3 max-w-[420px] text-[clamp(1.55rem,2.6vw,2.15rem)] font-extrabold leading-[1.1] tracking-[-0.04em]">Remise en état approfondie d’un logement.</h3>
                 </div>
               </div>
               <div className="grid gap-6 p-6 sm:p-8 lg:p-10">
                 {[
-                  ["Contexte", "Intervention programmée après traitement préalable, dans un environnement nécessitant un nettoyage approfondi."],
-                  ["Mission", "Nettoyage du laboratoire, des équipements accessibles, des zones de préparation et des surfaces définies au devis."],
+                  ["Contexte", "Logement encombré nécessitant une remise en état approfondie et une progression zone par zone."],
+                  ["Mission", "Désencombrement, nettoyage des surfaces accessibles et remise en propreté des pièces définies au devis."],
                   ["Organisation", "Équipe dédiée, protocole adapté, contrôle final et restitution des lieux."],
                 ].map(([title, text], index) => (
                   <div key={title} className="grid gap-2 border-b border-white/10 pb-5 last:border-b-0 last:pb-0 sm:grid-cols-[130px_1fr] sm:gap-5">
@@ -461,8 +461,8 @@ export function GroupePage() {
   usePageMeta({ title: "Le Groupe | LVMR Group", description: "Découvrez LVMR Group, ses engagements et ses deux pôles spécialisés en Île-de-France.", path: "/groupe", schema: { "@context": "https://schema.org", "@type": "Organization", name: "LVMR Group", areaServed: "Île-de-France", address: "30 bis rue du Vieil Abreuvoir, 78100 Saint-Germain-en-Laye" } });
   const values = [[Layers, "Exigence", "Des protocoles adaptés et un niveau de qualité constant."], [CalendarCheck, "Réactivité", "Une prise en charge rapide des demandes et des besoins urgents selon nos disponibilités."], [ShieldCheck, "Sécurité", "Des équipes encadrées, des équipements adaptés et le respect des consignes applicables au site."], [Sparkles, "Discrétion", "Des interventions organisées pour limiter la gêne occasionnée à vos collaborateurs, occupants ou clients."], [ClipboardList, "Suivi", "Un interlocuteur identifié et, selon la prestation, un compte rendu, un rapport ou un certificat d’intervention."]] as const;
   const poles = [
-    ["01", "LVMR Premium", "Propreté professionnelle haut de gamme pour les bureaux, copropriétés, résidences, commerces et espaces recevant du public : entretien régulier, remise en état et nettoyage de surfaces vitrées.", imageSet.premium, "/premium", "#ffc547", "Découvrir LVMR Premium"],
-    ["02", "LVMR Environnement", "Interventions techniques spécialisées : remise en état après sinistre, environnements insalubres, nettoyage industriel, assainissement, dégraissage d’extraction et pôle 3D.", imageSet.environnement, "/environnement", "#7ebcab", "Découvrir LVMR Environnement"],
+    ["01", "LVMR Premium", "Entretien haut de gamme des espaces professionnels et résidentiels.", imageSet.premiumOffice, "/premium", "#ffc547", "Découvrir Premium"],
+    ["02", "LVMR Environnement", "Interventions techniques, sensibles et complexes, prises en charge avec méthode.", imageSet.groupTechnical, "/environnement", "#7ebcab", "Découvrir Environnement"],
   ];
   return (
     <PageFrame>
@@ -482,23 +482,24 @@ export function GroupePage() {
             title={<>Le bon interlocuteur, dès le premier échange.</>}
             intro="LVMR Group accompagne les entreprises, les copropriétés, les commerces, les établissements recevant du public et les gestionnaires de sites dans l’entretien, la remise en état et la sécurisation de leurs environnements."
           />
-          <div className="mt-8 grid gap-4 lg:grid-cols-[1.08fr_.92fr]">
-            <article className="group relative min-h-[520px] overflow-hidden rounded-[26px] bg-[#202020] text-white sm:min-h-[580px]">
-              <img src={imageSet.detail} alt="L’approche LVMR Group sur le terrain" className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-1000 group-hover:scale-[1.04]" />
-              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.62)_52%,rgba(32,32,32,.18)_100%)]" />
-              <div className="relative flex min-h-[520px] flex-col justify-between p-6 sm:min-h-[580px] sm:p-9">
-                <div className="flex items-center justify-between border-b border-white/18 pb-5">
-                  <span className="text-[10px] font-bold uppercase tracking-[.16em] text-[#f1f1f1]">Nos engagements</span>
+          <div className="mt-10 grid gap-4 lg:grid-cols-12">
+            <article className="group relative min-h-[540px] overflow-hidden rounded-[28px] bg-[#202020] text-white lg:col-span-7 lg:min-h-[640px]">
+              <img src={imageSet.groupMethodology} alt="Équipe coordonnée selon la méthode LVMR Group" className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-1000 group-hover:scale-[1.04]" />
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(24,24,24,.98)_0%,rgba(24,24,24,.66)_42%,rgba(24,24,24,.08)_78%)]" />
+              <div className="relative flex min-h-[540px] flex-col justify-between p-6 sm:p-9 lg:min-h-[640px]">
+                <div className="flex items-center justify-between">
+                  <span className="rounded-full border border-white/18 bg-[#202020]/55 px-3.5 py-2 text-[10px] font-bold uppercase tracking-[.16em] text-white backdrop-blur-md">LVMR Group</span>
                   <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/45">Saint-Germain-en-Laye</span>
                 </div>
                 <div>
-                  <h3 className="max-w-[520px] text-[clamp(1.8rem,3.2vw,2.8rem)] font-extrabold leading-[1.08] tracking-[-.045em]">L’équipe et les moyens réellement adaptés.</h3>
-                  <p className="mt-4 max-w-[520px] text-[14px] leading-7 text-white/65">Cette organisation permet de mobiliser l’équipe, les méthodes et les équipements réellement adaptés à chaque besoin.</p>
-                  <div className="mt-7 grid gap-2 sm:grid-cols-2">
-                    {values.map(([Icon, title, text], index) => (
-                      <div key={title} className="flex items-center gap-3 rounded-2xl border border-white/14 bg-[#202020]/45 p-3.5 backdrop-blur-md">
-                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#6b6b6b]/18 text-[#f1f1f1]"><Icon size={16} /></span>
-                        <div className="min-w-0"><p className="text-[12px] font-extrabold"><span className="mr-2 text-[#f1f1f1]">0{index + 1}</span>{title}</p><p className="mt-0.5 text-[10px] leading-4 text-white/50">{text}</p></div>
+                  <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ffc547]">Une organisation, deux expertises</p>
+                  <h3 className="mt-4 max-w-[560px] text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-.05em]">La bonne équipe.<br />Le bon niveau d’intervention.</h3>
+                  <p className="mt-5 max-w-[500px] text-[14px] leading-7 text-white/68">Un interlocuteur unique mobilise les méthodes, les moyens et le pôle réellement adaptés à votre situation.</p>
+                  <div className="mt-7 grid grid-cols-3 divide-x divide-white/14 border-t border-white/16 pt-6">
+                    {[['02', 'pôles spécialisés'], ['12', 'expertises'], ['01', 'interlocuteur']].map(([value, label]) => (
+                      <div key={label} className="px-4 first:pl-0 last:pr-0">
+                        <p className="text-[1.55rem] font-extrabold leading-none text-white">{value}</p>
+                        <p className="mt-2 text-[9px] font-bold uppercase tracking-[.12em] text-white/45">{label}</p>
                       </div>
                     ))}
                   </div>
@@ -506,22 +507,35 @@ export function GroupePage() {
               </div>
             </article>
 
-            <div className="grid gap-4">
+            <div className="grid gap-4 lg:col-span-5">
               {poles.map(([number, title, text, image, href, accent, cta]) => (
-                <Link key={title} href={href} className="group relative min-h-[252px] overflow-hidden rounded-[26px] bg-[#202020] p-6 text-white sm:min-h-[282px] sm:p-8">
-                  <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-1000 group-hover:scale-[1.05] group-hover:opacity-65" />
-                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(32,32,32,.96),rgba(32,32,32,.42))]" />
+                <Link key={title} href={href} className="group relative min-h-[260px] overflow-hidden rounded-[28px] bg-[#202020] p-6 text-white sm:min-h-[312px] sm:p-8">
+                  <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.045]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(24,24,24,.96)_0%,rgba(24,24,24,.62)_48%,rgba(24,24,24,.1)_100%)]" />
                   <div className="relative flex h-full flex-col justify-between">
-                    <div className="flex items-center justify-between"><span className="text-[11px] font-bold tracking-[.16em]" style={{ color: accent }}>{number}</span><span className="grid h-10 w-10 place-items-center rounded-full border border-white/18 bg-white/8 backdrop-blur transition group-hover:bg-white group-hover:text-[#202020]"><ArrowRight size={16} /></span></div>
+                    <div className="flex items-center justify-between"><span className="rounded-full border border-white/18 bg-[#202020]/60 px-3 py-1.5 text-[10px] font-bold tracking-[.16em] backdrop-blur" style={{ color: accent }}>{number}</span><span className="grid h-11 w-11 place-items-center rounded-full border border-white/22 bg-[#202020]/45 backdrop-blur transition group-hover:bg-white group-hover:text-[#202020]"><ArrowRight size={17} /></span></div>
                     <div>
-                      <h3 className="text-[clamp(1.4rem,2.5vw,2.05rem)] font-extrabold tracking-[-.035em]">{title}</h3>
-                      <p className="mt-3 max-w-[390px] text-[13px] leading-6 text-white/60">{text}</p>
+                      <h3 className="text-[clamp(1.55rem,2.6vw,2.2rem)] font-extrabold tracking-[-.04em]">{title}</h3>
+                      <p className="mt-3 max-w-[390px] text-[13px] leading-6 text-white/66">{text}</p>
                       <span className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>{cta} <ArrowRight size={13} className="transition group-hover:translate-x-1" /></span>
                     </div>
                   </div>
                 </Link>
               ))}
             </div>
+          </div>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {values.map(([Icon, title, text], index) => (
+              <article key={title} className="group rounded-[22px] border border-[#202020]/8 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-[#6b6b6b]/25 hover:shadow-[0_16px_40px_rgba(32,32,32,.08)]">
+                <div className="flex items-center justify-between">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#f1f1f1] text-[#6b6b6b] transition group-hover:bg-[#202020] group-hover:text-white"><Icon size={17} /></span>
+                  <span className="text-[11px] font-bold text-[#202020]/25">0{index + 1}</span>
+                </div>
+                <h3 className="mt-5 text-[1rem] font-extrabold tracking-[-.02em] text-[#202020]">{title}</h3>
+                <p className="mt-2 text-[11px] leading-5 text-[#424242]">{text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>

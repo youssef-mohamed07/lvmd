@@ -151,7 +151,11 @@ export function PageHero({ eyebrow, title, intro, image, logo, accent = "#f1f1f1
         <Breadcrumbs dark current={typeof title === "string" ? title : eyebrow} />
         <div className="mt-5 grid gap-6 sm:mt-6 sm:gap-8 lg:grid-cols-[1.16fr_0.84fr] lg:items-center lg:gap-10">
           <div>
-            {logo && <img src={logo} alt="" className="h-9 w-auto sm:h-10" />}
+            {logo && (
+              <Link href="/" aria-label="Retour à l’accueil" className="inline-flex">
+                <img src={logo} alt="LVMR Group" className="h-9 w-auto sm:h-10" />
+              </Link>
+            )}
             <div className={`${logo ? "mt-6" : ""} flex items-center gap-3`}>
               <span className="h-px w-8" style={{ backgroundColor: accent }} aria-hidden />
               <p className="text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color: accent }}>{eyebrow}</p>
@@ -179,26 +183,36 @@ export function CTASection({ title = <>Un besoin spécifique ? Parlons-en.</>, t
   return (
     <section className="bg-[#f5f5f5] py-8 sm:py-10">
       <div className="container">
-        <div className="relative overflow-hidden rounded-[24px] bg-[#202020] px-6 py-9 text-white shadow-[0_24px_70px_rgba(32,32,32,.28)] sm:rounded-[28px] sm:px-10 sm:py-11 lg:px-12">
-          <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
-          <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-[#6b6b6b]/16 blur-[110px]" aria-hidden />
-          <div className="pointer-events-none absolute -bottom-20 right-0 h-64 w-64 rounded-full bg-[#f1f1f1]/10 blur-[100px]" aria-hidden />
-          <div className="relative flex flex-col justify-between gap-10 md:flex-row md:items-end">
-            <div>
+        <div className="grid min-h-[300px] overflow-hidden rounded-[26px] border border-[#202020]/8 bg-white shadow-[0_24px_70px_rgba(32,32,32,.16)] sm:rounded-[30px] md:grid-cols-[1.12fr_.88fr]">
+          <div className="relative flex flex-col justify-between overflow-hidden bg-[#202020] p-7 text-white sm:p-10 lg:p-12">
+            <div className="hero-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden />
+            <div className="pointer-events-none absolute -bottom-28 -right-16 h-72 w-72 rounded-full bg-[#ffc547]/10 blur-[100px]" aria-hidden />
+            <div className="relative">
               <div className="flex items-center gap-3">
-                <span className="h-px w-7 bg-[#f1f1f1]" aria-hidden />
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#f1f1f1]">Contact</p>
+                <span className="h-px w-8 bg-[#ffc547]" aria-hidden />
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffc547]">Votre prochain projet</p>
               </div>
-              <h2 className="mt-5 max-w-[480px] text-[clamp(1.7rem,3vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.045em]">{title}</h2>
+              <h2 className="mt-5 max-w-[560px] text-[clamp(2rem,4vw,3.4rem)] leading-[.98] tracking-[-0.045em]">{title}</h2>
             </div>
-            <div className="max-w-[340px]">
-              <p className="text-[14px] leading-7 text-white/60">{text}</p>
+            <div className="relative mt-9 flex flex-wrap items-center gap-x-5 gap-y-2 text-[9px] font-bold uppercase tracking-[.14em] text-white/38">
+              <span>LVMR Premium</span><span className="h-1 w-1 rounded-full bg-[#ffc547]" aria-hidden /><span>LVMR Environnement</span>
+            </div>
+          </div>
+
+          <div className="relative flex flex-col justify-between bg-[#efede7] p-7 text-[#202020] sm:p-10 lg:p-12">
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-1.5 bg-gradient-to-b from-[#ffc547] to-[#7ebcab]" aria-hidden />
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#6b6b6b]">Une réponse adaptée, pas une formule toute faite</p>
+              <p className="mt-5 max-w-[390px] text-[14px] leading-7 text-[#424242]">{text}</p>
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/devis"
-                className="mt-6 inline-flex min-h-[52px] items-center gap-2 rounded-[10px] bg-[#ffc547] px-7 text-[13px] font-extrabold text-[#202020] shadow-[0_12px_32px_rgba(255,197,71,.28)] transition hover:-translate-y-0.5 hover:bg-[#b07e2b] hover:shadow-[0_18px_40px_rgba(255,197,71,.38)]"
+                className="group inline-flex min-h-[52px] items-center justify-between gap-5 rounded-full bg-[#202020] py-1.5 pl-6 pr-1.5 text-[13px] font-extrabold text-white shadow-[0_12px_28px_rgba(32,32,32,.2)] transition hover:-translate-y-0.5 hover:bg-[#303030]"
               >
-                Demander un devis <ArrowRight size={15} />
+                Demander un devis <span className="grid h-10 w-10 place-items-center rounded-full bg-[#ffc547] text-[#202020] transition group-hover:translate-x-0.5"><ArrowRight size={15} /></span>
               </Link>
+              <a href="tel:+33671849341" className="inline-flex min-h-[48px] items-center gap-2 px-2 text-[12px] font-extrabold text-[#202020] transition hover:text-[#6b6b6b]"><Phone size={15} />06 71 84 93 41</a>
             </div>
           </div>
         </div>
@@ -209,51 +223,60 @@ export function CTASection({ title = <>Un besoin spécifique ? Parlons-en.</>, t
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden bg-[#202020] text-white">
-      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#6b6b6b]/20 blur-3xl" aria-hidden />
-      <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[#6b6b6b]/10 blur-3xl" aria-hidden />
+    <footer className="relative overflow-hidden bg-[#181818] text-white">
+      <div className="pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-[#ffc547]/7 blur-[140px]" aria-hidden />
+      <div className="pointer-events-none absolute -right-28 bottom-0 h-96 w-96 rounded-full bg-[#7ebcab]/8 blur-[150px]" aria-hidden />
 
-      <div className="container relative pb-24 pt-12 sm:py-14 lg:py-14">
-        <div className="flex flex-col gap-8 rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-          <div className="max-w-[460px]">
-            <Link href="/" className="inline-flex items-center gap-3" aria-label="LVMR Group">
-              <img src={brandSet.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto" />
-            </Link>
-            <h2 className="mt-6 text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold leading-[1.15] tracking-[-0.035em]">
-              L’excellence en <span className="text-[#6b6b6b]">toutes circonstances.</span>
+      <div className="container relative pb-24 pt-12 sm:py-16">
+        <div className="flex items-center justify-between gap-6 border-b border-white/10 pb-8">
+          <Link href="/" className="inline-flex items-center" aria-label="Retour à l’accueil">
+            <img src={brandSet.groupHorizontalWhite} alt="LVMR Group" className="h-10 w-auto sm:h-12" />
+          </Link>
+          <span className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.16em] text-white/42">
+            <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#7ebcab] opacity-50" /><span className="relative h-2 w-2 rounded-full bg-[#7ebcab]" /></span>
+            Île-de-France
+          </span>
+        </div>
+
+        <div className="grid gap-10 py-10 lg:grid-cols-12 lg:items-end lg:py-14">
+          <div className="lg:col-span-7">
+            <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#ffc547]">Propreté · Technique · Environnement</p>
+            <h2 className="footer-headline display-font mt-5 flex max-w-[760px] flex-col gap-1 text-[clamp(2.4rem,5.5vw,5rem)] leading-[1.08] tracking-[-.04em] sm:gap-1.5 sm:leading-[1.06]">
+              <span className="footer-headline-line footer-headline-line--primary block">L’excellence,</span>
+              <span className="footer-headline-line footer-headline-line--secondary block">jusqu’au dernier détail.</span>
             </h2>
-            <p className="mt-3 text-[14px] leading-6 text-white/55">
-              Propreté professionnelle & interventions techniques · Saint-Germain-en-Laye · Île-de-France
-            </p>
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <nav className="flex flex-wrap gap-2" aria-label="Footer">
-              {nav.map(([label, href]) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-[13px] font-semibold text-white/75 transition hover:border-white/25 hover:bg-white/10 hover:text-white"
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav>
-            <Link
-              href="/devis"
-              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_10px_28px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b]"
-            >
-              Devis <ArrowRight size={15} />
+          <div className="lg:col-span-5 lg:pl-8">
+            <Link href="/devis" className="group block rounded-[26px] border border-white/12 bg-white/[.045] p-6 transition duration-300 hover:border-[#ffc547]/35 hover:bg-white/[.065] sm:p-7">
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[.16em] text-white/38">Votre besoin, notre point de départ</p>
+                  <p className="mt-4 text-[1.4rem] font-extrabold leading-[1.12] tracking-[-.03em] text-white">Parlons de votre site.</p>
+                  <p className="mt-2 text-[12px] leading-6 text-white/48">Une demande claire, une réponse orientée vers le bon pôle.</p>
+                </div>
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#ffc547] text-[#202020] transition duration-300 group-hover:rotate-[-8deg] group-hover:scale-105"><ArrowRight size={18} /></span>
+              </div>
             </Link>
+            <a href="tel:+33671849341" className="mt-5 inline-flex items-center gap-3 text-[13px] font-extrabold text-white transition hover:text-[#ffc547]"><Phone size={15} className="text-[#ffc547]" />06 71 84 93 41</a>
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col justify-between gap-3 px-1 text-[12px] text-white/35 sm:flex-row sm:items-center">
-          <span>© {new Date().getFullYear()} LVMR Group</span>
-          <div className="flex flex-wrap gap-4">
+        <div className="border-t border-white/10 pt-7">
+          <nav className="flex flex-wrap gap-x-6 gap-y-3" aria-label="Footer">
+            {nav.map(([label, href]) => (
+              <Link key={href} href={href} className="group inline-flex items-center gap-2 text-[12px] font-bold text-white/52 transition hover:text-white">
+                <span className="h-1 w-1 rounded-full bg-white/20 transition group-hover:bg-[#ffc547]" aria-hidden />{label}
+              </Link>
+            ))}
+          </nav>
+          <div className="mt-8 flex flex-col justify-between gap-4 text-[10px] uppercase tracking-[.11em] text-white/28 sm:flex-row sm:items-center">
+            <span>© {new Date().getFullYear()} LVMR Group · Saint-Germain-en-Laye</span>
+            <div className="flex flex-wrap gap-5 normal-case tracking-normal">
             <Link href="/mentions-legales" className="hover:text-white/70">Mentions légales</Link>
             <Link href="/confidentialite" className="hover:text-white/70">Confidentialité</Link>
             <Link href="/cookies" className="hover:text-white/70">Cookies</Link>
+            </div>
           </div>
         </div>
       </div>

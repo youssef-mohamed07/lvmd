@@ -87,56 +87,60 @@ export function StatsBand({ dark = false }: { dark?: boolean }) {
   );
 }
 
-/* Editorial process — numbered rows, not floating cards. */
+/* Connected process stage — a visual journey from brief to handoff. */
 export function ProcessRail({ dark = false }: { dark?: boolean }) {
-  const icons = [MessagesSquare, ClipboardList, FileText, Hammer, Check] as const;
+  const icons = [MessagesSquare, FileText, Hammer, Check] as const;
+  const accents = ["#ffc547", "#f1f1f1", "#7ebcab", "#ffc547"] as const;
   return (
-    <section className={`py-14 sm:py-16 ${dark ? "bg-[#202020]" : "bg-[#f5f5f5]"}`}>
+    <section className={`relative overflow-hidden py-14 sm:py-20 ${dark ? "bg-[#202020]" : "bg-[#f5f5f5]"}`}>
       <div className="container">
-        <div className="flex flex-col justify-between gap-4 border-b pb-8 sm:flex-row sm:items-end sm:gap-10"
-          style={{ borderColor: dark ? "rgba(255,255,255,.1)" : "rgba(32,32,32,.1)" }}
-        >
+        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end sm:gap-10">
           <div>
-            <p className={`text-[11px] font-bold uppercase tracking-[0.16em] ${dark ? "text-[#ffc547]" : "text-[#6b6b6b]"}`}>
-              Notre méthode
+            <p className={`inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] ${dark ? "text-[#ffc547]" : "text-[#6b6b6b]"}`}>
+              <span className="h-px w-7 bg-current" aria-hidden /> Notre méthode
             </p>
-            <h2 className={`mt-3 max-w-[520px] text-[clamp(1.7rem,3.2vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.04em] ${dark ? "text-white" : "text-[#202020]"}`}>
-              Simple pour vous.<br />Rigoureuse sur le terrain.
+            <h2 className={`mt-4 max-w-[650px] text-[clamp(2rem,4.4vw,3.8rem)] leading-[.98] tracking-[-0.045em] ${dark ? "text-white" : "text-[#202020]"}`}>
+              Un parcours clair.<br />Aucune zone grise.
             </h2>
           </div>
-          <p className={`max-w-[300px] text-[13px] leading-6 ${dark ? "text-white/50" : "text-[#424242]"}`}>
-            Vous savez qui intervient, pourquoi, et ce qui est contrôlé.
-          </p>
+          <div className="flex items-center gap-4 sm:pb-1">
+            <span className={`text-[3rem] font-extrabold leading-none ${dark ? "text-white" : "text-[#202020]"}`}>04</span>
+            <p className={`max-w-[190px] border-l pl-4 text-[10px] font-bold uppercase leading-5 tracking-[.14em] ${dark ? "border-white/15 text-white/42" : "border-[#202020]/12 text-[#424242]"}`}>étapes<br />du brief au contrôle</p>
+          </div>
         </div>
 
-        <ol className={`m-0 list-none divide-y p-0 ${dark ? "divide-white/10" : "divide-[#202020]/10"}`}>
+        <div className={`relative mt-10 overflow-hidden rounded-[30px] border ${dark ? "border-white/10 bg-white/[.035]" : "border-[#202020]/8 bg-[#202020] shadow-[0_28px_80px_rgba(32,32,32,.18)]"}`}>
+          <div className="pointer-events-none absolute inset-x-[8%] top-[72px] hidden h-px bg-gradient-to-r from-[#ffc547]/40 via-white/18 to-[#7ebcab]/40 lg:block" aria-hidden />
+          <ol className="m-0 grid list-none p-0 sm:grid-cols-2 lg:grid-cols-4">
           {processSteps.map(([n, title, text], index) => {
             const Icon = icons[index] ?? Check;
+            const accent = accents[index] ?? "#ffc547";
             return (
               <li
                 key={n}
-                className="grid grid-cols-[48px_minmax(0,1fr)_40px] items-center gap-3 py-5 sm:grid-cols-[56px_160px_minmax(0,1fr)_40px] sm:gap-5 sm:py-5"
+                className="group relative flex min-h-[330px] flex-col overflow-hidden border-b border-white/10 p-6 text-white transition duration-300 last:border-b-0 hover:bg-white/[.055] sm:p-7 sm:[&:nth-child(3)]:border-b-0 sm:[&:nth-child(4)]:border-b-0 sm:[&:nth-child(odd)]:border-r lg:min-h-[390px] lg:border-b-0 lg:border-r lg:last:border-r-0"
               >
-                <span className={`text-[13px] font-bold tabular-nums ${dark ? "text-[#ffc547]" : "text-[#6b6b6b]"}`}>
-                  {n}
-                </span>
-                <h3 className={`text-[1.02rem] font-extrabold tracking-[-0.02em] ${dark ? "text-white" : "text-[#202020]"}`}>
-                  {title}
-                </h3>
-                <p className={`col-span-3 text-[13px] leading-6 sm:col-span-1 ${dark ? "text-white/50" : "text-[#424242]"}`}>
-                  {text}
-                </p>
-                <span
-                  className={`col-start-3 row-start-1 grid h-10 w-10 place-items-center rounded-[12px] sm:col-start-4 ${
-                    dark ? "bg-white/8 text-[#ffc547]" : "bg-[#f1f1f1] text-[#6b6b6b]"
-                  }`}
-                >
-                  <Icon size={17} strokeWidth={1.9} />
-                </span>
+                <span className="pointer-events-none absolute -right-3 -top-6 text-[8rem] font-extrabold leading-none tracking-[-.08em] text-white/[.035] transition group-hover:text-white/[.065]" aria-hidden>{n}</span>
+                <div className="relative flex items-center justify-between">
+                  <span className="grid h-12 w-12 place-items-center rounded-full border border-white/14 bg-white/[.07] backdrop-blur" style={{ color: accent }}>
+                    <Icon size={19} strokeWidth={1.9} />
+                  </span>
+                  <span className="text-[11px] font-bold tracking-[.16em]" style={{ color: accent }}>{n} / 04</span>
+                </div>
+                <div className="relative mt-auto pt-16 lg:pt-20">
+                  <span className="mb-5 block h-[3px] w-9 origin-left rounded-full transition-all duration-300 group-hover:w-16" style={{ backgroundColor: accent }} aria-hidden />
+                  <h3 className="max-w-[220px] text-[1.3rem] font-extrabold leading-[1.12] tracking-[-.03em] text-white">{title}</h3>
+                  <p className="mt-3 max-w-[245px] text-[12px] leading-6 text-white/52">{text}</p>
+                </div>
               </li>
             );
           })}
-        </ol>
+          </ol>
+          <div className="flex flex-col justify-between gap-3 border-t border-white/10 bg-white/[.035] px-6 py-4 text-[10px] font-bold uppercase tracking-[.12em] text-white/38 sm:flex-row sm:items-center sm:px-7">
+            <span>Un interlocuteur du premier échange au contrôle final</span>
+            <span className="inline-flex items-center gap-2 text-[#ffc547]">Méthode LVMR <ArrowRight size={13} /></span>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -272,29 +276,30 @@ export function ZoneSection() {
 
 /* Service card grid — the inner-pages equivalent of the homepage explorer. */
 export function ServiceGrid({ services }: { services: ServiceItem[] }) {
+  const isFourCardGrid = services.length === 4;
   return (
-    <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className={`mt-10 grid gap-4 sm:grid-cols-2 ${isFourCardGrid ? "lg:grid-cols-2" : "lg:grid-cols-3 xl:grid-cols-4"}`}>
       {services.map((service) => {
         const isPremium = service.group === "premium";
         const accent = isPremium ? "#ffc547" : "#7ebcab";
         return <Link
           key={service.slug}
           href={`/${service.group}/${service.slug}`}
-          className="group relative overflow-hidden rounded-[24px] border border-[#202020]/8 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(32,32,32,.12)]"
+          className={`group relative flex min-h-[430px] overflow-hidden rounded-[24px] border border-white/10 bg-[#202020] text-white shadow-[0_14px_40px_rgba(32,32,32,.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_65px_rgba(32,32,32,.24)] ${isFourCardGrid ? "sm:min-h-[500px] lg:min-h-[540px]" : "sm:min-h-[470px] xl:min-h-[500px]"}`}
           style={{ "--service-accent": accent } as React.CSSProperties}
         >
-          <div className="relative h-44 overflow-hidden bg-[#202020]">
-            <img src={service.image} alt={service.title} className="h-full w-full object-cover opacity-85 transition duration-700 group-hover:scale-[1.05]" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.75),transparent_60%)]" />
-            <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-[#202020]/65 px-3 py-1 text-[10px] font-bold uppercase tracking-[.12em] backdrop-blur-md" style={{ color: accent }}>
+          <img src={service.image} alt={service.title} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-1000 group-hover:scale-[1.045]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,20,20,.98)_0%,rgba(24,24,24,.78)_38%,rgba(24,24,24,.12)_76%)]" />
+          <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-5 sm:p-6">
+            <span className="rounded-full border border-white/20 bg-[#202020]/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.12em] backdrop-blur-md" style={{ color: accent }}>
               {service.kicker}
             </span>
-            <span className="absolute bottom-3 right-4 text-[2rem] font-extrabold leading-none text-white/25" aria-hidden>{service.number}</span>
+            <span className="text-[2rem] font-extrabold leading-none text-white/35" aria-hidden>{service.number}</span>
           </div>
-          <div className="p-5 sm:p-6">
-            <h3 className="text-[1.15rem] font-extrabold tracking-[-0.02em] text-[#202020]">{service.title}</h3>
-            <p className="mt-2 text-[13px] leading-6 text-[#424242]">{service.description}</p>
-            <span className="mt-4 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>
+          <div className="relative z-10 mt-auto p-6 sm:p-7">
+            <h3 className="max-w-[340px] text-[1.35rem] font-extrabold leading-[1.15] tracking-[-0.025em] text-white">{service.title}</h3>
+            <p className="mt-3 max-w-[360px] text-[13px] leading-6 text-white/68">{service.description}</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-[12px] font-extrabold" style={{ color: accent }}>
               Découvrir <ArrowRight size={14} className="transition group-hover:translate-x-1" />
             </span>
           </div>

@@ -4,18 +4,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Brand signature: reserved for display headlines so body copy stays crisp. */
 @font-face {
   font-family: "Aftonur";
   src: url("/branding/font/aftonurelegantsansseriffont-regular.otf") format("opentype");
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Aftonur";
-  src: url("/branding/font/aftonurelegantsansseriffont-regularitalic.otf") format("opentype");
-  font-style: italic;
   font-weight: 400;
   font-display: swap;
 }
@@ -89,13 +82,18 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: "Aftonur", Arial, sans-serif;
-  font-weight: 500;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 main h1,
-main h2,
+main h2 {
+  font-family: "Aftonur", Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
 main h3 { text-wrap: balance; }
 button, input, textarea, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -318,9 +316,33 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     box-shadow: 0 8px 28px rgba(16, 24, 22, 0.06);
   }
   .display-font {
-    font-family: "Aftonur", Arial, sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-family: "Aftonur", Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .footer-headline {
+    cursor: default;
+  }
+  .footer-headline-line {
+    transition:
+      color 450ms var(--ease-out),
+      text-shadow 450ms var(--ease-out),
+      opacity 450ms var(--ease-out);
+  }
+  .footer-headline-line--primary {
+    color: #fff;
+    text-shadow: 0 0 36px rgba(255, 255, 255, 0.12);
+  }
+  .footer-headline-line--secondary {
+    color: rgb(255 255 255 / 0.32);
+    text-shadow: none;
+  }
+  .footer-headline:hover .footer-headline-line--primary,
+  .footer-headline:hover .footer-headline-line--secondary {
+    color: #fff;
+    text-shadow:
+      0 0 28px rgb(255 197 71 / 0.45),
+      0 0 64px rgb(255 197 71 / 0.22);
   }
 }
 
