@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { brandSet } from "@/lib/site";
+import { ogImagePath } from "@/lib/site-url";
 import { useSiteHeaderScroll } from "@/lib/useSiteHeaderScroll";
 
 const nav = [
@@ -44,7 +45,11 @@ export function usePageMeta({ title, description, path, schema }: { title: strin
     setMeta("property", "og:description", description);
     setMeta("property", "og:type", "website");
     setMeta("property", "og:url", `${window.location.origin}${path}`);
+    setMeta("property", "og:image", `${window.location.origin}${ogImagePath}`);
+    setMeta("property", "og:image:width", "1200");
+    setMeta("property", "og:image:height", "630");
     setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:image", `${window.location.origin}${ogImagePath}`);
     let canonical = document.head.querySelector("link[rel=canonical]") as HTMLLinkElement | null;
     if (!canonical) {
       canonical = document.createElement("link");
