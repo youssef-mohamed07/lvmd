@@ -4,7 +4,7 @@ import { LegalPage } from "@/components/ClientRoutes";
 
 export const metadata: Metadata = {
   title: { absolute: "Politique de confidentialité — LVMR Group" },
-  description: "Politique de confidentialité de LVMR Group : traitement des données personnelles collectées via le site.",
+  description: "Comment LVMR Group traite vos données : devis, contact et visite technique — sans revente, avec vos droits RGPD.",
   alternates: { canonical: "/confidentialite" },
 };
 

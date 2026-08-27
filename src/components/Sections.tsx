@@ -1,9 +1,9 @@
 /* LVMR Group — shared premium sections, restyled on the homepage palette (charcoal #202020, teal #6b6b6b, gold #ffc547). */
 "use client";
 import { useState } from "react";
-import { ArrowRight, Briefcase, Building2, Check, ClipboardList, Clock3, Factory, FileCheck2, FileText, Hammer, HeartPulse, Home, Landmark, MapPin, MessagesSquare, ScrollText, ShieldCheck, Sparkles, Star, Store, UserCheck, UtensilsCrossed } from "lucide-react";
+import { ArrowRight, Briefcase, Bug, Building2, Check, ClipboardList, Clock3, Factory, FileCheck2, FileText, Flame, Hammer, HeartPulse, Home, Landmark, MapPin, MessagesSquare, ScrollText, ShieldCheck, Sparkles, Star, Store, UserCheck, UtensilsCrossed } from "lucide-react";
 import Link from "next/link";
-import { imageSet, processSteps, ServiceItem } from "@/lib/site";
+import { extractionReasons, imageSet, processSteps, ServiceItem } from "@/lib/site";
 
 export function SectionHead({ eyebrow, title, intro, dark = false }: { eyebrow: string; title: React.ReactNode; intro?: string; dark?: boolean }) {
   return (
@@ -635,6 +635,363 @@ export function GarantiesBand() {
               <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#6b6b6b] to-[#f1f1f1] transition duration-300 group-hover:scale-x-100" aria-hidden />
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function PageFinalCta({
+  title,
+  text,
+  href,
+  label,
+  tone = "group",
+}: {
+  title: React.ReactNode;
+  text: string;
+  href: string;
+  label: string;
+  tone?: "group" | "premium" | "environnement";
+}) {
+  const btnClass =
+    tone === "premium"
+      ? "bg-[#ffc547] hover:bg-[#b07e2b] text-[#202020] shadow-[0_12px_32px_rgba(255,197,71,.28)]"
+      : tone === "environnement"
+        ? "bg-[#7ebcab] hover:bg-[#a2cebd] text-[#202020] shadow-[0_12px_32px_rgba(126,188,171,.28)]"
+        : "bg-[#202020] hover:bg-[#303030] text-white shadow-[0_12px_32px_rgba(32,32,32,.2)]";
+
+  return (
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
+      <div className="container">
+        <div className="overflow-hidden rounded-[26px] border border-[#202020]/8 bg-white p-7 shadow-[0_18px_60px_rgba(32,32,32,.08)] sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
+          <div className="max-w-[640px]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">Prochaine étape</p>
+            <h2 className="mt-3 text-[clamp(1.7rem,3.2vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-[#202020]">{title}</h2>
+            <p className="mt-4 text-[14px] leading-7 text-[#424242]">{text}</p>
+          </div>
+          <Link href={href} className={`mt-6 inline-flex min-h-[52px] shrink-0 items-center gap-2 rounded-[10px] px-6 text-[13px] font-extrabold transition hover:-translate-y-0.5 lg:mt-0 ${btnClass}`}>
+            {label} <ArrowRight size={15} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function WhyPremiumSection() {
+  const reasons = [
+    { icon: Sparkles, title: "Discrétion", text: "Respect des lieux occupés et interventions sans perturber votre activité." },
+    { icon: UserCheck, title: "Personnel encadré", text: "Consignes d’intervention formalisées et équipes identifiées sur site." },
+    { icon: Clock3, title: "Organisation", text: "Planning adapté à vos horaires, contraintes d’accès et fréquentation." },
+    { icon: MessagesSquare, title: "Suivi", text: "Interlocuteur identifié et ajustements si le site ou le besoin évolue." },
+    { icon: ScrollText, title: "Méthodes", text: "Produits et protocoles sélectionnés selon les surfaces et les usages." },
+  ] as const;
+
+  return (
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
+      <div className="container">
+        <SectionHead
+          eyebrow="Pourquoi choisir LVMR Premium ?"
+          title={<>Une propreté qui valorise vos espaces.</>}
+          intro="LVMR Premium accompagne les professionnels et les gestionnaires de sites qui attendent davantage qu’un simple entretien courant."
+        />
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-12 lg:grid-rows-[auto_auto_auto]">
+          <article className="group relative min-h-[340px] overflow-hidden rounded-[28px] bg-[#202020] text-white lg:col-span-5 lg:row-span-3 lg:min-h-[520px]">
+            <img
+              src={imageSet.premiumTeam}
+              alt="Équipe LVMR Premium en intervention discrète"
+              className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-1000 group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(24,24,24,.96)_0%,rgba(24,24,24,.55)_45%,rgba(24,24,24,.12)_100%)]" aria-hidden />
+            <div className="relative flex h-full min-h-[340px] flex-col justify-between p-6 sm:p-8 lg:min-h-[520px]">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#ffc547]/30 bg-[#ffc547]/10 px-3.5 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#ffc547]">
+                  LVMR Premium
+                </span>
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ffc547]">Au-delà de l’entretien courant</p>
+                <p className="mt-4 max-w-[320px] text-[clamp(1.5rem,2.4vw,2rem)] font-extrabold leading-[1.12] tracking-[-0.04em]">
+                  Discrétion, méthode et régularité — visibles dès le premier passage.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {["Site occupé", "Personnel encadré", "Interlocuteur dédié"].map((chip) => (
+                    <span key={chip} className="rounded-full border border-white/16 bg-white/[0.06] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.08em] text-white/65">
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7 lg:row-span-3 lg:grid-rows-3">
+            {reasons.map(({ icon: Icon, title, text }, index) => (
+              <article
+                key={title}
+                className={`group relative overflow-hidden rounded-[22px] border border-[#202020]/8 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-[#ffc547]/35 hover:shadow-[0_18px_50px_rgba(255,197,71,.12)] sm:p-6 ${index === 4 ? "sm:col-span-2" : ""}`}
+              >
+                <span className="absolute right-5 top-5 text-[2.2rem] font-extrabold leading-none tracking-[-0.06em] text-[#202020]/[0.05] transition group-hover:text-[#ffc547]/20" aria-hidden>
+                  0{index + 1}
+                </span>
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#ffc547]/15 text-[#b07e2b] transition duration-300 group-hover:bg-[#ffc547] group-hover:text-[#202020]">
+                  <Icon size={19} />
+                </span>
+                <h3 className="mt-5 text-[1.05rem] font-extrabold tracking-[-0.02em] text-[#202020]">{title}</h3>
+                <p className="mt-2 text-[13px] leading-6 text-[#424242]">{text}</p>
+                <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#ffc547] to-[#b07e2b] transition duration-300 group-hover:scale-x-100" aria-hidden />
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ReferencesProofSection() {
+  const sectors = [
+    [Store, "Commerce"],
+    [Building2, "Copropriété"],
+    [Factory, "Site industriel"],
+    [Landmark, "Établissement"],
+    [Briefcase, "Gestionnaire"],
+    [Home, "Logement"],
+  ] as const;
+
+  const proofs = [
+    {
+      icon: FileCheck2,
+      title: "Attestations d’assurance",
+      text: "Disponibles sur demande, en cours de validité.",
+      accent: "text-[#b07e2b]",
+      glow: "bg-[#ffc547]/15 ring-[#ffc547]/25",
+    },
+    {
+      icon: ScrollText,
+      title: "Qualifications & certifications",
+      text: "Présentées selon les prestations réellement couvertes.",
+      accent: "text-[#5a9a88]",
+      glow: "bg-[#7ebcab]/15 ring-[#7ebcab]/25",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Traçabilité d’intervention",
+      text: "Compte rendu, rapport ou certificat selon la mission.",
+      accent: "text-[#6b6b6b]",
+      glow: "bg-[#202020]/[0.06] ring-[#202020]/10",
+    },
+  ] as const;
+
+  return (
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
+      <div className="container">
+        <SectionHead
+          eyebrow="Références et preuves"
+          title={<>Des contenus authentiques, publiés avec accord.</>}
+          intro="Logos, photographies, cas clients et témoignages ne sont diffusés qu’avec l’autorisation expresse des clients concernés."
+        />
+
+        <div className="mt-10 overflow-hidden rounded-[28px] border border-[#202020]/8 bg-white shadow-[0_24px_70px_rgba(32,32,32,.08)]">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+            <div className="relative border-b border-[#202020]/8 bg-[linear-gradient(135deg,#fff_0%,#fafafa_55%,#f5f5f5_100%)] p-7 sm:p-9 lg:border-b-0 lg:border-r lg:p-10">
+              <div className="pointer-events-none absolute -left-10 top-0 h-40 w-40 rounded-full bg-[#ffc547]/10 blur-[80px]" aria-hidden />
+              <div className="pointer-events-none absolute -right-8 bottom-0 h-36 w-36 rounded-full bg-[#7ebcab]/10 blur-[70px]" aria-hidden />
+
+              <div className="relative">
+                <p className="inline-flex items-center gap-2 rounded-full border border-[#ffc547]/25 bg-[#ffc547]/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.14em] text-[#b07e2b]">
+                  <ShieldCheck size={13} /> Engagement éditorial
+                </p>
+                <h3 className="mt-5 max-w-[420px] text-[clamp(1.55rem,2.6vw,2.2rem)] font-extrabold leading-[1.1] tracking-[-0.04em] text-[#202020]">
+                  Rien n’est publié <span className="text-[#6b6b6b]">sans votre accord.</span>
+                </h3>
+                <p className="mt-4 max-w-[440px] text-[13px] leading-7 text-[#424242]">
+                  Chaque logo, visuel ou retour d’expérience est validé par le client concerné avant diffusion — sur le site, en devis ou en présentation commerciale.
+                </p>
+
+                <div className="mt-8">
+                  <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#6b6b6b]">Types de sites accompagnés</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {sectors.map(([Icon, label]) => (
+                      <span
+                        key={label}
+                        className="inline-flex items-center gap-2 rounded-full border border-[#202020]/8 bg-white px-3.5 py-2 text-[11px] font-semibold text-[#202020] shadow-[0_4px_14px_rgba(32,32,32,.04)] transition hover:-translate-y-0.5 hover:border-[#7ebcab]/35 hover:shadow-[0_8px_22px_rgba(126,188,171,.12)]"
+                      >
+                        <Icon size={13} className="text-[#5a9a88]" aria-hidden />
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="divide-y divide-[#202020]/8">
+              {proofs.map(({ icon: Icon, title, text, accent, glow }) => (
+                <article key={title} className="group relative p-7 transition hover:bg-[#fafafa] sm:p-8 lg:p-9">
+                  <div className="flex items-start gap-4">
+                    <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl ring-1 ring-inset transition duration-300 group-hover:scale-105 ${glow} ${accent}`}>
+                      <Icon size={20} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-[1.05rem] font-extrabold tracking-[-0.02em] text-[#202020]">{title}</h3>
+                      <p className="mt-2 text-[13px] leading-6 text-[#424242]">{text}</p>
+                    </div>
+                    <ArrowRight size={16} className="mt-1 hidden shrink-0 text-[#202020]/20 transition group-hover:translate-x-0.5 group-hover:text-[#b07e2b] sm:block" aria-hidden />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 border-t border-[#202020]/8 bg-[#fafafa] px-7 py-4 text-[10px] font-bold uppercase tracking-[.12em] text-[#6b6b6b] sm:flex-row sm:items-center sm:justify-between sm:px-9">
+            <span>Contenus authentiques · Île-de-France</span>
+            <span className="normal-case tracking-normal text-[#424242]/80">Documents transmis sur demande lors de votre brief</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function HottesExtractionSection() {
+  const perimeter = [
+    "Hotte professionnelle et surfaces accessibles",
+    "Filtres métalliques",
+    "Conduits d’extraction accessibles",
+    "Moteurs, turbines et caissons selon accessibilité",
+  ];
+
+  return (
+    <section className="pb-8 sm:pb-10">
+      <div className="container">
+        <div className="overflow-hidden rounded-[26px] border border-[#202020]/8 bg-[#202020] text-white shadow-[0_28px_80px_rgba(32,32,32,.18)] lg:grid lg:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)]">
+          <div className="relative min-h-[280px] overflow-hidden lg:min-h-full">
+            <img src={imageSet.environmentKitchen} alt="Dégraissage de hottes professionnelles" className="absolute inset-0 h-full w-full object-cover opacity-80" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.94)_0%,rgba(32,32,32,.45)_55%,rgba(32,32,32,.15)_100%)] lg:bg-[linear-gradient(to_right,rgba(32,32,32,.15)_0%,rgba(32,32,32,.88)_100%)]" aria-hidden />
+            <div className="relative flex h-full min-h-[280px] flex-col justify-between p-6 sm:p-8 lg:min-h-[420px]">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#7ebcab]/30 bg-[#7ebcab]/10 px-3.5 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#7ebcab]">
+                <UtensilsCrossed size={13} /> Hottes & extraction
+              </span>
+              <div>
+                <h3 className="max-w-[380px] text-[clamp(1.45rem,2.5vw,2rem)] font-extrabold leading-[1.1] tracking-[-0.035em]">Dégraissage de hottes professionnelles</h3>
+                <p className="mt-3 max-w-[360px] text-[13px] leading-6 text-white/62">Restaurants, brasseries, cuisines collectives, établissements scolaires, hôtels et établissements de santé.</p>
+                <Link href="/environnement/hottes-professionnelles" className="mt-5 inline-flex items-center gap-2 text-[12px] font-extrabold text-[#7ebcab] transition hover:gap-2.5">
+                  Voir la prestation <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-px bg-white/10 sm:grid-cols-2">
+            <div className="bg-[#202020] p-6 sm:p-7">
+              <div className="flex items-center gap-3">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#7ebcab]/15 text-[#7ebcab]"><Flame size={18} /></span>
+                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#7ebcab]">Périmètre possible</p>
+              </div>
+              <ul className="mt-5 space-y-3">
+                {perimeter.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-6 text-white/72">
+                    <Check size={14} className="mt-0.5 shrink-0 text-[#7ebcab]" strokeWidth={2.5} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-[#252525] p-6 sm:p-7">
+              <div className="flex items-center gap-3">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#ffc547]/12 text-[#ffc547]"><ShieldCheck size={18} /></span>
+                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#ffc547]">Pourquoi entretenir ?</p>
+              </div>
+              <ul className="mt-5 space-y-3">
+                {extractionReasons.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-6 text-white/68">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#7ebcab]" aria-hidden />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Pole3DDetailSection() {
+  const blocks = [
+    { icon: ShieldCheck, title: "Dératisation", text: "Repérage des zones de passage, dispositifs adaptés, recommandations préventives et suivi selon le besoin." },
+    { icon: Bug, title: "Désinsectisation", text: "Blattes, cafards, fourmis, puces, punaises de lit : méthode choisie selon l’espèce, le site et les précautions nécessaires." },
+    { icon: Sparkles, title: "Désinfection", text: "Assainissement des surfaces après situation sanitaire, contamination, sinistre ou remise en état approfondie." },
+  ] as const;
+
+  const tracked = [
+    "Diagnostic ou visite préalable selon la situation.",
+    "Protocole adapté au nuisible et à l’activité du site.",
+    "Consignes de préparation communiquées avant l’intervention.",
+    "Personnel formé et certifié pour les traitements réalisés.",
+    "Compte rendu ou fiche d’intervention remis selon la prestation.",
+  ];
+
+  return (
+    <section className="bg-[#f5f5f5] py-14 sm:py-20">
+      <div className="container">
+        <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#202020] shadow-[0_28px_80px_rgba(32,32,32,.2)]">
+          <div className="hero-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden />
+          <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-[#7ebcab]/10 blur-[100px]" aria-hidden />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-[#ffc547]/8 blur-[100px]" aria-hidden />
+
+          <div className="relative border-b border-white/10 px-6 py-8 sm:px-8 sm:py-10 lg:flex lg:items-end lg:justify-between lg:gap-10">
+            <div className="max-w-[620px]">
+              <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#7ebcab]">
+                <span className="h-px w-5 bg-current" aria-hidden />
+                Pôle 3D
+              </p>
+              <h2 className="mt-4 text-[clamp(1.8rem,3.4vw,2.8rem)] font-extrabold leading-[1.06] tracking-[-0.04em] text-white">
+                Dératisation, désinsectisation, désinfection.
+              </h2>
+            </div>
+            <p className="mt-5 max-w-[420px] text-[14px] leading-7 text-white/58 lg:mt-0">
+              Prévention, identification et traitement des nuisibles — ainsi que les opérations de désinfection dans les locaux professionnels, commerces, restaurants, copropriétés et environnements sensibles.
+            </p>
+          </div>
+
+          <ol className="relative m-0 grid list-none gap-px border-b border-white/10 bg-white/10 p-0 lg:grid-cols-3">
+            {blocks.map(({ icon: Icon, title, text }, index) => (
+              <li key={title} className="group relative flex min-h-[240px] flex-col bg-[#202020] p-6 transition duration-300 hover:bg-[#2a2a2a] sm:p-7">
+                <span className="absolute right-5 top-5 text-[2.4rem] font-extrabold leading-none text-white/[0.04] transition group-hover:text-[#7ebcab]/15" aria-hidden>0{index + 1}</span>
+                <span className="grid h-11 w-11 place-items-center rounded-xl border border-white/12 bg-white/[0.06] text-[#7ebcab] transition group-hover:border-[#7ebcab]/35 group-hover:bg-[#7ebcab]/10">
+                  <Icon size={19} />
+                </span>
+                <h3 className="mt-6 text-[1.15rem] font-extrabold tracking-[-0.02em] text-white">{title}</h3>
+                <p className="mt-3 flex-1 text-[13px] leading-6 text-white/58">{text}</p>
+                <span className="mt-5 block h-[3px] w-10 origin-left rounded-full bg-[#7ebcab] transition-all duration-300 group-hover:w-16" aria-hidden />
+              </li>
+            ))}
+          </ol>
+
+          <div className="relative px-6 py-7 sm:px-8 sm:py-8">
+            <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#ffc547]">Méthode</p>
+                <h3 className="mt-2 text-[1.25rem] font-extrabold tracking-[-0.02em] text-white">Une intervention encadrée et traçable.</h3>
+              </div>
+              <Link href="/devis" className="inline-flex items-center gap-2 text-[13px] font-extrabold text-[#7ebcab] transition hover:gap-2.5">
+                Demander un diagnostic 3D <ArrowRight size={14} />
+              </Link>
+            </div>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {tracked.map((item, index) => (
+                <li key={item} className="flex items-start gap-3 rounded-[16px] border border-white/10 bg-white/[0.04] px-4 py-3.5 text-[12px] leading-5 text-white/70">
+                  <span className="mt-0.5 text-[10px] font-bold tabular-nums text-[#7ebcab]">0{index + 1}</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

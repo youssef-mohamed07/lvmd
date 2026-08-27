@@ -141,6 +141,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     top: 0;
     z-index: 50;
     padding: 12px 12px 0;
+    transition: transform 320ms var(--ease-out);
+    will-change: transform;
+  }
+  .site-header[data-hidden="true"] {
+    transform: translateY(calc(-100% - 14px));
+    pointer-events: none;
   }
   .site-header-bar {
     display: flex;

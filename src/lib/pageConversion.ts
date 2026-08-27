@@ -13,6 +13,7 @@ export type PageConversionContent = {
   defaultNeedId: string;
   needChips: NeedChip[];
   source: string;
+  submitLabel?: string;
 };
 
 const sharedFaqs = {
@@ -55,6 +56,7 @@ export const pageConversionContent = {
       { id: "remise", label: "Remise en état", hint: "Après travaux" },
     ],
     source: "Formulaire court — LVMR Premium",
+    submitLabel: "Demander un devis LVMR Premium",
   },
   environnement: {
     faqTitle: "Avant votre expertise Environnement.",
@@ -76,6 +78,7 @@ export const pageConversionContent = {
       { id: "technique", label: "Pôle 3D", hint: "Nuisibles / DDD" },
     ],
     source: "Formulaire court — LVMR Environnement",
+    submitLabel: "Demander une expertise LVMR Environnement",
   },
   expertises: {
     faqTitle: "Avant de choisir une expertise.",
@@ -139,6 +142,7 @@ export const pageConversionContent = {
       { id: "technique", label: "Technique & 3D", hint: "LVMR Environnement" },
     ],
     source: "Formulaire court — Le Groupe",
+    submitLabel: "Parler de votre projet",
   },
   devis: {
     faqTitle: "Avant le devis.",
@@ -211,5 +215,6 @@ export function getServiceConversionContent(service: ServiceItem): PageConversio
       ? relatedChips
       : pageConversionContent[service.group === "premium" ? "premium" : "environnement"].needChips,
     source: `Formulaire court — ${service.title}`,
+    submitLabel: service.group === "premium" ? "Demander un devis LVMR Premium" : "Demander une expertise LVMR Environnement",
   };
 }

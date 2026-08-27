@@ -3,7 +3,7 @@ import { environmentServices, premiumServices } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://lvmr-group.fr";
-  const pages = ["", "/groupe", "/premium", "/environnement", "/expertises", "/realisations", "/contact", "/devis", "/mentions-legales", "/confidentialite", "/cookies"];
+  const pages = ["", "/groupe", "/premium", "/environnement", "/expertises", "/realisations", "/contact", "/devis", "/conditions-generales", "/mentions-legales", "/confidentialite", "/cookies"];
   const services = [
     ...premiumServices.map((item) => `/premium/${item.slug}`),
     ...environmentServices.map((item) => `/environnement/${item.slug}`),

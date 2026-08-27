@@ -89,11 +89,13 @@ export function PageDevisForm({ content }: { content: PageConversionContent }) {
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState("");
   const [formProfile, setFormProfile] = useState("");
+  const [formCompany, setFormCompany] = useState("");
   const [formNeed, setFormNeed] = useState(content.defaultNeed);
   const [formName, setFormName] = useState("");
   const [formPhone, setFormPhone] = useState("");
   const [formEmail, setFormEmail] = useState("");
   const [formAddress, setFormAddress] = useState("");
+  const [formSurface, setFormSurface] = useState("");
   const [formRhythm, setFormRhythm] = useState("");
   const [formMessage, setFormMessage] = useState("");
   const [formConsent, setFormConsent] = useState(false);
@@ -136,6 +138,8 @@ export function PageDevisForm({ content }: { content: PageConversionContent }) {
     setFormFiles([]);
     setFormMessage("");
     setFormAddress("");
+    setFormSurface("");
+    setFormCompany("");
     setFormRhythm("");
     setNeedId(content.defaultNeedId);
     setFormNeed(content.defaultNeed);
@@ -154,11 +158,13 @@ export function PageDevisForm({ content }: { content: PageConversionContent }) {
 
     const payload = {
       place: formProfile,
+      company: formCompany.trim(),
       exactService: formNeed.trim(),
       name: formName.trim(),
       phone: formPhone.trim(),
       email: formEmail.trim(),
       location: formAddress.trim(),
+      surface: formSurface.trim(),
       rhythm: formRhythm,
       message: formMessage.trim(),
       files: formFiles,
@@ -286,7 +292,12 @@ export function PageDevisForm({ content }: { content: PageConversionContent }) {
                       </label>
 
                       <label className="block">
-                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Votre besoin *</span>
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Société / organisme</span>
+                        <input value={formCompany} onChange={(event) => setFormCompany(event.target.value)} placeholder="Nom de l’entreprise, du syndic ou de l’établissement" className={fieldClass} />
+                      </label>
+
+                      <label className="block">
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Type de prestation recherchée *</span>
                         <input required value={formNeed} onChange={(event) => setFormNeed(event.target.value)} placeholder="Ex. nettoyage bureaux, 3 passages / semaine" className={fieldClass} />
                       </label>
 
@@ -349,14 +360,18 @@ export function PageDevisForm({ content }: { content: PageConversionContent }) {
                           </div>
                         </label>
                         <label className="block">
-                          <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Photographies</span>
+                          <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Surface approximative</span>
+                          <input value={formSurface} onChange={(event) => setFormSurface(event.target.value)} placeholder="Ex. 250 m², 3 niveaux, cuisine pro." className={fieldClass} />
+                        </label>
+                      </div>
+                      <label className="block">
+                        <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Photographies ou documents</span>
                           <span className={`${fieldClass} relative flex min-h-[50px] cursor-pointer items-center gap-2.5 text-[13px] text-[#424242]`}>
                             <Upload size={15} className="shrink-0 text-[#6b6b6b]" />
                             <span className="truncate">{formFiles.length > 0 ? formFiles.join(", ") : "Ajouter des photos (optionnel)"}</span>
                             <input type="file" multiple accept="image/*,.pdf" className="absolute inset-0 cursor-pointer opacity-0" onChange={(event) => setFormFiles(Array.from(event.target.files ?? []).map((file) => file.name))} />
                           </span>
                         </label>
-                      </div>
                       <label className="block">
                         <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Message</span>
                         <textarea value={formMessage} onChange={(event) => setFormMessage(event.target.value)} rows={3} placeholder="Décrivez le besoin, les contraintes du site ou le degré d’urgence." className={`${fieldClass} min-h-0 resize-none py-3`} />
@@ -394,7 +409,7 @@ export function PageDevisForm({ content }: { content: PageConversionContent }) {
                         </>
                       ) : (
                         <>
-                          Envoyer ma demande <ArrowRight size={15} />
+                          {content.submitLabel ?? "Envoyer ma demande"} <ArrowRight size={15} />
                         </>
                       )}
                     </button>

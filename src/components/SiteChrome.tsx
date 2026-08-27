@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { brandSet } from "@/lib/site";
+import { useSiteHeaderScroll } from "@/lib/useSiteHeaderScroll";
 
 const nav = [
   ["Accueil", "/"],
@@ -64,24 +65,12 @@ export function usePageMeta({ title, description, path, schema }: { title: strin
 }
 
 export function SiteHeader() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = usePathname();
-
-  useEffect(() => {
-    let scrolledRef = window.scrollY > 8;
-    const handler = () => {
-      const next = window.scrollY > 8;
-      if (next === scrolledRef) return;
-      scrolledRef = next;
-      setScrolled(next);
-    };
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
+  const { scrolled, hidden } = useSiteHeaderScroll(open);
 
   return (
-    <header className="site-header" data-scrolled={scrolled || open}>
+    <header className="site-header" data-scrolled={scrolled || open} data-hidden={hidden && !open}>
       <div className="site-header-bar">
         <Link href="/" aria-label="Accueil"><BrandMark /></Link>
         <nav className="hidden shrink-0 items-center gap-0.5 rounded-full bg-[#202020]/[0.04] p-1 lg:flex" aria-label="Navigation">
@@ -280,8 +269,9 @@ export function SiteFooter() {
           <div className="mt-8 flex flex-col justify-between gap-4 text-[10px] uppercase tracking-[.11em] text-white/28 sm:flex-row sm:items-center">
             <span>© {new Date().getFullYear()} LVMR Group · Saint-Germain-en-Laye</span>
             <div className="flex flex-wrap gap-5 normal-case tracking-normal">
+            <Link href="/conditions-generales" className="hover:text-white/70">Conditions générales</Link>
+            <Link href="/confidentialite" className="hover:text-white/70">Politique de confidentialité</Link>
             <Link href="/mentions-legales" className="hover:text-white/70">Mentions légales</Link>
-            <Link href="/confidentialite" className="hover:text-white/70">Confidentialité</Link>
             <Link href="/cookies" className="hover:text-white/70">Cookies</Link>
             </div>
           </div>
@@ -293,7 +283,7 @@ export function SiteFooter() {
 
 export function PageFrame({ children }: { children: ReactNode; darkHeader?: boolean }) {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#f5f5f5] text-[#202020]">
+    <div className="min-h-screen overflow-x-clip bg-[#f5f5f5] text-[#202020]">
       <SiteHeader />
       <main>{children}</main>
       <SiteFooter />

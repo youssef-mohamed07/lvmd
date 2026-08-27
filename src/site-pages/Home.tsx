@@ -30,7 +30,9 @@ import {
   X,
 } from "lucide-react";
 import { PolesComparison, SectorsSection, TestimonialsSection, ZoneSection } from "@/components/Sections";
+import { SiteFooter } from "@/components/SiteChrome";
 import { allServices, brandSet, imageSet as images } from "@/lib/site";
+import { useSiteHeaderScroll } from "@/lib/useSiteHeaderScroll";
 
 /**
  * LVMR homepage — designed to beat French market leaders on clarity & conversion.
@@ -137,19 +139,21 @@ function ScrollProgressBar() {
 
 export default function Home() {
   const location = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { scrolled, hidden } = useSiteHeaderScroll(mobileOpen);
   const [need, setNeed] = useState("bureaux");
   const [formStep, setFormStep] = useState(0);
   const [formSent, setFormSent] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState("");
   const [formProfile, setFormProfile] = useState("");
+  const [formCompany, setFormCompany] = useState("");
   const [formNeed, setFormNeed] = useState("Bureaux — Entretien régulier");
   const [formName, setFormName] = useState("");
   const [formPhone, setFormPhone] = useState("");
   const [formEmail, setFormEmail] = useState("");
   const [formAddress, setFormAddress] = useState("");
+  const [formSurface, setFormSurface] = useState("");
   const [formRhythm, setFormRhythm] = useState("");
   const [formMessage, setFormMessage] = useState("");
   const [formConsent, setFormConsent] = useState(false);
@@ -158,19 +162,6 @@ export default function Home() {
   const [serviceGroup, setServiceGroup] = useState<"Premium" | "Environnement">("Premium");
   const [activeServiceIndex, setActiveServiceIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
-
-  useEffect(() => {
-    let scrolledRef = window.scrollY > 8;
-    setScrolled(scrolledRef);
-    const onScroll = () => {
-      const next = window.scrollY > 8;
-      if (next === scrolledRef) return;
-      scrolledRef = next;
-      setScrolled(next);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -237,6 +228,8 @@ export default function Home() {
     setFormFiles([]);
     setFormMessage("");
     setFormAddress("");
+    setFormSurface("");
+    setFormCompany("");
     setFormRhythm("");
   };
 
@@ -252,11 +245,13 @@ export default function Home() {
     }
     const payload = {
       place: formProfile,
+      company: formCompany.trim(),
       exactService: formNeed.trim(),
       name: formName.trim(),
       phone: formPhone.trim(),
       email: formEmail.trim(),
       location: formAddress.trim(),
+      surface: formSurface.trim(),
       rhythm: formRhythm,
       message: formMessage.trim(),
       files: formFiles,
@@ -313,7 +308,7 @@ export default function Home() {
     <div className="min-h-screen overflow-x-hidden bg-[#f5f5f5] text-[#202020]">
       <ScrollProgressBar />
       {/* FLOATING HEADER — clearer than Onet/GSF mega-nav */}
-      <header className="site-header" data-scrolled={scrolled || mobileOpen}>
+      <header className="site-header" data-scrolled={scrolled || mobileOpen} data-hidden={hidden && !mobileOpen}>
         <div className="site-header-bar">
           <Link href="/" aria-label="Accueil" className="shrink-0">
             <BrandMark />
@@ -981,7 +976,17 @@ export default function Home() {
                           </label>
 
                           <label className="block">
-                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Votre besoin *</span>
+                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Société / organisme</span>
+                            <input
+                              value={formCompany}
+                              onChange={(event) => setFormCompany(event.target.value)}
+                              placeholder="Nom de l’entreprise, du syndic ou de l’établissement"
+                              className={homeFieldClass}
+                            />
+                          </label>
+
+                          <label className="block">
+                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Type de prestation recherchée *</span>
                             <input
                               required
                               value={formNeed}
@@ -1087,7 +1092,18 @@ export default function Home() {
                               </div>
                             </label>
                             <label className="block">
-                              <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Photographies</span>
+                              <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Surface approximative</span>
+                              <input
+                                value={formSurface}
+                                onChange={(event) => setFormSurface(event.target.value)}
+                                placeholder="Ex. 250 m², 3 niveaux, cuisine pro."
+                                className={homeFieldClass}
+                              />
+                            </label>
+                          </div>
+
+                          <label className="block">
+                            <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Photographies ou documents</span>
                               <span className={`${homeFieldClass} relative flex min-h-[50px] cursor-pointer items-center gap-2.5 text-[13px] text-[#424242]`}>
                                 <Upload size={15} className="shrink-0 text-[#6b6b6b]" />
                                 <span className="truncate">{formFiles.length > 0 ? formFiles.join(", ") : "Ajouter des photos (optionnel)"}</span>
@@ -1100,7 +1116,6 @@ export default function Home() {
                                 />
                               </span>
                             </label>
-                          </div>
 
                           <label className="block">
                             <span className="mb-2 block text-[12px] font-semibold text-[#202020]">Message</span>
@@ -1175,56 +1190,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="relative overflow-hidden bg-[#202020] text-white">
-        <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#6b6b6b]/20 blur-3xl" aria-hidden />
-        <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[#6b6b6b]/10 blur-3xl" aria-hidden />
-
-        <div className="container relative pb-24 pt-12 sm:py-14 lg:py-14">
-          <div className="flex flex-col gap-8 rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-            <div className="max-w-[460px]">
-              <Link href="/" className="inline-flex items-center" aria-label="Retour à l’accueil">
-                <img src={brandSet.groupHorizontalWhite} alt="LVMR Group" className="h-11 w-auto" />
-              </Link>
-              <h2 className="mt-6 text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold leading-[1.15] tracking-[-0.035em]">
-                L’excellence en <span className="text-[#6b6b6b]">toutes circonstances.</span>
-              </h2>
-              <p className="mt-3 text-[14px] leading-6 text-white/55">
-                Propreté professionnelle & interventions techniques · Saint-Germain-en-Laye · Île-de-France
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <nav className="flex flex-wrap gap-2" aria-label="Footer">
-                {navItems.slice(1).map(([label, href]) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-[13px] font-semibold text-white/75 transition hover:border-white/25 hover:bg-white/10 hover:text-white"
-                  >
-                    {label}
-                  </Link>
-                ))}
-              </nav>
-              <Link
-                href="/devis"
-                className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#ffc547] px-5 text-[13px] font-bold text-[#202020] shadow-[0_10px_28px_rgba(255,197,71,.35)] transition hover:bg-[#b07e2b]"
-              >
-                Devis <ArrowRight size={15} />
-              </Link>
-            </div>
-          </div>
-
-          <div className="mt-6 flex flex-col justify-between gap-3 px-1 text-[12px] text-white/35 sm:flex-row sm:items-center">
-            <span>© {new Date().getFullYear()} LVMR Group</span>
-            <div className="flex flex-wrap items-center gap-4">
-              <Link href="/mentions-legales" className="hover:text-white/70">Mentions légales</Link>
-              <Link href="/confidentialite" className="hover:text-white/70">Confidentialité</Link>
-              <Link href="/cookies" className="hover:text-white/70">Cookies</Link>
-              <span className="hidden tracking-[0.08em] sm:inline">PROPRETÉ · ENVIRONNEMENT · IDF</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <Link
         href="/devis"
