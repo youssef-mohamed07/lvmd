@@ -29,7 +29,7 @@ import {
   Wrench,
   X,
 } from "lucide-react";
-import { PolesComparison, SectorsSection, TestimonialsSection, ZoneSection } from "@/components/Sections";
+import { ClientLogosSection, PolesComparison, SectorsSection, TestimonialsSection, ZoneSection } from "@/components/Sections";
 import { SiteFooter } from "@/components/SiteChrome";
 import { allServices, brandSet, imageSet as images } from "@/lib/site";
 import { useSiteHeaderScroll } from "@/lib/useSiteHeaderScroll";
@@ -373,7 +373,7 @@ export default function Home() {
 
       <main>
         {/* HERO — clear corporate statement with an independent visual */}
-        <section id="accueil" className="hero-stage relative overflow-hidden bg-[#202020] text-white">
+        <section id="accueil" className="hero-stage relative overflow-hidden bg-[#353535] text-white">
           <div className="pointer-events-none absolute -left-40 top-20 h-[520px] w-[520px] rounded-full bg-[#6b6b6b]/14 blur-[120px]" aria-hidden />
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
           <div className="container relative z-10 grid gap-9 pb-10 pt-28 sm:gap-12 sm:pb-14 sm:pt-32 lg:min-h-[790px] lg:grid-cols-[.92fr_1.08fr] lg:items-center lg:gap-16 lg:pb-16 lg:pt-36">
@@ -771,6 +771,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* CLIENT REFERENCES — supplied logos */}
+        <ClientLogosSection />
 
         {/* VOICES — anonymized client feedback */}
         <TestimonialsSection />

@@ -64,12 +64,11 @@ export function PremiumPage() {
   return (
     <PageFrame>
       <PageHero
-        logo={brandSet.premiumHorizontalWhite}
+        logo={brandSet.premiumHorizontal}
         accent="#ffc547"
         eyebrow="Propreté professionnelle haut de gamme"
         title={<>La propreté au rang <span className="hero-stroke">du luxe.</span></>}
         intro="Des prestations soignées, discrètes et adaptées aux bureaux, copropriétés, résidences et environnements professionnels exigeants."
-        image={imageSet.premium}
       >
         <CtaChip href="/devis" label="Demander une étude personnalisée" tone="premium" />
       </PageHero>
@@ -131,7 +130,6 @@ export function EnvironnementPage() {
         eyebrow="Assainir, sécuriser, préserver"
         title={<>Des situations complexes, <span className="hero-stroke">une réponse maîtrisée.</span></>}
         intro="Interventions techniques, remises en état, environnements sensibles, nettoyage industriel, dégraissage professionnel et solutions 3D en Île-de-France."
-        image={imageSet.environmentHero}
       >
         <CtaChip href="/devis" label="Demander une expertise" tone="environnement" />
       </PageHero>
@@ -246,7 +244,7 @@ export function ExpertisesPage() {
   return (
     <PageFrame>
       <PageHero
-        logo={brandSet.groupHorizontalWhite}
+        logo={brandSet.groupHorizontal}
         eyebrow="Le savoir-faire"
         title={<>La précision, <span className="hero-stroke">en pratique.</span></>}
         intro="Deux pôles, un même niveau d’attention. Parcourez les services LVMR et trouvez le point d’entrée qui correspond à votre situation."
@@ -350,7 +348,7 @@ export function RealisationsPage() {
   return (
     <PageFrame>
       <PageHero
-        logo={brandSet.groupHorizontalWhite}
+        logo={brandSet.groupHorizontal}
         eyebrow="Références et preuves"
         title={<>Le réel comme <span className="hero-stroke">meilleure preuve.</span></>}
         intro="Découvrez des photographies terrain authentiques qui documentent le contexte, l’intervention et le résultat obtenu."
@@ -522,11 +520,10 @@ export function GroupePage() {
   return (
     <PageFrame>
       <PageHero
-        logo={brandSet.groupHorizontalWhite}
+        logo={brandSet.groupHorizontal}
         eyebrow="Groupe LVMR"
         title={<>L’excellence en <span className="hero-stroke">toutes circonstances.</span></>}
         intro="Deux pôles complémentaires pour répondre à vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France."
-        image={imageSet.groupMethodology}
       >
         <CtaChip href="/devis" label="Demander un devis" tone="premium" />
       </PageHero>
@@ -618,7 +615,7 @@ export function DevisPage() {
   return (
     <PageFrame>
       <PageHero
-        logo={brandSet.groupHorizontalWhite}
+        logo={brandSet.groupHorizontal}
         eyebrow="Demander un devis"
         title={<>Parlons de votre <span className="hero-stroke">besoin.</span></>}
         intro="Quelques informations nous aideront à comprendre votre environnement et à préparer un échange utile."
@@ -639,7 +636,7 @@ export function ContactPage() {
   return (
     <PageFrame>
       <PageHero
-        logo={brandSet.groupHorizontalWhite}
+        logo={brandSet.groupHorizontal}
         eyebrow="Contact"
         title={<>Parlons de votre <span className="hero-stroke">besoin.</span></>}
         intro="Vous souhaitez obtenir un devis, organiser une visite technique ou échanger sur une intervention ? Notre équipe vous orientera vers LVMR Premium ou LVMR Environnement."
@@ -780,7 +777,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
   return (
     <PageFrame>
       <PageHero
-        logo={service.group === "premium" ? brandSet.premiumHorizontalWhite : brandSet.environnementHorizontal}
+        logo={service.group === "premium" ? brandSet.premiumHorizontal : brandSet.environnementHorizontal}
         accent={service.group === "premium" ? "#ffc547" : "#7ebcab"}
         eyebrow={`${service.number} — ${service.kicker}`}
         title={<>{service.title.split(" ").slice(0, -1).join(" ")} {" "}<span className="hero-stroke">{service.title.split(" ").slice(-1)}</span></>}
@@ -1312,7 +1309,7 @@ export function LegalPage({ type }: { type: keyof typeof legalPaths }) {
   usePageMeta({ title: `${config.title} — LVMR Group`, description: config.description, path: legalPaths[type] });
   return (
     <PageFrame>
-      <PageHero logo={brandSet.groupHorizontalWhite} eyebrow={config.eyebrow} title={config.heroTitle} intro={config.intro} />
+      <PageHero logo={brandSet.groupHorizontal} eyebrow={config.eyebrow} title={config.heroTitle} intro={config.intro} />
       <LegalHighlightsBand highlights={config.highlights} accent={config.accent} />
       <LegalDocumentBody config={config} />
       <PageConversionSections content={pageConversionContent.contact} />

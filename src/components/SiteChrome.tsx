@@ -144,13 +144,13 @@ export function Breadcrumbs({ current, parent, dark = false }: { current: string
 /* Cinematic dark hero — same stage as the homepage: charcoal, grid, teal glow, gold-ready CTAs. */
 export function PageHero({ eyebrow, title, intro, image, logo, accent = "#f1f1f1", children }: { eyebrow: string; title: ReactNode; intro?: string; image?: string; logo?: string; accent?: string; dark?: boolean; children?: ReactNode }) {
   return (
-    <section className="relative overflow-hidden bg-[#202020] pb-10 pt-24 text-white sm:pb-12 sm:pt-28 lg:pb-14" style={{ "--page-accent": accent } as React.CSSProperties}>
+    <section className="relative overflow-hidden bg-[#353535] pb-10 pt-24 text-white sm:pb-12 sm:pt-28 lg:pb-14" style={{ "--page-accent": accent } as React.CSSProperties}>
       <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
       <div className="pointer-events-none absolute -left-40 top-16 h-[460px] w-[460px] rounded-full bg-[#6b6b6b]/14 blur-[120px]" aria-hidden />
       <div className="pointer-events-none absolute -right-24 bottom-0 h-[300px] w-[300px] rounded-full bg-[#f1f1f1]/10 blur-[110px]" aria-hidden />
       <div className="container relative z-10">
         <Breadcrumbs dark current={typeof title === "string" ? title : eyebrow} />
-        <div className="mt-5 grid gap-6 sm:mt-6 sm:gap-8 lg:grid-cols-[1.16fr_0.84fr] lg:items-center lg:gap-10">
+        <div className={`mt-5 grid gap-6 sm:mt-6 sm:gap-8 ${image ? "lg:grid-cols-[1.16fr_0.84fr] lg:items-center lg:gap-10" : ""}`}>
           <div>
             {logo && (
               <Link href="/" aria-label="Retour à l’accueil" className="inline-flex">

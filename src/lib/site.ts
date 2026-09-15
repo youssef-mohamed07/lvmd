@@ -13,16 +13,16 @@ export type ServiceItem = {
 };
 
 export const imageSet = {
-  hero: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
+  hero: "/docx-modifications/home-hero.jpeg",
   premium: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
   environnement: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-ppe-01.webp",
   detail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-detail-gloved-cleaning-01.webp",
-  premiumOffice: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-01.webp",
-  premiumGlass: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-glass-cleaning-01.webp",
-  premiumGlassAlt: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-glass-cleaning-02.webp",
-  premiumTeam: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-team-cleaning-01.webp",
+  premiumOffice: "/docx-modifications/premium-bureaux.jpeg",
+  premiumGlass: "/docx-modifications/premium-vitrerie.jpeg",
+  premiumGlassAlt: "/docx-modifications/environnement-vitrerie-technique.png",
+  premiumTeam: "/docx-modifications/premium-coproprietes.jpeg",
   premiumTeamAlt: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-team-cleaning-02.webp",
-  premiumEquipment: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-equipment-floor-cleaning-01.webp",
+  premiumEquipment: "/docx-modifications/premium-remise-en-etat.jpeg",
   groupTechnical: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-ppe-01.webp",
   groupEquipment: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-disinfection-02.webp",
   groupMethodology: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-methodology-team-01.webp",
@@ -33,9 +33,19 @@ export const imageSet = {
   environmentAfter: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-after-room.webp",
   environmentIntervention: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-intervention.webp",
   environmentDetail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-detail.webp",
-  environmentKitchen: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-kitchen.webp",
+  environmentKitchen: "/docx-modifications/environnement-hottes.png",
   monogram: "/branding/group/png/group-icon.png",
 };
+
+export const clientReferences = [
+  { name: "Chen Market", detail: "Épiceries asiatiques · Paris 11 et Paris 18", logo: "/docx-modifications/client-chen-market.jpeg" },
+  { name: "Le Président", detail: "Restaurant asiatique · Paris 11", logo: "/docx-modifications/client-le-president.png" },
+  { name: "Café Fluctuat Nec Mergitur", detail: "Café · Paris", logo: "/docx-modifications/client-fluctuat-nec-mergitur.png" },
+  { name: "WM Centre Médico-Dentaire", detail: "Centre médico-dentaire · Paris 11", logo: "/docx-modifications/client-wm-centre-medico-dentaire.png" },
+  { name: "Educazen", detail: "Saint-Germain-en-Laye et Vincennes", logo: "/docx-modifications/client-educazen.png" },
+  { name: "Médiactive", detail: "Choisy-le-Roi", logo: "/docx-modifications/client-mediactive.jpeg" },
+  { name: "Flying Tiger Copenhagen", detail: "Commerce", logo: "/docx-modifications/client-flying-tiger.jpeg" },
+] as const;
 
 export const brandSet = {
   groupHorizontal: "/branding/group/png/group-horizontal.png",

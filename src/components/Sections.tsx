@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Briefcase, Bug, Building2, Check, ClipboardList, Clock3, Factory, FileCheck2, FileText, Flame, Hammer, HeartPulse, Home, Landmark, MapPin, MessagesSquare, ScrollText, ShieldCheck, Sparkles, Star, Store, UserCheck, UtensilsCrossed } from "lucide-react";
 import Link from "next/link";
-import { extractionReasons, imageSet, processSteps, ServiceItem } from "@/lib/site";
+import { clientReferences, extractionReasons, imageSet, processSteps, ServiceItem } from "@/lib/site";
 
 export function SectionHead({ eyebrow, title, intro, dark = false }: { eyebrow: string; title: React.ReactNode; intro?: string; dark?: boolean }) {
   return (
@@ -19,6 +19,38 @@ export function SectionHead({ eyebrow, title, intro, dark = false }: { eyebrow: 
       </div>
       {intro && <p className={`max-w-[360px] text-[14px] leading-6 ${dark ? "text-white/60" : "text-[#424242]"}`}>{intro}</p>}
     </div>
+  );
+}
+
+export function ClientLogosSection() {
+  return (
+    <section className="bg-white py-14 sm:py-20" aria-labelledby="client-references-title">
+      <div className="container">
+        <div className="text-center">
+          <p className="eyebrow justify-center">Nos références</p>
+          <h2 id="client-references-title" className="mt-4 text-[clamp(1.9rem,4vw,3.2rem)] font-extrabold leading-[1.05] tracking-[-0.045em] text-[#202020]">
+            Ils nous ont fait confiance
+          </h2>
+        </div>
+
+        <div className="client-logo-marquee mt-10" aria-label="Références clients">
+          <div className="client-logo-track">
+            {[0, 1].map((copy) => (
+              <ul key={copy} className="client-logo-group" aria-hidden={copy === 1 ? true : undefined}>
+                {clientReferences.map((client) => (
+                  <li key={`${copy}-${client.name}`} className="group flex min-h-[170px] w-[180px] shrink-0 flex-col items-center justify-between rounded-[20px] border border-[#202020]/8 bg-[#f8f8f8] p-4 text-center transition duration-300 hover:-translate-y-1 hover:border-[#202020]/18 hover:bg-white hover:shadow-[0_16px_38px_rgba(32,32,32,.08)] sm:w-[210px]">
+                    <div className="flex min-h-[88px] w-full items-center justify-center">
+                      <img src={client.logo} alt={copy === 0 ? client.name : ""} className="max-h-[74px] max-w-full object-contain mix-blend-multiply" />
+                    </div>
+                    <p className="mt-3 text-[11px] leading-4 text-[#424242]">{client.detail}</p>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
