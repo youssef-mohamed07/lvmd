@@ -13,7 +13,12 @@ export type ServiceItem = {
 };
 
 export const imageSet = {
-  hero: "/docx-modifications/home-hero.jpeg",
+  hero: "/docx-modifications/accueil.png",
+  premiumHero: "/docx-modifications/premium-hero.png",
+  groupHero: "/docx-modifications/group-hero.png",
+  environnementHero: "/docx-modifications/environnement-hero.png",
+  groupTeam: "/docx-modifications/equipe.png",
+  realisationsHero: "/docx-modifications/nos-realisations.jpeg",
   premium: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
   environnement: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-ppe-01.webp",
   detail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-detail-gloved-cleaning-01.webp",
@@ -33,7 +38,7 @@ export const imageSet = {
   environmentAfter: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-after-room.webp",
   environmentIntervention: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-intervention.webp",
   environmentDetail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/client-environment-detail.webp",
-  environmentKitchen: "/docx-modifications/environnement-hottes.png",
+  environmentKitchen: "/docx-modifications/hottes-de-cuisines.png",
   monogram: "/branding/group/png/group-icon.png",
 };
 
@@ -62,7 +67,7 @@ export const brandSet = {
 const service = (item: Omit<ServiceItem, "number">, number: number): ServiceItem => ({ ...item, number: String(number).padStart(2, "0") });
 
 export const premiumServices: ServiceItem[] = [
-  service({ slug: "nettoyage-bureaux", group: "premium", title: "Entretien de bureaux et espaces professionnels", shortTitle: "Bureaux", kicker: "LVMR Premium", image: imageSet.premiumOffice, description: "Entretien régulier des bureaux, accueils, salles de réunion, circulations, espaces de pause et sanitaires.", intro: "Nous assurons l’entretien régulier des bureaux, accueils, salles de réunion, circulations, espaces de pause, sanitaires et autres zones définies au contrat.", points: ["Dépoussiérage et entretien des surfaces accessibles", "Aspiration et lavage des sols selon leur nature", "Entretien et désinfection des sanitaires", "Vidage des corbeilles et gestion des déchets selon les consignes du site", "Entretien des points de contact et espaces communs", "Prestations quotidiennes, hebdomadaires ou adaptées au besoin"], idealFor: ["Bureaux", "Commerces", "ERP", "Espaces professionnels"] }, 1),
+  service({ slug: "nettoyage-bureaux", group: "premium", title: "Entretien de bureaux et espaces professionnels", shortTitle: "Bureaux", kicker: "LVMR Premium", image: imageSet.premiumOffice, description: "Entretien régulier des bureaux, accueils, salles de réunion, salles de sport, circulations, espaces de pause et sanitaires.", intro: "Nous assurons l’entretien régulier des bureaux, accueils, salles de réunion, salles de sport, circulations, espaces de pause, sanitaires et autres zones définies au contrat.", points: ["Dépoussiérage et entretien des surfaces accessibles", "Aspiration et lavage des sols selon leur nature", "Entretien et désinfection des sanitaires", "Vidage des corbeilles et gestion des déchets selon les consignes du site", "Entretien des points de contact et espaces communs", "Prestations quotidiennes, hebdomadaires ou adaptées au besoin"], idealFor: ["Bureaux", "Commerces", "ERP", "Espaces professionnels"] }, 1),
   service({ slug: "coproprietes", group: "premium", title: "Copropriétés et résidences", shortTitle: "Copropriétés", kicker: "LVMR Premium", image: imageSet.premiumTeam, description: "Entretien des halls, cages d’escalier, paliers, ascenseurs, vitrages accessibles et locaux communs.", intro: "LVMR Premium entretient les parties communes des immeubles et résidences. La fréquence et le cahier des charges sont établis en fonction de la configuration et de la fréquentation du site.", points: ["Halls, cages d’escalier et paliers", "Ascenseurs et locaux communs", "Vitrages accessibles et zones de circulation", "Fréquence et cahier des charges adaptés au site"], idealFor: ["Copropriétés", "Résidences", "Syndics", "Bailleurs"] }, 2),
   service({ slug: "remise-en-etat", group: "premium", title: "Remises en état", shortTitle: "Remise en état", kicker: "LVMR Premium", image: imageSet.premiumEquipment, description: "Interventions ponctuelles après travaux, déménagement, changement d’occupant, événement ou période d’inoccupation.", intro: "Une visite préalable peut être organisée pour évaluer les surfaces, le niveau d’encrassement et les moyens nécessaires.", points: ["Évaluation préalable selon le contexte", "Protocole adapté aux surfaces", "Restitution des lieux prêts à l’usage"], idealFor: ["Après travaux", "Déménagements", "Livraisons", "Réouvertures"] }, 3),
   service({ slug: "vitrerie", group: "premium", title: "Vitrerie", shortTitle: "Vitrerie", kicker: "LVMR Premium", image: imageSet.premiumGlass, description: "Nettoyage des vitres, vitrines, cloisons vitrées, baies et surfaces accessibles.", intro: "Pour les accès techniques, en hauteur ou nécessitant des moyens spécifiques, le dossier peut être pris en charge avec LVMR Environnement.", points: ["Vitres et vitrines", "Cloisons et baies vitrées", "Coordination avec le pôle technique si nécessaire"], idealFor: ["Bureaux", "Commerces", "Résidences", "ERP"] }, 4),

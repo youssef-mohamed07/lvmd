@@ -374,6 +374,8 @@ export default function Home() {
       <main>
         {/* HERO — clear corporate statement with an independent visual */}
         <section id="accueil" className="hero-stage relative overflow-hidden bg-[#353535] text-white">
+          <img src={images.hero} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25" aria-hidden />
+          <div className="pointer-events-none absolute inset-0 bg-[#202020]/55" aria-hidden />
           <div className="pointer-events-none absolute -left-40 top-20 h-[520px] w-[520px] rounded-full bg-[#6b6b6b]/14 blur-[120px]" aria-hidden />
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
           <div className="container relative z-10 grid gap-9 pb-10 pt-28 sm:gap-12 sm:pb-14 sm:pt-32 lg:min-h-[790px] lg:grid-cols-[.92fr_1.08fr] lg:items-center lg:gap-16 lg:pb-16 lg:pt-36">

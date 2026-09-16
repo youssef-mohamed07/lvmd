@@ -69,6 +69,7 @@ export function PremiumPage() {
         eyebrow="Propreté professionnelle haut de gamme"
         title={<>La propreté au rang <span className="hero-stroke">du luxe.</span></>}
         intro="Des prestations soignées, discrètes et adaptées aux bureaux, copropriétés, résidences et environnements professionnels exigeants."
+        backgroundImage={imageSet.premiumHero}
       >
         <CtaChip href="/devis" label="Demander une étude personnalisée" tone="premium" />
       </PageHero>
@@ -130,6 +131,7 @@ export function EnvironnementPage() {
         eyebrow="Assainir, sécuriser, préserver"
         title={<>Des situations complexes, <span className="hero-stroke">une réponse maîtrisée.</span></>}
         intro="Interventions techniques, remises en état, environnements sensibles, nettoyage industriel, dégraissage professionnel et solutions 3D en Île-de-France."
+        backgroundImage={imageSet.environnementHero}
       >
         <CtaChip href="/devis" label="Demander une expertise" tone="environnement" />
       </PageHero>
@@ -352,7 +354,7 @@ export function RealisationsPage() {
         eyebrow="Références et preuves"
         title={<>Le réel comme <span className="hero-stroke">meilleure preuve.</span></>}
         intro="Découvrez des photographies terrain authentiques qui documentent le contexte, l’intervention et le résultat obtenu."
-        image={imageSet.environmentAfter}
+        image={imageSet.realisationsHero}
       />
 
       <ReferencesProofSection />
@@ -524,6 +526,7 @@ export function GroupePage() {
         eyebrow="Groupe LVMR"
         title={<>L’excellence en <span className="hero-stroke">toutes circonstances.</span></>}
         intro="Deux pôles complémentaires pour répondre à vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France."
+        backgroundImage={imageSet.groupHero}
       >
         <CtaChip href="/devis" label="Demander un devis" tone="premium" />
       </PageHero>
@@ -539,7 +542,7 @@ export function GroupePage() {
           </p>
           <div className="mt-10 grid gap-4 lg:grid-cols-12">
             <article className="group relative min-h-[540px] overflow-hidden rounded-[28px] bg-[#202020] text-white lg:col-span-7 lg:min-h-[640px]">
-              <img src={imageSet.groupMethodology} alt="Équipe coordonnée selon la méthode LVMR Group" className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-1000 group-hover:scale-[1.04]" />
+              <img src={imageSet.groupTeam} alt="Équipe LVMR coordonnée" className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-1000 group-hover:scale-[1.04]" />
               <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(24,24,24,.98)_0%,rgba(24,24,24,.66)_42%,rgba(24,24,24,.08)_78%)]" />
               <div className="relative flex min-h-[540px] flex-col justify-between p-6 sm:p-9 lg:min-h-[640px]">
                 <div className="flex items-center justify-between">
