@@ -79,6 +79,7 @@ export function PremiumPage() {
             eyebrow="Une propreté qui valorise vos espaces"
             title={<>Davantage qu’un simple entretien courant.</>}
             intro="LVMR Premium accompagne les professionnels et les gestionnaires de sites qui attendent davantage qu’un simple entretien courant. Chaque site fait l’objet d’un périmètre d’intervention défini, de consignes précises et d’un suivi permettant d’assurer la régularité de la prestation."
+            accentColor="#b07e2b"
           />
           <ServiceGrid services={premiumServices} />
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 border-t border-[#202020]/10 pt-5">
@@ -140,9 +141,10 @@ export function EnvironnementPage() {
         <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#a2cebd]/10 blur-[100px]" aria-hidden />
         <div className="container relative">
           <SectionHead
-            eyebrow="Le bon niveau d’intervention"
+            eyebrow="Le bon niveau d'intervention"
             title={<>Des interventions techniques spécialisées.</>}
-            intro="Chaque intervention est préparée selon l’état des lieux, les risques identifiés, les contraintes d’accès et le résultat attendu. Une visite technique peut être organisée avant devis."
+            intro="Chaque intervention est préparée selon l'état des lieux, les risques identifiés, les contraintes d'accès et le résultat attendu. Une visite technique peut être organisée avant devis."
+            accentColor="#7ebcab"
           />
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(([Icon, title, text], index) => (
@@ -165,6 +167,7 @@ export function EnvironnementPage() {
             eyebrow="Les interventions spécialisées"
             title={<>Des moyens adaptés à chaque intervention.</>}
             intro="Remise en état, nettoyage industriel, extraction et pôle 3D en Île-de-France."
+            accentColor="#7ebcab"
           />
           <ServiceGrid services={environmentServices} />
           <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-[#202020]/10 pt-5">
@@ -212,13 +215,13 @@ export function EnvironnementPage() {
             <img src={imageSet.environmentIntervention} alt="" className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-700 group-hover:scale-[1.04]" />
             <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.97)_0%,rgba(32,32,32,.68)_44%,rgba(32,32,32,.1)_100%)]" aria-hidden />
             <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8">
-              <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#ffc547]">Gestion des demandes urgentes</p>
+              <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#7ebcab]">Gestion des demandes urgentes</p>
               <div>
                 <h3 className="max-w-[340px] text-[clamp(1.35rem,2.2vw,1.75rem)] font-extrabold leading-[1.12] tracking-[-0.035em]">Une situation technique ou sanitaire urgente ?</h3>
-                <p className="mt-2.5 max-w-[360px] text-[13px] leading-6 text-white/65">Contactez directement notre équipe. Nous évaluons la demande, le niveau de priorité et nos possibilités d’intervention dans les meilleurs délais.</p>
+                <p className="mt-2.5 max-w-[360px] text-[13px] leading-6 text-white/65">Contactez directement notre équipe. Nous évaluons la demande, le niveau de priorité et nos possibilités d'intervention dans les meilleurs délais.</p>
                 <span className="mt-5 inline-flex items-center gap-3 text-[13px] font-extrabold">
                   Signaler une demande urgente
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#ffc547] text-[#202020] transition group-hover:translate-x-0.5"><Phone size={15} /></span>
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#7ebcab] text-[#202020] transition group-hover:translate-x-0.5"><Phone size={15} /></span>
                 </span>
               </div>
             </div>

@@ -5,11 +5,12 @@ import { ArrowRight, Briefcase, Bug, Building2, Check, ClipboardList, Clock3, Fa
 import Link from "next/link";
 import { clientReferences, extractionReasons, imageSet, processSteps, ServiceItem } from "@/lib/site";
 
-export function SectionHead({ eyebrow, title, intro, dark = false }: { eyebrow: string; title: React.ReactNode; intro?: string; dark?: boolean }) {
+export function SectionHead({ eyebrow, title, intro, dark = false, accentColor }: { eyebrow: string; title: React.ReactNode; intro?: string; dark?: boolean; accentColor?: string }) {
+  const eyebrowColor = dark ? "#f1f1f1" : (accentColor || "#6b6b6b");
   return (
     <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
       <div>
-        <p className={`inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em] ${dark ? "text-[#f1f1f1]" : "text-[#6b6b6b]"}`}>
+        <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em]" style={{ color: eyebrowColor }}>
           <span className="h-px w-5 bg-current" aria-hidden />
           {eyebrow}
         </p>
@@ -693,12 +694,17 @@ export function PageFinalCta({
         ? "bg-[#7ebcab] hover:bg-[#a2cebd] text-[#202020] shadow-[0_12px_32px_rgba(126,188,171,.28)]"
         : "bg-[#202020] hover:bg-[#303030] text-white shadow-[0_12px_32px_rgba(32,32,32,.2)]";
 
+  const eyebrowColor =
+    tone === "premium" ? "#b07e2b"
+      : tone === "environnement" ? "#7ebcab"
+        : "#6b6b6b";
+
   return (
     <section className="bg-[#f5f5f5] py-14 sm:py-20">
       <div className="container">
         <div className="overflow-hidden rounded-[26px] border border-[#202020]/8 bg-white p-7 shadow-[0_18px_60px_rgba(32,32,32,.08)] sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <div className="max-w-[640px]">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b]">Prochaine étape</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em]" style={{ color: eyebrowColor }}>Prochaine étape</p>
             <h2 className="mt-3 text-[clamp(1.7rem,3.2vw,2.5rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-[#202020]">{title}</h2>
             <p className="mt-4 text-[14px] leading-7 text-[#424242]">{text}</p>
           </div>
@@ -726,7 +732,8 @@ export function WhyPremiumSection() {
         <SectionHead
           eyebrow="Pourquoi choisir LVMR Premium ?"
           title={<>Une propreté qui valorise vos espaces.</>}
-          intro="LVMR Premium accompagne les professionnels et les gestionnaires de sites qui attendent davantage qu’un simple entretien courant."
+          intro="LVMR Premium accompagne les professionnels et les gestionnaires de sites qui attendent davantage qu'un simple entretien courant."
+          accentColor="#b07e2b"
         />
 
         <div className="mt-10 grid gap-4 lg:grid-cols-12 lg:grid-rows-[auto_auto_auto]">
@@ -934,8 +941,8 @@ export function HottesExtractionSection() {
             </div>
             <div className="bg-[#252525] p-6 sm:p-7">
               <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#ffc547]/12 text-[#ffc547]"><ShieldCheck size={18} /></span>
-                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#ffc547]">Pourquoi entretenir ?</p>
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#7ebcab]/15 text-[#7ebcab]"><ShieldCheck size={18} /></span>
+                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#7ebcab]">Pourquoi entretenir ?</p>
               </div>
               <ul className="mt-5 space-y-3">
                 {extractionReasons.map((item) => (
@@ -974,7 +981,7 @@ export function Pole3DDetailSection() {
         <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#202020] shadow-[0_28px_80px_rgba(32,32,32,.2)]">
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden />
           <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-[#7ebcab]/10 blur-[100px]" aria-hidden />
-          <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-[#ffc547]/8 blur-[100px]" aria-hidden />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-[#7ebcab]/10 blur-[100px]" aria-hidden />
 
           <div className="relative border-b border-white/10 px-6 py-8 sm:px-8 sm:py-10 lg:flex lg:items-end lg:justify-between lg:gap-10">
             <div className="max-w-[620px]">
@@ -1008,7 +1015,7 @@ export function Pole3DDetailSection() {
           <div className="relative px-6 py-7 sm:px-8 sm:py-8">
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#ffc547]">Méthode</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#7ebcab]">Méthode</p>
                 <h3 className="mt-2 text-[1.25rem] font-extrabold tracking-[-0.02em] text-white">Une intervention encadrée et traçable.</h3>
               </div>
               <Link href="/devis" className="inline-flex items-center gap-2 text-[13px] font-extrabold text-[#7ebcab] transition hover:gap-2.5">
