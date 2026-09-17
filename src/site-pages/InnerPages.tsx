@@ -523,12 +523,13 @@ export function GroupePage() {
     <PageFrame>
       <PageHero
         logo={brandSet.groupHorizontal}
+        accent="#6b6b6b"
         eyebrow="Groupe LVMR"
-        title={<>L’excellence en <span className="hero-stroke">toutes circonstances.</span></>}
-        intro="Deux pôles complémentaires pour répondre à vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France."
+        title={<>L'excellence en <span className="hero-stroke">toutes circonstances.</span></>}
+        intro="Deux pôles complémentaires pour répondre à vos besoins de propreté professionnelle et d'interventions techniques spécialisées en Île-de-France."
         backgroundImage={imageSet.groupHero}
       >
-        <CtaChip href="/devis" label="Demander un devis" tone="premium" />
+        <CtaChip href="/devis" label="Demander un devis" tone="group" />
       </PageHero>
       <section className="bg-[#f5f5f5] py-14 sm:py-20">
         <div className="container">
@@ -550,7 +551,7 @@ export function GroupePage() {
                   <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/45">Saint-Germain-en-Laye</span>
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ffc547]">Une organisation, deux expertises</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#9a9a9a]">Une organisation, deux expertises</p>
                   <h3 className="mt-4 max-w-[560px] text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-.05em]">La bonne équipe.<br />Le bon niveau d’intervention.</h3>
                   <p className="mt-5 max-w-[500px] text-[14px] leading-7 text-white/68">Un interlocuteur unique mobilise les méthodes, les moyens et le pôle réellement adaptés à votre situation.</p>
                   <div className="mt-7 grid grid-cols-3 divide-x divide-white/14 border-t border-white/16 pt-6">
