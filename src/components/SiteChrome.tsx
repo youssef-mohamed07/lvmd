@@ -21,7 +21,7 @@ const nav = [
 function BrandMark() {
   return (
     <span className="flex items-center" aria-label="LVMR Group">
-      <img src={brandSet.groupHorizontal} alt="LVMR Group — L’excellence en toutes circonstances" className="h-8 w-auto sm:h-9" />
+      <img src={brandSet.premiumHorizontal} alt="LVMR Group — L'excellence en toutes circonstances" className="h-8 w-auto sm:h-9" />
     </span>
   );
 }
@@ -142,18 +142,20 @@ export function Breadcrumbs({ current, parent, dark = false }: { current: string
 }
 
 /* Cinematic dark hero — same stage as the homepage: charcoal, grid, teal glow, gold-ready CTAs. */
-export function PageHero({ eyebrow, title, intro, image, backgroundImage, logo, accent = "#f1f1f1", children }: { eyebrow: string; title: ReactNode; intro?: string; image?: string; backgroundImage?: string; logo?: string; accent?: string; dark?: boolean; children?: ReactNode }) {
+export function PageHero({ eyebrow, title, intro, image, backgroundImage, logo, accent = "#f1f1f1", theme = "dark", children }: { eyebrow: string; title: ReactNode; intro?: string; image?: string; backgroundImage?: string; logo?: string; accent?: string; theme?: "dark" | "light"; children?: ReactNode }) {
+  const isLight = theme === "light";
   return (
-    <section className="relative overflow-hidden bg-[#353535] pb-10 pt-24 text-white sm:pb-12 sm:pt-28 lg:pb-14" style={{ "--page-accent": accent } as React.CSSProperties}>
-      {backgroundImage && <img src={backgroundImage} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-55" aria-hidden />}
-      {backgroundImage && <div className="pointer-events-none absolute inset-0 bg-[#202020]/40" aria-hidden />}
-      <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />
+    <section className={`relative overflow-hidden pb-10 pt-24 sm:pb-12 sm:pt-28 lg:pb-14 ${isLight ? "bg-[#f5f5f5] text-[#202020]" : "bg-[#353535] text-white"}`} style={{ "--page-accent": accent } as React.CSSProperties}>
+      {backgroundImage && <img src={backgroundImage} alt="" className={`pointer-events-none absolute inset-0 h-full w-full object-cover ${isLight ? "opacity-100" : "opacity-55"}`} aria-hidden />}
+      {backgroundImage && !isLight && <div className="pointer-events-none absolute inset-0 bg-[#202020]/40" aria-hidden />}
+      {!isLight && <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />}
+      {isLight && backgroundImage && <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.95)_0%,rgba(255,255,255,0.7)_50%,transparent_100%)]" aria-hidden />}
       <div className="container relative z-10">
-        <Breadcrumbs dark current={typeof title === "string" ? title : eyebrow} />
+        <Breadcrumbs dark={!isLight} current={typeof title === "string" ? title : eyebrow} />
         <div className={`mt-5 grid gap-6 sm:mt-6 sm:gap-8 ${image ? "lg:grid-cols-[1.16fr_0.84fr] lg:items-center lg:gap-10" : ""}`}>
           <div>
             {logo && (
-              <Link href="/" aria-label="Retour à l’accueil" className="inline-flex">
+              <Link href="/" aria-label="Retour à l'accueil" className="inline-flex">
                 <img src={logo} alt="LVMR Group" className="h-9 w-auto sm:h-10" />
               </Link>
             )}
@@ -161,8 +163,8 @@ export function PageHero({ eyebrow, title, intro, image, backgroundImage, logo, 
               <span className="h-px w-8" style={{ backgroundColor: accent }} aria-hidden />
               <p className="text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color: accent }}>{eyebrow}</p>
             </div>
-            <h1 className="mt-4 max-w-[640px] text-[clamp(2rem,5.5vw,3.2rem)] font-extrabold leading-[1.06] tracking-[-0.05em] sm:mt-5">{title}</h1>
-            {intro && <p className="mt-5 max-w-[540px] text-[14px] leading-7 text-white/65">{intro}</p>}
+            <h1 className={`mt-4 max-w-[640px] text-[clamp(2rem,5.5vw,3.2rem)] font-extrabold leading-[1.06] tracking-[-0.05em] sm:mt-5 ${isLight ? "text-[#202020]" : ""}`}>{title}</h1>
+            {intro && <p className={`mt-5 max-w-[540px] text-[14px] leading-7 ${isLight ? "text-[#424242]" : "text-white/65"}`}>{intro}</p>}
             {children}
           </div>
           {image && (

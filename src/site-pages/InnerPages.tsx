@@ -65,11 +65,12 @@ export function PremiumPage() {
     <PageFrame>
       <PageHero
         logo={brandSet.premiumHorizontal}
-        accent="#ffc547"
         eyebrow="Propreté professionnelle haut de gamme"
         title={<>La propreté au rang <span className="hero-stroke">du luxe.</span></>}
         intro="Des prestations soignées, discrètes et adaptées aux bureaux, copropriétés, résidences et environnements professionnels exigeants."
         backgroundImage={imageSet.premiumHero}
+        accent="#b07e2b"
+        theme="light"
       >
         <CtaChip href="/devis" label="Demander une étude personnalisée" tone="premium" />
       </PageHero>
@@ -129,6 +130,7 @@ export function EnvironnementPage() {
       <PageHero
         logo={brandSet.environnementHorizontal}
         accent="#7ebcab"
+        theme="light"
         eyebrow="Assainir, sécuriser, préserver"
         title={<>Des situations complexes, <span className="hero-stroke">une réponse maîtrisée.</span></>}
         intro="Interventions techniques, remises en état, environnements sensibles, nettoyage industriel, dégraissage professionnel et solutions 3D en Île-de-France."
@@ -526,11 +528,12 @@ export function GroupePage() {
     <PageFrame>
       <PageHero
         logo={brandSet.groupHorizontal}
-        accent="#6b6b6b"
         eyebrow="Groupe LVMR"
         title={<>L'excellence en <span className="hero-stroke">toutes circonstances.</span></>}
         intro="Deux pôles complémentaires pour répondre à vos besoins de propreté professionnelle et d'interventions techniques spécialisées en Île-de-France."
         backgroundImage={imageSet.groupHero}
+        accent="#6b6b6b"
+        theme="light"
       >
         <CtaChip href="/devis" label="Demander un devis" tone="group" />
       </PageHero>
