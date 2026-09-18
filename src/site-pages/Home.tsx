@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
@@ -372,42 +373,72 @@ export default function Home() {
       </header>
 
       <main>
-        {/* HERO — clear corporate statement with an independent visual */}
-        <section
-          id="accueil"
-          className="hero-stage relative isolate overflow-hidden bg-[#f5f5f5] bg-cover bg-center bg-no-repeat text-[#202020]"
-          style={{ backgroundImage: `url("${images.hero}")` }}
-        >
-          <div className="container relative z-10 grid gap-9 pb-12 pt-28 sm:gap-12 sm:pb-16 sm:pt-32 lg:grid-cols-[.92fr_1.08fr] lg:items-center lg:gap-16 lg:py-32">
-            <div className="home-hero-copy max-w-[660px]">
+        {/* HERO — compact message with a dedicated visual on the right. */}
+        <section id="accueil" className="hero-stage relative isolate overflow-hidden bg-[#17191a] text-white">
+          <Image
+            src={images.hero}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="hero-background object-cover"
+          />
+          <div className="hero-ambient absolute inset-0" aria-hidden />
+          <div className="hero-grid absolute inset-0 opacity-25" aria-hidden />
+
+          <div className="container relative z-10 grid min-h-[760px] items-center gap-10 pb-12 pt-28 sm:pb-16 sm:pt-32 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 lg:py-32">
+            <div className="home-hero-copy max-w-[620px]">
               <div className="hero-reveal flex items-center gap-3" style={{ animationDelay: "60ms" }}>
-                <span className="h-px w-8 bg-[#6b6b6b]" />
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#6b6b6b]">Groupe LVMR</p>
+                <span className="h-px w-9 bg-[#ffc547]" />
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/65 sm:text-[10px]">Groupe LVMR · Île-de-France</p>
               </div>
-              <h1 className="hero-reveal mt-6 max-w-[620px] text-[clamp(2.4rem,8.5vw,4.1rem)] font-extrabold leading-[1.04] tracking-[-0.05em] sm:mt-7" style={{ animationDelay: "140ms" }}>
-                L’excellence en<br /><span className="text-[#424242]">toutes circonstances.</span>
+
+              <h1 className="hero-title hero-reveal mt-5 max-w-[600px]" style={{ animationDelay: "140ms" }}>
+                L’excellence,
+                <span>en toutes circonstances.</span>
               </h1>
-              <p className="hero-reveal mt-7 max-w-[520px] text-[16px] font-medium leading-7 text-[#202020]" style={{ animationDelay: "230ms" }}>Deux pôles complémentaires pour vos besoins de propreté professionnelle et d’interventions techniques spécialisées en Île-de-France.</p>
+
+              <p className="hero-reveal mt-6 max-w-[500px] text-[14px] font-medium leading-6 text-white/68 sm:text-[15px] sm:leading-7" style={{ animationDelay: "230ms" }}>
+                Deux expertises complémentaires pour entretenir vos espaces et répondre aux interventions techniques les plus exigeantes.
+              </p>
+
               <div className="hero-reveal mt-8 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "320ms" }}>
-                <button type="button" className="hero-cta" onClick={() => goTo("devis")}><span>Demander un devis</span><ArrowRight size={18} /></button>
-                <button type="button" onClick={() => goTo("services")} className="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-[10px] border border-[#202020]/20 bg-white/55 px-6 text-[13px] font-extrabold text-[#202020] transition hover:border-[#202020]/40 hover:bg-white">Découvrir nos services <ArrowRight size={16} /></button>
+                <button type="button" className="hero-cta" onClick={() => goTo("devis")}>
+                  <span>Demander un devis</span><ArrowRight size={18} />
+                </button>
+                <button type="button" onClick={() => goTo("services")} className="hero-secondary-cta">
+                  Découvrir nos services <ArrowRight size={16} />
+                </button>
               </div>
-              <div className="hero-reveal mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-[#202020]/12 pt-5 text-[9px] font-bold uppercase tracking-[.11em] text-[#424242]/70 sm:mt-10 sm:gap-x-6 sm:text-[10px] sm:tracking-[.13em]" style={{ animationDelay: "410ms" }}>
-                <span>LVMR Premium</span><span className="h-1 w-1 rounded-full bg-[#6b6b6b]" /><span>LVMR Environnement</span><span className="h-1 w-1 rounded-full bg-[#6b6b6b]" /><span>Île-de-France</span>
+
+              <div className="hero-reveal mt-9 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/12 pt-5 text-[9px] font-bold uppercase tracking-[.13em] text-white/45 sm:text-[10px]" style={{ animationDelay: "410ms" }}>
+                <span>LVMR Premium</span><span className="text-[#ffc547]">•</span><span>LVMR Environnement</span><span className="text-[#ffc547]">•</span><span>Île-de-France</span>
               </div>
             </div>
 
-            <div className="hero-reveal lg:justify-self-end" style={{ animationDelay: "260ms" }}>
-              <div className="hero-visual relative mx-auto aspect-[4/3] max-h-[380px] w-full max-w-[540px] overflow-hidden rounded-[22px] border border-white/70 bg-white sm:aspect-[16/11] sm:max-h-[460px] sm:rounded-[28px] lg:aspect-[4/5] lg:max-h-[520px]">
-                <img src={images.hero} alt="Espace professionnel entretenu par LVMR Group" className="hero-image absolute inset-x-0 top-0 h-[68%] w-full object-cover" />
-                <div className="hero-scan pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f1f1f1] to-transparent opacity-70" aria-hidden />
-                <div className="absolute inset-x-0 bottom-0 h-[32%] bg-white p-6 text-[#202020] sm:p-8">
-                  <div className="flex items-end justify-between gap-6 border-t border-[#202020]/15 pt-5">
-                    <div><p className="text-[9px] font-bold uppercase tracking-[.14em] text-[#6b6b6b] sm:text-[10px]">LVMR Group</p><p className="mt-2 max-w-[290px] text-[1rem] font-extrabold leading-tight tracking-[-.03em] sm:text-[1.2rem]">Un interlocuteur pour l’entretien courant et les situations techniques.</p></div>
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-[#202020] sm:h-11 sm:w-11"><ShieldCheck size={18} /></span>
-                  </div>
+            <div className="hero-reveal w-full lg:justify-self-end" style={{ animationDelay: "240ms" }}>
+              <div className="hero-visual relative mx-auto h-[520px] w-full max-w-[560px] overflow-hidden rounded-[24px] border border-white/12 bg-[#222627] shadow-[0_30px_90px_rgba(0,0,0,.38)] sm:h-[620px] sm:rounded-[30px] lg:h-[590px]">
+                <div className="absolute inset-x-0 top-0 h-[73%] overflow-hidden">
+                  <Image
+                    src={images.groupTeam}
+                    alt="Équipe LVMR réunissant les expertises de propreté et d’intervention technique"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 44vw, 90vw"
+                    className="object-cover object-center transition duration-700 hover:scale-[1.025]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#17191a]/35 via-transparent to-transparent" aria-hidden />
                 </div>
-                <span className="absolute left-4 top-4 rounded-full border border-white/70 bg-white/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[.1em] text-[#424242] sm:left-5 sm:top-5 sm:px-3.5 sm:py-2 sm:text-[10px] sm:tracking-[.12em]">Saint-Germain-en-Laye</span>
+
+                <div className="absolute inset-x-0 bottom-0 flex h-[27%] items-center justify-between gap-6 bg-[#f4f1eb] p-6 text-[#202020] sm:p-8">
+                  <div>
+                    <p className="text-[9px] font-bold uppercase tracking-[.16em] text-[#8b691e] sm:text-[10px]">Une équipe, deux expertises</p>
+                    <p className="mt-2 max-w-[330px] text-[1rem] font-bold leading-snug tracking-[-.02em] sm:text-[1.15rem]">Des équipes coordonnées pour chaque environnement.</p>
+                  </div>
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#ffc547] text-[#202020]"><ShieldCheck size={18} /></span>
+                </div>
+
+                <span className="absolute left-5 top-5 rounded-full border border-white/30 bg-[#17191a]/65 px-3.5 py-2 text-[9px] font-bold uppercase tracking-[.12em] text-white backdrop-blur-md sm:text-[10px]">Saint-Germain-en-Laye</span>
               </div>
             </div>
           </div>
