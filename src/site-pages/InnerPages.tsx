@@ -214,7 +214,7 @@ export function EnvironnementPage() {
             href="tel:+33671849341"
             className="group relative flex min-h-[320px] overflow-hidden rounded-[24px] bg-[#202020] text-white shadow-[0_14px_40px_rgba(32,32,32,.12)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_rgba(32,32,32,.2)] sm:min-h-[360px]"
           >
-            <img src={imageSet.environmentIntervention} alt="" className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-700 group-hover:scale-[1.04]" />
+            <img src={imageSet.environmentAfterRequested} alt="" className="absolute inset-0 h-full w-full object-cover opacity-75 transition duration-700 group-hover:scale-[1.04]" />
             <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.97)_0%,rgba(32,32,32,.68)_44%,rgba(32,32,32,.1)_100%)]" aria-hidden />
             <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8">
               <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#7ebcab]">Gestion des demandes urgentes</p>

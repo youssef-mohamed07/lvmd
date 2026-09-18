@@ -13,12 +13,14 @@ export type ServiceItem = {
 };
 
 export const imageSet = {
-  hero: "/docx-modifications/accueil.png",
+  hero: "/docx-modifications/accueil-clean.png",
   premiumHero: "/docx-modifications/premium-hero.png",
   groupHero: "/docx-modifications/group-hero.png",
   environnementHero: "/docx-modifications/environnement-hero.png",
   groupTeam: "/docx-modifications/equipe.png",
-  realisationsHero: "/docx-modifications/nos-realisations.jpeg",
+  realisationsHero: "/docx-modifications/nos-realllll.jpeg",
+  environmentAfterRequested: "/docx-modifications/apres.jpeg",
+  environmentDuringRequested: "/docx-modifications/intervention-incendie.jpeg",
   premium: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
   environnement: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/group-technical-ppe-01.webp",
   detail: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-detail-gloved-cleaning-01.webp",
@@ -74,7 +76,7 @@ export const premiumServices: ServiceItem[] = [
 ];
 
 export const environmentServices: ServiceItem[] = [
-  service({ slug: "apres-sinistre", group: "environnement", title: "Remise en état après sinistre", shortTitle: "Après sinistre", kicker: "LVMR Environnement", image: imageSet.environmentIntervention, description: "Remise en état après dégât des eaux, incendie, suies, vandalisme ou dégradation importante.", intro: "Nous évaluons le périmètre et adaptons l’intervention aux supports, au niveau de contamination et aux consignes du donneur d’ordre.", points: ["Évaluation des zones concernées", "Protocole adapté aux supports", "Compte rendu selon la prestation"], idealFor: ["Dégâts des eaux", "Incendies", "Vandalisme", "Sites dégradés"] }, 1),
+  service({ slug: "apres-sinistre", group: "environnement", title: "Remise en état après sinistre", shortTitle: "Après sinistre", kicker: "LVMR Environnement", image: imageSet.environmentAfterRequested, description: "Remise en état après dégât des eaux, incendie, suies, vandalisme ou dégradation importante.", intro: "Nous évaluons le périmètre et adaptons l’intervention aux supports, au niveau de contamination et aux consignes du donneur d’ordre.", points: ["Évaluation des zones concernées", "Protocole adapté aux supports", "Compte rendu selon la prestation"], idealFor: ["Dégâts des eaux", "Incendies", "Vandalisme", "Sites dégradés"] }, 1),
   service({ slug: "logements-insalubres", group: "environnement", title: "Logements insalubres et situations complexes", shortTitle: "Logements insalubres", kicker: "LVMR Environnement", image: imageSet.environmentBefore, description: "Prise en charge respectueuse et confidentielle des logements encombrés, insalubres ou de type syndrome de Diogène.", intro: "Le protocole peut comprendre, selon le devis, tri, débarras, nettoyage, désinfection, neutralisation des odeurs et remise en propreté.", points: ["Approche confidentielle et respectueuse", "Séquençage adapté à l’état réel des lieux", "Tri, débarras et assainissement selon le devis"], idealFor: ["Logements", "Bailleurs", "Gestionnaires", "Familles"] }, 2),
   service({ slug: "nettoyage-industriel", group: "environnement", title: "Nettoyage industriel et technique", shortTitle: "Nettoyage industriel", kicker: "LVMR Environnement", image: imageSet.groupTechnical, description: "Opérations ponctuelles ou programmées dans les ateliers, entrepôts, zones de production et locaux techniques.", intro: "Nous préparons l’intervention selon les risques, les accès et les surfaces fortement encrassées à traiter.", points: ["Ateliers, entrepôts et zones de production", "Structures, bardages et plafonds accessibles", "Équipements et surfaces fortement encrassées"], idealFor: ["Industrie", "Logistique", "Locaux techniques", "Bâtiments professionnels"] }, 3),
   service({ slug: "vitrerie-technique", group: "environnement", title: "Vitrerie technique et accès spécifiques", shortTitle: "Vitrerie technique", kicker: "LVMR Environnement", image: imageSet.premiumGlassAlt, description: "Étude des moyens adaptés aux surfaces vitrées importantes ou difficiles d’accès.", intro: "Nettoyage à l’eau pure, perches, équipements d’accès ou nacelle lorsque les conditions du site et les habilitations le permettent.", points: ["Analyse des accès", "Moyens techniques appropriés", "Intervention selon les conditions et habilitations requises"], idealFor: ["Façades vitrées", "Grandes baies", "Accès difficiles", "Sites professionnels"] }, 4),

@@ -18,10 +18,19 @@ const nav = [
   ["Contact", "/contact"],
 ];
 
-function BrandMark() {
+function BrandMark({ pathname }: { pathname: string }) {
+  const isPremium = pathname === "/premium" || pathname.startsWith("/premium/");
+  const isEnvironnement = pathname === "/environnement" || pathname.startsWith("/environnement/");
+  const logo = isPremium
+    ? brandSet.premiumHorizontal
+    : isEnvironnement
+      ? brandSet.environnementHorizontal
+      : brandSet.groupHorizontal;
+  const label = isPremium ? "LVMR Premium" : isEnvironnement ? "LVMR Environnement" : "LVMR Group";
+
   return (
-    <span className="flex items-center" aria-label="LVMR Group">
-      <img src={brandSet.premiumHorizontal} alt="LVMR Group — L'excellence en toutes circonstances" className="h-8 w-auto sm:h-9" />
+    <span className="flex items-center" aria-label={label}>
+      <img src={logo} alt={label} className="h-8 w-auto sm:h-9" />
     </span>
   );
 }
@@ -77,7 +86,7 @@ export function SiteHeader() {
   return (
     <header className="site-header" data-scrolled={scrolled || open} data-hidden={hidden && !open}>
       <div className="site-header-bar">
-        <Link href="/" aria-label="Accueil"><BrandMark /></Link>
+        <Link href="/" aria-label="Accueil"><BrandMark pathname={location} /></Link>
         <nav className="hidden shrink-0 items-center gap-0.5 rounded-full bg-[#202020]/[0.04] p-1 lg:flex" aria-label="Navigation">
           {nav.map(([label, href]) => (
             <Link key={href} href={href} className="nav-link" data-active={location === href}>{label}</Link>
@@ -146,20 +155,13 @@ export function PageHero({ eyebrow, title, intro, image, backgroundImage, logo, 
   const isLight = theme === "light";
   return (
     <section className={`relative overflow-hidden pb-10 pt-24 sm:pb-12 sm:pt-28 lg:pb-14 ${isLight ? "bg-[#f5f5f5] text-[#202020]" : "bg-[#353535] text-white"}`} style={{ "--page-accent": accent } as React.CSSProperties}>
-      {backgroundImage && <img src={backgroundImage} alt="" className={`pointer-events-none absolute inset-0 h-full w-full object-cover ${isLight ? "opacity-100" : "opacity-55"}`} aria-hidden />}
-      {backgroundImage && !isLight && <div className="pointer-events-none absolute inset-0 bg-[#202020]/40" aria-hidden />}
+      {backgroundImage && <img src={backgroundImage} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover" aria-hidden />}
       {!isLight && <div className="hero-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden />}
-      {isLight && backgroundImage && <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.95)_0%,rgba(255,255,255,0.7)_50%,transparent_100%)]" aria-hidden />}
       <div className="container relative z-10">
         <Breadcrumbs dark={!isLight} current={typeof title === "string" ? title : eyebrow} />
         <div className={`mt-5 grid gap-6 sm:mt-6 sm:gap-8 ${image ? "lg:grid-cols-[1.16fr_0.84fr] lg:items-center lg:gap-10" : ""}`}>
           <div>
-            {logo && (
-              <Link href="/" aria-label="Retour à l'accueil" className="inline-flex">
-                <img src={logo} alt="LVMR Group" className="h-9 w-auto sm:h-10" />
-              </Link>
-            )}
-            <div className={`${logo ? "mt-6" : ""} flex items-center gap-3`}>
+            <div className="flex items-center gap-3">
               <span className="h-px w-8" style={{ backgroundColor: accent }} aria-hidden />
               <p className="text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color: accent }}>{eyebrow}</p>
             </div>
@@ -169,9 +171,8 @@ export function PageHero({ eyebrow, title, intro, image, backgroundImage, logo, 
           </div>
           {image && (
             <div className="w-full max-w-[450px] lg:justify-self-end">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] border border-white/12 shadow-[0_24px_64px_rgba(0,0,0,.26)] sm:rounded-[24px]">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] border border-[#202020]/10 sm:rounded-[24px]">
                 <img src={image} alt="" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.5),transparent_58%)]" aria-hidden />
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f1f1f1] to-transparent opacity-70" aria-hidden />
               </div>
             </div>

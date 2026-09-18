@@ -285,6 +285,7 @@ export function PageDevisForm({ content }: { content: PageConversionContent }) {
                             <option>Une entreprise</option>
                             <option>Une copropriété / syndic</option>
                             <option>Un établissement</option>
+                            <option>Un expert d’assurance</option>
                             <option>Autre professionnel</option>
                           </select>
                           <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#424242]" size={16} />
