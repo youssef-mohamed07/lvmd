@@ -419,8 +419,8 @@ export default function Home() {
               <div className="hero-visual relative mx-auto h-[520px] w-full max-w-[560px] overflow-hidden rounded-[24px] border border-white/70 bg-white shadow-[0_24px_70px_rgba(32,32,32,.16)] sm:h-[620px] sm:rounded-[30px] lg:h-[590px]">
                 <div className="absolute inset-x-0 top-0 h-[73%] overflow-hidden">
                   <Image
-                    src={images.hero}
-                    alt="Espace professionnel entretenu par LVMR Group"
+                    src={images.homeFeature}
+                    alt="Espace vitré entretenu par LVMR Group"
                     fill
                     priority
                     sizes="(min-width: 1024px) 44vw, 90vw"

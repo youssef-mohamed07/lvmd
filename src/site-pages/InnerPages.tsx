@@ -359,7 +359,7 @@ export function RealisationsPage() {
         eyebrow="Références et preuves"
         title={<>Le réel comme <span className="hero-stroke">meilleure preuve.</span></>}
         intro="Découvrez des photographies terrain authentiques qui documentent le contexte, l’intervention et le résultat obtenu."
-        image={imageSet.realisationsHero}
+        backgroundImage={imageSet.realisationsBackground}
       />
 
       <ReferencesProofSection />

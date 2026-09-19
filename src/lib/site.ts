@@ -14,11 +14,13 @@ export type ServiceItem = {
 
 export const imageSet = {
   hero: "/docx-modifications/accueil-clean.png",
+  homeFeature: "/docx-modifications/photos-lvmr-6.jpg",
   premiumHero: "/docx-modifications/premium-hero.png",
   groupHero: "/docx-modifications/group-hero.png",
   environnementHero: "/docx-modifications/environnement-hero.png",
   groupTeam: "/docx-modifications/equipe.png",
   realisationsHero: "/docx-modifications/nos-realllll.jpeg",
+  realisationsBackground: "/docx-modifications/photos-lvmr-4.jpg",
   environmentAfterRequested: "/docx-modifications/apres.jpeg",
   environmentDuringRequested: "/docx-modifications/intervention-incendie.jpeg",
   premium: "/LVMR-ALL-FILES/LVMR-WEBSITE-ASSETS/web/premium-office-lobby-02.webp",
