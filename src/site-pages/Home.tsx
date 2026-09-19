@@ -373,8 +373,8 @@ export default function Home() {
       </header>
 
       <main>
-        {/* HERO — compact message with a dedicated visual on the right. */}
-        <section id="accueil" className="hero-stage relative isolate overflow-hidden bg-[#17191a] text-white">
+        {/* HERO — bright photography with a localized light scrim behind the copy. */}
+        <section id="accueil" className="hero-stage relative isolate overflow-hidden bg-[#f5f5f5] text-[#202020]">
           <Image
             src={images.hero}
             alt=""
@@ -384,13 +384,12 @@ export default function Home() {
             className="hero-background object-cover"
           />
           <div className="hero-ambient absolute inset-0" aria-hidden />
-          <div className="hero-grid absolute inset-0 opacity-25" aria-hidden />
 
           <div className="container relative z-10 grid min-h-[760px] items-center gap-10 pb-12 pt-28 sm:pb-16 sm:pt-32 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 lg:py-32">
             <div className="home-hero-copy max-w-[620px]">
               <div className="hero-reveal flex items-center gap-3" style={{ animationDelay: "60ms" }}>
-                <span className="h-px w-9 bg-[#ffc547]" />
-                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/65 sm:text-[10px]">Groupe LVMR · Île-de-France</p>
+                <span className="h-px w-9 bg-[#b07e2b]" />
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#424242] sm:text-[10px]">Groupe LVMR · Île-de-France</p>
               </div>
 
               <h1 className="hero-title hero-reveal mt-5 max-w-[600px]" style={{ animationDelay: "140ms" }}>
@@ -398,7 +397,7 @@ export default function Home() {
                 <span>en toutes circonstances.</span>
               </h1>
 
-              <p className="hero-reveal mt-6 max-w-[500px] text-[14px] font-medium leading-6 text-white/68 sm:text-[15px] sm:leading-7" style={{ animationDelay: "230ms" }}>
+              <p className="hero-reveal mt-6 max-w-[500px] text-[14px] font-medium leading-6 text-[#303030] sm:text-[15px] sm:leading-7" style={{ animationDelay: "230ms" }}>
                 Deux expertises complémentaires pour entretenir vos espaces et répondre aux interventions techniques les plus exigeantes.
               </p>
 
@@ -411,23 +410,22 @@ export default function Home() {
                 </button>
               </div>
 
-              <div className="hero-reveal mt-9 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/12 pt-5 text-[9px] font-bold uppercase tracking-[.13em] text-white/45 sm:text-[10px]" style={{ animationDelay: "410ms" }}>
-                <span>LVMR Premium</span><span className="text-[#ffc547]">•</span><span>LVMR Environnement</span><span className="text-[#ffc547]">•</span><span>Île-de-France</span>
+              <div className="hero-reveal mt-9 flex flex-wrap gap-x-5 gap-y-2 border-t border-[#202020]/12 pt-5 text-[9px] font-bold uppercase tracking-[.13em] text-[#424242]/75 sm:text-[10px]" style={{ animationDelay: "410ms" }}>
+                <span>LVMR Premium</span><span className="text-[#b07e2b]">•</span><span>LVMR Environnement</span><span className="text-[#b07e2b]">•</span><span>Île-de-France</span>
               </div>
             </div>
 
             <div className="hero-reveal w-full lg:justify-self-end" style={{ animationDelay: "240ms" }}>
-              <div className="hero-visual relative mx-auto h-[520px] w-full max-w-[560px] overflow-hidden rounded-[24px] border border-white/12 bg-[#222627] shadow-[0_30px_90px_rgba(0,0,0,.38)] sm:h-[620px] sm:rounded-[30px] lg:h-[590px]">
+              <div className="hero-visual relative mx-auto h-[520px] w-full max-w-[560px] overflow-hidden rounded-[24px] border border-white/70 bg-white shadow-[0_24px_70px_rgba(32,32,32,.16)] sm:h-[620px] sm:rounded-[30px] lg:h-[590px]">
                 <div className="absolute inset-x-0 top-0 h-[73%] overflow-hidden">
                   <Image
-                    src={images.groupTeam}
-                    alt="Équipe LVMR réunissant les expertises de propreté et d’intervention technique"
+                    src={images.hero}
+                    alt="Espace professionnel entretenu par LVMR Group"
                     fill
                     priority
                     sizes="(min-width: 1024px) 44vw, 90vw"
                     className="object-cover object-center transition duration-700 hover:scale-[1.025]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#17191a]/35 via-transparent to-transparent" aria-hidden />
                 </div>
 
                 <div className="absolute inset-x-0 bottom-0 flex h-[27%] items-center justify-between gap-6 bg-[#f4f1eb] p-6 text-[#202020] sm:p-8">
@@ -438,7 +436,7 @@ export default function Home() {
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#ffc547] text-[#202020]"><ShieldCheck size={18} /></span>
                 </div>
 
-                <span className="absolute left-5 top-5 rounded-full border border-white/30 bg-[#17191a]/65 px-3.5 py-2 text-[9px] font-bold uppercase tracking-[.12em] text-white backdrop-blur-md sm:text-[10px]">Saint-Germain-en-Laye</span>
+                <span className="absolute left-5 top-5 rounded-full border border-white/70 bg-white/90 px-3.5 py-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#424242] backdrop-blur-md sm:text-[10px]">Saint-Germain-en-Laye</span>
               </div>
             </div>
           </div>
@@ -568,7 +566,9 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(32,32,32,.98)_0%,rgba(32,32,32,.55)_45%,rgba(32,32,32,.08)_100%)]" />
                 <div className="expertise-division-content absolute inset-0 flex flex-col justify-between p-7 sm:p-9">
                   <div className="flex items-center justify-between border-b border-white/18 pb-5">
-                    <img src={brandSet.environnementHorizontal} alt="LVMR Environnement" className="h-9 w-auto sm:h-11" />
+                    <span className="inline-flex rounded-lg bg-white/90 px-3 py-2 backdrop-blur-sm">
+                      <img src={brandSet.environnementHorizontal} alt="LVMR Environnement" className="h-8 w-auto sm:h-9" />
+                    </span>
                     <span className="text-[10px] font-bold uppercase tracking-[.12em] text-white/50">08 services</span>
                   </div>
                   <div>

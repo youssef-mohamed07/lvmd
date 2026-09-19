@@ -358,9 +358,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   transform: scale(1.015);
 }
 .hero-ambient {
-  background:
-    linear-gradient(90deg, rgba(10, 12, 13, .94) 0%, rgba(10, 12, 13, .82) 45%, rgba(10, 12, 13, .58) 100%),
-    linear-gradient(0deg, rgba(10, 12, 13, .78) 0%, rgba(10, 12, 13, .18) 55%, rgba(10, 12, 13, .38) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, .97) 0%, rgba(255, 255, 255, .91) 35%, rgba(255, 255, 255, .52) 58%, rgba(255, 255, 255, 0) 78%);
+}
+.page-hero-light-scrim {
+  background: linear-gradient(90deg, rgba(245, 245, 245, .97) 0%, rgba(245, 245, 245, .9) 38%, rgba(245, 245, 245, .5) 62%, rgba(245, 245, 245, .12) 100%);
 }
 .hero-title {
   font-family: "Aftonur", Inter, ui-sans-serif, sans-serif;
@@ -369,12 +370,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   line-height: .94;
   letter-spacing: -.045em;
   text-wrap: balance;
-  text-shadow: 0 3px 30px rgba(0, 0, 0, .24);
+  color: #202020;
+  text-shadow: none;
 }
 .hero-title span {
   display: block;
   margin-top: .13em;
-  color: rgba(255, 255, 255, .72);
+  color: #565656;
 }
 .hero-secondary-cta {
   display: inline-flex;
@@ -383,10 +385,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   justify-content: center;
   gap: 12px;
   padding: 0 22px;
-  border: 1px solid rgba(255, 255, 255, .3);
+  border: 1px solid rgba(32, 32, 32, .2);
   border-radius: 10px;
-  background: rgba(255, 255, 255, .08);
-  color: white;
+  background: rgba(255, 255, 255, .72);
+  color: #202020;
   font-size: 13px;
   font-weight: 750;
   backdrop-filter: blur(14px);
@@ -394,8 +396,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .hero-secondary-cta:hover {
   transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, .6);
-  background: rgba(255, 255, 255, .16);
+  border-color: rgba(32, 32, 32, .4);
+  background: white;
 }
 .hero-visual { isolation: isolate; }
 .hero-noise {
@@ -681,12 +683,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .eyebrow { font-size: 10px; letter-spacing: .09em; }
   .hero-cta { width: 100%; min-height: 54px; }
   .hero-secondary-cta { width: 100%; min-height: 54px; }
-  .hero-title { font-size: clamp(2.7rem, 13vw, 3.7rem); line-height: .95; letter-spacing: -.04em; }
+  .hero-title { max-width: 100%; font-size: clamp(2.25rem, 11.4vw, 3.15rem); line-height: .96; letter-spacing: -.05em; }
   .hero-background { object-position: 58% center; }
   .hero-ambient {
-    background:
-      linear-gradient(0deg, rgba(10, 12, 13, .96) 0%, rgba(10, 12, 13, .78) 58%, rgba(10, 12, 13, .45) 100%),
-      linear-gradient(90deg, rgba(10, 12, 13, .7), rgba(10, 12, 13, .3));
+    background: linear-gradient(180deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .84) 62%, rgba(255, 255, 255, .62) 100%);
   }
   .hero-grid { background-size: 48px 48px; }
 

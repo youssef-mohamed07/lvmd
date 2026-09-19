@@ -382,7 +382,7 @@ export function RealisationsPage() {
           <div className="grid auto-rows-[230px] gap-4 sm:auto-rows-[280px] md:grid-cols-12">
             {[
               [imageSet.environmentBefore, "Avant intervention", "État initial du logement", "md:col-span-7 md:row-span-2"],
-              [imageSet.environmentIntervention, "Pendant", "Remise en état en cours", "md:col-span-5"],
+              [imageSet.environmentDuringRequested, "Pendant", "Remise en état en cours", "md:col-span-5"],
               [imageSet.environmentDetail, "Contrôle", "Nettoyage des zones sensibles", "md:col-span-5"],
               [imageSet.environmentAfter, "Après intervention", "Espace restitué", "md:col-span-7"],
               [imageSet.groupChecklist, "Traçabilité", "Intervention documentée", "md:col-span-5"],
